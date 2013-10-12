@@ -24,7 +24,7 @@ namespace LevelUpApplication
         /// Send("localhost/users/", "POST", "<Users><Name>Jose</Name></Users>", "application/xml")
         /// </code> 
         /// </example>
-        public string Send(string Uri, string Method, string Content, string ContentType)
+        public static string Send(string Uri, string Method, string Content, string ContentType)
         {
             //Create a not persistent HttpWebRequest Object from the given URI.
             HttpWebRequest Request = WebRequest.Create(Uri) as HttpWebRequest;
@@ -59,7 +59,7 @@ namespace LevelUpApplication
         /// Get("localhost/users/102")
         /// </code> 
         /// </example>
-        public string Get(string Uri)
+        public static string Get(string Uri)
         {
             //Create a not persistent HttpWebRequest Object from the given URI.
             HttpWebRequest Request = WebRequest.Create(Uri) as HttpWebRequest;

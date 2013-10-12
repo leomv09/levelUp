@@ -29,137 +29,107 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.DepartamentoReglaLabel = new System.Windows.Forms.Label();
-            this.DepartamentoReglaComboBox = new System.Windows.Forms.ComboBox();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ReglaGrid = new System.Windows.Forms.DataGridView();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DepartamentRuleLabel = new System.Windows.Forms.Label();
+            this.DepartamentRuleComboBox = new System.Windows.Forms.ComboBox();
+            this.RulesDataGridView = new System.Windows.Forms.DataGridView();
+            this.RulesColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RulesColumnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RulesColumnStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RulesColumnEndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TapControl = new System.Windows.Forms.TabControl();
-            this.Reglas = new System.Windows.Forms.TabPage();
-            this.Logros = new System.Windows.Forms.TabPage();
-            this.AgregarReglaButton = new System.Windows.Forms.Button();
-            this.EliminarReglaButton = new System.Windows.Forms.Button();
-            this.ModificarReglaButton = new System.Windows.Forms.Button();
-            this.menuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ReglaGrid)).BeginInit();
+            this.Rules = new System.Windows.Forms.TabPage();
+            this.RemoveRuleButton = new System.Windows.Forms.Button();
+            this.AddRuleButton = new System.Windows.Forms.Button();
+            this.Achievements = new System.Windows.Forms.TabPage();
+            this.SearchUserAchievementsButton = new System.Windows.Forms.Button();
+            this.AddAchievementButton = new System.Windows.Forms.Button();
+            this.AchievementsDataGridView = new System.Windows.Forms.DataGridView();
+            this.AchievementsColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AchievementsColumnType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AchievementsColumnPoints = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserAchievementsTextBox = new System.Windows.Forms.TextBox();
+            this.UserAchievementsLabel = new System.Windows.Forms.Label();
+            this.FileButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
+            ((System.ComponentModel.ISupportInitialize)(this.RulesDataGridView)).BeginInit();
             this.TapControl.SuspendLayout();
-            this.Reglas.SuspendLayout();
+            this.Rules.SuspendLayout();
+            this.Achievements.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AchievementsDataGridView)).BeginInit();
+            this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // DepartamentoReglaLabel
+            // DepartamentRuleLabel
             // 
-            this.DepartamentoReglaLabel.AutoSize = true;
-            this.DepartamentoReglaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DepartamentoReglaLabel.Location = new System.Drawing.Point(16, 10);
-            this.DepartamentoReglaLabel.Name = "DepartamentoReglaLabel";
-            this.DepartamentoReglaLabel.Size = new System.Drawing.Size(94, 16);
-            this.DepartamentoReglaLabel.TabIndex = 0;
-            this.DepartamentoReglaLabel.Text = "Departamento";
+            this.DepartamentRuleLabel.AutoSize = true;
+            this.DepartamentRuleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DepartamentRuleLabel.Location = new System.Drawing.Point(16, 10);
+            this.DepartamentRuleLabel.Name = "DepartamentRuleLabel";
+            this.DepartamentRuleLabel.Size = new System.Drawing.Size(94, 16);
+            this.DepartamentRuleLabel.TabIndex = 0;
+            this.DepartamentRuleLabel.Text = "Departamento";
             // 
-            // DepartamentoReglaComboBox
+            // DepartamentRuleComboBox
             // 
-            this.DepartamentoReglaComboBox.FormattingEnabled = true;
-            this.DepartamentoReglaComboBox.Location = new System.Drawing.Point(16, 29);
-            this.DepartamentoReglaComboBox.Name = "DepartamentoReglaComboBox";
-            this.DepartamentoReglaComboBox.Size = new System.Drawing.Size(121, 21);
-            this.DepartamentoReglaComboBox.TabIndex = 1;
+            this.DepartamentRuleComboBox.FormattingEnabled = true;
+            this.DepartamentRuleComboBox.Location = new System.Drawing.Point(19, 29);
+            this.DepartamentRuleComboBox.Name = "DepartamentRuleComboBox";
+            this.DepartamentRuleComboBox.Size = new System.Drawing.Size(121, 21);
+            this.DepartamentRuleComboBox.TabIndex = 1;
+            this.DepartamentRuleComboBox.SelectionChangeCommitted += new System.EventHandler(this.DepartamentRuleComboBox_SelectionChangeCommitted);
             // 
-            // menuStrip
+            // RulesDataGridView
             // 
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoToolStripMenuItem,
-            this.opcionesToolStripMenuItem,
-            this.ayudaToolStripMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(766, 24);
-            this.menuStrip.TabIndex = 2;
-            this.menuStrip.Text = "menuStrip";
+            this.RulesDataGridView.AllowUserToAddRows = false;
+            this.RulesDataGridView.AllowUserToDeleteRows = false;
+            this.RulesDataGridView.AllowUserToOrderColumns = true;
+            this.RulesDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.RulesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RulesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.RulesColumnName,
+            this.RulesColumnDescripcion,
+            this.RulesColumnStartDate,
+            this.RulesColumnEndDate});
+            this.RulesDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.RulesDataGridView.Location = new System.Drawing.Point(3, 70);
+            this.RulesDataGridView.MultiSelect = false;
+            this.RulesDataGridView.Name = "RulesDataGridView";
+            this.RulesDataGridView.ReadOnly = true;
+            this.RulesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.RulesDataGridView.Size = new System.Drawing.Size(748, 438);
+            this.RulesDataGridView.TabIndex = 3;
+            this.RulesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RulesDataGridView_CellClick);
+            this.RulesDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RulesDataGridView_CellMouseDoubleClick);
             // 
-            // archivoToolStripMenuItem
+            // RulesColumnName
             // 
-            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salirToolStripMenuItem});
-            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.archivoToolStripMenuItem.Text = "Archivo";
+            this.RulesColumnName.HeaderText = "Nombre";
+            this.RulesColumnName.Name = "RulesColumnName";
+            this.RulesColumnName.ReadOnly = true;
             // 
-            // salirToolStripMenuItem
+            // RulesColumnDescripcion
             // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            this.RulesColumnDescripcion.HeaderText = "Descripción";
+            this.RulesColumnDescripcion.Name = "RulesColumnDescripcion";
+            this.RulesColumnDescripcion.ReadOnly = true;
             // 
-            // opcionesToolStripMenuItem
+            // RulesColumnStartDate
             // 
-            this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.opcionesToolStripMenuItem.Text = "Opciones";
+            this.RulesColumnStartDate.HeaderText = "Fecha de Inicio";
+            this.RulesColumnStartDate.Name = "RulesColumnStartDate";
+            this.RulesColumnStartDate.ReadOnly = true;
             // 
-            // ayudaToolStripMenuItem
+            // RulesColumnEndDate
             // 
-            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.acercaDeToolStripMenuItem});
-            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.ayudaToolStripMenuItem.Text = "Ayuda";
-            // 
-            // acercaDeToolStripMenuItem
-            // 
-            this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.acercaDeToolStripMenuItem.Text = "Acerca De";
-            // 
-            // ReglaGrid
-            // 
-            this.ReglaGrid.AllowUserToDeleteRows = false;
-            this.ReglaGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ReglaGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ReglaGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nombre,
-            this.Descripcion,
-            this.FechaInicio,
-            this.FechaFinal});
-            this.ReglaGrid.Location = new System.Drawing.Point(3, 70);
-            this.ReglaGrid.MultiSelect = false;
-            this.ReglaGrid.Name = "ReglaGrid";
-            this.ReglaGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ReglaGrid.Size = new System.Drawing.Size(748, 426);
-            this.ReglaGrid.TabIndex = 3;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            // 
-            // FechaInicio
-            // 
-            this.FechaInicio.HeaderText = "Fecha de Inicio";
-            this.FechaInicio.Name = "FechaInicio";
-            // 
-            // FechaFinal
-            // 
-            this.FechaFinal.HeaderText = "Fecha de Finalización";
-            this.FechaFinal.Name = "FechaFinal";
+            this.RulesColumnEndDate.HeaderText = "Fecha de Finalización";
+            this.RulesColumnEndDate.Name = "RulesColumnEndDate";
+            this.RulesColumnEndDate.ReadOnly = true;
             // 
             // TapControl
             // 
-            this.TapControl.Controls.Add(this.Reglas);
-            this.TapControl.Controls.Add(this.Logros);
+            this.TapControl.Controls.Add(this.Rules);
+            this.TapControl.Controls.Add(this.Achievements);
             this.TapControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TapControl.Location = new System.Drawing.Point(0, 24);
             this.TapControl.Name = "TapControl";
@@ -167,58 +137,153 @@
             this.TapControl.Size = new System.Drawing.Size(766, 537);
             this.TapControl.TabIndex = 4;
             // 
-            // Reglas
+            // Rules
             // 
-            this.Reglas.Controls.Add(this.ModificarReglaButton);
-            this.Reglas.Controls.Add(this.EliminarReglaButton);
-            this.Reglas.Controls.Add(this.AgregarReglaButton);
-            this.Reglas.Controls.Add(this.DepartamentoReglaComboBox);
-            this.Reglas.Controls.Add(this.ReglaGrid);
-            this.Reglas.Controls.Add(this.DepartamentoReglaLabel);
-            this.Reglas.Location = new System.Drawing.Point(4, 22);
-            this.Reglas.Name = "Reglas";
-            this.Reglas.Padding = new System.Windows.Forms.Padding(3);
-            this.Reglas.Size = new System.Drawing.Size(758, 511);
-            this.Reglas.TabIndex = 0;
-            this.Reglas.Text = "Reglas";
-            this.Reglas.UseVisualStyleBackColor = true;
+            this.Rules.Controls.Add(this.RemoveRuleButton);
+            this.Rules.Controls.Add(this.AddRuleButton);
+            this.Rules.Controls.Add(this.DepartamentRuleComboBox);
+            this.Rules.Controls.Add(this.RulesDataGridView);
+            this.Rules.Controls.Add(this.DepartamentRuleLabel);
+            this.Rules.Location = new System.Drawing.Point(4, 22);
+            this.Rules.Name = "Rules";
+            this.Rules.Padding = new System.Windows.Forms.Padding(3);
+            this.Rules.Size = new System.Drawing.Size(758, 511);
+            this.Rules.TabIndex = 0;
+            this.Rules.Text = "Reglas";
+            this.Rules.UseVisualStyleBackColor = true;
+            this.Rules.Enter += new System.EventHandler(this.Rules_Enter);
             // 
-            // Logros
+            // RemoveRuleButton
             // 
-            this.Logros.Location = new System.Drawing.Point(4, 22);
-            this.Logros.Name = "Logros";
-            this.Logros.Padding = new System.Windows.Forms.Padding(3);
-            this.Logros.Size = new System.Drawing.Size(755, 474);
-            this.Logros.TabIndex = 1;
-            this.Logros.Text = "Logros";
-            this.Logros.UseVisualStyleBackColor = true;
+            this.RemoveRuleButton.Location = new System.Drawing.Point(675, 10);
+            this.RemoveRuleButton.Name = "RemoveRuleButton";
+            this.RemoveRuleButton.Size = new System.Drawing.Size(75, 40);
+            this.RemoveRuleButton.TabIndex = 5;
+            this.RemoveRuleButton.Text = "Eliminar";
+            this.RemoveRuleButton.UseVisualStyleBackColor = true;
+            this.RemoveRuleButton.Click += new System.EventHandler(this.RemoveRuleButton_Click);
             // 
-            // AgregarReglaButton
+            // AddRuleButton
             // 
-            this.AgregarReglaButton.Location = new System.Drawing.Point(493, 10);
-            this.AgregarReglaButton.Name = "AgregarReglaButton";
-            this.AgregarReglaButton.Size = new System.Drawing.Size(75, 40);
-            this.AgregarReglaButton.TabIndex = 4;
-            this.AgregarReglaButton.Text = "Agregar";
-            this.AgregarReglaButton.UseVisualStyleBackColor = true;
+            this.AddRuleButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddRuleButton.Location = new System.Drawing.Point(594, 10);
+            this.AddRuleButton.Name = "AddRuleButton";
+            this.AddRuleButton.Size = new System.Drawing.Size(75, 40);
+            this.AddRuleButton.TabIndex = 4;
+            this.AddRuleButton.Text = "Agregar";
+            this.AddRuleButton.UseVisualStyleBackColor = true;
+            this.AddRuleButton.Click += new System.EventHandler(this.AddRuleButton_Click);
             // 
-            // EliminarReglaButton
+            // Achievements
             // 
-            this.EliminarReglaButton.Location = new System.Drawing.Point(574, 10);
-            this.EliminarReglaButton.Name = "EliminarReglaButton";
-            this.EliminarReglaButton.Size = new System.Drawing.Size(75, 40);
-            this.EliminarReglaButton.TabIndex = 5;
-            this.EliminarReglaButton.Text = "Eliminar";
-            this.EliminarReglaButton.UseVisualStyleBackColor = true;
+            this.Achievements.Controls.Add(this.SearchUserAchievementsButton);
+            this.Achievements.Controls.Add(this.AddAchievementButton);
+            this.Achievements.Controls.Add(this.AchievementsDataGridView);
+            this.Achievements.Controls.Add(this.UserAchievementsTextBox);
+            this.Achievements.Controls.Add(this.UserAchievementsLabel);
+            this.Achievements.Location = new System.Drawing.Point(4, 22);
+            this.Achievements.Name = "Achievements";
+            this.Achievements.Padding = new System.Windows.Forms.Padding(3);
+            this.Achievements.Size = new System.Drawing.Size(758, 511);
+            this.Achievements.TabIndex = 1;
+            this.Achievements.Text = "Logros";
+            this.Achievements.UseVisualStyleBackColor = true;
+            this.Achievements.Enter += new System.EventHandler(this.Achievements_Enter);
             // 
-            // ModificarReglaButton
+            // SearchUserAchievementsButton
             // 
-            this.ModificarReglaButton.Location = new System.Drawing.Point(655, 10);
-            this.ModificarReglaButton.Name = "ModificarReglaButton";
-            this.ModificarReglaButton.Size = new System.Drawing.Size(75, 40);
-            this.ModificarReglaButton.TabIndex = 6;
-            this.ModificarReglaButton.Text = "Modificar";
-            this.ModificarReglaButton.UseVisualStyleBackColor = true;
+            this.SearchUserAchievementsButton.Location = new System.Drawing.Point(146, 29);
+            this.SearchUserAchievementsButton.Name = "SearchUserAchievementsButton";
+            this.SearchUserAchievementsButton.Size = new System.Drawing.Size(61, 21);
+            this.SearchUserAchievementsButton.TabIndex = 6;
+            this.SearchUserAchievementsButton.Text = "Buscar";
+            this.SearchUserAchievementsButton.UseVisualStyleBackColor = true;
+            // 
+            // AddAchievementButton
+            // 
+            this.AddAchievementButton.Location = new System.Drawing.Point(676, 10);
+            this.AddAchievementButton.Name = "AddAchievementButton";
+            this.AddAchievementButton.Size = new System.Drawing.Size(75, 40);
+            this.AddAchievementButton.TabIndex = 5;
+            this.AddAchievementButton.Text = "Agregar";
+            this.AddAchievementButton.UseVisualStyleBackColor = true;
+            this.AddAchievementButton.Click += new System.EventHandler(this.AddAchievementButton_Click);
+            // 
+            // AchievementsDataGridView
+            // 
+            this.AchievementsDataGridView.AllowUserToAddRows = false;
+            this.AchievementsDataGridView.AllowUserToDeleteRows = false;
+            this.AchievementsDataGridView.AllowUserToOrderColumns = true;
+            this.AchievementsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.AchievementsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AchievementsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AchievementsColumnName,
+            this.AchievementsColumnType,
+            this.AchievementsColumnPoints});
+            this.AchievementsDataGridView.Location = new System.Drawing.Point(3, 70);
+            this.AchievementsDataGridView.MultiSelect = false;
+            this.AchievementsDataGridView.Name = "AchievementsDataGridView";
+            this.AchievementsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.AchievementsDataGridView.Size = new System.Drawing.Size(748, 438);
+            this.AchievementsDataGridView.TabIndex = 4;
+            this.AchievementsDataGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AchievementsDataGridView_CellContentDoubleClick);
+            // 
+            // AchievementsColumnName
+            // 
+            this.AchievementsColumnName.HeaderText = "Nombre";
+            this.AchievementsColumnName.Name = "AchievementsColumnName";
+            // 
+            // AchievementsColumnType
+            // 
+            this.AchievementsColumnType.HeaderText = "Tipo";
+            this.AchievementsColumnType.Name = "AchievementsColumnType";
+            // 
+            // AchievementsColumnPoints
+            // 
+            this.AchievementsColumnPoints.HeaderText = "Puntos";
+            this.AchievementsColumnPoints.Name = "AchievementsColumnPoints";
+            // 
+            // UserAchievementsTextBox
+            // 
+            this.UserAchievementsTextBox.Location = new System.Drawing.Point(19, 29);
+            this.UserAchievementsTextBox.Name = "UserAchievementsTextBox";
+            this.UserAchievementsTextBox.Size = new System.Drawing.Size(121, 20);
+            this.UserAchievementsTextBox.TabIndex = 1;
+            // 
+            // UserAchievementsLabel
+            // 
+            this.UserAchievementsLabel.AutoSize = true;
+            this.UserAchievementsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserAchievementsLabel.Location = new System.Drawing.Point(16, 10);
+            this.UserAchievementsLabel.Name = "UserAchievementsLabel";
+            this.UserAchievementsLabel.Size = new System.Drawing.Size(55, 16);
+            this.UserAchievementsLabel.TabIndex = 0;
+            this.UserAchievementsLabel.Text = "Usuario";
+            // 
+            // FileButton
+            // 
+            this.FileButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExitButton});
+            this.FileButton.Name = "FileButton";
+            this.FileButton.Size = new System.Drawing.Size(60, 20);
+            this.FileButton.Text = "Archivo";
+            // 
+            // ExitButton
+            // 
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(96, 22);
+            this.ExitButton.Text = "Salir";
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
+            // MenuStrip
+            // 
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileButton});
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(766, 24);
+            this.MenuStrip.TabIndex = 2;
+            this.MenuStrip.Text = "MenuStrip";
             // 
             // MainForm
             // 
@@ -226,17 +291,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(766, 561);
             this.Controls.Add(this.TapControl);
-            this.Controls.Add(this.menuStrip);
+            this.Controls.Add(this.MenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip;
+            this.MainMenuStrip = this.MenuStrip;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Level Up";
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ReglaGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RulesDataGridView)).EndInit();
             this.TapControl.ResumeLayout(false);
-            this.Reglas.ResumeLayout(false);
-            this.Reglas.PerformLayout();
+            this.Rules.ResumeLayout(false);
+            this.Rules.PerformLayout();
+            this.Achievements.ResumeLayout(false);
+            this.Achievements.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AchievementsDataGridView)).EndInit();
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,25 +313,33 @@
 
         #endregion
 
-        private System.Windows.Forms.Label DepartamentoReglaLabel;
-        private System.Windows.Forms.ComboBox DepartamentoReglaComboBox;
-        private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem opcionesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
-        private System.Windows.Forms.DataGridView ReglaGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaInicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaFinal;
+        private System.Windows.Forms.Label DepartamentRuleLabel;
+        private System.Windows.Forms.ComboBox DepartamentRuleComboBox;
+        private System.Windows.Forms.DataGridView RulesDataGridView;
         private System.Windows.Forms.TabControl TapControl;
-        private System.Windows.Forms.TabPage Reglas;
-        private System.Windows.Forms.TabPage Logros;
-        private System.Windows.Forms.Button AgregarReglaButton;
-        private System.Windows.Forms.Button ModificarReglaButton;
-        private System.Windows.Forms.Button EliminarReglaButton;
+        private System.Windows.Forms.TabPage Rules;
+        private System.Windows.Forms.TabPage Achievements;
+        private System.Windows.Forms.Button AddRuleButton;
+        private System.Windows.Forms.Button RemoveRuleButton;
+        private System.Windows.Forms.Button SearchUserAchievementsButton;
+        private System.Windows.Forms.Button AddAchievementButton;
+        private System.Windows.Forms.DataGridView AchievementsDataGridView;
+        private System.Windows.Forms.TextBox UserAchievementsTextBox;
+        private System.Windows.Forms.Label UserAchievementsLabel;
+        private System.Windows.Forms.ToolStripMenuItem FileButton;
+        private System.Windows.Forms.ToolStripMenuItem ExitButton;
+        private System.Windows.Forms.MenuStrip MenuStrip;
+
+        private Controller AppController;
+        private object DepartamentRuleComboBoxSelectedItem;
+        private int RulesDataGridViewSelectedRow;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnDescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnStartDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnEndDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumnType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumnPoints;
     }
 }
 
