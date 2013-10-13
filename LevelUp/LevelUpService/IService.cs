@@ -12,7 +12,10 @@ namespace LevelUpService
     public interface IService
     {
         [OperationContract]
-        [WebGet(UriTemplate = "/Add?x={x}&y={y}")]
+        [WebGet(UriTemplate = "/Add?x={x}&y={y}", 
+                BodyStyle = WebMessageBodyStyle.Wrapped,
+                RequestFormat = WebMessageFormat.Json,
+                ResponseFormat = WebMessageFormat.Json)]
         int Add(int x, int y);
     }
 }

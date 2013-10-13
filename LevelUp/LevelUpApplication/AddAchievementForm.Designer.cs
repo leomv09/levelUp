@@ -1,6 +1,6 @@
 ﻿namespace LevelUpApplication
 {
-    partial class AgregarLogroForm
+    partial class AddAchievementForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarLogroForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddAchievementForm));
             this.SuspendLayout();
             // 
             // AgregarLogroForm

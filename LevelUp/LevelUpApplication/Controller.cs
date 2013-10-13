@@ -17,9 +17,9 @@ namespace LevelUpApplication
         }
 
         /// <summary>
+        /// Get all the rules asociated with a department.
         /// </summary>
-        /// <param name="Department"></param>
-        /// <returns></returns>
+        /// <param name="Department">The name of the department</param>
         public string[][] GetRules(string Department) 
         {
             return new string[][] { 
@@ -28,13 +28,39 @@ namespace LevelUpApplication
             };
         }
 
-        void AddRule() { }
-        void ModifyRule() { }
-        void RemoveRule() { }
-        void GetUsers() { }
-        void GetUser() { }
-        void GetAchievements() { }
-        void AddAchievement() { }
+        public void AddRule() { }
+        public void ModifyRule() { }
+        public void RemoveRule() { }
+
+        /// <summary>
+        /// Gets the username of all users in the database.
+        /// </summary>
+        public string[] GetUsers()
+        {
+            return new string[] { 
+                            "jags9415",
+                            "leomv09",
+                            "emurillo",
+                            "dhf360"
+            };
+        }
+
+        public void GetUser() { }
+
+        /// <summary>
+        /// Gets the achievements of a user.
+        /// </summary>
+        /// <param name="Username">The username of the user.</param>
+        public string[][] GetAchievements(string Username) 
+        { 
+            return new string[][] { 
+                new string[] {"Achievement1", "Type", "7"},
+                new string[] {"Achievement2", "Type", "6"},
+                new string[] {"Achievement3", "Type", "10"}
+            };        
+        }
+
+        public void AddAchievement() { }
 
     }
 }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LevelUpApplication
 {
-    public partial class AgregarLogroForm : Form
+    public partial class AddAchievementForm : Form
     {
-        public AgregarLogroForm()
+        public AddAchievementForm()
         {
             InitializeComponent();
         }

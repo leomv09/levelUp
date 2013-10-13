@@ -16,28 +16,25 @@ namespace LevelUpApplication
         {
             InitializeComponent();
             AppController = new Controller();
-            SelectedDepartment = DepartamentRuleComboBox.SelectedItem;
+            LoadDepartments();
+            LoadUsers();
+            UserAchievementsTextBox.Text = "jason923";
             SelectedRule = 0;
+            SelectedAchievement = 0;
         }
 
         private void LoadDepartments()
         {
             DepartamentRuleComboBox.Items.Clear();
             DepartamentRuleComboBox.Items.AddRange( AppController.GetDepartments() );
-            if (SelectedDepartment != null)
-            {
-                DepartamentRuleComboBox.SelectedItem = SelectedDepartment;
-            }
-            else
-            {
-                DepartamentRuleComboBox.SelectedIndex = 0;
-            }
+            DepartamentRuleComboBox.SelectedIndex = 0;
         }
 
         private void LoadRules()
         {
             RulesDataGridView.Rows.Clear();
-            string[][] Rules = AppController.GetRules( (string) DepartamentRuleComboBox.SelectedItem );
+            string Department = (string)DepartamentRuleComboBox.SelectedItem;
+            string[][] Rules = AppController.GetRules(Department);
 
             foreach (string[] Rule in Rules)
             {
@@ -49,6 +46,22 @@ namespace LevelUpApplication
 
         private void LoadAchievements()
         {
+            AchievementsDataGridView.Rows.Clear();
+            string User = UserAchievementsTextBox.Text;
+            string[][] Achievements = AppController.GetAchievements(User);
+
+            foreach (string[] Achievement in Achievements)
+            {
+                AchievementsDataGridView.Rows.Add(Achievement);
+            }
+
+            AchievementsDataGridView.Rows[SelectedAchievement].Selected = true;
+        }
+
+        private void LoadUsers()
+        {
+            UserAchievementsTextBox.AutoCompleteCustomSource.Clear();
+            UserAchievementsTextBox.AutoCompleteCustomSource.AddRange(AppController.GetUsers());
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -83,7 +96,7 @@ namespace LevelUpApplication
 
         private void AddAchievementButton_Click(object sender, EventArgs e)
         {
-            AgregarLogroForm Form = new AgregarLogroForm();
+            AddAchievementForm Form = new AddAchievementForm();
             Form.ShowDialog(this);
         }
 
@@ -94,7 +107,11 @@ namespace LevelUpApplication
 
         private void Rules_Enter(object sender, EventArgs e)
         {
-            LoadDepartments();
+            LoadRules();
+        }
+
+        private void DepartamentRuleComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
             LoadRules();
         }
 
@@ -103,21 +120,21 @@ namespace LevelUpApplication
             SelectedRule = e.RowIndex;
         }
 
-        private void DepartamentRuleComboBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            SelectedDepartment = DepartamentRuleComboBox.SelectedItem;
-            LoadRules();
-        }
-
         private void RulesDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             AddRuleForm Form = new AddRuleForm();
             Form.ShowDialog(this);
         }
 
+        private void AchievementsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SelectedAchievement = e.RowIndex;
+        }
+
         private void AchievementsDataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Show Achievement
+            AddAchievementForm Form = new AddAchievementForm();
+            Form.ShowDialog(this);
         }
 
     }
