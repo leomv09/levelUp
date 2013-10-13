@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="Controller.cs" />
     <Compile Include="HttpRequest.cs" />
+    <Compile Include="JSONSerializer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
