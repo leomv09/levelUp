@@ -15,5 +15,4 @@ namespace LevelUpService
         [WebGet(UriTemplate = "/Add?x={x}&y={y}")]
         int Add(int x, int y);
     }
-
 }

@@ -16,17 +16,17 @@ namespace LevelUpApplication
         {
             InitializeComponent();
             AppController = new Controller();
-            RulesDataGridViewSelectedRow = 0;
-            DepartamentRuleComboBoxSelectedItem = null;
+            SelectedDepartment = null;
+            SelectedRule = 0;
         }
 
         private void LoadDepartments()
         {
             DepartamentRuleComboBox.Items.Clear();
             DepartamentRuleComboBox.Items.AddRange( AppController.GetDepartments() );
-            if (DepartamentRuleComboBoxSelectedItem != null)
+            if (SelectedDepartment != null)
             {
-                DepartamentRuleComboBox.SelectedItem = DepartamentRuleComboBoxSelectedItem;
+                DepartamentRuleComboBox.SelectedItem = SelectedDepartment;
             }
             else
             {
@@ -44,7 +44,7 @@ namespace LevelUpApplication
                 RulesDataGridView.Rows.Add(Rule);
             }
 
-            RulesDataGridView.Rows[RulesDataGridViewSelectedRow].Selected = true;
+            RulesDataGridView.Rows[SelectedRule].Selected = true;
         }
 
         private void LoadAchievements()
@@ -71,7 +71,7 @@ namespace LevelUpApplication
                       MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                       == DialogResult.Yes)
                 {
-                    RulesDataGridView.Rows.RemoveAt( RulesDataGridViewSelectedRow );
+                    RulesDataGridView.Rows.RemoveAt( SelectedRule );
                 }
             }
             else
@@ -100,12 +100,12 @@ namespace LevelUpApplication
 
         private void RulesDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            RulesDataGridViewSelectedRow = e.RowIndex;
+            SelectedRule = e.RowIndex;
         }
 
         private void DepartamentRuleComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            DepartamentRuleComboBoxSelectedItem = DepartamentRuleComboBox.SelectedItem;
+            SelectedDepartment = DepartamentRuleComboBox.SelectedItem;
             LoadRules();
         }
 

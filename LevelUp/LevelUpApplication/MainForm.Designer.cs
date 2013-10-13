@@ -329,10 +329,6 @@
         private System.Windows.Forms.ToolStripMenuItem FileButton;
         private System.Windows.Forms.ToolStripMenuItem ExitButton;
         private System.Windows.Forms.MenuStrip MenuStrip;
-
-        private Controller AppController;
-        private object DepartamentRuleComboBoxSelectedItem;
-        private int RulesDataGridViewSelectedRow;
         private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnDescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnStartDate;
@@ -340,6 +336,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumnType;
         private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumnPoints;
+
+        private Controller AppController;
+        private object SelectedDepartment;
+        private int SelectedRule;
     }
 }
 
