@@ -16,7 +16,7 @@ namespace LevelUpApplication
         {
             InitializeComponent();
             AppController = new Controller();
-            SelectedDepartment = null;
+            SelectedDepartment = DepartamentRuleComboBox.SelectedItem;
             SelectedRule = 0;
         }
 

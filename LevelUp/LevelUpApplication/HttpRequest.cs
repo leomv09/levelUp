@@ -20,7 +20,7 @@ namespace LevelUpApplication
         /// <returns>The response from the server</returns>
         /// <example>
         /// <code> 
-        /// Send("localhost/users/", "POST", "<Users><Name>Jose</Name></Users>", "application/xml")
+        /// Send("localhost/service/users/", "POST", "{"User":{"Name":"Jose"}}", "application/json")
         /// </code> 
         /// </example>
         public static string Send(string Uri, string Method, string Content, string ContentType)
@@ -55,7 +55,7 @@ namespace LevelUpApplication
         /// <returns>The response from the server</returns>
         /// <example>  
         /// <code> 
-        /// Get("localhost/users/102")
+        /// Get("localhost/service/users/102")
         /// </code> 
         /// </example>
         public static string Get(string Uri)
