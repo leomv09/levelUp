@@ -27,7 +27,6 @@ namespace LevelUpApplication
         {
             DepartamentRuleComboBox.Items.Clear();
             DepartamentRuleComboBox.Items.AddRange( AppController.GetDepartments() );
-            DepartamentRuleComboBox.SelectedIndex = 0;
         }
 
         private void LoadRules()

@@ -218,6 +218,7 @@
             this.AchievementsDataGridView.ReadOnly = true;
             this.AchievementsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.AchievementsDataGridView.Size = new System.Drawing.Size(748, 438);
+            this.AchievementsDataGridView.StandardTab = true;
             this.AchievementsDataGridView.TabIndex = 4;
             this.AchievementsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AchievementsDataGridView_CellClick);
             this.AchievementsDataGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AchievementsDataGridView_CellContentDoubleClick);
