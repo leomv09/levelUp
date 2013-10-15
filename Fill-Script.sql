@@ -48,7 +48,6 @@ DELETE FROM PremiosPorDepartamento;
 DELETE FROM ReglasPorDepartamento;
 DELETE FROM Departamento;
 DELETE FROM Logros;
-DELETE FROM TipoLogro;
 DELETE FROM Regla;
 DELETE FROM EstadoRegla;
 DELETE FROM EstadoLogro;
@@ -59,6 +58,7 @@ DELETE FROM TasaCambio;
 DELETE FROM Moneda;
 
 DELETE FROM Usuario;
+DELETE FROM EstadoUsuario;
 -- End Truncate all tables.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
