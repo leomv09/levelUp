@@ -154,7 +154,7 @@ INSERT INTO EstadoUsuario(idEstado,Estado) VALUES
 
 -- Voy a ir actualizando esta parte --
 
-INSERT INTO Logros(idLogro,Descripcion,FechaInicio,FechaFinal, fk_idCreador,FechaCreacion) VALUES
+INSERT INTO Logros(idLogro, Descripcion, FechaInicio, FechaFinal, fk_idCreador, FechaCreacion) VALUES
 (1, 'Aprender portugués', '2011-02-10', '2012-02-10', 2, '2011-01-01'),
 (2, 'Cursar Maestría', '2011-02-10', '2012-02-10', 3, '2011-01-01'),
 (3, 'Asistir a 5 seminarios', '2011-01-01', '2012-02-10', 6, '2011-01-01'),
@@ -196,10 +196,10 @@ INSERT INTO Premio(idPremio, Titulo, Descripcion, Foto, Cantidad, Monto, fk_idMo
 (21, 'iPod Nano', 'iPod Nano + $5 iTunes gift card.', 'img/photos/21/photo.jpg', , , 1, tipoPremio, '2011-01-01'),
 (22, 'Orden de Compra Runners', 'Orden de compra por $500 en tiendas Runners.', 'img/photos/22/photo.jpg', , 500, 1, tipoPremio, '2011-03-08'),
 (23, 'Orden de Compra Librería Internacional', 'Orden de compra por $100 en Librería Internacional.', 'img/photos/23/photo.jpg', , 100, 1, tipoPremio, '2012-09-03'),
-(25, 'Tratamiento Dental', 'Tratamiento dental por un valor de $1000.', 'img/photos/24/photo.jpg', , 1000, 1, tipoPremio, '2013-02-05'),
-(26, '', 'Pearl Jam Unplugged.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
-(27, '', 'Pearl Jam Unplugged.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
-(28, 'DVD', 'Pearl Jam Unplugged.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
+(25, 'Tratamiento Dental', 'Tratamiento dental por un valor de $1000.', 'img/photos/25/photo.jpg', , 1000, 1, tipoPremio, '2013-02-05'),
+(26, 'Membresía Saprissista', 'Membresía por 1 año en el estadio Ricardo Saprissa.', 'img/photos/26/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
+(27, 'Entradas Eliminatoria', '2 Entradas dobles para el partido de Costa Rica contra Estados Unidos', 'img/photos/27/photo.jpg', , , 1, tipoPremio, '2013/04/05'),
+(28, 'Entradas Eliminatoria', '2 Entradas dobles para el partido de Costa Rica contra Mexico', 'img/photos/28/photo.jpg', , , 1, tipoPremio, '2013/06/01'),
 (29, 'DVD', 'Pearl Jam Unplugged.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
 (30, 'DVD', 'Pearl Jam Unplugged.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
 (31, 'DVD', 'Pearl Jam Unplugged.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
