@@ -2,14 +2,13 @@ TABLAS POR LLENAR
 -----------------
 
 Usuario
+Regla
+Contratos
+TitulosPorUsuario
+ContactosPorUsuario
 LogrosPorDepartamento
 PremiosPorDepartamento
 ReglasPorDepartamento
-Regla
-TipoEvento
-TitulosPorUsuario
-ContactosPorUsuario
-Contratos
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -345,6 +344,40 @@ SET IDENTITY_INSERT dbo.Modulo ON;
 INSERT INTO Modulo (idModulo, Nombre) VALUES
 (1, 'Aplicación de Administración PC');
 SET IDENTITY_INSERT dbo.Modulo OFF;
+
+SET IDENTITY_INSERT dbo.TipoEvento ON;
+INSERT INTO TipoEvento (idTipoEvento, Tipo) VALUES
+(1, 'Inicio de Sesion en Aplicación de Administracion Windows'),
+(2, 'Cierre de Sesion en Aplicación de Administracion Windows'),
+(3, 'Creacion de Regla'),
+(4, 'Eliminacion de Regla'),
+(5, 'Modificacion de Regla'),
+(6, 'Creacion de Logro'),
+(7, 'Modificacion de Logro'),
+(8, 'Concesion de Logro a Usuario'),
+(9, 'Revocamiento de Logro a Usuario'),
+(10, 'Creacion de Premio'),
+(11, 'Modificacion de Premio'),
+(12, 'Entrega de Premio a Usuario'),
+(13, 'Creacion de Usuario'),
+(14, 'Eliminacion de Usuario'),
+(15, 'Modificacion de Información de Usuario'),
+(16, 'Creacion de Moneda'),
+(17, 'Actualizacion Tasa de Cambio'),
+(18, 'Creacion de Departamento'),
+(19, 'Creacion de Puesto'),
+(20, 'Modificacion de Puesto'),
+(21, 'Creacion de Titulo'),
+(22, 'Creacion de Institucion'),
+(23, 'Asociacion de Titulo a Institucion'),
+(24, 'Creacion de Permiso'),
+(25, 'Creacion de Grupo de Usuarios'),
+(26, 'Agregacion de Usuario a Grupo de Usuarios'),
+(27, 'Eliminacion de Usuario de Grupo de Usuarios'),
+(28, 'Modificacion de Permisos de Usuario'),
+(29, 'Modificacion de Permisos de Grupo de Usuarios');
+SET IDENTITY_INSERT dbo.TipoEvento OFF;
+
 -- End Fill Tables.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
@@ -410,7 +443,7 @@ INSERT INTO TitulosPorInstituciones (fk_idInstitucion, fk_idTitulo) VALUES
 -- Se le concede a los administradores globales todos los permisos.
 DECLARE @i int = 1
 WHILE @i < 48 BEGIN
-  INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES (2, i);
+  INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES (2, @i);
   SET @i = @i + 1
 END
 
