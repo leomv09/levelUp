@@ -1,3 +1,19 @@
+TABLAS POR LLENAR
+-----------------
+
+Usuario
+LogrosPorDepartamento
+PremiosPorDepartamento
+ReglasPorDepartamento
+Regla
+TipoEvento
+TitulosPorUsuario
+ContactosPorUsuario
+Contratos
+Ciudad
+Provincia
+Pais
+
 -------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Truncate all tables.
@@ -29,7 +45,7 @@ DELETE FROM TipoContacto;
 
 DELETE FROM PremiosPorUsuario;
 DELETE FROM LogrosPorUsuario;
-DELETE FROM LogrosPorRegla; 
+DELETE FROM LogrosPorRegla;
 DELETE FROM LogrosPorDepartamento;
 DELETE FROM PremiosPorDepartamento;
 DELETE FROM ReglasPorDepartamento;
@@ -147,13 +163,44 @@ INSERT INTO TipoContacto (idTipoContacto, Tipo) VALUES
 SET IDENTITY_INSERT dbo.TipoContacto OFF;
 
 SET IDENTITY_INSERT dbo.EstadoUsuario ON;
-INSERT INTO EstadoUsuario(idEstadoUsuario, Estado) VALUES
+INSERT INTO EstadoUsuario (idEstadoUsuario, Estado) VALUES
 (1, 'Activo'),
 (2, 'Inactivo'),
 (3, 'Temporalmente Suspendido'),
 (4, 'Despedido'),
 (5, 'Retirado');
 SET IDENTITY_INSERT dbo.EstadoUsuario OFF;
+
+SET IDENTITY_INSERT dbo.EstadoRegla ON;
+INSERT INTO EstadoRegla (idEstadoRegla, Estado) VALUES
+(1, 'Activa'),
+(2, 'Inactiva'),
+(3, 'Vencida');
+SET IDENTITY_INSERT dbo.EstadoRegla OFF;
+
+SET IDENTITY_INSERT dbo.EstadoLogro ON;
+INSERT INTO EstadoLogro (idEstadoLogro, Estado) VALUES
+(1, 'Activo'),
+(2, 'Inactivo'),
+(3, 'Vencido');
+SET IDENTITY_INSERT dbo.EstadoLogro OFF;
+
+SET IDENTITY_INSERT dbo.EstadoPremio ON;
+INSERT INTO EstadoPremio (idEstadoPremio, Estado) VALUES
+(1, 'Activo'),
+(2, 'Inactivo'),
+(3, 'Agotado');
+SET IDENTITY_INSERT dbo.EstadoPremio OFF;
+
+SET IDENTITY_INSERT dbo.TipoPremio ON;
+INSERT INTO TipoPremio (idTipoPremio, Tipo) VALUES
+(1, 'Puntos'),
+(2, 'Condecoracion'),
+(3, 'Dinero'),
+(4, 'Tarjeta de Regalo'),
+(5, 'Viaje'),
+(6, 'Otros');
+SET IDENTITY_INSERT dbo.TipoPremio OFF;
 
 SET IDENTITY_INSERT dbo.Logros ON;
 INSERT INTO Logros (idLogro, Descripcion, FechaInicio, FechaFinal, fk_idCreador, FechaCreacion) VALUES
@@ -289,6 +336,18 @@ INSERT INTO GruposDeUsuarios (idGrupoDeUsuarios, Nombre, Activo) VALUES
 (6, 'Administradores de Información', 1),
 (7, 'Administradores de Usuarios', 1);
 SET IDENTITY_INSERT dbo.GruposDeUsuarios OFF;
+
+SET IDENTITY_INSERT dbo.Severidad ON;
+INSERT INTO Severidad (idSeveridad, Descripcion) VALUES
+(1, 'Información'),
+(2, 'Advertencia'),
+(3, 'Error');
+SET IDENTITY_INSERT dbo.Severidad OFF;
+
+SET IDENTITY_INSERT dbo.Modulo ON;
+INSERT INTO Modulo (idModulo, Nombre) VALUES
+(1, 'Aplicación de Administración PC');
+SET IDENTITY_INSERT dbo.Modulo OFF;
 -- End Fill Tables.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
@@ -350,6 +409,13 @@ INSERT INTO TitulosPorInstituciones (fk_idInstitucion, fk_idTitulo) VALUES
 (4, 23),
 (5, 12),
 (5, 13);
+
+-- Se le concede a los administradores globales todos los permisos.
+DECLARE @i int = 1
+WHILE @i < 48 BEGIN
+  INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES (2, i);
+  SET @i = @i + 1
+END
 
 INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES
 (1, 5),
