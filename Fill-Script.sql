@@ -117,3 +117,31 @@ INSERT INTO TitulosPorInstituciones (fk_idInstitucion, fk_idTitulo) VALUES
 (4, 23),
 (5, 12),
 (5, 13);
+
+INSERT INTO Puestos(idPuesto, Puesto,fk_idDepartamento) VALUES
+(1, 'Conserge', 3),
+(2, 'Administrador', 4),
+(3, 'Obrero', 3),
+(4, 'Chofer', 4),
+(5, 'Mecánico', 2),
+(6, 'Oficinista', 6),
+(7, 'Dependiente', 7),
+(8, 'Empleador', 2),
+(9, 'Asistente', 4),
+(10, 'Agente', 7),
+(11, 'Archivero', 1),
+(12, 'Informático', 1),
+(13, 'Modelo', 7),
+(14, 'Peón', 3),
+(15, 'Socorrista', 2),
+(16, 'Técnico', 1),
+(17, 'Traductor', 7),
+(18, 'Gerente', 4);
+
+INSERT INTO TipoContacto(idTipoContacto,Tipo) VALUES
+(1, 'Correo Electrónico'),
+(2, 'Teléfono Fijo'),
+(3, 'Teléfono Móvil'),
+(4, 'Código Postal'),
+(5, 'Red Social'),
+(6, 'Página web');
