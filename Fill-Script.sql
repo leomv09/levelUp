@@ -145,3 +145,9 @@ INSERT INTO TipoContacto(idTipoContacto,Tipo) VALUES
 (4, 'Código Postal'),
 (5, 'Red Social'),
 (6, 'Página web');
+
+INSERT INTO EstadoUsuario(idEstado,Estado) VALUES
+(1, 'Activo'),
+(2, 'Desactivo'),
+(3, 'Temporalmente Suspendido'),
+(3, 'Despedido');
