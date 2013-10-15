@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace LevelUpApplication
 {
-    public partial class AddAchievementForm : Form
+    public partial class RuleDetailsForm : Form
     {
-        public AddAchievementForm()
+        public RuleDetailsForm()
         {
             InitializeComponent();
+        }
+
+        private void AceptarButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ApplyRuleButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

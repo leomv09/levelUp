@@ -16,11 +16,13 @@ namespace LevelUpApplication
         {
             InitializeComponent();
             AppController = new Controller();
+            InitializeData();
+        }
+
+        private void InitializeData()
+        {
             LoadDepartments();
             LoadUsers();
-            UserAchievementsTextBox.Text = "jason923";
-            SelectedRule = 0;
-            SelectedAchievement = 0;
         }
 
         private void LoadDepartments()
@@ -39,8 +41,6 @@ namespace LevelUpApplication
             {
                 RulesDataGridView.Rows.Add(Rule);
             }
-
-            RulesDataGridView.Rows[SelectedRule].Selected = true;
         }
 
         private void LoadAchievements()
@@ -53,8 +53,6 @@ namespace LevelUpApplication
             {
                 AchievementsDataGridView.Rows.Add(Achievement);
             }
-
-            AchievementsDataGridView.Rows[SelectedAchievement].Selected = true;
         }
 
         private void LoadUsers()
@@ -70,20 +68,29 @@ namespace LevelUpApplication
 
         private void AddRuleButton_Click(object sender, EventArgs e)
         {
-            AddRuleForm Form = new AddRuleForm();
-            Form.ShowDialog(this);
+            if (String.IsNullOrEmpty(DepartamentRuleComboBox.Text))
+            {
+                MessageBox.Show(this, "Seleccione un departamento.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                RuleDetailsForm Form = new RuleDetailsForm();
+                Form.ShowDialog(this);
+            }
         }
 
         private void RemoveRuleButton_Click(object sender, EventArgs e)
         {
-            DataGridViewSelectedRowCollection Rows = RulesDataGridView.SelectedRows;
-            if (Rows.Count == 1)
+            DataGridViewSelectedRowCollection SelectedRows = RulesDataGridView.SelectedRows;
+            if (SelectedRows.Count == 1)
             {
                 if (MessageBox.Show(this, "¿Está seguro que desea eliminar esta regla?", "Eliminar Regla",
                       MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                       == DialogResult.Yes)
                 {
-                    RulesDataGridView.Rows.RemoveAt( SelectedRule );
+                    int SelectedIndex = RulesDataGridView.CurrentCell.RowIndex;
+                    RulesDataGridView.Rows.RemoveAt( SelectedIndex );
                 }
             }
             else
@@ -93,47 +100,57 @@ namespace LevelUpApplication
             }
         }
 
-        private void AddAchievementButton_Click(object sender, EventArgs e)
-        {
-            AddAchievementForm Form = new AddAchievementForm();
-            Form.ShowDialog(this);
-        }
-
-        private void Achievements_Enter(object sender, EventArgs e)
-        {
-            LoadAchievements();
-        }
-
-        private void Rules_Enter(object sender, EventArgs e)
-        {
-            LoadRules();
-        }
-
         private void DepartamentRuleComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             LoadRules();
         }
 
-        private void RulesDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            SelectedRule = e.RowIndex;
-        }
-
         private void RulesDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            AddRuleForm Form = new AddRuleForm();
+            RuleDetailsForm Form = new RuleDetailsForm();
             Form.ShowDialog(this);
         }
 
-        private void AchievementsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void MainForm_Shown(object sender, EventArgs e)
         {
-            SelectedAchievement = e.RowIndex;
+            //LoginForm Form = new LoginForm();
+            //Form.ShowDialog(this);
         }
 
-        private void AchievementsDataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void LogoutButton_Click(object sender, EventArgs e)
         {
-            AddAchievementForm Form = new AddAchievementForm();
+            InitializeData();
+            //Quitar info de usuario;
+            LoginForm Form = new LoginForm();
             Form.ShowDialog(this);
+        }
+
+        private void SearchUserButton_Click(object sender, EventArgs e)
+        {
+            LoadAchievements();
+        }
+
+        private void RemoveAchievementButton_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedRowCollection SelectedRows = AchievementsDataGridView.SelectedRows;
+            if (SelectedRows.Count == 1)
+            { 
+                if (MessageBox.Show(this, "¿Está seguro que desea eliminar este logro?", "Eliminar Logro",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                        == DialogResult.Yes)
+                {
+                    int SelectedIndex = AchievementsDataGridView.CurrentCell.RowIndex;
+                    if (SelectedIndex < AchievementsDataGridView.Rows.Count - 1)
+                    {
+                        AchievementsDataGridView.Rows.RemoveAt(SelectedIndex);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show(this, "Seleccione una logro.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }

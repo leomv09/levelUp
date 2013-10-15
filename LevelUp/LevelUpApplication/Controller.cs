@@ -54,13 +54,14 @@ namespace LevelUpApplication
         public string[][] GetAchievements(string Username) 
         { 
             return new string[][] { 
-                new string[] {"Achievement1", "Type", "7"},
-                new string[] {"Achievement2", "Type", "6"},
-                new string[] {"Achievement3", "Type", "10"}
+                new string[] {null, "Detail", "13/08/2013", "admin"},
+                new string[] {null, "Detail", "21/02/2013", "admin"},
+                new string[] {null, "Detail", "03/10/2013", "admin"}
             };        
         }
 
-        public void AddAchievement() { }
+        public void AddAchievement(string Username) { }
+        public void RemoveAchievement(string Username) { }
 
     }
 }

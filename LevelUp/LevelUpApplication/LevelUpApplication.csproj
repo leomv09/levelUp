@@ -49,21 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAchievementForm.cs">
+    <Compile Include="RuleDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddAchievementForm.Designer.cs">
-      <DependentUpon>AddAchievementForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddRuleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddRuleForm.Designer.cs">
-      <DependentUpon>AddRuleForm.cs</DependentUpon>
+    <Compile Include="RuleDetailsForm.Designer.cs">
+      <DependentUpon>RuleDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="JSONSerializer.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,11 +72,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddAchievementForm.resx">
-      <DependentUpon>AddAchievementForm.cs</DependentUpon>
+    <EmbeddedResource Include="RuleDetailsForm.resx">
+      <DependentUpon>RuleDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddRuleForm.resx">
-      <DependentUpon>AddRuleForm.cs</DependentUpon>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
