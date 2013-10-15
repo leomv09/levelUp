@@ -25,6 +25,20 @@ namespace LevelUpApplication
             LoadUsers();
         }
 
+        private void Reset()
+        {
+            DepartamentRuleComboBox.SelectedIndex = -1;
+            LoadRules();
+            UserAchievementsTextBox.Text = "";
+            LoadAchievements();
+        }
+
+        private void Init()
+        {
+            DepartamentRuleComboBox.SelectedIndex = 0;
+            LoadRules();
+        }
+
         private void LoadDepartments()
         {
             DepartamentRuleComboBox.Items.Clear();
@@ -35,11 +49,14 @@ namespace LevelUpApplication
         {
             RulesDataGridView.Rows.Clear();
             string Department = (string)DepartamentRuleComboBox.SelectedItem;
-            string[][] Rules = AppController.GetRules(Department);
 
-            foreach (string[] Rule in Rules)
+            if (!String.IsNullOrEmpty(Department))
             {
-                RulesDataGridView.Rows.Add(Rule);
+                string[][] Rules = AppController.GetRules(Department);
+                foreach (string[] Rule in Rules)
+                {
+                    RulesDataGridView.Rows.Add(Rule);
+                }
             }
         }
 
@@ -47,11 +64,17 @@ namespace LevelUpApplication
         {
             AchievementsDataGridView.Rows.Clear();
             string User = UserAchievementsTextBox.Text;
-            string[][] Achievements = AppController.GetAchievements(User);
 
-            foreach (string[] Achievement in Achievements)
+            if (!String.IsNullOrEmpty(User))
             {
-                AchievementsDataGridView.Rows.Add(Achievement);
+                string Department = ""; // User Department.
+                string[][] Achievements = AppController.GetUserAchievements(User);
+
+                AchievementsColumn.Items.AddRange(AppController.GetDepartmentAchievements(Department));
+                foreach (string[] Achievement in Achievements)
+                {
+                    AchievementsDataGridView.Rows.Add(Achievement);
+                }
             }
         }
 
@@ -100,11 +123,6 @@ namespace LevelUpApplication
             }
         }
 
-        private void DepartamentRuleComboBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            LoadRules();
-        }
-
         private void RulesDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             RuleDetailsForm Form = new RuleDetailsForm();
@@ -113,16 +131,19 @@ namespace LevelUpApplication
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            Reset();
             //LoginForm Form = new LoginForm();
             //Form.ShowDialog(this);
+            Init();
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
         {
-            InitializeData();
+            Reset();
             //Quitar info de usuario;
             LoginForm Form = new LoginForm();
             Form.ShowDialog(this);
+            Init();
         }
 
         private void SearchUserButton_Click(object sender, EventArgs e)
@@ -153,5 +174,22 @@ namespace LevelUpApplication
             }
         }
 
+        private void UserAchievementsTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                LoadAchievements();
+            }
+        }
+
+        private void DepartamentRuleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadRules();
+        }
+
+        public Controller GetController()
+        {
+            return this.AppController;
+        }
     }
 }

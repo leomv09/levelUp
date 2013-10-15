@@ -26,5 +26,13 @@ namespace LevelUpApplication
         {
 
         }
+
+        private void RuleDetailsForm_Shown(object sender, EventArgs e)
+        {
+            AppController = ((MainForm)this.Owner).GetController();
+            string Department = ""; //Get Department
+            Achievement.Items.AddRange(AppController.GetDepartmentAchievements(Department));
+        }
+
     }
 }

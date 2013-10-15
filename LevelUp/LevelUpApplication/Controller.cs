@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LevelUpApplication
 {
-    class Controller
+    public class Controller
     {
         /// <summary>
         /// Get the name of all departments in the organization.
@@ -51,17 +51,35 @@ namespace LevelUpApplication
         /// Gets the achievements of a user.
         /// </summary>
         /// <param name="Username">The username of the user.</param>
-        public string[][] GetAchievements(string Username) 
+        public string[][] GetUserAchievements(string Username) 
         { 
             return new string[][] { 
-                new string[] {null, "Detail", "13/08/2013", "admin"},
-                new string[] {null, "Detail", "21/02/2013", "admin"},
-                new string[] {null, "Detail", "03/10/2013", "admin"}
+                new string[] {"Aprendio un nuevo idioma", "Portugues", "13/08/2013", "admin"},
+                new string[] {"Obtuvo licencia de conducir", "B1", "21/02/2013", "admin"},
+                new string[] {"Llego temprano por un mes", "", "03/10/2013", "admin"}
             };        
+        }
+
+        public string[] GetDepartmentAchievements(string Department)
+        {
+            return new string[] {
+                "Aprendio un nuevo idioma",
+                "Obtuvo licencia de conducir",
+                "Llego temprano por un mes"
+            };
         }
 
         public void AddAchievement(string Username) { }
         public void RemoveAchievement(string Username) { }
+
+        public string[] GetAwards(string Department)
+        {
+            return new string[] {
+                "5 Puntos",
+                "Beach Night",
+                "Dia Libre"
+            };
+        }
 
     }
 }

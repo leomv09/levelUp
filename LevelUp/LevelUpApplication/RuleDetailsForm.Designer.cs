@@ -217,6 +217,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RuleDetailsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Shown += new System.EventHandler(this.RuleDetailsForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.AchievementsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -242,5 +243,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Creator;
         private System.Windows.Forms.Label AchievementListLabel;
+        private Controller AppController;
     }
 }
