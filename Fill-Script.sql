@@ -10,9 +10,6 @@ TipoEvento
 TitulosPorUsuario
 ContactosPorUsuario
 Contratos
-Ciudad
-Provincia
-Pais
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
