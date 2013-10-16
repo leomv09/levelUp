@@ -210,7 +210,7 @@ INSERT INTO Premio (idPremio, Titulo, Descripcion, Foto, Cantidad, Monto, fk_idM
 (35, 'Kayak en San Carlos', 'Kayak tour para 2 adultos en Arenal.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
 (36, 'Tour Volcán Poás', 'Tour al Volcán Poás para 4 personas, desayuno y almuerzo incluido.', 'img/photos/36/photo.jpg', , , 1, tipoPremio, '2013-05-05'),
 (37, 'Tableta Samsung', 'Samnsung Galaxy tab 3.', 'img/photos/37/photo.jpg', , , 1, tipoPremio, '2013-02-28'),
-(38, 'DVD', 'Pearl Jam Unplugged.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
+(38, 'Camisa Selección Nacional', 'Camisa original de la selección Nacional de Costa Rica.', 'img/photos/38/photo.jpg', , , 1, tipoPremio, '2012-05-05'),
 (39, 'DVD', 'Pearl Jam Unplugged.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
 (40, 'DVD', 'Pearl Jam Unplugged.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
 (41, 'DVD', 'Pearl Jam Unplugged.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05'),
