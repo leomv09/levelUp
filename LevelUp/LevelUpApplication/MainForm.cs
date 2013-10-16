@@ -98,7 +98,7 @@ namespace LevelUpApplication
             }
             else
             {
-                RuleDetailsForm Form = new RuleDetailsForm();
+                RuleDetailsForm Form = new RuleDetailsForm(this);
                 Form.ShowDialog(this);
             }
         }
@@ -125,7 +125,7 @@ namespace LevelUpApplication
 
         private void RulesDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            RuleDetailsForm Form = new RuleDetailsForm();
+            RuleDetailsForm Form = new RuleDetailsForm(this);
             Form.ShowDialog(this);
         }
 
@@ -190,6 +190,26 @@ namespace LevelUpApplication
         public Controller GetController()
         {
             return this.AppController;
+        }
+
+        private void ViewRuleButton_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedRowCollection SelectedRows = RulesDataGridView.SelectedRows;
+            if (SelectedRows.Count == 1)
+            {
+                RuleDetailsForm Form = new RuleDetailsForm(this);
+                Form.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show(this, "Seleccione una regla.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ApplyButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
