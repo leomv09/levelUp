@@ -188,16 +188,6 @@ INSERT INTO EstadoPremio (idEstadoPremio, Estado) VALUES
 (3, 'Agotado');
 SET IDENTITY_INSERT dbo.EstadoPremio OFF;
 
-SET IDENTITY_INSERT dbo.TipoPremio ON;
-INSERT INTO TipoPremio (idTipoPremio, Tipo) VALUES
-(1, 'Puntos'),
-(2, 'Condecoracion'),
-(3, 'Dinero'),
-(4, 'Tarjeta de Regalo'),
-(5, 'Viaje'),
-(6, 'Otros');
-SET IDENTITY_INSERT dbo.TipoPremio OFF;
-
 SET IDENTITY_INSERT dbo.Logros ON;
 INSERT INTO Logros (idLogro, Descripcion, FechaInicio, FechaFinal, fk_idCreador, FechaCreacion) VALUES
 (1, 'Aprender portugués.', '2011-02-10', '2012-02-10', 2, '2011-01-01'),
@@ -218,7 +208,7 @@ INSERT INTO Logros (idLogro, Descripcion, FechaInicio, FechaFinal, fk_idCreador,
 SET IDENTITY_INSERT dbo.Logros OFF;
 
 SET IDENTITY_INSERT dbo.TipoPremio ON;
-INSERT INTO TipoPremio(idTipoPremio, Tipo)VALUES
+INSERT INTO TipoPremio (idTipoPremio, Tipo)VALUES
 (1, 'Viaje'),
 (2, 'Dinero'),
 (3, 'Orden de Compra'),
@@ -230,7 +220,9 @@ INSERT INTO TipoPremio(idTipoPremio, Tipo)VALUES
 (9, 'Transporte'),
 (10, 'Membresía'),
 (11, 'Tiquetes')
-(12, 'Ocio');
+(12, 'Ocio'),
+(13, 'Puntos'),
+(14, 'Condecoracion');
 SET IDENTITY_INSERT dbo.TipoPremio OFF;
 
 SET IDENTITY_INSERT dbo.Premio ON;
@@ -392,7 +384,6 @@ INSERT INTO TipoEvento (idTipoEvento, Tipo) VALUES
 (28, 'Modificacion de Permisos de Usuario'),
 (29, 'Modificacion de Permisos de Grupo de Usuarios');
 SET IDENTITY_INSERT dbo.TipoEvento OFF;
-
 -- End Fill Tables.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
