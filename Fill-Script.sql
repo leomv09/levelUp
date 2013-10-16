@@ -1,3 +1,15 @@
+TABLAS POR LLENAR
+-----------------
+
+Usuario
+Regla
+Contratos
+TitulosPorUsuario
+ContactosPorUsuario
+LogrosPorDepartamento
+PremiosPorDepartamento
+ReglasPorDepartamento
+
 -------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Truncate all tables.
@@ -29,21 +41,23 @@ DELETE FROM TipoContacto;
 
 DELETE FROM PremiosPorUsuario;
 DELETE FROM LogrosPorUsuario;
-DELETE FROM LogrosPorRegla; 
+DELETE FROM LogrosPorRegla;
 DELETE FROM LogrosPorDepartamento;
 DELETE FROM PremiosPorDepartamento;
 DELETE FROM ReglasPorDepartamento;
 DELETE FROM Departamento;
 DELETE FROM Logros;
-DELETE FROM TipoLogro;
 DELETE FROM Regla;
 DELETE FROM EstadoRegla;
+DELETE FROM EstadoLogro;
+DELETE FROM EstadoPremio;
 DELETE FROM Premio;
 DELETE FROM TipoPremio;
 DELETE FROM TasaCambio;
 DELETE FROM Moneda;
 
 DELETE FROM Usuario;
+DELETE FROM EstadoUsuario;
 -- End Truncate all tables.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
@@ -145,7 +159,7 @@ INSERT INTO TipoContacto (idTipoContacto, Tipo) VALUES
 SET IDENTITY_INSERT dbo.TipoContacto OFF;
 
 SET IDENTITY_INSERT dbo.EstadoUsuario ON;
-INSERT INTO EstadoUsuario(idEstadoUsuario, Estado) VALUES
+INSERT INTO EstadoUsuario (idEstadoUsuario, Estado) VALUES
 (1, 'Activo'),
 (2, 'Inactivo'),
 (3, 'Temporalmente Suspendido'),
@@ -153,23 +167,54 @@ INSERT INTO EstadoUsuario(idEstadoUsuario, Estado) VALUES
 (5, 'Retirado');
 SET IDENTITY_INSERT dbo.EstadoUsuario OFF;
 
+SET IDENTITY_INSERT dbo.EstadoRegla ON;
+INSERT INTO EstadoRegla (idEstadoRegla, Estado) VALUES
+(1, 'Activa'),
+(2, 'Inactiva'),
+(3, 'Vencida');
+SET IDENTITY_INSERT dbo.EstadoRegla OFF;
+
+SET IDENTITY_INSERT dbo.EstadoLogro ON;
+INSERT INTO EstadoLogro (idEstadoLogro, Estado) VALUES
+(1, 'Activo'),
+(2, 'Inactivo'),
+(3, 'Vencido');
+SET IDENTITY_INSERT dbo.EstadoLogro OFF;
+
+SET IDENTITY_INSERT dbo.EstadoPremio ON;
+INSERT INTO EstadoPremio (idEstadoPremio, Estado) VALUES
+(1, 'Activo'),
+(2, 'Inactivo'),
+(3, 'Agotado');
+SET IDENTITY_INSERT dbo.EstadoPremio OFF;
+
+SET IDENTITY_INSERT dbo.TipoPremio ON;
+INSERT INTO TipoPremio (idTipoPremio, Tipo) VALUES
+(1, 'Puntos'),
+(2, 'Condecoracion'),
+(3, 'Dinero'),
+(4, 'Tarjeta de Regalo'),
+(5, 'Viaje'),
+(6, 'Otros');
+SET IDENTITY_INSERT dbo.TipoPremio OFF;
+
 SET IDENTITY_INSERT dbo.Logros ON;
 INSERT INTO Logros (idLogro, Descripcion, FechaInicio, FechaFinal, fk_idCreador, FechaCreacion) VALUES
-(1, 'Aprender portugués', '2011-02-10', '2012-02-10', 2, '2011-01-01'),
-(2, 'Cursar Maestría', '2011-02-10', '2012-02-10', 3, '2011-01-01'),
-(3, 'Asistir a 5 seminarios', '2011-01-01', '2012-02-10', 6, '2011-01-01'),
-(4, 'Llegar temprano durante 1 mes', '2011-02-10', '2011-02-10', 2, '2011-01-01'),
-(5, 'Aprender a programar en Ruby on Rails', '2011-02-10', '2012-02-10', 8, '2011-01-01'),
-(6, 'Participar en carrera de la empresa', '2012-08-10', '2012-02-10', 2, '2011-01-02'),
-(7, 'Ganar carrera de la empresa', '2011-08-10', '2012-02-10', 2, '2011-01-02'),
-(8, 'Limpiar 2 parques de la ciudad', '2010-08-12', '2012-02-10', 4, '2011-01-02'),
-(9, 'Cursar "HTML5 on W3C"', '2011-08-10', '2012-02-10', 1, '2011-01-02'),
-(10, 'Cerrar contrato con BMW', '2011-08-10', '2012-02-10', 10, '2011-01-02'),
-(11, 'Crear asociación en la empresa', '2011-08-10', '2012-02-10', 9, '2011-01-02'),
-(12, 'Componer himno organizacional', '2011-08-10', '2012-02-10', 15, '2011-01-02'),
-(13, 'Llegar temprano durante 20 años laborales', '2011-08-10', '2012-02-10', 19, '2011-01-02'),
-(14, '14 horas extra en un mes', '2011-08-10', '2012-02-10', 20, '2011-01-02'),
-(15, 'Organizar fiesta anual', '2011-08-10', '2012-02-10', 14, '2011-01-02');
+(1, 'Aprender portugués.', '2011-02-10', '2012-02-10', 2, '2011-01-01'),
+(2, 'Cursar Maestría.', '2011-02-10', '2012-02-10', 3, '2011-01-01'),
+(3, 'Asistir a 5 seminarios.', '2011-01-01', '2012-02-10', 6, '2011-01-01'),
+(4, 'Llegar temprano durante 1 mes.', '2011-02-10', '2011-02-10', 2, '2011-01-01'),
+(5, 'Aprender a programar en Ruby on Rails.', '2011-02-10', '2012-02-10', 8, '2011-01-01'),
+(6, 'Participar en carrera de la empresa.', '2012-08-10', '2012-02-10', 2, '2011-01-02'),
+(7, 'Ganar carrera de la empresa.', '2011-08-10', '2012-02-10', 2, '2011-01-02'),
+(8, 'Limpiar 2 parques de la ciudad.', '2010-08-12', '2012-02-10', 4, '2011-01-02'),
+(9, 'Cursar "HTML5 on W3C.', '2011-08-10', '2012-02-10', 1, '2011-01-02'),
+(10, 'Cerrar contrato con BMW.', '2011-08-10', '2012-02-10', 10, '2011-01-02'),
+(11, 'Crear asociación en la empresa.', '2011-08-10', '2012-02-10', 9, '2011-01-02'),
+(12, 'Componer himno organizacional.', '2011-08-10', '2012-02-10', 15, '2011-01-02'),
+(13, 'Llegar temprano durante 20 años laborales.', '2011-08-10', '2012-02-10', 19, '2011-01-02'),
+(14, 'Laborar 14 horas extra en un mes.', '2011-08-10', '2012-02-10', 20, '2011-01-02'),
+(15, 'Organizar fiesta anual.', '2011-08-10', '2012-02-10', 14, '2011-01-02');
 SET IDENTITY_INSERT dbo.Logros OFF;
 
 SET IDENTITY_INSERT dbo.Premio ON;
@@ -226,42 +271,113 @@ INSERT INTO Premio (idPremio, Titulo, Descripcion, Foto, Cantidad, Monto, fk_idM
 (50, 'DVD', 'Pearl Jam Unplugged.', 'img/photos/24/photo.jpg', , , 1, tipoPremio, '2013/02/05');
 SET IDENTITY_INSERT dbo.Premio OFF;
 
-
 SET IDENTITY_INSERT dbo.Permisos ON;
 INSERT INTO Permisos (idPermiso, Descripcion, Codigo) VALUES
-(, 'Concede permiso para iniciar sesión en la aplicación de computadora.', 'login_pc_app'),
-(, 'Concede permiso para añadir una regla al sistema.', 'add_rule'),
-(, 'Concede permiso para remover una regla del sistema.', 'remove_rule'),
-(, 'Concede permiso para modificar una regla del sistema.', 'modify_rule'),
-(, 'Concede permiso para ver las reglas del sistema.', 'view_rule'),
-(, 'Concede permiso para agregar un logro al sistema.', 'add_achievement'),
-(, 'Concede permiso para modificar un logro del sistema.', 'modify_achievement'),
-(, 'Concede permiso para conceder un logro a un usuario.', 'add_achievement_to_user'),
-(, 'Concede permiso para revocar un logro a un usuario.', 'remove_achievement_from_user'),
-(, 'Concede permiso para agregar un premio al sistema.', 'add_award'),
-(, 'Concede permiso para modificar un premio del sistema.', 'modify_award'),
-(, 'Concede permiso para entregarle un premio a un usuario.', 'give_award_to_user'),
-(, 'Concede permiso para añadir un usuario al sistema.', 'add_user'),
-(, 'Concede permiso para eliminar un usuario del sistema.', 'remove_user'),
-(, 'Concede permiso para ver la información pública de cualquier usuario del sistema.', 'view_any_user_public_info'),
-(, 'Concede permiso para ver la información privada de cualquier usuario del sistema.', 'view_any_user_private_info'),
-(, 'Concede permiso para ver la información pública de su propio usuario..', 'view_my_public_info'),
-(, 'Concede permiso para ver la información privada de su propio usuario.', 'view_my_private_info'),
-(, 'Concede permiso para modificar la información pública de cualquier usuario.', 'modify_any_user_public_info'),
-(, 'Concede permiso para modificar la información privada de cualquier usuario.', 'modify_any_user_private_info'),
-(, 'Concede permiso para modificar la información pública de su propio usuario..', 'modify_my_public_info'),
-(, 'Concede permiso para modificar la información privada de su propio usuario.', 'modify_my_private_info'),
-(, 'Concede permiso para agregar una moneda al sistema.', 'add_money'),
-(, 'Concede permiso para modificar las tasas de cambio de las monedas.', 'modify_exchange_rate'),
-(, 'Concede permiso para agregar un departamento al sistema.', 'add_department'),
-(, 'Concede permiso para ver los departamentos del sistema.', 'view_departments'),
-(, 'Concede permiso para agregar un puesto al sistema.', 'add_job'),
-(, 'Concede permiso para modificar un puesto del sistema.', 'modify_job'),
-(, 'Concede permiso para agregar un título.', 'add_degree'),
-(, 'Concede permiso para agregar una institución.', 'add_institution'),
-(, 'Concede permiso para asociar un título a una institución.', 'add_degree_to_institution'),
-(, 'Concede permiso para asociar un título a un usuario.', 'add_degree_to_user');
+(1, 'Concede permiso para iniciar sesión en la aplicación de administracion', 'login_pc_admin'),
+(2, 'Concede permiso para añadir una regla al sistema.', 'add_rule'),
+(3, 'Concede permiso para remover una regla del sistema.', 'remove_rule'),
+(4, 'Concede permiso para modificar una regla del sistema.', 'modify_rule'),
+(5, 'Concede permiso para ver las reglas del sistema.', 'view_rules'),
+(6, 'Concede permiso para agregar un logro al sistema.', 'add_achievement'),
+(7, 'Concede permiso para modificar un logro del sistema.', 'modify_achievement'),
+(8, 'Concede permiso para ver los logros del sistema.', 'view_achievements'),
+(9, 'Concede permiso para conceder un logro a un usuario.', 'add_achievement_to_user'),
+(10, 'Concede permiso para revocar un logro a un usuario.', 'remove_achievement_from_user'),
+(11, 'Concede permiso para agregar un premio al sistema.', 'add_award'),
+(12, 'Concede permiso para modificar un premio del sistema.', 'modify_award'),
+(13, 'Concede permiso para ver los premios del sistema.', 'view_awards'),
+(14, 'Concede permiso para entregarle un premio a un usuario.', 'give_award_to_user'),
+(15, 'Concede permiso para añadir un usuario al sistema.', 'add_user'),
+(16, 'Concede permiso para eliminar un usuario del sistema.', 'remove_user'),
+(17, 'Concede permiso para ver la información pública de cualquier usuario del sistema.', 'view_any_user_public_info'),
+(18, 'Concede permiso para ver la información privada de cualquier usuario del sistema.', 'view_any_user_private_info'),
+(19, 'Concede permiso para ver la información pública de su propio usuario..', 'view_my_public_info'),
+(20, 'Concede permiso para ver la información privada de su propio usuario.', 'view_my_private_info'),
+(21, 'Concede permiso para modificar la información pública de cualquier usuario.', 'modify_any_user_public_info'),
+(22, 'Concede permiso para modificar la información privada de cualquier usuario.', 'modify_any_user_private_info'),
+(23, 'Concede permiso para modificar la información pública de su propio usuario..', 'modify_my_public_info'),
+(24, 'Concede permiso para modificar la información privada de su propio usuario.', 'modify_my_private_info'),
+(25, 'Concede permiso para agregar una moneda al sistema.', 'add_money'),
+(26, 'Concede permiso para ver las monedas del sistema.', 'view_money'),
+(27, 'Concede permiso para modificar las tasas de cambio de las monedas.', 'modify_exchange_rate'),
+(28, 'Concede permiso para ver las tasas de cambio de las monedas.', 'view_exchange_rates'),
+(29, 'Concede permiso para agregar un departamento al sistema.', 'add_department'),
+(30, 'Concede permiso para ver los departamentos del sistema.', 'view_departments'),
+(31, 'Concede permiso para agregar un puesto al sistema.', 'add_job'),
+(32, 'Concede permiso para modificar un puesto del sistema.', 'modify_job'),
+(33, 'Concede permiso para ver los puestos del sistema.', 'view_jobs'),
+(34, 'Concede permiso para agregar un título al sistema.', 'add_degree'),
+(35, 'Concede permiso para ver los títulos del sistema.', 'view_degrees'),
+(36, 'Concede permiso para agregar una institución al sistema.', 'add_institution'),
+(37, 'Concede permiso para ver las instituciones del sistema.', 'view_institutions'),
+(38, 'Concede permiso para asociar un título a una institución.', 'add_degree_to_institution'),
+(39, 'Concede permiso para asociar un título a un usuario.', 'add_degree_to_user'),
+(40, 'Concede permiso para agregar un nuevo permiso.', 'add_permission'),
+(41, 'Concede permiso para crear un grupo de usuarios.', 'add_user_group'),
+(42, 'Concede permiso para agregar un usuario a un grupo de usuarios', 'add_user_to_group'),
+(43, 'Concede permiso para remover un usuario de un grupo de usuarios.', 'remove_user_from_group'),
+(44, 'Condece permiso para modificar los permisos de un usuario.', 'modify_user_permissions'),
+(45, 'Concede permiso para modificar los permisos por grupos de usuarios', 'modify_permissions_per_group'),
+(46, 'Concede permiso para ver los permisos de un usuario.', 'view_user_permissions'),
+(47, 'Concede permiso para ver los permisos de un grupo de usuarios.', 'view_user_group_permissions');
 SET IDENTITY_INSERT dbo.Permisos OFF;
+
+SET IDENTITY_INSERT dbo.GruposDeUsuarios ON;
+INSERT INTO GruposDeUsuarios (idGrupoDeUsuarios, Nombre, Activo) VALUES
+(1, 'Empleado', 1),
+(2, 'Administradores Globales', 1),
+(3, 'Administradores de Reglas', 1),
+(4, 'Administradores de Logros', 1),
+(5, 'Administradores de Premios', 1),
+(6, 'Administradores de Información', 1),
+(7, 'Administradores de Usuarios', 1);
+SET IDENTITY_INSERT dbo.GruposDeUsuarios OFF;
+
+SET IDENTITY_INSERT dbo.Severidad ON;
+INSERT INTO Severidad (idSeveridad, Descripcion) VALUES
+(1, 'Información'),
+(2, 'Advertencia'),
+(3, 'Error');
+SET IDENTITY_INSERT dbo.Severidad OFF;
+
+SET IDENTITY_INSERT dbo.Modulo ON;
+INSERT INTO Modulo (idModulo, Nombre) VALUES
+(1, 'Aplicación de Administración PC');
+SET IDENTITY_INSERT dbo.Modulo OFF;
+
+SET IDENTITY_INSERT dbo.TipoEvento ON;
+INSERT INTO TipoEvento (idTipoEvento, Tipo) VALUES
+(1, 'Inicio de Sesion en Aplicación de Administracion Windows'),
+(2, 'Cierre de Sesion en Aplicación de Administracion Windows'),
+(3, 'Creacion de Regla'),
+(4, 'Eliminacion de Regla'),
+(5, 'Modificacion de Regla'),
+(6, 'Creacion de Logro'),
+(7, 'Modificacion de Logro'),
+(8, 'Concesion de Logro a Usuario'),
+(9, 'Revocamiento de Logro a Usuario'),
+(10, 'Creacion de Premio'),
+(11, 'Modificacion de Premio'),
+(12, 'Entrega de Premio a Usuario'),
+(13, 'Creacion de Usuario'),
+(14, 'Eliminacion de Usuario'),
+(15, 'Modificacion de Información de Usuario'),
+(16, 'Creacion de Moneda'),
+(17, 'Actualizacion Tasa de Cambio'),
+(18, 'Creacion de Departamento'),
+(19, 'Creacion de Puesto'),
+(20, 'Modificacion de Puesto'),
+(21, 'Creacion de Titulo'),
+(22, 'Creacion de Institucion'),
+(23, 'Asociacion de Titulo a Institucion'),
+(24, 'Creacion de Permiso'),
+(25, 'Creacion de Grupo de Usuarios'),
+(26, 'Agregacion de Usuario a Grupo de Usuarios'),
+(27, 'Eliminacion de Usuario de Grupo de Usuarios'),
+(28, 'Modificacion de Permisos de Usuario'),
+(29, 'Modificacion de Permisos de Grupo de Usuarios');
+SET IDENTITY_INSERT dbo.TipoEvento OFF;
+
 -- End Fill Tables.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
@@ -323,6 +439,67 @@ INSERT INTO TitulosPorInstituciones (fk_idInstitucion, fk_idTitulo) VALUES
 (4, 23),
 (5, 12),
 (5, 13);
+
+-- Se le concede a los administradores globales todos los permisos.
+DECLARE @i int = 1
+WHILE @i < 48 BEGIN
+  INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES (2, @i);
+  SET @i = @i + 1
+END
+
+INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES
+(1, 5),
+(1, 8),
+(1, 13),
+(1, 17),
+(1, 19),
+(1, 20),
+(3, 1),
+(3, 2),
+(3, 3),
+(3, 4),
+(3, 5),
+(3, 8),
+(3, 13),
+(3, 30),
+(4, 1),
+(4, 5),
+(4, 6),
+(4, 7),
+(4, 8),
+(4, 9),
+(4, 10),
+(4, 13),
+(4, 30),
+(5, 1),
+(5, 5),
+(5, 8),
+(5, 11),
+(5, 12),
+(5, 13),
+(5, 14),
+(5, 26),
+(5, 30),
+(6, 1),
+(6, 25),
+(6, 26),
+(6, 27),
+(6, 28),
+(6, 29),
+(6, 30),
+(6, 31),
+(6, 32),
+(6, 33),
+(6, 34),
+(6, 35),
+(6, 36),
+(6, 37),
+(6, 38),
+(7, 17),
+(7, 18),
+(7, 21),
+(7, 22),
+(7, 39);
 -- End Fill Intersection Tables.
 
 -------------------------------------------------------------------------------------------------------------------------------------------

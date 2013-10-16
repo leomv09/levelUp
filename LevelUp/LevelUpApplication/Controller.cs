@@ -72,7 +72,7 @@ namespace LevelUpApplication
         public void AddAchievement(string Username) { }
         public void RemoveAchievement(string Username) { }
 
-        public string[] GetAwards(string Department)
+        public string[] GetDepartmentAwards(string Department)
         {
             return new string[] {
                 "5 Puntos",
