@@ -202,7 +202,7 @@ INSERT INTO Logros (idLogro, Descripcion, FechaInicio, FechaFinal, fk_idCreador,
 (10, 'Cerrar contrato con BMW.', '2011-08-10', '2012-02-10', 10, '2011-01-02'),
 (11, 'Crear asociación en la empresa.', '2011-08-10', '2012-02-10', 9, '2011-01-02'),
 (12, 'Componer himno organizacional.', '2011-08-10', '2012-02-10', 15, '2011-01-02'),
-(13, 'Llegar temprano durante 20 años laborales.', '2011-08-10', '2012-02-10', 19, '2011-01-02'),
+(13, 'Llegar temprano durante 20 años laborales.', '2011-08-10', '2012-02-09', 19, '2011-01-02'),
 (14, 'Laborar 14 horas extra en un mes.', '2011-08-10', '2012-02-10', 20, '2011-01-02'),
 (15, 'Organizar fiesta anual.', '2011-08-10', '2012-02-10', 14, '2011-01-02');
 SET IDENTITY_INSERT dbo.Logros OFF;
