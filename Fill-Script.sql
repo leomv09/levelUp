@@ -86,7 +86,8 @@ INSERT INTO Departamento (idDepartamento, Nombre) VALUES
 (4, 'Gerencia'),
 (5, 'Control de Calidad'),
 (6, 'Financiero'),
-(7, 'Ventas');
+(7, 'Ventas')
+(8, 'Conserjería');
 SET IDENTITY_INSERT dbo.Departamento OFF;
 
 SET IDENTITY_INSERT dbo.Institucion ON;
