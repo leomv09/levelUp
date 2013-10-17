@@ -55,6 +55,7 @@
     <Compile Include="AwardDetailsForm.Designer.cs">
       <DependentUpon>AwardDetailsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Functions.cs" />
     <Compile Include="RuleDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>

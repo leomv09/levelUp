@@ -6,12 +6,31 @@ using System.Threading.Tasks;
 
 namespace LevelUpApplication
 {
-    public class Controller
+    class Controller
     {
+        private static Controller instance;
+
+        private Controller() {}
+
+        /// <summary>
+        /// Gets the singleton instance of the class.
+        /// </summary>
+        public static Controller Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Controller();
+                }
+                return instance;
+            }
+        }
+
         /// <summary>
         /// Get the name of all departments in the organization.
         /// </summary>
-        public string[] GetDepartments() 
+        public string[] GetDepartmentsName()
         {
             return new string[] { "IC", "TI" };
         }
@@ -20,7 +39,7 @@ namespace LevelUpApplication
         /// Get all the rules asociated with a department.
         /// </summary>
         /// <param name="Department">The name of the department</param>
-        public string[][] GetRules(string Department) 
+        public string[][] GetDepartmentRules(string Department) 
         {
             return new string[][] { 
                 new string[] {"Rule1", "Rule1 Description", "10/08/2013", "12/09/2013"},
@@ -28,14 +47,14 @@ namespace LevelUpApplication
             };
         }
 
-        public void AddRule() { }
+        public void AddRuleToDepartment() { }
         public void ModifyRule() { }
         public void RemoveRule() { }
 
         /// <summary>
         /// Gets the username of all users in the database.
         /// </summary>
-        public string[] GetUsers()
+        public string[] GetUsernames()
         {
             return new string[] { 
                 "jags9415",
@@ -45,7 +64,13 @@ namespace LevelUpApplication
             };
         }
 
-        public void GetUser() { }
+        /// <summary>
+        /// Gets all the achievements types.
+        /// </summary>
+        public string[] GetAchievementsTypes()
+        {
+            return new string[] { "Dinero", "Puntos", "Otros" };
+        }
 
         /// <summary>
         /// Gets the achievements of a user.
@@ -60,6 +85,10 @@ namespace LevelUpApplication
             };        
         }
 
+        /// <summary>
+        /// Gets all the achievements asociated with a department.
+        /// </summary>
+        /// <param name="Department">The name of the department.</param>
         public string[] GetDepartmentAchievements(string Department)
         {
             return new string[] {
@@ -69,15 +98,33 @@ namespace LevelUpApplication
             };
         }
 
-        public void AddAchievement(string Username) { }
-        public void RemoveAchievement(string Username) { }
+        public void AddAchievementToUser(string Username) { }
+        public void RemoveAchievementFromUser(string Username) { }
+        public void AddAchievementToDepartment(string Department) { }
 
+        /// <summary>
+        /// Gets all the awards asociated with a department.
+        /// </summary>
+        /// <param name="Department">The name of the department.</param>
+        /// <returns></returns>
         public string[] GetDepartmentAwards(string Department)
         {
             return new string[] {
                 "5 Puntos",
                 "Beach Night",
                 "Dia Libre"
+            };
+        }
+
+        /// <summary>
+        /// Gets the name of all the currency od the system.
+        /// </summary>
+        public string[] GetCurrencyNames()
+        {
+            return new string[] {
+                "Dolar",
+                "Colon",
+                "Bitcoin"
             };
         }
 

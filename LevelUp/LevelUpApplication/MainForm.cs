@@ -15,7 +15,7 @@ namespace LevelUpApplication
         public MainForm()
         {
             InitializeComponent();
-            AppController = new Controller();
+            AppController = Controller.Instance;
             InitializeData();
         }
 
@@ -42,7 +42,7 @@ namespace LevelUpApplication
         private void LoadDepartments()
         {
             DepartamentRuleComboBox.Items.Clear();
-            DepartamentRuleComboBox.Items.AddRange( AppController.GetDepartments() );
+            DepartamentRuleComboBox.Items.AddRange( AppController.GetDepartmentsName() );
         }
 
         private void LoadRules()
@@ -52,7 +52,7 @@ namespace LevelUpApplication
 
             if (!String.IsNullOrEmpty(Department))
             {
-                string[][] Rules = AppController.GetRules(Department);
+                string[][] Rules = AppController.GetDepartmentRules(Department);
                 foreach (string[] Rule in Rules)
                 {
                     RulesDataGridView.Rows.Add(Rule);
@@ -68,10 +68,12 @@ namespace LevelUpApplication
             if (!String.IsNullOrEmpty(User))
             {
                 string Department = ""; // User Department.
-                string[][] Achievements = AppController.GetUserAchievements(User);
+                string[][] UserAchievements = AppController.GetUserAchievements(User);
 
+                AchievementsColumn.Items.Clear();
                 AchievementsColumn.Items.AddRange(AppController.GetDepartmentAchievements(Department));
-                foreach (string[] Achievement in Achievements)
+
+                foreach (string[] Achievement in UserAchievements)
                 {
                     AchievementsDataGridView.Rows.Add(Achievement);
                 }
@@ -81,7 +83,7 @@ namespace LevelUpApplication
         private void LoadUsers()
         {
             UserAchievementsTextBox.AutoCompleteCustomSource.Clear();
-            UserAchievementsTextBox.AutoCompleteCustomSource.AddRange(AppController.GetUsers());
+            UserAchievementsTextBox.AutoCompleteCustomSource.AddRange(AppController.GetUsernames());
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -98,7 +100,7 @@ namespace LevelUpApplication
             }
             else
             {
-                RuleDetailsForm Form = new RuleDetailsForm(this);
+                RuleDetailsForm Form = new RuleDetailsForm();
                 Form.ShowDialog(this);
             }
         }
@@ -125,7 +127,7 @@ namespace LevelUpApplication
 
         private void RulesDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            RuleDetailsForm Form = new RuleDetailsForm(this);
+            RuleDetailsForm Form = new RuleDetailsForm();
             Form.ShowDialog(this);
         }
 
@@ -187,17 +189,12 @@ namespace LevelUpApplication
             LoadRules();
         }
 
-        public Controller GetController()
-        {
-            return this.AppController;
-        }
-
         private void ViewRuleButton_Click(object sender, EventArgs e)
         {
             DataGridViewSelectedRowCollection SelectedRows = RulesDataGridView.SelectedRows;
             if (SelectedRows.Count == 1)
             {
-                RuleDetailsForm Form = new RuleDetailsForm(this);
+                RuleDetailsForm Form = new RuleDetailsForm();
                 Form.ShowDialog(this);
             }
             else

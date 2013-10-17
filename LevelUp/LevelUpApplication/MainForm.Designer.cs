@@ -38,9 +38,11 @@
             this.RulesColumnEndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TapControl = new System.Windows.Forms.TabControl();
             this.Rules = new System.Windows.Forms.TabPage();
+            this.ViewRuleButton = new System.Windows.Forms.Button();
             this.RemoveRuleButton = new System.Windows.Forms.Button();
             this.AddRuleButton = new System.Windows.Forms.Button();
             this.Achievements = new System.Windows.Forms.TabPage();
+            this.ApplyButton = new System.Windows.Forms.Button();
             this.RemoveAchievementButton = new System.Windows.Forms.Button();
             this.SearchUserButton = new System.Windows.Forms.Button();
             this.AchievementsDataGridView = new System.Windows.Forms.DataGridView();
@@ -52,8 +54,6 @@
             this.LogoutButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitButton = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
-            this.ViewRuleButton = new System.Windows.Forms.Button();
-            this.ApplyButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.RulesDataGridView)).BeginInit();
             this.TapControl.SuspendLayout();
             this.Rules.SuspendLayout();
@@ -88,6 +88,7 @@
             this.RulesDataGridView.AllowUserToAddRows = false;
             this.RulesDataGridView.AllowUserToDeleteRows = false;
             this.RulesDataGridView.AllowUserToOrderColumns = true;
+            this.RulesDataGridView.AllowUserToResizeRows = false;
             this.RulesDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.RulesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RulesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -157,6 +158,17 @@
             this.Rules.Text = "Reglas";
             this.Rules.UseVisualStyleBackColor = true;
             // 
+            // ViewRuleButton
+            // 
+            this.ViewRuleButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ViewRuleButton.Location = new System.Drawing.Point(653, 10);
+            this.ViewRuleButton.Name = "ViewRuleButton";
+            this.ViewRuleButton.Size = new System.Drawing.Size(75, 40);
+            this.ViewRuleButton.TabIndex = 6;
+            this.ViewRuleButton.Text = "Ver";
+            this.ViewRuleButton.UseVisualStyleBackColor = true;
+            this.ViewRuleButton.Click += new System.EventHandler(this.ViewRuleButton_Click);
+            // 
             // RemoveRuleButton
             // 
             this.RemoveRuleButton.Location = new System.Drawing.Point(815, 10);
@@ -194,6 +206,16 @@
             this.Achievements.Text = "Logros";
             this.Achievements.UseVisualStyleBackColor = true;
             // 
+            // ApplyButton
+            // 
+            this.ApplyButton.Location = new System.Drawing.Point(734, 9);
+            this.ApplyButton.Name = "ApplyButton";
+            this.ApplyButton.Size = new System.Drawing.Size(75, 40);
+            this.ApplyButton.TabIndex = 8;
+            this.ApplyButton.Text = "Aplicar";
+            this.ApplyButton.UseVisualStyleBackColor = true;
+            this.ApplyButton.Click += new System.EventHandler(this.ApplyButton_Click);
+            // 
             // RemoveAchievementButton
             // 
             this.RemoveAchievementButton.Location = new System.Drawing.Point(815, 10);
@@ -218,6 +240,7 @@
             // 
             this.AchievementsDataGridView.AllowUserToDeleteRows = false;
             this.AchievementsDataGridView.AllowUserToOrderColumns = true;
+            this.AchievementsDataGridView.AllowUserToResizeRows = false;
             this.AchievementsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.AchievementsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AchievementsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -298,27 +321,6 @@
             this.MenuStrip.TabIndex = 2;
             this.MenuStrip.Text = "MenuStrip";
             // 
-            // ViewRuleButton
-            // 
-            this.ViewRuleButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ViewRuleButton.Location = new System.Drawing.Point(653, 10);
-            this.ViewRuleButton.Name = "ViewRuleButton";
-            this.ViewRuleButton.Size = new System.Drawing.Size(75, 40);
-            this.ViewRuleButton.TabIndex = 6;
-            this.ViewRuleButton.Text = "Ver";
-            this.ViewRuleButton.UseVisualStyleBackColor = true;
-            this.ViewRuleButton.Click += new System.EventHandler(this.ViewRuleButton_Click);
-            // 
-            // ApplyButton
-            // 
-            this.ApplyButton.Location = new System.Drawing.Point(734, 9);
-            this.ApplyButton.Name = "ApplyButton";
-            this.ApplyButton.Size = new System.Drawing.Size(75, 40);
-            this.ApplyButton.TabIndex = 8;
-            this.ApplyButton.Text = "Aplicar";
-            this.ApplyButton.UseVisualStyleBackColor = true;
-            this.ApplyButton.Click += new System.EventHandler(this.ApplyButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,8 +328,10 @@
             this.ClientSize = new System.Drawing.Size(906, 595);
             this.Controls.Add(this.TapControl);
             this.Controls.Add(this.MenuStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuStrip;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Level Up";

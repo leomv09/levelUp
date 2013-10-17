@@ -34,11 +34,11 @@
             this.PhotoPictureBox = new System.Windows.Forms.PictureBox();
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.DescriptionLabel = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.DescriptionTextBox = new System.Windows.Forms.RichTextBox();
             this.TypeComboBox = new System.Windows.Forms.ComboBox();
             this.TypeLabel = new System.Windows.Forms.Label();
             this.DetailLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.DetailTextBox = new System.Windows.Forms.TextBox();
             this.CurrencyLabel = new System.Windows.Forms.Label();
             this.CurrencyComboBox = new System.Windows.Forms.ComboBox();
             this.AwardAcceptButton = new System.Windows.Forms.Button();
@@ -83,13 +83,13 @@
             this.DescriptionLabel.TabIndex = 3;
             this.DescriptionLabel.Text = "Descripcion";
             // 
-            // richTextBox1
+            // DescriptionTextBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(15, 104);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(244, 96);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.DescriptionTextBox.Location = new System.Drawing.Point(15, 104);
+            this.DescriptionTextBox.Name = "DescriptionTextBox";
+            this.DescriptionTextBox.Size = new System.Drawing.Size(244, 96);
+            this.DescriptionTextBox.TabIndex = 4;
+            this.DescriptionTextBox.Text = "";
             // 
             // TypeComboBox
             // 
@@ -98,7 +98,7 @@
             this.TypeComboBox.Name = "TypeComboBox";
             this.TypeComboBox.Size = new System.Drawing.Size(244, 21);
             this.TypeComboBox.TabIndex = 5;
-            this.TypeComboBox.SelectionChangeCommitted += new System.EventHandler(this.TypeComboBox_SelectionChangeCommitted);
+            this.TypeComboBox.TextChanged += new System.EventHandler(this.TypeComboBox_TextChanged);
             // 
             // TypeLabel
             // 
@@ -121,13 +121,13 @@
             this.DetailLabel.Text = "Detalle";
             this.DetailLabel.Visible = false;
             // 
-            // textBox1
+            // DetailTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(278, 243);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(144, 20);
-            this.textBox1.TabIndex = 8;
-            this.textBox1.Visible = false;
+            this.DetailTextBox.Location = new System.Drawing.Point(278, 243);
+            this.DetailTextBox.Name = "DetailTextBox";
+            this.DetailTextBox.Size = new System.Drawing.Size(144, 20);
+            this.DetailTextBox.TabIndex = 8;
+            this.DetailTextBox.Visible = false;
             // 
             // CurrencyLabel
             // 
@@ -203,16 +203,18 @@
             this.Controls.Add(this.AwardAcceptButton);
             this.Controls.Add(this.CurrencyComboBox);
             this.Controls.Add(this.CurrencyLabel);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.DetailTextBox);
             this.Controls.Add(this.DetailLabel);
             this.Controls.Add(this.TypeLabel);
             this.Controls.Add(this.TypeComboBox);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.DescriptionTextBox);
             this.Controls.Add(this.DescriptionLabel);
             this.Controls.Add(this.PhotoPictureBox);
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.NameLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "AwardDetailsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             ((System.ComponentModel.ISupportInitialize)(this.PhotoPictureBox)).EndInit();
@@ -228,16 +230,17 @@
         private System.Windows.Forms.PictureBox PhotoPictureBox;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog;
         private System.Windows.Forms.Label DescriptionLabel;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox DescriptionTextBox;
         private System.Windows.Forms.ComboBox TypeComboBox;
         private System.Windows.Forms.Label TypeLabel;
         private System.Windows.Forms.Label DetailLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox DetailTextBox;
         private System.Windows.Forms.Label CurrencyLabel;
         private System.Windows.Forms.ComboBox CurrencyComboBox;
         private System.Windows.Forms.Button AwardAcceptButton;
         private System.Windows.Forms.Button AwardCancelButton;
         private System.Windows.Forms.Button AwardApplyButton;
         private System.Windows.Forms.Button FileSelectButton;
+        private Controller AppController;
     }
 }
