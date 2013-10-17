@@ -190,22 +190,22 @@ INSERT INTO EstadoPremio (idEstadoPremio, Estado) VALUES
 SET IDENTITY_INSERT dbo.EstadoPremio OFF;
 
 SET IDENTITY_INSERT dbo.Logros ON;
-INSERT INTO Logros (idLogro, Descripcion, FechaInicio, FechaFinal, fk_idCreador, FechaCreacion) VALUES
-(1, 'Aprender portugués.', '2011-02-10', '2012-02-10', 2, '2011-01-01'),
-(2, 'Cursar Maestría.', '2011-02-10', '2012-02-10', 3, '2011-01-01'),
-(3, 'Asistir a 5 seminarios.', '2011-01-01', '2012-02-10', 6, '2011-01-01'),
-(4, 'Llegar temprano durante 1 mes.', '2011-02-10', '2011-02-10', 2, '2011-01-01'),
-(5, 'Aprender a programar en Ruby on Rails.', '2011-02-10', '2012-02-10', 8, '2011-01-01'),
-(6, 'Participar en carrera de la empresa.', '2012-08-10', '2012-02-10', 2, '2011-01-02'),
-(7, 'Ganar carrera de la empresa.', '2011-08-10', '2012-02-10', 2, '2011-01-02'),
-(8, 'Limpiar 2 parques de la ciudad.', '2010-08-12', '2012-02-10', 4, '2011-01-02'),
-(9, 'Cursar "HTML5 on W3C.', '2011-08-10', '2012-02-10', 1, '2011-01-02'),
-(10, 'Cerrar contrato con BMW.', '2011-08-10', '2012-02-10', 10, '2011-01-02'),
-(11, 'Crear asociación en la empresa.', '2011-08-10', '2012-02-10', 9, '2011-01-02'),
-(12, 'Componer himno organizacional.', '2011-08-10', '2012-02-10', 15, '2011-01-02'),
-(13, 'Llegar temprano durante 20 años laborales.', '2011-08-10', '2012-02-09', 19, '2011-01-02'),
-(14, 'Laborar 14 horas extra en un mes.', '2011-08-10', '2012-02-10', 20, '2011-01-02'),
-(15, 'Organizar fiesta anual.', '2011-08-10', '2012-02-10', 14, '2011-01-02');
+INSERT INTO Logros (idLogro, Descripcion, FechaInicio, FechaFinal, fk_idCreador, FechaCreacion,fk_idEstadoLogro) VALUES
+(1, 'Aprender portugués.', '2011-02-10', '2012-02-10', 2, '2011-01-01', 1),
+(2, 'Cursar Maestría.', '2011-02-10', '2012-02-10', 3, '2011-01-01', 1),
+(3, 'Asistir a 5 seminarios.', '2011-01-01', '2012-02-10', 6, '2011-01-01', 1),
+(4, 'Llegar temprano durante 1 mes.', '2011-02-10', '2011-02-10', 2, '2011-01-01',1),
+(5, 'Aprender a programar en Ruby on Rails.', '2011-02-10', '2012-02-10', 8, '2011-01-01',1),
+(6, 'Participar en carrera de la empresa.', '2012-08-10', '2012-02-10', 2, '2011-01-02',1),
+(7, 'Ganar carrera de la empresa.', '2011-08-10', '2012-02-10', 2, '2011-01-02',1),
+(8, 'Limpiar 2 parques de la ciudad.', '2010-08-12', '2012-02-10', 4, '2011-01-02',1),
+(9, 'Cursar "HTML5 on W3C.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1),
+(10, 'Cerrar contrato con BMW.', '2011-08-10', '2012-02-10', 10, '2011-01-02',1),
+(11, 'Crear asociación en la empresa.', '2011-08-10', '2012-02-10', 9, '2011-01-02',1),
+(12, 'Componer himno organizacional.', '2011-08-10', '2012-02-10', 15, '2011-01-02',1),
+(13, 'Llegar temprano durante 20 años laborales.', '2011-08-10', '2012-02-09', 19, '2011-01-02',1),
+(14, 'Laborar 14 horas extra en un mes.', '2011-08-10', '2012-02-10', 20, '2011-01-02',1),
+(15, 'Organizar fiesta anual.', '2011-08-10', '2012-02-10', 14, '2011-01-02',1);
 SET IDENTITY_INSERT dbo.Logros OFF;
 
 SET IDENTITY_INSERT dbo.TipoPremio ON;
