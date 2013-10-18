@@ -72,7 +72,7 @@ namespace LevelUpService
         [WebGet(UriTemplate = "/users/{username}/achievements",
                 BodyStyle = WebMessageBodyStyle.Bare,
                 ResponseFormat = WebMessageFormat.Json)]
-        Achievement[] GetUserAchievements(string username);
+        AchievementPerUser[] GetUserAchievements(string username);
 
         [OperationContract(IsOneWay = true)]
         [WebInvoke(UriTemplate = "/users/{username}/achievements",
@@ -89,13 +89,19 @@ namespace LevelUpService
         void DeleteAchievementFromUser(Achievement achievement, string username);
 
         [OperationContract]
-        [WebGet(UriTemplate = "/users/permissions",
+        [WebGet(UriTemplate = "/users/{username}/permissions",
                 BodyStyle = WebMessageBodyStyle.Bare,
                 ResponseFormat = WebMessageFormat.Json)]
-        Permission[] GetUserPermissions();
+        Permission[] GetUserPermissions(string username);
 
         [OperationContract]
-        [WebGet(UriTemplate = "/currency/",
+        [WebGet(UriTemplate = "/users/{username}/authentication?p={passwordHash}",
+                BodyStyle = WebMessageBodyStyle.Bare,
+                ResponseFormat = WebMessageFormat.Json)]
+        Authentication CheckUserAuthentication(string username, string passwordHash);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/currency",
                 BodyStyle = WebMessageBodyStyle.Bare,
                 ResponseFormat = WebMessageFormat.Json)]
         Currency[] GetCurrency();

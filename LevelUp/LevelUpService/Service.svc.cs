@@ -23,7 +23,9 @@ namespace LevelUpService
 
         public Rule[] GetDepartmentRules(string departmentID)
         {
-            return null;
+            return new Rule[]{
+                new Rule {Name="ExRule", StartDate="11/09/2013"}
+            };
         }
 
         public void AddRuleToDepartment(Rule rule, string departmentID)
@@ -55,12 +57,21 @@ namespace LevelUpService
 
         public User[] GetUsers()
         {
-            return null;
+            return new User[]{
+                new User(){ Username="jags9415" },
+                new User(){ Username="leomv09" },
+                new User(){ Username="emurillo" },
+                new User(){ Username="dhf360" }
+            };
         }
 
-        public Achievement[] GetUserAchievements(string username)
+        public AchievementPerUser[] GetUserAchievements(string username)
         {
-            return null;
+            return new AchievementPerUser[] { 
+                new AchievementPerUser() {Achievement = new Achievement(){Name="Aprendio un nuevo idioma"}, Detail="Portugues"},
+                new AchievementPerUser() {Achievement = new Achievement(){Name="Obtuvo licencia de conducir"}, Detail="B1"},
+                new AchievementPerUser() {Achievement = new Achievement(){Name="Llego temprano por un mes"}}
+            };
         }
 
         public void AddAchievementToUser(Achievement achievement, string username)
@@ -71,14 +82,23 @@ namespace LevelUpService
         {
         }
 
-        public Permission[] GetUserPermissions()
+        public Permission[] GetUserPermissions(string username)
+        {
+            return null;
+        }
+
+        public Authentication CheckUserAuthentication(string username, string passwordHash)
         {
             return null;
         }
 
         public Currency[] GetCurrency()
         {
-            return null;
+            return new Currency[]{
+                new Currency(){Name="Dolar"},
+                new Currency(){Name="Colon"},
+                new Currency(){Name="Bitcoin"},
+            };
         }
 
     }

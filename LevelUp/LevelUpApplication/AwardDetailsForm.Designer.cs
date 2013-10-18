@@ -70,6 +70,7 @@
             this.PhotoPictureBox.Location = new System.Drawing.Point(278, 24);
             this.PhotoPictureBox.Name = "PhotoPictureBox";
             this.PhotoPictureBox.Size = new System.Drawing.Size(150, 126);
+            this.PhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PhotoPictureBox.TabIndex = 2;
             this.PhotoPictureBox.TabStop = false;
             // 
@@ -241,6 +242,5 @@
         private System.Windows.Forms.Button AwardCancelButton;
         private System.Windows.Forms.Button AwardApplyButton;
         private System.Windows.Forms.Button FileSelectButton;
-        private Controller AppController;
     }
 }

@@ -70,6 +70,8 @@
   <ItemGroup>
     <Compile Include="Achievement.cs" />
     <Compile Include="AchievementPerRule.cs" />
+    <Compile Include="AchievementPerUser.cs" />
+    <Compile Include="Authentication.cs" />
     <Compile Include="Award.cs" />
     <Compile Include="Currency.cs" />
     <Compile Include="Department.cs" />
