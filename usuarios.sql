@@ -16,9 +16,9 @@ INSERT INTO @apellidos (name) VALUES ('Chacon'), ('Lobo'), ('Fernandez'), ('Lope
 
 WHILE @count < 300
 BEGIN
-SELECT TOP 1 @nombre = name FROM @nombres ORDER BY RAND()
-SELECT TOP 1 @apellido1 = name FROM @apellidos ORDER BY RAND()
-SELECT TOP 1 @apellido2 = name FROM @apellidos ORDER BY RAND()
+SELECT TOP 1 @nombre = name FROM @nombres ORDER BY NEWID()
+SELECT TOP 1 @apellido1 = name FROM @apellidos ORDER BY NEWID()
+SELECT TOP 1 @apellido2 = name FROM @apellidos ORDER BY NEWID()
 insert into usuario (Nombre, Apellido1, Apellido2, [Contrase�a], Username, fk_idEstadoUsuario)
 VALUES (@nombre, @apellido1, @apellido2, HashBytes('SHA1',@apellido1), @nombre + cast (@count+1 as varchar), 1)
 SET @count = @count+1
