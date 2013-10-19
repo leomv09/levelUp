@@ -193,7 +193,7 @@ SET IDENTITY_INSERT dbo.EstadoPremio OFF;
 La columna no admite valores NULL. 
 Error de INSERT.*/
 SET IDENTITY_INSERT dbo.Logros ON;
-INSERT INTO Logros (idLogro, Descripcion, FechaInicio, FechaFinal, fk_idCreador, FechaCreacion) VALUES
+INSERT INTO Logros (idLogro, Descripcion, FechaInicio, FechaFinal, fk_idCreador, FechaCreacion,fk_idEstadoLogro) VALUES
 (1, 'Aprender portugués.', '2011-02-10', '2012-02-10', 2, '2011-01-01'),
 (2, 'Cursar Maestría.', '2011-02-10', '2012-02-10', 3, '2011-01-01'),
 (3, 'Asistir a 5 seminarios.', '2011-01-01', '2012-02-10', 6, '2011-01-01'),
