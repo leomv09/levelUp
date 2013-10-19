@@ -189,26 +189,23 @@ INSERT INTO EstadoPremio (idEstadoPremio, Estado) VALUES
 (3, 'Agotado');
 SET IDENTITY_INSERT dbo.EstadoPremio OFF;
 
-/*No se puede insertar el valor NULL en la columna 'fk_idEstadoLogro', tabla 'LevelUp.dbo.Logros'. 
-La columna no admite valores NULL. 
-Error de INSERT.*/
 SET IDENTITY_INSERT dbo.Logros ON;
 INSERT INTO Logros (idLogro, Descripcion, FechaInicio, FechaFinal, fk_idCreador, FechaCreacion,fk_idEstadoLogro) VALUES
-(1, 'Aprender portugués.', '2011-02-10', '2012-02-10', 2, '2011-01-01'),
-(2, 'Cursar Maestría.', '2011-02-10', '2012-02-10', 3, '2011-01-01'),
-(3, 'Asistir a 5 seminarios.', '2011-01-01', '2012-02-10', 6, '2011-01-01'),
-(4, 'Llegar temprano durante 1 mes.', '2011-02-10', '2011-02-10', 2, '2011-01-01'),
-(5, 'Aprender a programar en Ruby on Rails.', '2011-02-10', '2012-02-10', 8, '2011-01-01'),
-(6, 'Participar en carrera de la empresa.', '2012-08-10', '2012-02-10', 2, '2011-01-02'),
-(7, 'Ganar carrera de la empresa.', '2011-08-10', '2012-02-10', 2, '2011-01-02'),
-(8, 'Limpiar 2 parques de la ciudad.', '2010-08-12', '2012-02-10', 4, '2011-01-02'),
-(9, 'Cursar "HTML5 on W3C.', '2011-08-10', '2012-02-10', 1, '2011-01-02'),
-(10, 'Cerrar contrato con BMW.', '2011-08-10', '2012-02-10', 10, '2011-01-02'),
-(11, 'Crear asociación en la empresa.', '2011-08-10', '2012-02-10', 9, '2011-01-02'),
-(12, 'Componer himno organizacional.', '2011-08-10', '2012-02-10', 15, '2011-01-02'),
-(13, 'Llegar temprano durante 20 años laborales.', '2011-08-10', '2012-02-10', 19, '2011-01-02'),
-(14, 'Laborar 14 horas extra en un mes.', '2011-08-10', '2012-02-10', 20, '2011-01-02'),
-(15, 'Organizar fiesta anual.', '2011-08-10', '2012-02-10', 14, '2011-01-02');
+(1, 'Aprender portugués.', '2011-02-10', '2012-02-10', 2, '2011-01-01',1),
+(2, 'Cursar Maestría.', '2011-02-10', '2012-02-10', 3, '2011-01-01',1),
+(3, 'Asistir a 5 seminarios.', '2011-01-01', '2012-02-10', 6, '2011-01-01',1),
+(4, 'Llegar temprano durante 1 mes.', '2011-02-10', '2011-02-10', 2, '2011-01-01',1),
+(5, 'Aprender a programar en Ruby on Rails.', '2011-02-10', '2012-02-10', 8, '2011-01-01',1),
+(6, 'Participar en carrera de la empresa.', '2012-08-10', '2012-02-10', 2, '2011-01-02',1),
+(7, 'Ganar carrera de la empresa.', '2011-08-10', '2012-02-10', 2, '2011-01-02',1),
+(8, 'Limpiar 2 parques de la ciudad.', '2010-08-12', '2012-02-10', 4, '2011-01-02',1),
+(9, 'Cursar "HTML5 on W3C.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1),
+(10, 'Cerrar contrato con BMW.', '2011-08-10', '2012-02-10', 10, '2011-01-02',1),
+(11, 'Crear asociación en la empresa.', '2011-08-10', '2012-02-10', 9, '2011-01-02',1),
+(12, 'Componer himno organizacional.', '2011-08-10', '2012-02-10', 15, '2011-01-02',1),
+(13, 'Llegar temprano durante 20 años laborales.', '2011-08-10', '2012-02-10', 19, '2011-01-02',1),
+(14, 'Laborar 14 horas extra en un mes.', '2011-08-10', '2012-02-10', 20, '2011-01-02',1),
+(15, 'Organizar fiesta anual.', '2011-08-10', '2012-02-10', 14, '2011-01-02',1);
 SET IDENTITY_INSERT dbo.Logros OFF;
 
 SET IDENTITY_INSERT dbo.TipoPremio ON;
@@ -229,60 +226,57 @@ INSERT INTO TipoPremio (idTipoPremio, Tipo)VALUES
 (14, 'Condecoracion');
 SET IDENTITY_INSERT dbo.TipoPremio OFF;
 
-/*No se puede insertar el valor NULL en la columna 'fk_idEstadoPremio', tabla 'LevelUp.dbo.Premio'. 
-La columna no admite valores NULL. 
-Error de INSERT.*/
 SET IDENTITY_INSERT dbo.Premio ON;
-INSERT INTO Premio (idPremio, Titulo, Descripcion, Foto, Cantidad, Monto, fk_idMoneda, fk_idTipoPremio, FechaCreacion) VALUES
-(1, 'Fin de semana en Hotel Barceló playa Tambor', 'Fin de semana en el hotel Barceló playa tambor bajo la modalidad todo incluido para 2 adultos.', 'img/photos/1/photo.jpg',2 ,40000 , 1, 1, '2011-01-01'),
-(2, 'Orden de compra en tienda Arenas', 'Orden de compra por $1000 en tiendas Arenas.', 'img/photos/2/photo.jpg', 2 , 1000, 1, 3, '2011-01-01'),
-(3, 'Día libre', 'Día libre a elegir por parte del usuario.', 'img/photos/3/photo.jpg',18 , 0 , 1, 12, '2011-01-01'),
-(4, 'Bono', 'Bono de $500.', 'img/photos/4/photo.jpg',1 , 500, 1, 2, '2011-01-01'),
-(5, 'Bono', 'Bono de $1000.', 'img/photos/4/photo.jpg', 10 , 10000 ,1, 2, '2011-01-01'),
-(6, 'Laptop Dell inspiron 17R', 'Computadora portátil Dell inspiron 17R.', 'img/photos/6/photo.jpg', 2 , 1000000 , 1, 4, '2011-01-01'),
-(7, 'Pase especial Parque de Diversiones', '4 Pases especiales para el Parque Nacional de Diversiones.', 'img/photos/7/photo.jpg', 4 , 20000 , 1, 11, '2011-01-01'),
-(8, 'Seminario sobre Recursos Humanos', 'Seminario sobre recursos humanos en Estados Unidos todo pago.', 'img/photos/8/photo.jpg', 2 , 5000000 , 1, 5, '2011-01-01'),
-(9, 'Curso de Portugués avanzado', 'Curso pagado de portugués avanzado.', 'img/photos/9/photo.jpg', 10 , 10000 , 1, 6, '2011-01-01'),
-(10, 'Curso de Inglés Avanzado', 'Curso pagado de Inglés avanzado.', 'img/photos/10/photo.jpg',20 , 40000 , 1, 6, '2013-01-01'),
-(11, 'Capacitación Bases de Datos.', 'Capacitación sobre bases de datos en Argentina todo pago.', 'img/photos/11/photo.jpg', 5 , 1000000 , 1, 6, '2011-01-01'),
-(12, 'Fin de semana en Hotel Tabacón', 'Fin de semana en el hotel Tabacón bajo la modalidad todo incluido para 2 adultos.', 'img/photos/3/photo.jpg', 2 , 1000 , 1, 1, '2011-01-01'),
-(13, 'Seminario sobre Finanzas', 'Seminario sobre finazas en Colombia todo pago.', 'img/photos/8/photo.jpg', 2 , 100000 , 1, 5, '2011-01-01'),
-(14, 'DVD', 'The Beatles Best Hits + AC/DC Live.', 'img/photos/14/photo.jpg', 10 , 100000 , 1, 8, '2011-01-09'),
-(15, 'Orden de Compra en Subway', 'Cupón para almuerzo en subway.', 'img/photos/15/photo.jpg', 20 , 100000 , 1, 3, '2012-01-01'),
-(16, 'Tenis Nike', 'Par de tenis Nike.', 'img/photos/16/photo.jpg', 1 , 70000 , 1, 7, '2011-09-01'),
-(17, 'Orden de compra en Gollo', 'Orden de compra por $1000 en tiendas Gollo.', 'img/photos/17/photo.jpg', 1 , 1000, 2, 3, '2011-01-01'),
-(18, 'PS4', 'Play Sation 4 + GTA 5.', 'img/photos/18/photo.jpg', 1 , 2000 , 1, 4, '2011-09-09'),
-(19, 'PS3', 'Play Sation 3 + Gran Turismo 6.', 'img/photos/19/photo.jpg', 2 , 4000 , 1, 4, '2010-01-01'),
-(20, 'iPod Touch', 'iPod Touch + $5 iTunes gift card.', 'img/photos/20/photo.jpg', 2 , 30000 , 1, 4, '2011-07-01'),
-(21, 'iPod Nano', 'iPod Nano + $5 iTunes gift card.', 'img/photos/21/photo.jpg',10 , 50000 , 1, 4, '2011-01-01'),
-(22, 'Orden de Compra Runners', 'Orden de compra por $500 en tiendas Runners.', 'img/photos/22/photo.jpg',4 , 500, 1, 3, '2011-03-08'),
-(23, 'Orden de Compra Librería Internacional', 'Orden de compra por $100 en Librería Internacional.', 'img/photos/23/photo.jpg', 3, 100, 1, 3, '2012-09-03'),
-(25, 'Tratamiento Dental', 'Tratamiento dental por un valor de $1000.', 'img/photos/25/photo.jpg',2 , 1000, 1, 3, '2013-02-05'),
-(26, 'Membresía Saprissista', 'Membresía por 1 año en el estadio Ricardo Saprissa.', 'img/photos/26/photo.jpg', 2, 30000, 1, 10, '2013-02-05'),
-(27, 'Entradas Eliminatoria', '2 Entradas dobles para el partido de Costa Rica contra Estados Unidos', 'img/photos/27/photo.jpg',2 ,3000 , 1, 11, '2013-04-05'),
-(28, 'Entradas Eliminatoria', '2 Entradas dobles para el partido de Costa Rica contra Mexico', 'img/photos/28/photo.jpg', 22, 30000 , 1, 11, '2013-06-01'),
-(29, 'Computadora HP', 'Laptop HP Pavilion G42.', 'img/photos/29/photo.jpg', 10 , 3000000 , 1, 4, '2011-04-05'),
-(30, 'Pantalla Plana', 'Pantalla FULL HD LG de 42 pulgadas.', 'img/photos/30/photo.jpg', 30, 2000000, 1, 4, '2012-12-20'),
-(31, 'Botella Chivas Regal', '1 Botella de Wisky Chivas Regal.', 'img/photos/31/photo.jpg',60 , 100000, 1, 3, '2013-02-05'),
-(32, 'Samsung Galaxy S4', 'Celular Samsung Galaxy S4.', 'img/photos/32/photo.jpg', 3, 600000, 1, 4, '2013-08-07'),
-(33, 'Canopy Tour Monteverde', 'Canopy Tour en Monteverde Costa Rica para 2 adultos.', 'img/photos/33/photo.jpg', 50, 500000 , 1, 1, '2012-07-01'),
-(34, 'Bicicleta Specialized', 'Bicicleta marca Spcialized.', 'img/photos/34/photo.jpg', 2,10000 , 1, 9, '2013-01-05'),
-(35, 'Kayak en San Carlos', 'Kayak tour para 2 adultos en Arenal.', 'img/photos/24/photo.jpg',3 ,30000 , 1, 9, '2013/02/05'),
-(36, 'Tour Volcán Poás', 'Tour al Volcán Poás para 4 personas, desayuno y almuerzo incluido.', 'img/photos/36/photo.jpg',2 ,30000 , 1, 1, '2013-05-05'),
-(37, 'Tableta Samsung', 'Samnsung Galaxy tab 3.', 'img/photos/37/photo.jpg', 2,30000 , 1, 4, '2013-02-28'),
-(38, 'Camisa Selección Nacional', 'Camisa original de la selección Nacional de Costa Rica.', 'img/photos/38/photo.jpg',1 , 30000, 1, 7, '2012-05-05'),
-(39, 'Viaje a Brazil', 'Viaje a Brazil para 2 adultos, todos los gastos pagados.', 'img/photos/39/photo.jpg', 5, 30000, 1, 1, '2013-02-05'),
-(40, 'Camisa de Bryan Ruiz', 'Camisa del Fulham + CR autografiadas por Bryan Ruiz González.', 'img/photos/40/photo.jpg',6 ,30000 , 1, 7, '2013-02-20'),
-(41, 'Guantes de Keylor Navas', 'Guantes autografiados por Keylor Navas.', 'img/photos/41/photo.jpg', 7, 10000 , 1, 7, '2012-02-05'),
-(42, 'Viaje a Panamá', 'Viaje a Panamá para 2 adultos con todos los gastos pagados.', 'img/photos/42/photo.jpg', 3,400000 , 1, 1, '2011-02-05'),
-(43, 'Almuerzo Gratis', 'Almuerzo gratis en Puzza Hut aplica para cualquier combo.', 'img/photos/43/photo.jpg', 2, 400000, 1, 3, '2012-12-05'),
-(44, 'Orden de Compra', 'Orden de compra por $200 en tiendas Forever 21.', 'img/photos/44/photo.jpg', 10, 30000, 1, 3, '2013-06-21'),
-(45, 'iPad', 'iPad de tercera generación 64GB color negro.', 'img/photos/45/photo.jpg', 10, 400000, 1, 4, '2013-10-05'),
-(46, 'Computadora Lenovo', 'Laptop Lenovo T430s.', 'img/photos/46/photo.jpg', 15,30000 , 1, 4, '2013-01-05'),
-(47, 'Entradas al Cine', '2 entradas dobles en cadenas de cine CCMM cinemas.', 'img/photos/47/photo.jpg', 3,400000 , 1, 11, '2011-06-06'),
-(48, 'Sillón Ortopédico', 'Sillón Ortopédico.', 'img/photos/48/photo.jpg', 20, 400000, 1, 12, '2013-02-05'),
-(49, 'Herramientas para Bicicleta', 'Caja de herramientas para bicicleta.', 'img/photos/49/photo.jpg', 10,30000, 1, 9, '2012-12-12'),
-(50, 'DVD', 'DVD de la película Costarricense El Regreso.', 'img/photos/50/photo.jpg', 20,30000 , 1, 8, '2013-04-04');
+INSERT INTO Premio (idPremio, Titulo, Descripcion, Foto, Cantidad, Monto, fk_idMoneda, fk_idTipoPremio, FechaCreacion,fk_idEstadoPremio) VALUES
+(1, 'Fin de semana en Hotel Barceló playa Tambor', 'Fin de semana en el hotel Barceló playa tambor bajo la modalidad todo incluido para 2 adultos.', 'img/photos/1/photo.jpg',2 ,40000 , 1, 1, '2011-01-01',1),
+(2, 'Orden de compra en tienda Arenas', 'Orden de compra por $1000 en tiendas Arenas.', 'img/photos/2/photo.jpg', 2 , 1000, 1, 3, '2011-01-01',1),
+(3, 'Día libre', 'Día libre a elegir por parte del usuario.', 'img/photos/3/photo.jpg',18 , 0 , 1, 12, '2011-01-01',1),
+(4, 'Bono', 'Bono de $500.', 'img/photos/4/photo.jpg',1 , 500, 1, 2, '2011-01-01',1),
+(5, 'Bono', 'Bono de $1000.', 'img/photos/4/photo.jpg', 10 , 10000 ,1, 2, '2011-01-01',1),
+(6, 'Laptop Dell inspiron 17R', 'Computadora portátil Dell inspiron 17R.', 'img/photos/6/photo.jpg', 2 , 1000000 , 1, 4, '2011-01-01',1),
+(7, 'Pase especial Parque de Diversiones', '4 Pases especiales para el Parque Nacional de Diversiones.', 'img/photos/7/photo.jpg', 4 , 20000 , 1, 11, '2011-01-01',1),
+(8, 'Seminario sobre Recursos Humanos', 'Seminario sobre recursos humanos en Estados Unidos todo pago.', 'img/photos/8/photo.jpg', 2 , 5000000 , 1, 5, '2011-01-01',1),
+(9, 'Curso de Portugués avanzado', 'Curso pagado de portugués avanzado.', 'img/photos/9/photo.jpg', 10 , 10000 , 1, 6, '2011-01-01',1),
+(10, 'Curso de Inglés Avanzado', 'Curso pagado de Inglés avanzado.', 'img/photos/10/photo.jpg',20 , 40000 , 1, 6, '2013-01-01',1),
+(11, 'Capacitación Bases de Datos.', 'Capacitación sobre bases de datos en Argentina todo pago.', 'img/photos/11/photo.jpg', 5 , 1000000 , 1, 6, '2011-01-01',1),
+(12, 'Fin de semana en Hotel Tabacón', 'Fin de semana en el hotel Tabacón bajo la modalidad todo incluido para 2 adultos.', 'img/photos/3/photo.jpg', 2 , 1000 , 1, 1, '2011-01-01',1),
+(13, 'Seminario sobre Finanzas', 'Seminario sobre finazas en Colombia todo pago.', 'img/photos/8/photo.jpg', 2 , 100000 , 1, 5, '2011-01-01',1),
+(14, 'DVD', 'The Beatles Best Hits + AC/DC Live.', 'img/photos/14/photo.jpg', 10 , 100000 , 1, 8, '2011-01-09',1),
+(15, 'Orden de Compra en Subway', 'Cupón para almuerzo en subway.', 'img/photos/15/photo.jpg', 20 , 100000 , 1, 3, '2012-01-01',1),
+(16, 'Tenis Nike', 'Par de tenis Nike.', 'img/photos/16/photo.jpg', 1 , 70000 , 1, 7, '2011-09-01',1),
+(17, 'Orden de compra en Gollo', 'Orden de compra por $1000 en tiendas Gollo.', 'img/photos/17/photo.jpg', 1 , 1000, 2, 3, '2011-01-01',1),
+(18, 'PS4', 'Play Sation 4 + GTA 5.', 'img/photos/18/photo.jpg', 1 , 2000 , 1, 4, '2011-09-09',1),
+(19, 'PS3', 'Play Sation 3 + Gran Turismo 6.', 'img/photos/19/photo.jpg', 2 , 4000 , 1, 4, '2010-01-01',1),
+(20, 'iPod Touch', 'iPod Touch + $5 iTunes gift card.', 'img/photos/20/photo.jpg', 2 , 30000 , 1, 4, '2011-07-01',1),
+(21, 'iPod Nano', 'iPod Nano + $5 iTunes gift card.', 'img/photos/21/photo.jpg',10 , 50000 , 1, 4, '2011-01-01',1),
+(22, 'Orden de Compra Runners', 'Orden de compra por $500 en tiendas Runners.', 'img/photos/22/photo.jpg',4 , 500, 1, 3, '2011-03-08',1),
+(23, 'Orden de Compra Librería Internacional', 'Orden de compra por $100 en Librería Internacional.', 'img/photos/23/photo.jpg', 3, 100, 1, 3, '2012-09-03',1),
+(25, 'Tratamiento Dental', 'Tratamiento dental por un valor de $1000.', 'img/photos/25/photo.jpg',2 , 1000, 1, 3, '2013-02-05',1),
+(26, 'Membresía Saprissista', 'Membresía por 1 año en el estadio Ricardo Saprissa.', 'img/photos/26/photo.jpg', 2, 30000, 1, 10, '2013-02-05',1),
+(27, 'Entradas Eliminatoria', '2 Entradas dobles para el partido de Costa Rica contra Estados Unidos', 'img/photos/27/photo.jpg',2 ,3000 , 1, 11, '2013-04-05',1),
+(28, 'Entradas Eliminatoria', '2 Entradas dobles para el partido de Costa Rica contra Mexico', 'img/photos/28/photo.jpg', 22, 30000 , 1, 11, '2013-06-01',1),
+(29, 'Computadora HP', 'Laptop HP Pavilion G42.', 'img/photos/29/photo.jpg', 10 , 3000000 , 1, 4, '2011-04-05',1),
+(30, 'Pantalla Plana', 'Pantalla FULL HD LG de 42 pulgadas.', 'img/photos/30/photo.jpg', 30, 2000000, 1, 4, '2012-12-20',1),
+(31, 'Botella Chivas Regal', '1 Botella de Wisky Chivas Regal.', 'img/photos/31/photo.jpg',60 , 100000, 1, 3, '2013-02-05',1),
+(32, 'Samsung Galaxy S4', 'Celular Samsung Galaxy S4.', 'img/photos/32/photo.jpg', 3, 600000, 1, 4, '2013-08-07',1),
+(33, 'Canopy Tour Monteverde', 'Canopy Tour en Monteverde Costa Rica para 2 adultos.', 'img/photos/33/photo.jpg', 50, 500000 , 1, 1, '2012-07-01',1),
+(34, 'Bicicleta Specialized', 'Bicicleta marca Spcialized.', 'img/photos/34/photo.jpg', 2,10000 , 1, 9, '2013-01-05',1),
+(35, 'Kayak en San Carlos', 'Kayak tour para 2 adultos en Arenal.', 'img/photos/24/photo.jpg',3 ,30000 , 1, 9, '2013/02/05',1),
+(36, 'Tour Volcán Poás', 'Tour al Volcán Poás para 4 personas, desayuno y almuerzo incluido.', 'img/photos/36/photo.jpg',2 ,30000 , 1, 1, '2013-05-05',1),
+(37, 'Tableta Samsung', 'Samnsung Galaxy tab 3.', 'img/photos/37/photo.jpg', 2,30000 , 1, 4, '2013-02-28',1),
+(38, 'Camisa Selección Nacional', 'Camisa original de la selección Nacional de Costa Rica.', 'img/photos/38/photo.jpg',1 , 30000, 1, 7, '2012-05-05',1),
+(39, 'Viaje a Brazil', 'Viaje a Brazil para 2 adultos, todos los gastos pagados.', 'img/photos/39/photo.jpg', 5, 30000, 1, 1, '2013-02-05',1),
+(40, 'Camisa de Bryan Ruiz', 'Camisa del Fulham + CR autografiadas por Bryan Ruiz González.', 'img/photos/40/photo.jpg',6 ,30000 , 1, 7, '2013-02-20',1),
+(41, 'Guantes de Keylor Navas', 'Guantes autografiados por Keylor Navas.', 'img/photos/41/photo.jpg', 7, 10000 , 1, 7, '2012-02-05',1),
+(42, 'Viaje a Panamá', 'Viaje a Panamá para 2 adultos con todos los gastos pagados.', 'img/photos/42/photo.jpg', 3,400000 , 1, 1, '2011-02-05',1),
+(43, 'Almuerzo Gratis', 'Almuerzo gratis en Puzza Hut aplica para cualquier combo.', 'img/photos/43/photo.jpg', 2, 400000, 1, 3, '2012-12-05',1),
+(44, 'Orden de Compra', 'Orden de compra por $200 en tiendas Forever 21.', 'img/photos/44/photo.jpg', 10, 30000, 1, 3, '2013-06-21',1),
+(45, 'iPad', 'iPad de tercera generación 64GB color negro.', 'img/photos/45/photo.jpg', 10, 400000, 1, 4, '2013-10-05',1),
+(46, 'Computadora Lenovo', 'Laptop Lenovo T430s.', 'img/photos/46/photo.jpg', 15,30000 , 1, 4, '2013-01-05',1),
+(47, 'Entradas al Cine', '2 entradas dobles en cadenas de cine CCMM cinemas.', 'img/photos/47/photo.jpg', 3,400000 , 1, 11, '2011-06-06',1),
+(48, 'Sillón Ortopédico', 'Sillón Ortopédico.', 'img/photos/48/photo.jpg', 20, 400000, 1, 12, '2013-02-05',1),
+(49, 'Herramientas para Bicicleta', 'Caja de herramientas para bicicleta.', 'img/photos/49/photo.jpg', 10,30000, 1, 9, '2012-12-12',1),
+(50, 'DVD', 'DVD de la película Costarricense El Regreso.', 'img/photos/50/photo.jpg', 20,30000 , 1, 8, '2013-04-04',1);
 SET IDENTITY_INSERT dbo.Premio OFF;
 
 SET IDENTITY_INSERT dbo.Permisos ON;
@@ -359,11 +353,10 @@ INSERT INTO Modulo (idModulo, Nombre) VALUES
 (1, 'Aplicación de Administración PC');
 SET IDENTITY_INSERT dbo.Modulo OFF;
 
-/*La cantidad de caracteres en "tipo" sobrepasa los 50 */
 SET IDENTITY_INSERT dbo.TipoEvento ON;
 INSERT INTO TipoEvento (idTipoEvento, Tipo) VALUES
-(1, 'Inicio de Sesion en Aplicación de Administracion Windows'),
-(2, 'Cierre de Sesion en Aplicación de Administracion Windows'),
+(1, 'Inicio de Sesion en Aplicación de Adm. Windows'),
+(2, 'Cierre de Sesion en Aplicación de Adm. Windows'),
 (3, 'Creacion de Regla'),
 (4, 'Eliminacion de Regla'),
 (5, 'Modificacion de Regla'),
