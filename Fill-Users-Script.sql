@@ -1,4 +1,6 @@
-﻿DELETE FROM EstadoUsuario;
+﻿USE LevelUp;
+
+DELETE FROM EstadoUsuario;
 SET IDENTITY_INSERT dbo.EstadoUsuario ON;
 INSERT INTO EstadoUsuario (idEstadoUsuario, Estado) VALUES
 (1, 'Activo'),

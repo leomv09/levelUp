@@ -2,13 +2,14 @@ TABLAS POR LLENAR
 -----------------
 
 Regla
-TitulosPorUsuario
 ContactosPorUsuario
 LogrosPorDepartamento
 PremiosPorDepartamento
 ReglasPorDepartamento
 
 -------------------------------------------------------------------------------------------------------------------------------------------
+
+USE LevelUp;
 
 -- Truncate all tables.
 DELETE FROM Evento;
@@ -373,14 +374,31 @@ SET IDENTITY_INSERT dbo.TipoEvento OFF;
 DECLARE @UsuarioActual int = 1;
 DECLARE @TotalUsuarios int = 300;
 DECLARE @Puesto int;
+DECLARE @Fecha datetime;
+DECLARE @NumeroTitulos int;
+DECLARE @Titulo int;
+DECLARE @Institucion int;
+
 SET IDENTITY_INSERT dbo.Contratos ON;
+
 WHILE @UsuarioActual < @TotalUsuarios
 BEGIN
   SELECT TOP 1 @Puesto = idPuesto FROM Puestos ORDER BY NEWID();
+  SET @Fecha = DateAdd(d, ROUND(DateDiff(d, '2000-01-01', '2013-01-01') * RAND(), 0), '2000-01-01');
   INSERT INTO Contratos (idContrato, FechaInicio, FechaCreacion, fk_idCreador, fk_idUsuario, fk_idPuesto) VALUES
-  (@UsuarioActual, '2009-09-12', GETDATE(), 1, @UsuarioActual, @Puesto);
+  (@UsuarioActual, @Fecha, GETDATE(), 1, @UsuarioActual, @Puesto);
+  SET @NumeroTitulos = 0;
+  WHILE @NumeroTitulos < 2
+  BEGIN
+    SELECT TOP 1 @Titulo = fk_idTitulo, @Institucion = fk_idInstitucion FROM TitulosPorInstituciones ORDER BY NEWID();
+    SET @Fecha = DateAdd(d, ROUND(DateDiff(d, '1950-01-01', '2000-01-01') * RAND(), 0), '1950-01-01');
+    INSERT INTO TitulosPorUsuario (fk_idTitulo, fk_idInstitucion, fk_idUsuario, fk_idCreador, FechaObtencion, FechaCreacion) VALUES
+    (@Titulo, @Institucion, @UsuarioActual, 1, @Fecha, GETDATE());
+    SET @NumeroTitulos = @NumeroTitulos + 1;
+  END;
   SET @UsuarioActual = @UsuarioActual + 1;
 END
+
 SET IDENTITY_INSERT dbo.Contratos OFF;
 
 -------------------------------------------------------------------------------------------------------------------------------------------

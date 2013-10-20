@@ -1,3 +1,5 @@
+USE LevelUp;
+
 DELETE FROM Pais;
 SET IDENTITY_INSERT Pais ON;
 INSERT INTO Pais (idPais, Nombre) VALUES
