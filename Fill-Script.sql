@@ -1,14 +1,3 @@
-TABLAS POR LLENAR
------------------
-
-Regla
-ContactosPorUsuario
-LogrosPorDepartamento
-PremiosPorDepartamento
-ReglasPorDepartamento
-
--------------------------------------------------------------------------------------------------------------------------------------------
-
 USE LevelUp;
 
 -- Truncate all tables.
@@ -73,14 +62,15 @@ INSERT INTO TasaCambio (fk_idMoneda1, fk_idMoneda2, Fecha, TasaCambio) VALUES
 
 SET IDENTITY_INSERT dbo.Departamento ON;
 INSERT INTO Departamento (idDepartamento, Nombre) VALUES
-(1, 'Tecnologias de Información'),
-(2, 'Recursos Humanos'),
-(3, 'Limpieza'),
-(4, 'Gerencia'),
-(5, 'Control de Calidad'),
-(6, 'Financiero'),
-(7, 'Ventas'),
-(8, 'Conserjería');
+(1, 'Global'),
+(2, 'Tecnologias de Información'),
+(3, 'Recursos Humanos'),
+(4, 'Limpieza'),
+(5, 'Gerencia'),
+(6, 'Control de Calidad'),
+(7, 'Financiero'),
+(8, 'Ventas'),
+(9, 'Conserjería');
 SET IDENTITY_INSERT dbo.Departamento OFF;
 
 SET IDENTITY_INSERT dbo.Institucion ON;
@@ -381,17 +371,25 @@ DECLARE @Institucion int;
 
 SET IDENTITY_INSERT dbo.Contratos ON;
 
+--Agregar Contratos a los Usuarios.
 WHILE @UsuarioActual < @TotalUsuarios
 BEGIN
+  --Seleccionar un puesto random.
   SELECT TOP 1 @Puesto = idPuesto FROM Puestos ORDER BY NEWID();
+  --Seleccionar una fecha random.
   SET @Fecha = DateAdd(d, ROUND(DateDiff(d, '2000-01-01', '2013-01-01') * RAND(), 0), '2000-01-01');
+  --Insertar Contrato.
   INSERT INTO Contratos (idContrato, FechaInicio, FechaCreacion, fk_idCreador, fk_idUsuario, fk_idPuesto) VALUES
   (@UsuarioActual, @Fecha, GETDATE(), 1, @UsuarioActual, @Puesto);
+  --Agregar Titulos al Usuario.
   SET @NumeroTitulos = 0;
   WHILE @NumeroTitulos < 2
   BEGIN
+    --Seleccionar un Titulo e Institucion random.
     SELECT TOP 1 @Titulo = fk_idTitulo, @Institucion = fk_idInstitucion FROM TitulosPorInstituciones ORDER BY NEWID();
+    --Seleccionar una fecha random.
     SET @Fecha = DateAdd(d, ROUND(DateDiff(d, '1950-01-01', '2000-01-01') * RAND(), 0), '1950-01-01');
+    --Insertar Titulo.
     INSERT INTO TitulosPorUsuario (fk_idTitulo, fk_idInstitucion, fk_idUsuario, fk_idCreador, FechaObtencion, FechaCreacion) VALUES
     (@Titulo, @Institucion, @UsuarioActual, 1, @Fecha, GETDATE());
     SET @NumeroTitulos = @NumeroTitulos + 1;
@@ -400,6 +398,29 @@ BEGIN
 END
 
 SET IDENTITY_INSERT dbo.Contratos OFF;
+
+DECLARE @LogroActual int = 1;
+DECLARE @PremioActual int = 1;
+DECLARE @ReglaActual int = 1;
+DECLARE @TodosLosDepartamentos int = 1;
+
+WHILE @LogroActual <= 15
+BEGIN
+  INSERT INTO LogrosPorDepartamento (fk_idLogro, fk_idDepartamento) VALUES (@LogroActual, @TodosLosDepartamentos);
+  SET @LogroActual = @LogroActual + 1;
+END;
+
+WHILE @PremioActual <= 50
+BEGIN
+  INSERT INTO PremiosPorDepartamento (fk_idPremio, fk_idDepartamento) VALUES (@PremioActual, @TodosLosDepartamentos);
+  SET @PremioActual = @PremioActual + 1;
+END;
+
+WHILE @ReglaActual <= 00
+BEGIN
+  INSERT INTO ReglasPorDepartamento (fk_idRegla, fk_idDepartamento) VALUES (@ReglaActual, @TodosLosDepartamentos);
+  SET @ReglaActual = @ReglaActual + 1;
+END;
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
