@@ -74,6 +74,8 @@
     <Compile Include="Authentication.cs" />
     <Compile Include="Award.cs" />
     <Compile Include="Currency.cs" />
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -6,12 +6,19 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using System.ServiceModel.Activation;
+using System.Data.SqlClient;
 
 namespace LevelUpService
 {
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class Service : IService
     {
+        private DataAccess m_da;
+
+        public Service()
+        {
+            m_da = new DataAccess();
+        }
 
         public Department[] GetDepartments()
         {
@@ -42,7 +49,7 @@ namespace LevelUpService
                     Name="Beach Night",
                     Description="Fin de semana en el hotel Barceló playa tambor bajo la modalidad todo incluido para 2 adultos.",
                     Type="Otros",
-                    PhotoUrl="C:/Users/Jose/Proyectos Programados/IC-4301 LevelUp/img/photos/1/photo.jpg"
+                    PhotoUrl="img/photos/1/photo.jpg"
                 },
                 new Award()
                 {
@@ -50,7 +57,7 @@ namespace LevelUpService
                     Name="5 puntos",
                     Type="Puntos",
                     Amount = 5,
-                    PhotoUrl="C:/Users/Jose/Proyectos Programados/IC-4301 LevelUp/img/photos/2/photo.gif"
+                    PhotoUrl="img/photos/2/photo.gif"
                 },
                 new Award()
                 {
@@ -60,7 +67,7 @@ namespace LevelUpService
                     Type="Dinero",
                     Money = 50000,
                     Currency = new Currency(){ID=2, Name="Colón", Symbol="¢", Code="CRC"},
-                    PhotoUrl="C:/Users/Jose/Proyectos Programados/IC-4301 LevelUp/img/photos/3/photo.jpg"
+                    PhotoUrl="img/photos/3/photo.jpg"
                 }
             };
 
@@ -98,14 +105,14 @@ namespace LevelUpService
                     Name="Beach Night",
                     Description="Fin de semana en el hotel Barceló playa tambor bajo la modalidad todo incluido para 2 adultos.",
                     Type="Otros",
-                    PhotoUrl="C:/Users/Jose/Proyectos Programados/IC-4301 LevelUp/img/photos/1/photo.jpg"
+                    PhotoUrl="img/photos/1/photo.jpg"
                 },
                 new Award()
                 {
                     Name="5 puntos",
                     Type="Puntos",
                     Amount = 5,
-                    PhotoUrl="C:/Users/Jose/Proyectos Programados/IC-4301 LevelUp/img/photos/2/photo.gif"
+                    PhotoUrl="img/photos/2/photo.gif"
                 },
                 new Award()
                 {
@@ -114,7 +121,7 @@ namespace LevelUpService
                     Type="Dinero",
                     Money = 50000,
                     Currency = new Currency(){ID=2, Name="Colón", Symbol="¢", Code="CRC"},
-                    PhotoUrl="C:/Users/Jose/Proyectos Programados/IC-4301 LevelUp/img/photos/3/photo.jpg"
+                    PhotoUrl="img/photos/3/photo.jpg"
                 }
             };
         }
