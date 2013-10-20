@@ -62,6 +62,7 @@
             // 
             this.NameTextBox.Location = new System.Drawing.Point(12, 43);
             this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.ReadOnly = true;
             this.NameTextBox.Size = new System.Drawing.Size(247, 20);
             this.NameTextBox.TabIndex = 1;
             // 
@@ -88,12 +89,14 @@
             // 
             this.DescriptionTextBox.Location = new System.Drawing.Point(15, 104);
             this.DescriptionTextBox.Name = "DescriptionTextBox";
+            this.DescriptionTextBox.ReadOnly = true;
             this.DescriptionTextBox.Size = new System.Drawing.Size(244, 96);
             this.DescriptionTextBox.TabIndex = 4;
             this.DescriptionTextBox.Text = "";
             // 
             // TypeComboBox
             // 
+            this.TypeComboBox.Enabled = false;
             this.TypeComboBox.FormattingEnabled = true;
             this.TypeComboBox.Location = new System.Drawing.Point(15, 242);
             this.TypeComboBox.Name = "TypeComboBox";
@@ -126,6 +129,7 @@
             // 
             this.DetailTextBox.Location = new System.Drawing.Point(278, 243);
             this.DetailTextBox.Name = "DetailTextBox";
+            this.DetailTextBox.ReadOnly = true;
             this.DetailTextBox.Size = new System.Drawing.Size(144, 20);
             this.DetailTextBox.TabIndex = 8;
             this.DetailTextBox.Visible = false;
@@ -143,6 +147,7 @@
             // 
             // CurrencyComboBox
             // 
+            this.CurrencyComboBox.Enabled = false;
             this.CurrencyComboBox.FormattingEnabled = true;
             this.CurrencyComboBox.Location = new System.Drawing.Point(12, 301);
             this.CurrencyComboBox.Name = "CurrencyComboBox";
@@ -173,6 +178,7 @@
             // 
             // AwardApplyButton
             // 
+            this.AwardApplyButton.Enabled = false;
             this.AwardApplyButton.Location = new System.Drawing.Point(272, 345);
             this.AwardApplyButton.Name = "AwardApplyButton";
             this.AwardApplyButton.Size = new System.Drawing.Size(75, 23);
@@ -183,6 +189,7 @@
             // 
             // FileSelectButton
             // 
+            this.FileSelectButton.Enabled = false;
             this.FileSelectButton.Location = new System.Drawing.Point(278, 156);
             this.FileSelectButton.Name = "FileSelectButton";
             this.FileSelectButton.Size = new System.Drawing.Size(150, 23);

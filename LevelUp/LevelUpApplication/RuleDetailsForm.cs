@@ -1,25 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LevelUpService;
 
 namespace LevelUpApplication
 {
     public partial class RuleDetailsForm : Form
     {
-        public RuleDetailsForm()
+        private Controller m_controller;
+        Rule m_rule;
+        Department m_department;
+
+        public RuleDetailsForm(Rule rule, Department department)
         {
             InitializeComponent();
-            AppController = Controller.Instance;
-            StartDateTimePicker.MinDate = DateTime.Today;
-            EndDateTimePicker.MinDate = DateTime.Today;
-            RuleNameTextBox.MaxLength = 100;
-            RuleDescripcionTextBox.MaxLength = 500;
+            m_controller = Controller.Instance;
+            m_rule = rule;
+            m_department = department;
+            RuleNameTextBox.MaxLength = Constants.RuleName_MaxLength;
+            RuleDescripcionTextBox.MaxLength = Constants.RuleDescription_MaxLength;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            this.RuleName = Rule.Name;
+            this.Description = Rule.Description;
+            this.StartDate = Rule.StartDate;
+            this.EndDate = Rule.EndDate;
             LoadAchievements();
             LoadAwards();
         }
@@ -30,6 +43,7 @@ namespace LevelUpApplication
             {
                 Save();
                 this.Close();
+                this.DialogResult = DialogResult.OK;
             }
         }
 
@@ -41,6 +55,17 @@ namespace LevelUpApplication
             }
         }
 
+        private void Save()
+        {
+            this.Rule.Name = this.RuleName;
+            this.Rule.Description = this.Description;
+            this.Rule.StartDate = this.StartDate;
+            this.Rule.EndDate = this.EndDate;
+            this.Rule.Achievements = this.Achievements;
+            this.Rule.Awards = this.Awards;
+            //m_controller.ModifyRule(this.Rule);
+        }
+
         private void CancelRuleButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -48,25 +73,47 @@ namespace LevelUpApplication
 
         private void LoadAchievements()
         {
-            string Department = ""; //Get Department
-            AchievementName.Items.AddRange(AppController.GetDepartmentAchievements(Department));
+            BindingList<AchievementPerRule> achievementList = new BindingList<AchievementPerRule>();
+            achievementList.AllowEdit = true;
+            achievementList.AllowNew = true;
+            achievementList.AllowRemove = true;
+
+            foreach (AchievementPerRule achievement in Rule.Achievements)
+            {
+                achievementList.Add(achievement);
+            }
+
+            AchievementsDataGridView.AutoGenerateColumns = false;
+            AchievementsDataGridView.DataSource = achievementList;
         }
 
         private void LoadAwards()
         {
-            string Department = ""; //Get Department
-            AwardName.Items.AddRange(AppController.GetDepartmentAwards(Department));
+            BindingList<Award> awardList = new BindingList<Award>();
+            awardList.AllowEdit = true;
+            awardList.AllowNew = true;
+            awardList.AllowRemove = true;
+
+            foreach (Award award in Rule.Awards)
+            {
+                awardList.Add(award);
+            }
+
+            AwardsDataGridView.AutoGenerateColumns = false;
+            AwardsDataGridView.DataSource = awardList;
         }
 
         private void AwardsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            if (e.ColumnIndex == (int) Constants.Rule_AwardColumns.View)
             {
-                AwardDetailsForm Form = new AwardDetailsForm();
-                Form.ShowDialog(this);
+                Award selectedAward = this.Awards[e.RowIndex];
+                AwardDetailsForm form = new AwardDetailsForm(selectedAward);
+                form.ShowDialog(this);
             }
-            else if (e.ColumnIndex == 2)
+            else if (e.ColumnIndex == (int) Constants.Rule_AwardColumns.Delete)
             {
+                Award selectedAward = this.Awards[e.RowIndex];
                 if (MessageBox.Show(this, "¿Está seguro que desea eliminar este premio?", "Eliminar Premio",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -77,8 +124,9 @@ namespace LevelUpApplication
 
         private void AchievementsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 2)
+            if (e.ColumnIndex == (int) Constants.Rule_AchievementColumns.Delete)
             {
+                AchievementPerRule selectedAchievement = this.Achievements[e.RowIndex];
                 if (MessageBox.Show(this, "¿Está seguro que desea eliminar este logro?", "Eliminar Logro",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -87,12 +135,32 @@ namespace LevelUpApplication
             }
         }
 
-        private void AchievementsDataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void AddAchievementButton_Click(object sender, EventArgs e)
         {
-            int amountCellIndex = 1;
-            for (int i = 0; i < e.RowCount; i++)
+            AddAchievementForm form = new AddAchievementForm(this.Department);
+            if (form.ShowDialog(this) == DialogResult.OK)
             {
-                AchievementsDataGridView.Rows[e.RowIndex + i - 1].Cells[amountCellIndex].Value = 1;
+                BindingList<AchievementPerRule> achievementsList =
+                    (BindingList<AchievementPerRule>)AchievementsDataGridView.DataSource;
+
+                achievementsList.Add(
+                    new AchievementPerRule()
+                    {
+                        Achievement = form.SelectedAchievement,
+                        Amount = 1
+                    });
+            }
+        }
+
+        private void AddAwardButton_Click(object sender, EventArgs e)
+        {
+            AddAwardForm form = new AddAwardForm(this.Department);
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                BindingList<Award> awardsList =
+                    (BindingList<Award>)AwardsDataGridView.DataSource;
+
+                awardsList.Add(form.Award);
             }
         }
 
@@ -110,9 +178,15 @@ namespace LevelUpApplication
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            else if (!AllAchievementsHaveValidName())
+            else if (!RuleHasAchievements())
             {
-                MessageBox.Show(this, "Seleccione un logro de la lista desplegable.", "Error",
+                MessageBox.Show(this, "Debe seleccionar al menos un logro.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (!RuleHasAwards())
+            {
+                MessageBox.Show(this, "Debe seleccionar al menos un premio.", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -122,16 +196,16 @@ namespace LevelUpApplication
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            else if (Functions.DataGridViewHasDuplicatedValues(AchievementsDataGridView))
+            else if (Functions.DataGridViewHasDuplicatedValues(AchievementsDataGridView, (int) Constants.Rule_AchievementColumns.Name))
             {
-                MessageBox.Show(this, "La regla no puede contenir logros duplicados.", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "La regla no puede contener logros duplicados.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            else if (Functions.DataGridViewHasDuplicatedValues(AwardsDataGridView))
+            else if (Functions.DataGridViewHasDuplicatedValues(AwardsDataGridView, (int) Constants.Rule_AwardColumns.Name))
             {
-                MessageBox.Show(this, "La regla no puede contenir premios duplicados.", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "La regla no puede contener premios duplicados.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             else
@@ -140,49 +214,115 @@ namespace LevelUpApplication
             }
         }
 
-        private void Save()
-        {
-        }
-
         private bool RuleHasValidName()
         {
-            string Name = RuleNameTextBox.Text;
-            return !String.IsNullOrEmpty(Name);
+            return !String.IsNullOrEmpty(this.RuleName);
         }
 
         private bool RuleHasValidDates()
         {
-            DateTime StartDate = StartDateTimePicker.Value;
-            DateTime EndDate = EndDateTimePicker.Value;
-            int result = StartDate.CompareTo(EndDate);
+            DateTime startDate = StartDateTimePicker.Value;
+            DateTime endDate = EndDateTimePicker.Value;
+            int result = startDate.CompareTo(endDate);
             return result <= 0;
         }
 
-        private bool AllAchievementsHaveValidName()
+        private bool RuleHasAchievements()
         {
-            int Name = 0;
+            return Achievements.Length > 0;
+        }
 
-            int AchievementsWithInvalidName = AchievementsDataGridView.Rows.Cast<DataGridViewRow>()
-                .Count(R => !Functions.IsNullRow(R) && R.Cells[Name].Value == null);
-
-            return AchievementsWithInvalidName == 0;
+        private bool RuleHasAwards()
+        {
+            return Awards.Length > 0;
         }
 
         private bool AllAchievementsHaveValidAmount()
         {
-            int Amount = 1;
-
-            int AchievementsWithInvalidAmount = AchievementsDataGridView.Rows.Cast<DataGridViewRow>()
-                .Count(R =>
-                    !Functions.IsNullRow(R) &&
-                    (
-                        R.Cells[Amount].Value == null ||
-                        !Functions.IsNumeric(R.Cells[Amount].Value.ToString())
-                    )
-                );
-
-            return AchievementsWithInvalidAmount == 0;
+            foreach (AchievementPerRule achievement in this.Achievements)
+            {
+                if (achievement.Amount <= 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
+
+        public Rule Rule
+        {
+            get { return m_rule; }
+            set { m_rule = value; }
+        }
+
+        private Department Department
+        {
+            get { return m_department; }
+            set { m_department = value; }
+        }
+
+        private Award[] Awards
+        {
+            get
+            {
+                return ((BindingList<Award>)AwardsDataGridView.DataSource).ToArray<Award>();
+            }
+            set
+            {
+                BindingList<Award> awardsList =
+                    (BindingList<Award>) AwardsDataGridView.DataSource;
+                awardsList.Clear();
+                foreach (Award award in value)
+                {
+                    awardsList.Add(award);
+                }
+            }
+        }
+
+        private AchievementPerRule[] Achievements
+        {
+            get 
+            { 
+                return ((BindingList<AchievementPerRule>)AchievementsDataGridView.DataSource)
+                    .ToArray<AchievementPerRule>(); 
+            }
+            set 
+            {
+                BindingList<AchievementPerRule> achievementsList =
+                    (BindingList<AchievementPerRule>) AchievementsDataGridView.DataSource;
+                achievementsList.Clear();
+                foreach (AchievementPerRule achievement in value)
+                {
+                    achievementsList.Add(achievement);
+                }
+            }
+        }
+
+        private string RuleName
+        {
+            get { return RuleNameTextBox.Text; }
+            set { RuleNameTextBox.Text = value; }
+        }
+
+        private string Description
+        {
+            get { return RuleDescripcionTextBox.Text; }
+            set { RuleDescripcionTextBox.Text = value; }
+        }
+
+        private string StartDate
+        {
+            get { return StartDateTimePicker.Value.ToString("yyyy-MM-dd"); }
+            set { try { StartDateTimePicker.Value = DateTime.Parse(value); } catch(Exception){} }
+        }
+
+        private string EndDate
+        {
+            get { return EndDateTimePicker.Value.ToString("yyyy-MM-dd"); }
+            set { try { EndDateTimePicker.Value = DateTime.Parse(value); } catch(Exception){} }
+        }
+
+        private void AchievementsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) { }
 
     }
 }

@@ -41,15 +41,17 @@
             this.ApplyRuleButton = new System.Windows.Forms.Button();
             this.CancelRuleButton = new System.Windows.Forms.Button();
             this.AchievementsDataGridView = new System.Windows.Forms.DataGridView();
-            this.AchievementName = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AchievementName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AchievementAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RemoveAchievementButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.AchievementListLabel = new System.Windows.Forms.Label();
             this.AwardsDataGridView = new System.Windows.Forms.DataGridView();
-            this.AwardName = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.AwardListLabel = new System.Windows.Forms.Label();
+            this.AddAchievementButton = new System.Windows.Forms.Button();
+            this.AddAwardButton = new System.Windows.Forms.Button();
+            this.AwardName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AwardDetails = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Remove = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.AwardListLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.AchievementsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AwardsDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -119,7 +121,6 @@
             // StartDateTimePicker
             // 
             this.StartDateTimePicker.Location = new System.Drawing.Point(616, 307);
-            this.StartDateTimePicker.MinDate = new System.DateTime(2013, 10, 16, 0, 0, 0, 0);
             this.StartDateTimePicker.Name = "StartDateTimePicker";
             this.StartDateTimePicker.Size = new System.Drawing.Size(277, 20);
             this.StartDateTimePicker.TabIndex = 7;
@@ -157,12 +158,13 @@
             // 
             // AchievementsDataGridView
             // 
+            this.AchievementsDataGridView.AllowUserToAddRows = false;
             this.AchievementsDataGridView.AllowUserToResizeRows = false;
             this.AchievementsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.AchievementsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AchievementsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.AchievementName,
-            this.Amount,
+            this.AchievementAmount,
             this.RemoveAchievementButton});
             this.AchievementsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.AchievementsDataGridView.Location = new System.Drawing.Point(12, 36);
@@ -171,20 +173,25 @@
             this.AchievementsDataGridView.Size = new System.Drawing.Size(584, 215);
             this.AchievementsDataGridView.TabIndex = 11;
             this.AchievementsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AchievementsDataGridView_CellContentClick);
-            this.AchievementsDataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.AchievementsDataGridView_RowsAdded);
+            this.AchievementsDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.AchievementsDataGridView_DataError);
             // 
             // AchievementName
             // 
+            this.AchievementName.DataPropertyName = "Achievement";
             this.AchievementName.HeaderText = "Logro";
             this.AchievementName.Name = "AchievementName";
+            this.AchievementName.ReadOnly = true;
+            this.AchievementName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AchievementName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Amount
+            // AchievementAmount
             // 
-            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Amount.HeaderText = "Cantidad";
-            this.Amount.Name = "Amount";
-            this.Amount.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Amount.Width = 74;
+            this.AchievementAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.AchievementAmount.DataPropertyName = "Amount";
+            this.AchievementAmount.HeaderText = "Cantidad";
+            this.AchievementAmount.Name = "AchievementAmount";
+            this.AchievementAmount.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AchievementAmount.Width = 74;
             // 
             // RemoveAchievementButton
             // 
@@ -207,6 +214,7 @@
             // 
             // AwardsDataGridView
             // 
+            this.AwardsDataGridView.AllowUserToAddRows = false;
             this.AwardsDataGridView.AllowUserToResizeRows = false;
             this.AwardsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.AwardsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -223,13 +231,45 @@
             this.AwardsDataGridView.TabIndex = 13;
             this.AwardsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AwardsDataGridView_CellContentClick);
             // 
+            // AwardListLabel
+            // 
+            this.AwardListLabel.AutoSize = true;
+            this.AwardListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AwardListLabel.Location = new System.Drawing.Point(12, 267);
+            this.AwardListLabel.Name = "AwardListLabel";
+            this.AwardListLabel.Size = new System.Drawing.Size(108, 16);
+            this.AwardListLabel.TabIndex = 14;
+            this.AwardListLabel.Text = "Lista de Premios";
+            // 
+            // AddAchievementButton
+            // 
+            this.AddAchievementButton.Location = new System.Drawing.Point(521, 8);
+            this.AddAchievementButton.Name = "AddAchievementButton";
+            this.AddAchievementButton.Size = new System.Drawing.Size(75, 23);
+            this.AddAchievementButton.TabIndex = 15;
+            this.AddAchievementButton.Text = "Agregar";
+            this.AddAchievementButton.UseVisualStyleBackColor = true;
+            this.AddAchievementButton.Click += new System.EventHandler(this.AddAchievementButton_Click);
+            // 
+            // AddAwardButton
+            // 
+            this.AddAwardButton.Location = new System.Drawing.Point(521, 259);
+            this.AddAwardButton.Name = "AddAwardButton";
+            this.AddAwardButton.Size = new System.Drawing.Size(75, 23);
+            this.AddAwardButton.TabIndex = 16;
+            this.AddAwardButton.Text = "Agregar";
+            this.AddAwardButton.UseVisualStyleBackColor = true;
+            this.AddAwardButton.Click += new System.EventHandler(this.AddAwardButton_Click);
+            // 
             // AwardName
             // 
+            this.AwardName.DataPropertyName = "Name";
             this.AwardName.FillWeight = 194.9239F;
-            this.AwardName.HeaderText = "Premios";
-            this.AwardName.MaxDropDownItems = 15;
+            this.AwardName.HeaderText = "Premio";
             this.AwardName.Name = "AwardName";
+            this.AwardName.ReadOnly = true;
             this.AwardName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.AwardName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // AwardDetails
             // 
@@ -250,16 +290,6 @@
             this.Remove.UseColumnTextForButtonValue = true;
             this.Remove.Width = 50;
             // 
-            // AwardListLabel
-            // 
-            this.AwardListLabel.AutoSize = true;
-            this.AwardListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AwardListLabel.Location = new System.Drawing.Point(12, 267);
-            this.AwardListLabel.Name = "AwardListLabel";
-            this.AwardListLabel.Size = new System.Drawing.Size(108, 16);
-            this.AwardListLabel.TabIndex = 14;
-            this.AwardListLabel.Text = "Lista de Premios";
-            // 
             // RuleDetailsForm
             // 
             this.AcceptButton = this.AcceptRuleButton;
@@ -267,6 +297,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelRuleButton;
             this.ClientSize = new System.Drawing.Size(906, 470);
+            this.Controls.Add(this.AddAwardButton);
+            this.Controls.Add(this.AddAchievementButton);
             this.Controls.Add(this.AwardListLabel);
             this.Controls.Add(this.AwardsDataGridView);
             this.Controls.Add(this.AchievementListLabel);
@@ -311,12 +343,13 @@
         private System.Windows.Forms.Label AchievementListLabel;
         private System.Windows.Forms.DataGridView AwardsDataGridView;
         private System.Windows.Forms.Label AwardListLabel;
-        private Controller AppController;
-        private System.Windows.Forms.DataGridViewComboBoxColumn AwardName;
+        private System.Windows.Forms.Button AddAchievementButton;
+        private System.Windows.Forms.Button AddAwardButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AchievementName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AchievementAmount;
+        private System.Windows.Forms.DataGridViewButtonColumn RemoveAchievementButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AwardName;
         private System.Windows.Forms.DataGridViewButtonColumn AwardDetails;
         private System.Windows.Forms.DataGridViewButtonColumn Remove;
-        private System.Windows.Forms.DataGridViewComboBoxColumn AchievementName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
-        private System.Windows.Forms.DataGridViewButtonColumn RemoveAchievementButton;
     }
 }

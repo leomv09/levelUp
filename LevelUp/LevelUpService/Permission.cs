@@ -12,18 +12,29 @@ namespace LevelUpService
         private string m_code;
         private string m_description;
 
+        public Permission()
+        {
+            m_code = String.Empty;
+            m_description = String.Empty;
+        }
+
         [DataMember]
         public string Code
         {
             get { return m_code; }
-            set { }
+            set { m_code = value; }
         }
 
         [DataMember]
         public string Description
         {
             get { return m_description; }
-            set { }
+            set { m_description = value; }
+        }
+
+        public override string ToString()
+        {
+            return m_code;
         }
     }
 }

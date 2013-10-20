@@ -14,30 +14,34 @@ namespace LevelUpApplication
         /// Serializes an object to a JSON string.
         /// </summary>
         /// <typeparam name="T">The type of the object to serialize.</typeparam>
-        /// <param name="Obj">The object to serialize.</param>
+        /// <param name="obj">The object to serialize.</param>
         /// <returns>The JSON string.</returns>
-        public static string Serialize<T>(T Obj)
+        public string Serialize<T>(T obj)
         {
-            DataContractJsonSerializer Serializer = new DataContractJsonSerializer(typeof(T));
-            MemoryStream MStream = new MemoryStream();
-            Serializer.WriteObject(MStream, Obj);
-            string JSONString = Encoding.UTF8.GetString(MStream.ToArray());
-            MStream.Close();
-            return JSONString;
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
+            MemoryStream memoryStream = new MemoryStream();
+            serializer.WriteObject(memoryStream, obj);
+            string jsonString = Encoding.UTF8.GetString(memoryStream.ToArray());
+            memoryStream.Close();
+            return jsonString;
         }
 
         /// <summary>
         /// Deserializes a JSON string.
         /// </summary>
         /// <typeparam name="T">The type of the deserialized object.</typeparam>
-        /// <param name="JSONString">The JSON string.</param>
+        /// <param name="jsonString">The JSON string.</param>
         /// <returns>The deserialized object.</returns>
-        public static T Deserialize<T>(string JSONString)
+        public T Deserialize<T>(string jsonString)
         {
-            DataContractJsonSerializer Serializer = new DataContractJsonSerializer(typeof(T));
-            MemoryStream MStream = new MemoryStream(Encoding.UTF8.GetBytes(JSONString));
-            T Obj = (T)Serializer.ReadObject(MStream);
-            return Obj;
+            T obj = default(T);
+            if (!String.IsNullOrEmpty(jsonString))
+            {
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
+                MemoryStream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString));
+                obj = (T) serializer.ReadObject(memoryStream);
+            }
+            return obj;
         }
     }
 }

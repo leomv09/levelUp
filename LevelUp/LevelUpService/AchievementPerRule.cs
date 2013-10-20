@@ -14,6 +14,19 @@ namespace LevelUpService
         private string m_creationdate;
         private User m_creator;
 
+        public AchievementPerRule()
+        {
+            //m_achievement = new Achievement();
+            //m_amount = 0;
+            //m_creationdate = DateTime.Today.ToShortDateString();
+            //m_creator = new User();
+        }
+
+        public static bool IsValid(AchievementPerRule achievement)
+        {
+            return achievement.Achievement != null;
+        }
+
         [DataMember]
         public Achievement Achievement
         {
@@ -32,14 +45,14 @@ namespace LevelUpService
         public string CreationDate
         {
             get { return m_creationdate; }
-            set { }
+            set { m_creationdate = value; }
         }
 
         [DataMember]
         public User Creator
         {
             get { return m_creator; }
-            set { }
+            set { m_creator = value; }
         }
     }
 }

@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net;
 using System.Threading.Tasks;
+using LevelUpService;
 
 namespace LevelUpApplication
 {
     class Controller
     {
         private static Controller instance;
+        private JSONSerializer serializer;
 
-        private Controller() {}
+        private Controller()
+        {
+            this.serializer = new JSONSerializer();
+        }
 
         /// <summary>
         /// Gets the singleton instance of the class.
@@ -28,40 +34,97 @@ namespace LevelUpApplication
         }
 
         /// <summary>
-        /// Get the name of all departments in the organization.
+        /// Get the name of all departments of the organization.
         /// </summary>
-        public string[] GetDepartmentsName()
+        public Department[] GetDepartments()
         {
-            return new string[] { "IC", "TI" };
+            HttpRequest request = new HttpRequest("https://localhost/levelup/departments", "GET");
+            Department[] departments = new Department[]{};
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                departments = serializer.Deserialize<Department[]>(request.ResponseContent);
+            }
+
+            return departments;
         }
 
         /// <summary>
         /// Get all the rules asociated with a department.
         /// </summary>
-        /// <param name="Department">The name of the department</param>
-        public string[][] GetDepartmentRules(string Department) 
+        /// <param name="departmentName">The name of the department</param>
+        public Rule[] GetDepartmentRules(Department department)
         {
-            return new string[][] { 
-                new string[] {"Rule1", "Rule1 Description", "10/08/2013", "12/09/2013"},
-                new string[] {"Rule2", "Rule2 Description", "22/06/2013", "11/10/2013"}
-            };
+            HttpRequest request = new HttpRequest(
+                "https://localhost/levelup/departments/" + department.ID +"/rules", "GET");
+            Rule[] rules = new Rule[] { };
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                rules = serializer.Deserialize<Rule[]>(request.ResponseContent);
+            }
+
+            return rules;
         }
 
-        public void AddRuleToDepartment() { }
-        public void ModifyRule() { }
-        public void RemoveRule() { }
+        public bool AddRuleToDepartment(Rule rule, Department department) 
+        {
+            HttpRequest request = new HttpRequest(
+                    "https://localhost/levelup/departments/" + department.ID + "/rules", "POST");
+            string content = serializer.Serialize<Rule>(rule);
+            request.Send(content, Constants.JASON_MIMEType);
+            return request.StatusCode == HttpStatusCode.OK;
+        }
+
+        public bool RemoveRuleFromDepartment(Rule rule, Department department)
+        {
+            HttpRequest request = new HttpRequest(
+                        "https://localhost/levelup/departments/" + department.ID + "/rules", "DELETE");
+            string content = serializer.Serialize<Rule>(rule);
+            request.Send(content, Constants.JASON_MIMEType);
+            return request.StatusCode == HttpStatusCode.OK;
+        }
+
+        public bool ModifyRule(Rule rule)
+        {
+            HttpRequest request = new HttpRequest(
+                        "https://localhost/levelup/rules", "PUT");
+            string content = serializer.Serialize<Rule>(rule);
+            request.Send(content, Constants.JASON_MIMEType);
+            return request.StatusCode == HttpStatusCode.OK;
+        }
 
         /// <summary>
-        /// Gets the username of all users in the database.
+        /// Gets all users in the database.
         /// </summary>
-        public string[] GetUsernames()
+        public User[] GetUsers()
         {
-            return new string[] { 
-                "jags9415",
-                "leomv09",
-                "emurillo",
-                "dhf360"
-            };
+            HttpRequest request = new HttpRequest("https://localhost/levelup/users", "GET");
+            User[] users = new User[] { };
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                users = serializer.Deserialize<User[]>(request.ResponseContent);
+            }
+
+            return users;
+        }
+
+        public User GetUser(string username)
+        {
+            HttpRequest request = new HttpRequest("https://localhost/levelup/users/" + username, "GET");
+            User user = new User();
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                user = serializer.Deserialize<User>(request.ResponseContent);
+            }
+
+            return user;
         }
 
         /// <summary>
@@ -69,63 +132,139 @@ namespace LevelUpApplication
         /// </summary>
         public string[] GetAchievementsTypes()
         {
-            return new string[] { "Dinero", "Puntos", "Otros" };
+            HttpRequest request = new HttpRequest("https://localhost/levelup/achievements/types", "GET");
+            string[] types = new string[] { };
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                types = serializer.Deserialize<string[]>(request.ResponseContent);
+            }
+
+            return types;
         }
 
         /// <summary>
         /// Gets the achievements of a user.
         /// </summary>
-        /// <param name="Username">The username of the user.</param>
-        public string[][] GetUserAchievements(string Username) 
-        { 
-            return new string[][] { 
-                new string[] {"Aprendio un nuevo idioma", "Portugues", "13/08/2013", "admin"},
-                new string[] {"Obtuvo licencia de conducir", "B1", "21/02/2013", "admin"},
-                new string[] {"Llego temprano por un mes", "", "03/10/2013", "admin"}
-            };        
+        /// <param name="user">The user.</param>
+        public AchievementPerUser[] GetUserAchievements(User user) 
+        {
+            HttpRequest request = new HttpRequest(
+                "https://localhost/levelup/users/" + user.Username + "/achievements", "GET");
+            AchievementPerUser[] achievements = new AchievementPerUser[] { };
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                achievements = serializer.Deserialize<AchievementPerUser[]>(request.ResponseContent);
+            }
+
+            return achievements;
         }
 
         /// <summary>
         /// Gets all the achievements asociated with a department.
         /// </summary>
-        /// <param name="Department">The name of the department.</param>
-        public string[] GetDepartmentAchievements(string Department)
+        /// <param name="department">The department.</param>
+        public Achievement[] GetDepartmentAchievements(Department department)
         {
-            return new string[] {
-                "Aprendio un nuevo idioma",
-                "Obtuvo licencia de conducir",
-                "Llego temprano por un mes"
-            };
-        }
+            HttpRequest request = new HttpRequest(
+                "https://localhost/levelup/departments/" + department.ID + "/achievements", "GET");
+            Achievement[] achievements = new Achievement[] { };
+            request.Send();
 
-        public void AddAchievementToUser(string Username) { }
-        public void RemoveAchievementFromUser(string Username) { }
-        public void AddAchievementToDepartment(string Department) { }
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                achievements = serializer.Deserialize<Achievement[]>(request.ResponseContent);
+            }
+
+            return achievements;
+        }
 
         /// <summary>
         /// Gets all the awards asociated with a department.
         /// </summary>
-        /// <param name="Department">The name of the department.</param>
+        /// <param name="Department">The department.</param>
         /// <returns></returns>
-        public string[] GetDepartmentAwards(string Department)
+        public Award[] GetDepartmentAwards(Department department)
         {
-            return new string[] {
-                "5 Puntos",
-                "Beach Night",
-                "Dia Libre"
-            };
+            HttpRequest request = new HttpRequest(
+                "https://localhost/levelup/departments/" + department.ID + "/awards", "GET");
+            Award[] awards = new Award[] { };
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                awards = serializer.Deserialize<Award[]>(request.ResponseContent);
+            }
+
+            return awards;
+        }
+
+        public bool RemoveAchievementFromUser(User user, AchievementPerUser achievement)
+        {
+            HttpRequest request = new HttpRequest(
+                        "https://localhost/levelup/users/" + user.ID + "/achievements", "DELETE");
+            string content = serializer.Serialize<AchievementPerUser>(achievement);
+            request.Send(content, Constants.JASON_MIMEType);
+            return request.StatusCode == HttpStatusCode.OK;
+        }
+
+        public bool UpdateUserAchievements(User user, AchievementPerUser[] achievement)
+        {
+            HttpRequest request = new HttpRequest(
+                        "https://localhost/levelup/users/" + user.ID + "/achievements", "PUT");
+            string content = serializer.Serialize<AchievementPerUser[]>(achievement);
+            request.Send(content, Constants.JASON_MIMEType);
+            return request.StatusCode == HttpStatusCode.OK;
         }
 
         /// <summary>
-        /// Gets the name of all the currency od the system.
+        /// Gets the name of all the currency of the system.
         /// </summary>
-        public string[] GetCurrencyNames()
+        public Currency[] GetCurrency()
         {
-            return new string[] {
-                "Dolar",
-                "Colon",
-                "Bitcoin"
-            };
+            HttpRequest request = new HttpRequest("https://localhost/levelup/currency", "GET");
+            Currency[] currency = new Currency[] { };
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                currency = serializer.Deserialize<Currency[]>(request.ResponseContent);
+            }
+
+            return currency;
+        }
+
+        public Permission[] GetUserPermissions(User user)
+        {
+            HttpRequest request = new HttpRequest(
+                "https://localhost/levelup/users/" + user.Username + "/permissions", "GET");
+            Permission[] permissions = new Permission[] { };
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                permissions = serializer.Deserialize<Permission[]>(request.ResponseContent);
+            }
+
+            return permissions;
+        }
+
+        public Authentication GetUserAuthentication(string username, string passwordHash)
+        {
+            HttpRequest request = new HttpRequest(
+                "https://localhost/levelup/users/" + username + "/authentication?p=" + passwordHash, "GET");
+            Authentication authentication = new Authentication();
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                authentication = serializer.Deserialize<Authentication>(request.ResponseContent);
+            }
+
+            return authentication;
         }
 
     }

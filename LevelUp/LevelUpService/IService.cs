@@ -30,6 +30,13 @@ namespace LevelUpService
                 RequestFormat = WebMessageFormat.Json)]
         void AddRuleToDepartment(Rule rule, string departmentID);
 
+        [OperationContract(IsOneWay = false)]
+        [WebInvoke(UriTemplate = "/departments/{departmentID}/rules",
+                Method = "DELETE",
+                BodyStyle = WebMessageBodyStyle.Bare,
+                RequestFormat = WebMessageFormat.Json)]
+        void DeleteRuleFromDepartment(Rule rule, string departmentID);
+
         [OperationContract]
         [WebGet(UriTemplate = "/departments/{departmentID}/achievements",
                 BodyStyle = WebMessageBodyStyle.Bare,
@@ -49,13 +56,6 @@ namespace LevelUpService
                 RequestFormat = WebMessageFormat.Json)]
         void UpdateRule(Rule rule);
 
-        [OperationContract(IsOneWay = true)]
-        [WebInvoke(UriTemplate = "/rules",
-                Method = "DELETE",
-                BodyStyle = WebMessageBodyStyle.Bare,
-                RequestFormat = WebMessageFormat.Json)]
-        void DeleteRule(Rule rule);
-
         [OperationContract]
         [WebGet(UriTemplate = "/achievements/types",
                 BodyStyle = WebMessageBodyStyle.Bare,
@@ -69,6 +69,12 @@ namespace LevelUpService
         User[] GetUsers();
 
         [OperationContract]
+        [WebGet(UriTemplate = "/users/{username}",
+                BodyStyle = WebMessageBodyStyle.Bare,
+                ResponseFormat = WebMessageFormat.Json)]
+        User GetUser(string username);
+
+        [OperationContract]
         [WebGet(UriTemplate = "/users/{username}/achievements",
                 BodyStyle = WebMessageBodyStyle.Bare,
                 ResponseFormat = WebMessageFormat.Json)]
@@ -76,17 +82,17 @@ namespace LevelUpService
 
         [OperationContract(IsOneWay = true)]
         [WebInvoke(UriTemplate = "/users/{username}/achievements",
-                Method = "POST",
+                Method = "PUT",
                 BodyStyle = WebMessageBodyStyle.Bare,
                 RequestFormat = WebMessageFormat.Json)]
-        void AddAchievementToUser(Achievement achievement, string username);
+        void UpdateUserAchievements(AchievementPerUser[] achievements, string username);
 
         [OperationContract(IsOneWay = true)]
         [WebInvoke(UriTemplate = "/users/{username}/achievements",
                 Method = "DELETE",
                 BodyStyle = WebMessageBodyStyle.Bare,
                 RequestFormat = WebMessageFormat.Json)]
-        void DeleteAchievementFromUser(Achievement achievement, string username);
+        void RemoveAchievementFromUser(AchievementPerUser achievements, string username);
 
         [OperationContract]
         [WebGet(UriTemplate = "/users/{username}/permissions",

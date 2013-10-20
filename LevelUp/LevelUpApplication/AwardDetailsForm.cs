@@ -7,30 +7,76 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LevelUpService;
 
 namespace LevelUpApplication
 {
     public partial class AwardDetailsForm : Form
     {
-        public AwardDetailsForm()
+        private Controller m_controller;
+        private Award m_award;
+        private string m_photourl;
+
+        public AwardDetailsForm(Award award)
         {
             InitializeComponent();
-            AppController = Controller.Instance;
-            NameTextBox.MaxLength = 200;
-            DescriptionTextBox.MaxLength = 700;
+            m_controller = Controller.Instance;
+            m_award = award;
+            NameTextBox.MaxLength = Constants.AwardName_MaxLength;
+            DescriptionTextBox.MaxLength = Constants.AwardDescription_MaxLength;
             OpenFileDialog.Filter = "JPG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|All Files (*.*)|*.*";
             FillTypes();
             FillCurrency();
             CurrencyComboBox.SelectedIndex = 0;
             ResizeNormal();
+            LoadData();
         }
 
-        private void FileSelectButton_Click(object sender, EventArgs e)
+        private void LoadData()
         {
-            if (OpenFileDialog.ShowDialog() == DialogResult.OK)
+            this.AwardName = this.Award.Name;
+            this.Description = this.Award.Description;
+            this.Type = this.Award.Type;
+            this.PhotoUrl = this.Award.PhotoUrl;
+
+            if (this.Award.Type == Constants.AwardType_Points)
             {
-                PhotoPictureBox.Image = Image.FromFile(OpenFileDialog.FileName);
+                this.Detail = this.Award.Amount.ToString();
             }
+            else if (this.Award.Type == Constants.AwardType_Money)
+            {
+                this.Detail = this.Award.Money.ToString();
+                this.Currency = this.Award.Currency;
+            }
+
+            LoadPhoto();
+        }
+
+        private void LoadPhoto()
+        {
+            try
+            {
+                PhotoPictureBox.Image = Image.FromFile(this.PhotoUrl);
+            }
+            catch (Exception)
+            {
+                /*
+                MessageBox.Show(this, "No se pudo cargar la foto.", "Info",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                 */
+            }
+        }
+
+        private void FillTypes()
+        {
+            TypeComboBox.Items.AddRange(m_controller.GetAchievementsTypes());
+        }
+
+        private void FillCurrency()
+        {
+            CurrencyComboBox.Items.Clear();
+            CurrencyComboBox.DataSource = m_controller.GetCurrency();
+            CurrencyComboBox.DisplayMember = "Name";
         }
 
         private void AcceptButton_Click(object sender, EventArgs e)
@@ -50,19 +96,48 @@ namespace LevelUpApplication
             }
         }
 
+        private void Save()
+        {
+            this.Award.Name = this.AwardName;
+            this.Award.Description = this.Description;
+            this.Award.Type = this.Type;
+            this.Award.PhotoUrl = this.PhotoUrl;
+
+            if (this.Type == Constants.AwardType_Points)
+            {
+                this.Award.Amount = Convert.ToInt32(this.Detail);
+            }
+            else if (this.Type == Constants.AwardType_Money)
+            {
+                this.Award.Currency = this.Currency;
+                this.Award.Money = Convert.ToDouble(this.Detail);
+            }
+
+            //m_controller.ModifyAward(this.Award);
+        }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        private void FileSelectButton_Click(object sender, EventArgs e)
+        {
+            if (OpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.PhotoUrl = OpenFileDialog.FileName;
+                LoadPhoto();
+            }
+        }
+
         private void TypeComboBox_TextChanged(object sender, EventArgs e)
         {
-            switch (TypeComboBox.Text)
+            switch (this.Type)
             {
-                case "Dinero":
+                case Constants.AwardType_Money:
                     ResizeMoney();
                     break;
-                case "Puntos":
+                case Constants.AwardType_Points:
                     ResizePoint();
                     break;
                 default:
@@ -105,51 +180,53 @@ namespace LevelUpApplication
             }
         }
 
-        private void Save()
-        {
-        }
-
         private bool AwardHasValidName()
         {
-            string Name = NameTextBox.Text;
-            return !String.IsNullOrEmpty(Name);
+            return !String.IsNullOrEmpty(this.AwardName);
         }
 
         private bool AwardHasValidDescription()
         {
-            string Description = DescriptionTextBox.Text;
-            return !String.IsNullOrEmpty(Description);
+            return true;
+            //return !String.IsNullOrEmpty(this.Description);
         }
 
         private bool AwardHasValidType()
         {
-            object Type = TypeComboBox.SelectedItem;
-            return Type != null;
+            return this.Type != null;
         }
 
         private bool AwardHasValidDetail(out string message)
         {
-            switch (TypeComboBox.Text)
+            switch (this.Type)
             {
-                case "Dinero":
+                case Constants.AwardType_Money:
                     return ValidateMoney(out message);
-                case "Puntos":
-                    message = "Ingrese un puntaje válido.";
-                    return Functions.IsNumeric(DetailTextBox.Text) && Convert.ToInt32(DetailTextBox.Text) > 0;
+                case Constants.AwardType_Points:
+                    if (Functions.IsNumeric(this.Detail) && Convert.ToInt32(this.Detail) > 0)
+                    {
+                        message = String.Empty;
+                        return true;
+                    }
+                    else
+                    {
+                        message = "Ingrese un puntaje válido.";
+                        return false;
+                    }
                 default:
-                    message = "";
+                    message = String.Empty;
                     return true;
             }
         }
 
         private bool ValidateMoney(out string message)
         {
-            if (!Functions.IsMoney(DetailTextBox.Text))
+            if (!Functions.IsMoney(this.Detail))
             {
                 message = "Ingrese un monto válido de dinero.";
                 return false;
             }
-            else if (CurrencyComboBox.SelectedItem == null)
+            else if (this.Currency == null)
             {
                 message = "Seleccione una moneda.";
                 return false;
@@ -167,7 +244,7 @@ namespace LevelUpApplication
             CurrencyVisible(true);
             DetailVisible(true);
             DetailLabel.Text = "Monto";
-            ButtonsLocationY(345);
+            ChangeVerticalButtonsLocation(345);
         }
 
         private void ResizePoint()
@@ -176,7 +253,7 @@ namespace LevelUpApplication
             CurrencyVisible(false);
             DetailVisible(true);
             DetailLabel.Text = "Cantidad";
-            ButtonsLocationY(301);
+            ChangeVerticalButtonsLocation(301);
         }
 
         private void ResizeNormal()
@@ -184,7 +261,7 @@ namespace LevelUpApplication
             this.Size = new Size(458, 379);
             CurrencyVisible(false);
             DetailVisible(false);
-            ButtonsLocationY(301);
+            ChangeVerticalButtonsLocation(301);
         }
 
         private void CurrencyVisible(bool state)
@@ -200,21 +277,53 @@ namespace LevelUpApplication
             DetailTextBox.Text = null;
         }
 
-        private void ButtonsLocationY(int Y)
+        private void ChangeVerticalButtonsLocation(int y)
         {
-            AwardAcceptButton.Location = new Point(AwardAcceptButton.Location.X, Y);
-            AwardCancelButton.Location = new Point(AwardCancelButton.Location.X, Y);
-            AwardApplyButton.Location = new Point(AwardApplyButton.Location.X, Y);
+            AwardAcceptButton.Location = new Point(AwardAcceptButton.Location.X, y);
+            AwardCancelButton.Location = new Point(AwardCancelButton.Location.X, y);
+            AwardApplyButton.Location = new Point(AwardApplyButton.Location.X, y);
         }
 
-        private void FillTypes()
+        private Award Award
         {
-            TypeComboBox.Items.AddRange( AppController.GetAchievementsTypes() );
+            get { return m_award; }
+            set { m_award = value; }
         }
 
-        private void FillCurrency()
+        private string AwardName
         {
-            CurrencyComboBox.Items.AddRange( AppController.GetCurrencyNames() );
+            get { return NameTextBox.Text; }
+            set { NameTextBox.Text = value; }
+        }
+
+        private string Description
+        {
+            get { return DescriptionTextBox.Text; }
+            set { DescriptionTextBox.Text = value; }
+        }
+
+        private string Type
+        {
+            get { return TypeComboBox.SelectedItem.ToString(); }
+            set { TypeComboBox.SelectedItem = value; }
+        }
+
+        private Currency Currency
+        {
+            get { return (Currency) CurrencyComboBox.SelectedItem; }
+            set { CurrencyComboBox.SelectedItem = value; }
+        }
+
+        private string Detail
+        {
+            get { return DetailTextBox.Text; }
+            set { DetailTextBox.Text = value; }
+        }
+
+        private string PhotoUrl
+        {
+            get { return m_photourl; }
+            set { m_photourl = value; }
         }
     }
 }

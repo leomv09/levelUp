@@ -8,19 +8,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using LevelUpService;
 
 namespace LevelUpApplication
 {
     public partial class LoginForm : Form
     {
+        private Controller m_controller;
+        private User m_user;
+
         public LoginForm()
         {
             InitializeComponent();
+            m_controller = Controller.Instance;
         }
 
         private void LoginAcceptButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (Authenticate())
+            {
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(this, "Credenciales inválidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            }
         }
 
         private void LoginCancelButton_Click(object sender, EventArgs e)
@@ -30,43 +42,58 @@ namespace LevelUpApplication
 
         private bool Authenticate()
         {
-            string PasswordHash = GetPasswordHash();
-            string Username = GetUsername();
+            string passwordHash = GetPasswordHash();
+            string username = GetUsername();
 
-            return true;
+            if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(GetPassword()))
+            {
+                return false;
+            }
+
+            Authentication auth = m_controller.GetUserAuthentication(username, passwordHash);
+
+            if (auth.State == true)
+            {
+                m_user = auth.User;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private string GetPasswordHash()
         {
-            SHA256 Hash = SHA256Managed.Create();
-            Byte[] PasswordBytes = Encoding.UTF8.GetBytes(GetPassword());
-            Byte[] PasswordHashBytes = Hash.ComputeHash(PasswordBytes);
-            return BitConverter.ToString(PasswordHashBytes).Replace("-", "").ToLower();
+            SHA256 hash = SHA256Managed.Create();
+            Byte[] passwordBytes = Encoding.UTF8.GetBytes(GetPassword());
+            Byte[] passwordHashBytes = hash.ComputeHash(passwordBytes);
+            return BitConverter.ToString(passwordHashBytes).Replace("-", "").ToLower();
         }
 
         private string GetPassword()
         {
-            string Password = PasswordTextBox.Text;
-            if (Password == null)
+            string password = PasswordTextBox.Text;
+            if (password == null)
             {
                 return String.Empty;
             }
             else
             {
-                return Password;
+                return password;
             }
         }
 
         private string GetUsername()
         {
-            string Username = UsernameTextBox.Text;
-            if (Username == null)
+            string username = UsernameTextBox.Text;
+            if (username == null)
             {
                 return String.Empty;
             }
             else
             {
-                return Username;
+                return username;
             }
         }
 
@@ -82,6 +109,11 @@ namespace LevelUpApplication
                 CP.ClassStyle = CP.ClassStyle | 0x200;
                 return CP;
             }
+        }
+
+        public User User
+        {
+            get { return m_user; }
         }
 
     }

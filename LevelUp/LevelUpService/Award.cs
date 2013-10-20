@@ -14,18 +14,33 @@ namespace LevelUpService
         private string m_description;
         private string m_photourl;
         private int m_amount;
-        private float m_money;
+        private double m_money;
         private Currency m_currency;
         private string m_type;
         private string m_creationdate;
         private User m_creator;
         private string m_status;
 
+        public Award()
+        {
+            m_id = 0;
+            m_name = String.Empty;
+            m_description = String.Empty;
+            m_photourl = String.Empty;
+            m_amount = 0;
+            m_money = 0;
+            m_currency = new Currency();
+            m_type = String.Empty;
+            m_creationdate = DateTime.Today.ToShortDateString();
+            m_creator = new User();
+            m_status = String.Empty;
+        }
+
         [DataMember]
         public int ID
         {
             get { return m_id; }
-            set { }
+            set { m_id = value; }
         }
 
         [DataMember]
@@ -57,7 +72,7 @@ namespace LevelUpService
         }
 
         [DataMember]
-        public float Money
+        public double Money
         {
             get { return m_money; }
             set { m_money = value; }
@@ -81,14 +96,14 @@ namespace LevelUpService
         public string CreationDate
         {
             get { return m_creationdate; }
-            set { }
+            set { m_creationdate = value; }
         }
 
         [DataMember]
         public User Creator
         {
             get { return m_creator; }
-            set { }
+            set { m_creator = value; }
         }
 
         [DataMember]
@@ -96,6 +111,11 @@ namespace LevelUpService
         {
             get { return m_status; }
             set { m_status = value; }
+        }
+
+        public override string ToString()
+        {
+            return m_name;
         }
     }
 }

@@ -19,11 +19,24 @@ namespace LevelUpService
         private string m_status;
         private int m_maxamount;
 
+        public Achievement()
+        {
+            m_id = 0;
+            m_name = String.Empty;
+            m_description = String.Empty;
+            m_startdate = DateTime.Today.ToShortDateString();
+            m_enddate = DateTime.Today.ToShortDateString();
+            m_creationdate = DateTime.Today.ToShortDateString();
+            m_creator = new User();
+            m_status = String.Empty;
+            m_maxamount = 0;
+        }
+
         [DataMember]
         public int ID
         {
             get { return m_id; }
-            set { }
+            set { m_id = value; }
         }
 
         [DataMember]
@@ -65,7 +78,7 @@ namespace LevelUpService
         public User Creator
         {
             get { return m_creator; }
-            set { }
+            set { m_creator = value; }
         }
 
         [DataMember]
@@ -80,6 +93,11 @@ namespace LevelUpService
         {
             get { return m_maxamount; }
             set { m_maxamount = value; }
+        }
+
+        public override string ToString()
+        {
+            return this.Name;
         }
     }
 }

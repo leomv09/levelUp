@@ -14,6 +14,14 @@ namespace LevelUpService
         private string m_obtainingdate;
         private User m_creator;
 
+        public AchievementPerUser()
+        {
+            m_achievement = new Achievement();
+            m_detail = String.Empty;
+            m_obtainingdate = DateTime.Today.ToShortDateString();
+            m_creator = new User();
+        }
+
         [DataMember]
         public Achievement Achievement
         {
@@ -32,14 +40,14 @@ namespace LevelUpService
         public string ObtainingDate
         {
             get { return m_obtainingdate; }
-            set { }
+            set { m_obtainingdate = value; }
         }
 
         [DataMember]
         public User Creator
         {
             get { return m_creator; }
-            set { }
+            set { m_creator = value; }
         }
     }
 }

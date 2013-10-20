@@ -18,11 +18,28 @@ namespace LevelUpService
         private string m_status;
         private string m_genre;
 
+        public User()
+        {
+            m_id = 0;
+            m_name = String.Empty;
+            m_lastname1 = String.Empty;
+            m_lastname2 = String.Empty;
+            m_username = String.Empty;
+            m_photourl = String.Empty;
+            m_status = String.Empty;
+            m_genre = String.Empty;
+        }
+
+        public static bool IsValid(User user)
+        {
+            return user.ID != 0;
+        }
+
         [DataMember]
         public int ID
         {
             get { return m_id;}
-            set { }
+            set { m_id = value; }
         }
 
         [DataMember]
@@ -73,6 +90,5 @@ namespace LevelUpService
             get { return m_genre;}
             set { m_genre = value;}
         }
-
     }
 }

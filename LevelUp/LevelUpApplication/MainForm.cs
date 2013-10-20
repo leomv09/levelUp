@@ -1,89 +1,249 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LevelUpService;
 
 namespace LevelUpApplication
 {
     public partial class MainForm : Form
     {
+        private Controller m_controller;
+        private User m_loggedUser;
+        private User m_selectedUser;
+
         public MainForm()
         {
             InitializeComponent();
-            AppController = Controller.Instance;
-            InitializeData();
-        }
-
-        private void InitializeData()
-        {
-            LoadDepartments();
+            m_controller = Controller.Instance;
             LoadUsers();
         }
 
         private void Reset()
         {
-            DepartamentRuleComboBox.SelectedIndex = -1;
-            LoadRules();
-            UserAchievementsTextBox.Text = "";
-            LoadAchievements();
+            ClearDepartments();
+            ClearRules();
+            ClearSelectedUser();
+            ClearAchievements();
+            ClearLoggedUser();
         }
 
         private void Init()
         {
+            LoadDepartments();
             DepartamentRuleComboBox.SelectedIndex = 0;
             LoadRules();
         }
 
         private void LoadDepartments()
         {
-            DepartamentRuleComboBox.Items.Clear();
-            DepartamentRuleComboBox.Items.AddRange( AppController.GetDepartmentsName() );
+            ClearDepartments();
+            DepartamentRuleComboBox.DataSource = m_controller.GetDepartments();
+            DepartamentRuleComboBox.DisplayMember = "Name";
         }
 
         private void LoadRules()
         {
-            RulesDataGridView.Rows.Clear();
-            string Department = (string)DepartamentRuleComboBox.SelectedItem;
+            ClearRules();
 
-            if (!String.IsNullOrEmpty(Department))
+            if (this.SelectedDepartment != null)
             {
-                string[][] Rules = AppController.GetDepartmentRules(Department);
-                foreach (string[] Rule in Rules)
+                Rule[] rules = m_controller.GetDepartmentRules(this.SelectedDepartment); 
+                BindingList<Rule> ruleList = new BindingList<Rule>();
+
+                ruleList.AllowEdit = true;
+                ruleList.AllowNew = true;
+                ruleList.AllowRemove = true;
+
+                foreach (Rule rule in rules)
                 {
-                    RulesDataGridView.Rows.Add(Rule);
+                    ruleList.Add(rule);
                 }
+
+                RulesDataGridView.AutoGenerateColumns = false;
+                RulesDataGridView.DataSource = ruleList;
             }
         }
 
         private void LoadAchievements()
         {
-            AchievementsDataGridView.Rows.Clear();
-            string User = UserAchievementsTextBox.Text;
+            ClearAchievements();
 
-            if (!String.IsNullOrEmpty(User))
+            if (this.SelectedUser != null)
             {
-                string Department = ""; // User Department.
-                string[][] UserAchievements = AppController.GetUserAchievements(User);
+                Department userDepartment = new Department();
+                AchievementsColumn.DataSource = m_controller.GetDepartmentAchievements(userDepartment);
+                AchievementsColumn.DisplayMember = "Name";
 
-                AchievementsColumn.Items.Clear();
-                AchievementsColumn.Items.AddRange(AppController.GetDepartmentAchievements(Department));
+                AchievementPerUser[] achievements = m_controller.GetUserAchievements(this.SelectedUser);
+                BindingList<AchievementPerUser> achievementList = new BindingList<AchievementPerUser>();
+                achievementList.AllowEdit = true;
+                achievementList.AllowNew = true;
+                achievementList.AllowRemove = true;
 
-                foreach (string[] Achievement in UserAchievements)
+                foreach (AchievementPerUser achievement in achievements)
                 {
-                    AchievementsDataGridView.Rows.Add(Achievement);
+                    achievementList.Add(achievement);
                 }
+
+                AchievementsDataGridView.AutoGenerateColumns = false;
+                AchievementsDataGridView.DataSource = achievementList;
             }
         }
 
         private void LoadUsers()
         {
             UserAchievementsTextBox.AutoCompleteCustomSource.Clear();
-            UserAchievementsTextBox.AutoCompleteCustomSource.AddRange(AppController.GetUsernames());
+            User[] users = m_controller.GetUsers();
+
+            foreach (User user in users)
+            {
+                UserAchievementsTextBox.AutoCompleteCustomSource.Add(user.Username);
+            }
+        }
+
+        private void AddRuleButton_Click(object sender, EventArgs e)
+        {
+            if (this.SelectedDepartment == null)
+            {
+                MessageBox.Show(this, "Seleccione un departamento.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                RuleDetailsForm form = new RuleDetailsForm(new Rule(), this.SelectedDepartment);
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    Rule ruleAdded = form.Rule;
+                    ruleAdded.CreationDate = DateTime.Today.ToShortDateString();
+                    ruleAdded.Creator = m_loggedUser;
+                    //m_controller.AddRuleToDepartment(ruleAdded, this.SelectedDepartment);
+                    ((BindingList<Rule>)RulesDataGridView.DataSource).Add(ruleAdded);
+                }
+            }
+        }
+
+        private void RulesDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            RuleDetailsForm form = new RuleDetailsForm(this.SelectedRule, this.SelectedDepartment);
+            form.ShowDialog(this);
+        }
+
+        private void ViewRuleButton_Click(object sender, EventArgs e)
+        {
+            if (this.SelectedRule != null)
+            {
+                RuleDetailsForm form = new RuleDetailsForm(this.SelectedRule, this.SelectedDepartment);
+                form.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show(this, "Seleccione una regla.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RemoveRuleButton_Click(object sender, EventArgs e)
+        {
+            if (this.SelectedRule != null)
+            {
+                if (MessageBox.Show(this, "¿Está seguro que desea eliminar esta regla?", "Eliminar Regla",
+                      MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                      == DialogResult.Yes)
+                {
+                    //m_controller.RemoveRuleFromDepartment(this.SelectedRule, this.SelectedDepartment);
+                    BindingList<Rule> ruleList = (BindingList<Rule>)RulesDataGridView.DataSource;
+                    ruleList.Remove(this.SelectedRule);
+                }
+            }
+            else
+            {
+                MessageBox.Show(this, "Seleccione una regla.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RemoveAchievementButton_Click(object sender, EventArgs e)
+        {
+            if (this.SelectedAchievements.Length > 0)
+            {
+                if (MessageBox.Show(this, "¿Está seguro que desea eliminar este logro?", "Eliminar Logro",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                        == DialogResult.Yes)
+                {
+                    BindingList<AchievementPerUser> achievementList = 
+                        (BindingList<AchievementPerUser>)AchievementsDataGridView.DataSource;
+
+                    foreach (AchievementPerUser achievement in this.SelectedAchievements)
+                    {
+                        //m_controller.RemoveAchievementFromUser(this.SelectedUser, this.SelectedAchievement);
+                        achievementList.Remove(achievement);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show(this, "Seleccione un logro.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            Reset();
+            /*
+            LoginForm form = new LoginForm();
+            form.ShowDialog(this);
+            m_loggedUser = form.User;
+             */
+            Init();
+        }
+
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            Reset();
+            LoginForm form = new LoginForm();
+            form.ShowDialog(this);
+            m_loggedUser = form.User;
+            Init();
+        }
+
+        private void SearchUserButton_Click(object sender, EventArgs e)
+        {
+            SearchUser();
+            LoadAchievements();
+        }
+
+        private void UserAchievementsTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SearchUser();
+                LoadAchievements();
+            }
+        }
+
+        private void SearchUser()
+        {
+            string username = UserAchievementsTextBox.Text;
+
+            if (!String.IsNullOrEmpty(username))
+            {
+                User fetchedUser = m_controller.GetUser(username);
+
+                if (User.IsValid(fetchedUser))
+                {
+                    this.SelectedUser = fetchedUser;
+                }
+                else
+                {
+                    this.SelectedUser = null;
+                }
+            }
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -91,122 +251,125 @@ namespace LevelUpApplication
             Application.Exit();
         }
 
-        private void AddRuleButton_Click(object sender, EventArgs e)
-        {
-            if (String.IsNullOrEmpty(DepartamentRuleComboBox.Text))
-            {
-                MessageBox.Show(this, "Seleccione un departamento.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                RuleDetailsForm Form = new RuleDetailsForm();
-                Form.ShowDialog(this);
-            }
-        }
-
-        private void RemoveRuleButton_Click(object sender, EventArgs e)
-        {
-            DataGridViewSelectedRowCollection SelectedRows = RulesDataGridView.SelectedRows;
-            if (SelectedRows.Count == 1)
-            {
-                if (MessageBox.Show(this, "¿Está seguro que desea eliminar esta regla?", "Eliminar Regla",
-                      MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                      == DialogResult.Yes)
-                {
-                    int SelectedIndex = RulesDataGridView.CurrentCell.RowIndex;
-                    RulesDataGridView.Rows.RemoveAt( SelectedIndex );
-                }
-            }
-            else
-            {
-                MessageBox.Show(this, "Seleccione una regla.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void RulesDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            RuleDetailsForm Form = new RuleDetailsForm();
-            Form.ShowDialog(this);
-        }
-
-        private void MainForm_Shown(object sender, EventArgs e)
-        {
-            Reset();
-            //LoginForm Form = new LoginForm();
-            //Form.ShowDialog(this);
-            Init();
-        }
-
-        private void LogoutButton_Click(object sender, EventArgs e)
-        {
-            Reset();
-            //Quitar info de usuario;
-            LoginForm Form = new LoginForm();
-            Form.ShowDialog(this);
-            Init();
-        }
-
-        private void SearchUserButton_Click(object sender, EventArgs e)
-        {
-            LoadAchievements();
-        }
-
-        private void RemoveAchievementButton_Click(object sender, EventArgs e)
-        {
-            DataGridViewSelectedRowCollection SelectedRows = AchievementsDataGridView.SelectedRows;
-            if (SelectedRows.Count == 1)
-            { 
-                if (MessageBox.Show(this, "¿Está seguro que desea eliminar este logro?", "Eliminar Logro",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                        == DialogResult.Yes)
-                {
-                    int SelectedIndex = AchievementsDataGridView.CurrentCell.RowIndex;
-                    if (SelectedIndex < AchievementsDataGridView.Rows.Count - 1)
-                    {
-                        AchievementsDataGridView.Rows.RemoveAt(SelectedIndex);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show(this, "Seleccione una logro.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void UserAchievementsTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                LoadAchievements();
-            }
-        }
-
         private void DepartamentRuleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadRules();
         }
 
-        private void ViewRuleButton_Click(object sender, EventArgs e)
+        private void ApplyAchievementButton_Click(object sender, EventArgs e)
         {
-            DataGridViewSelectedRowCollection SelectedRows = RulesDataGridView.SelectedRows;
-            if (SelectedRows.Count == 1)
+            m_controller.UpdateUserAchievements(this.SelectedUser, this.Achievements);
+        }
+
+        private void ClearDepartments()
+        {
+            DepartamentRuleComboBox.DataSource = null;
+            DepartamentRuleComboBox.Items.Clear();
+        }
+
+        private void ClearRules()
+        {
+            RulesDataGridView.DataSource = null;
+            RulesDataGridView.Rows.Clear();
+        }
+
+        private void ClearAchievements()
+        {
+            AchievementsDataGridView.DataSource = null;
+            AchievementsDataGridView.Rows.Clear();
+
+            AchievementsColumn.DataSource = null;
+            AchievementsColumn.Items.Clear();
+        }
+
+        private void ClearSelectedUser()
+        {
+            UserAchievementsTextBox.Text = null;
+            SelectedUser = null;
+        }
+
+        private void ClearLoggedUser()
+        {
+            LoggedUser = null;
+        }
+
+        private Rule[] Rules
+        {
+            get
             {
-                RuleDetailsForm Form = new RuleDetailsForm();
-                Form.ShowDialog(this);
+                return ((BindingList<Rule>)RulesDataGridView.DataSource)
+                    .ToArray<Rule>();
             }
-            else
+            set
             {
-                MessageBox.Show(this, "Seleccione una regla.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                BindingList<Rule> ruleList =
+                    (BindingList<Rule>)RulesDataGridView.DataSource;
+                ruleList.Clear();
+                foreach (Rule rule in value)
+                {
+                    ruleList.Add(rule);
+                }
             }
         }
 
-        private void ApplyButton_Click(object sender, EventArgs e)
+        private AchievementPerUser[] Achievements
         {
-
+            get
+            {
+                return ((BindingList<AchievementPerUser>)AchievementsDataGridView.DataSource)
+                    .ToArray<AchievementPerUser>();
+            }
+            set
+            {
+                BindingList<AchievementPerUser> achievementList =
+                    (BindingList<AchievementPerUser>)AchievementsDataGridView.DataSource;
+                achievementList.Clear();
+                foreach (AchievementPerUser achievement in value)
+                {
+                    achievementList.Add(achievement);
+                }
+            }
         }
+
+        private Department SelectedDepartment
+        {
+            get { return (Department)DepartamentRuleComboBox.SelectedItem; }
+        }
+
+        private Rule SelectedRule
+        {
+            get { return (Rule) RulesDataGridView.SelectedRows[0].DataBoundItem; }
+        }
+
+        private AchievementPerUser[] SelectedAchievements
+        {
+            get
+            {
+                List<AchievementPerUser> list = new List<AchievementPerUser>();
+                foreach (DataGridViewRow row in AchievementsDataGridView.Rows)
+                {
+                    if (row.Cells[EnabledCheckBox.Name].Value != null && Convert.ToBoolean(row.Cells[EnabledCheckBox.Name].Value) == true)
+                    {
+                        list.Add((AchievementPerUser)row.DataBoundItem);
+                    }
+                }
+                return list.ToArray();
+            }
+        }
+
+        private User SelectedUser
+        {
+            get { return m_selectedUser; }
+            set { m_selectedUser = value; }
+        }
+
+        private User LoggedUser
+        {
+            get { return m_loggedUser; }
+            set { m_loggedUser = value; }
+        }
+
+        private void AchievementsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) { }
+
     }
 }

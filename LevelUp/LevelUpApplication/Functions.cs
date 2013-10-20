@@ -9,33 +9,36 @@ namespace LevelUpApplication
 {
     class Functions
     {
-        public static bool DataGridViewHasDuplicatedValues(DataGridView Grid)
+        public static bool DataGridViewHasDuplicatedValues(DataGridView dataGrid, int columnIndex)
         {
-            DataGridViewRowCollection Rows = Grid.Rows;
-            string Value;
-            int ValueCount;
-            int Name = 0;
+            string value;
+            int valueCount;
 
-            for (int i = 0; i < Rows.Count - 1; i++)
+            for (int i = 0; i < dataGrid.Rows.Count - 1; i++)
             {
-                Value = Rows[i].Cells[0].Value.ToString();
+                value = dataGrid.Rows[i].Cells[columnIndex].Value.ToString();
 
-                ValueCount = Grid.Rows.Cast<DataGridViewRow>().Count(R =>
-                    R.Cells[Name].Value != null &&
-                    R.Cells[Name].Value.ToString() == Value);
-
-                if (ValueCount > 1)
+                if (value != null)
                 {
-                    return true;
+                    valueCount = dataGrid.Rows.Cast<DataGridViewRow>().Count(
+                        row =>
+                        row.Cells[columnIndex].Value != null &&
+                        row.Cells[columnIndex].Value.ToString() == value
+                    );
+
+                    if (valueCount > 1)
+                    {
+                        return true;
+                    }
                 }
             }
 
             return false;
         }
 
-        public static bool IsNullRow(DataGridViewRow Row)
+        public static bool IsNullRow(DataGridViewRow row)
         {
-            int ValidCells = Row.Cells.Cast<DataGridViewCell>().Count(C => C.Value != null);
+            int ValidCells = row.Cells.Cast<DataGridViewCell>().Count(C => C.Value != null);
             return ValidCells == 0;
 
         }
@@ -48,8 +51,8 @@ namespace LevelUpApplication
 
         public static bool IsMoney(string value)
         {
-            float number;
-            return float.TryParse(value, out number) && number >= 0;
+            double number;
+            return double.TryParse(value, out number) && number >= 0;
         }
 
     }
