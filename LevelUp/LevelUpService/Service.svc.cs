@@ -152,7 +152,7 @@ namespace LevelUpService
             };
         }
 
-        public void UpdateUserAchievements(AchievementPerUser[] achievements, string username)
+        public void AddAchievementToUser(AchievementPerUser achievement, string username)
         {
         }
 

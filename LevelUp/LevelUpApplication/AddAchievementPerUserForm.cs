@@ -11,23 +11,19 @@ using LevelUpService;
 
 namespace LevelUpApplication
 {
-    public partial class AddAchievementForm : Form
+    public partial class AddAchievementPerUserForm : Form
     {
         private Controller m_controller;
-        private Achievement m_achievement;
+        private AchievementPerUser m_achievement;
 
-        public AddAchievementForm(Department department)
+        public AddAchievementPerUserForm(Department department)
         {
             InitializeComponent();
             m_controller = Controller.Instance;
+            m_achievement = new AchievementPerUser();
             AchievementComboBox.DataSource = m_controller.GetDepartmentAchievements(department);
             AchievementComboBox.DisplayMember = "Name";
-            m_achievement = (Achievement)AchievementComboBox.SelectedItem;
-        }
-
-        private void AchievementComboBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            m_achievement = (Achievement)AchievementComboBox.SelectedItem;
+            m_achievement.Achievement = (Achievement) AchievementComboBox.SelectedItem;
         }
 
         private void AcceptAchievementButton_Click(object sender, EventArgs e)
@@ -36,9 +32,19 @@ namespace LevelUpApplication
             this.DialogResult = DialogResult.OK;
         }
 
-        public Achievement SelectedAchievement
+        public AchievementPerUser SelectedAchievement
         {
             get { return m_achievement; }
+        }
+
+        private void AchievementComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            m_achievement.Achievement = (Achievement)AchievementComboBox.SelectedItem;
+        }
+
+        private void DetailTextBox_TextChanged(object sender, EventArgs e)
+        {
+            m_achievement.Detail = DetailTextBox.Text;
         }
     }
 }

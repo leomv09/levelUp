@@ -42,7 +42,7 @@
             this.RemoveRuleButton = new System.Windows.Forms.Button();
             this.AddRuleButton = new System.Windows.Forms.Button();
             this.AchievementsTap = new System.Windows.Forms.TabPage();
-            this.ApplyAchievementButton = new System.Windows.Forms.Button();
+            this.AddAchievementButton = new System.Windows.Forms.Button();
             this.RemoveAchievementButton = new System.Windows.Forms.Button();
             this.SearchUserButton = new System.Windows.Forms.Button();
             this.AchievementsDataGridView = new System.Windows.Forms.DataGridView();
@@ -53,7 +53,7 @@
             this.ExitButton = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.EnabledCheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.AchievementsColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.AchievementsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AchievementsColumnDetails = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.RulesDataGridView)).BeginInit();
             this.TapControl.SuspendLayout();
@@ -197,7 +197,7 @@
             // 
             // AchievementsTap
             // 
-            this.AchievementsTap.Controls.Add(this.ApplyAchievementButton);
+            this.AchievementsTap.Controls.Add(this.AddAchievementButton);
             this.AchievementsTap.Controls.Add(this.RemoveAchievementButton);
             this.AchievementsTap.Controls.Add(this.SearchUserButton);
             this.AchievementsTap.Controls.Add(this.AchievementsDataGridView);
@@ -211,15 +211,15 @@
             this.AchievementsTap.Text = "Logros";
             this.AchievementsTap.UseVisualStyleBackColor = true;
             // 
-            // ApplyAchievementButton
+            // AddAchievementButton
             // 
-            this.ApplyAchievementButton.Location = new System.Drawing.Point(734, 9);
-            this.ApplyAchievementButton.Name = "ApplyAchievementButton";
-            this.ApplyAchievementButton.Size = new System.Drawing.Size(75, 40);
-            this.ApplyAchievementButton.TabIndex = 8;
-            this.ApplyAchievementButton.Text = "Aplicar";
-            this.ApplyAchievementButton.UseVisualStyleBackColor = true;
-            this.ApplyAchievementButton.Click += new System.EventHandler(this.ApplyAchievementButton_Click);
+            this.AddAchievementButton.Location = new System.Drawing.Point(734, 9);
+            this.AddAchievementButton.Name = "AddAchievementButton";
+            this.AddAchievementButton.Size = new System.Drawing.Size(75, 40);
+            this.AddAchievementButton.TabIndex = 9;
+            this.AddAchievementButton.Text = "Agregar";
+            this.AddAchievementButton.UseVisualStyleBackColor = true;
+            this.AddAchievementButton.Click += new System.EventHandler(this.AddAchievementButton_Click);
             // 
             // RemoveAchievementButton
             // 
@@ -243,6 +243,7 @@
             // 
             // AchievementsDataGridView
             // 
+            this.AchievementsDataGridView.AllowUserToAddRows = false;
             this.AchievementsDataGridView.AllowUserToDeleteRows = false;
             this.AchievementsDataGridView.AllowUserToOrderColumns = true;
             this.AchievementsDataGridView.AllowUserToResizeRows = false;
@@ -329,14 +330,15 @@
             this.AchievementsColumn.DataPropertyName = "Achievement";
             this.AchievementsColumn.HeaderText = "Logro";
             this.AchievementsColumn.Name = "AchievementsColumn";
+            this.AchievementsColumn.ReadOnly = true;
             this.AchievementsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.AchievementsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // AchievementsColumnDetails
             // 
             this.AchievementsColumnDetails.DataPropertyName = "Detail";
             this.AchievementsColumnDetails.HeaderText = "Detalles";
             this.AchievementsColumnDetails.Name = "AchievementsColumnDetails";
+            this.AchievementsColumnDetails.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -387,13 +389,13 @@
         private System.Windows.Forms.Button SearchUserButton;
         private System.Windows.Forms.Button RemoveAchievementButton;
         private System.Windows.Forms.Button ViewRuleButton;
-        private System.Windows.Forms.Button ApplyAchievementButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnDescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnStartDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnEndDate;
+        private System.Windows.Forms.Button AddAchievementButton;
         private System.Windows.Forms.DataGridViewCheckBoxColumn EnabledCheckBox;
-        private System.Windows.Forms.DataGridViewComboBoxColumn AchievementsColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumnDetails;
     }
 }

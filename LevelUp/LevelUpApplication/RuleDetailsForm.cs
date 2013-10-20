@@ -63,7 +63,7 @@ namespace LevelUpApplication
             this.Rule.EndDate = this.EndDate;
             this.Rule.Achievements = this.Achievements;
             this.Rule.Awards = this.Awards;
-            //m_controller.ModifyRule(this.Rule);
+            m_controller.ModifyRule(this.Rule);
         }
 
         private void CancelRuleButton_Click(object sender, EventArgs e)

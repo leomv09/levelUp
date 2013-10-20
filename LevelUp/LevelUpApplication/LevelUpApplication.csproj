@@ -55,6 +55,12 @@
     <Compile Include="AddAchievementForm.Designer.cs">
       <DependentUpon>AddAchievementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddAchievementPerUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAchievementPerUserForm.Designer.cs">
+      <DependentUpon>AddAchievementPerUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddAwardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddAchievementForm.resx">
       <DependentUpon>AddAchievementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddAchievementPerUserForm.resx">
+      <DependentUpon>AddAchievementPerUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddAwardForm.resx">
       <DependentUpon>AddAwardForm.cs</DependentUpon>

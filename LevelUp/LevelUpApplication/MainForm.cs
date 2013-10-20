@@ -76,8 +76,6 @@ namespace LevelUpApplication
             if (this.SelectedUser != null)
             {
                 Department userDepartment = new Department();
-                AchievementsColumn.DataSource = m_controller.GetDepartmentAchievements(userDepartment);
-                AchievementsColumn.DisplayMember = "Name";
 
                 AchievementPerUser[] achievements = m_controller.GetUserAchievements(this.SelectedUser);
                 BindingList<AchievementPerUser> achievementList = new BindingList<AchievementPerUser>();
@@ -121,7 +119,7 @@ namespace LevelUpApplication
                     Rule ruleAdded = form.Rule;
                     ruleAdded.CreationDate = DateTime.Today.ToShortDateString();
                     ruleAdded.Creator = m_loggedUser;
-                    //m_controller.AddRuleToDepartment(ruleAdded, this.SelectedDepartment);
+                    m_controller.AddRuleToDepartment(ruleAdded, this.SelectedDepartment);
                     ((BindingList<Rule>)RulesDataGridView.DataSource).Add(ruleAdded);
                 }
             }
@@ -155,7 +153,7 @@ namespace LevelUpApplication
                       MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                       == DialogResult.Yes)
                 {
-                    //m_controller.RemoveRuleFromDepartment(this.SelectedRule, this.SelectedDepartment);
+                    m_controller.RemoveRuleFromDepartment(this.SelectedRule, this.SelectedDepartment);
                     BindingList<Rule> ruleList = (BindingList<Rule>)RulesDataGridView.DataSource;
                     ruleList.Remove(this.SelectedRule);
                 }
@@ -163,31 +161,6 @@ namespace LevelUpApplication
             else
             {
                 MessageBox.Show(this, "Seleccione una regla.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void RemoveAchievementButton_Click(object sender, EventArgs e)
-        {
-            if (this.SelectedAchievements.Length > 0)
-            {
-                if (MessageBox.Show(this, "¿Está seguro que desea eliminar este logro?", "Eliminar Logro",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                        == DialogResult.Yes)
-                {
-                    BindingList<AchievementPerUser> achievementList = 
-                        (BindingList<AchievementPerUser>)AchievementsDataGridView.DataSource;
-
-                    foreach (AchievementPerUser achievement in this.SelectedAchievements)
-                    {
-                        //m_controller.RemoveAchievementFromUser(this.SelectedUser, this.SelectedAchievement);
-                        achievementList.Remove(achievement);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show(this, "Seleccione un logro.", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -256,9 +229,76 @@ namespace LevelUpApplication
             LoadRules();
         }
 
-        private void ApplyAchievementButton_Click(object sender, EventArgs e)
+        private void AddAchievementButton_Click(object sender, EventArgs e)
         {
-            m_controller.UpdateUserAchievements(this.SelectedUser, this.Achievements);
+            if (this.m_selectedUser != null)
+            {
+                Department userDepartment = new Department();
+                AddAchievementPerUserForm form = new AddAchievementPerUserForm(userDepartment);
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    if (CountUserAchievements(form.SelectedAchievement.Achievement) < form.SelectedAchievement.Achievement.MaxAmount)
+                    {
+                        BindingList<AchievementPerUser> achievementList =
+                        (BindingList<AchievementPerUser>)AchievementsDataGridView.DataSource;
+
+                        AchievementPerUser newAchievement = form.SelectedAchievement;
+                        newAchievement.Creator = this.m_loggedUser;
+                        newAchievement.ObtainingDate = DateTime.Today.ToShortDateString();
+                        achievementList.Add(newAchievement);
+
+                        m_controller.AddAchievementToUser(this.SelectedUser, newAchievement);
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, "El usuario ya no puede tener más logros de este tipo.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show(this, "Seleccione un usuario.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private int CountUserAchievements(Achievement achievement)
+        {
+            int count = 0;
+            foreach (AchievementPerUser ach in this.Achievements)
+            {
+                if (ach.Achievement.Name == achievement.Name)
+                {
+                    count += 1;
+                }
+            }
+            return count;
+        }
+
+        private void RemoveAchievementButton_Click(object sender, EventArgs e)
+        {
+            if (this.SelectedAchievements.Length > 0)
+            {
+                if (MessageBox.Show(this, "¿Está seguro que desea eliminar estos logros?", "Eliminar Logros",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                        == DialogResult.Yes)
+                {
+                    BindingList<AchievementPerUser> achievementList =
+                        (BindingList<AchievementPerUser>)AchievementsDataGridView.DataSource;
+
+                    foreach (AchievementPerUser achievement in this.SelectedAchievements)
+                    {
+                        m_controller.RemoveAchievementFromUser(this.SelectedUser, achievement);
+                        achievementList.Remove(achievement);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show(this, "Seleccione un logro.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ClearDepartments()
@@ -277,9 +317,6 @@ namespace LevelUpApplication
         {
             AchievementsDataGridView.DataSource = null;
             AchievementsDataGridView.Rows.Clear();
-
-            AchievementsColumn.DataSource = null;
-            AchievementsColumn.Items.Clear();
         }
 
         private void ClearSelectedUser()

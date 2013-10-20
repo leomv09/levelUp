@@ -82,10 +82,10 @@ namespace LevelUpService
 
         [OperationContract(IsOneWay = true)]
         [WebInvoke(UriTemplate = "/users/{username}/achievements",
-                Method = "PUT",
+                Method = "POST",
                 BodyStyle = WebMessageBodyStyle.Bare,
                 RequestFormat = WebMessageFormat.Json)]
-        void UpdateUserAchievements(AchievementPerUser[] achievements, string username);
+        void AddAchievementToUser(AchievementPerUser achievement, string username);
 
         [OperationContract(IsOneWay = true)]
         [WebInvoke(UriTemplate = "/users/{username}/achievements",

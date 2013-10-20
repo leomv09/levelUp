@@ -211,11 +211,11 @@ namespace LevelUpApplication
             return request.StatusCode == HttpStatusCode.OK;
         }
 
-        public bool UpdateUserAchievements(User user, AchievementPerUser[] achievement)
+        public bool AddAchievementToUser(User user, AchievementPerUser achievement)
         {
             HttpRequest request = new HttpRequest(
-                        "https://localhost/levelup/users/" + user.ID + "/achievements", "PUT");
-            string content = serializer.Serialize<AchievementPerUser[]>(achievement);
+                        "https://localhost/levelup/users/" + user.ID + "/achievements", "POST");
+            string content = serializer.Serialize<AchievementPerUser>(achievement);
             request.Send(content, Constants.JASON_MIMEType);
             return request.StatusCode == HttpStatusCode.OK;
         }
