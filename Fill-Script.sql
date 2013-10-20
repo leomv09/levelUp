@@ -2,7 +2,6 @@ TABLAS POR LLENAR
 -----------------
 
 Regla
-Contratos
 TitulosPorUsuario
 ContactosPorUsuario
 LogrosPorDepartamento
@@ -370,6 +369,19 @@ INSERT INTO TipoEvento (idTipoEvento, Tipo) VALUES
 (29, 'Modificacion de Permisos de Grupo de Usuarios');
 SET IDENTITY_INSERT dbo.TipoEvento OFF;
 -- End Fill Tables.
+
+DECLARE @UsuarioActual int = 1;
+DECLARE @TotalUsuarios int = 300;
+DECLARE @Puesto int;
+SET IDENTITY_INSERT dbo.Contratos ON;
+WHILE @UsuarioActual < @TotalUsuarios
+BEGIN
+  SELECT TOP 1 @Puesto = idPuesto FROM Puestos ORDER BY NEWID();
+  INSERT INTO Contratos (idContrato, FechaInicio, FechaCreacion, fk_idCreador, fk_idUsuario, fk_idPuesto) VALUES
+  (@UsuarioActual, '2009-09-12', GETDATE(), 1, @UsuarioActual, @Puesto);
+  SET @UsuarioActual = @UsuarioActual + 1;
+END
+SET IDENTITY_INSERT dbo.Contratos OFF;
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 

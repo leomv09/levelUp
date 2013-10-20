@@ -17,27 +17,29 @@ INSERT INTO Genero (idGenero, Genero) VALUES
 SET IDENTITY_INSERT dbo.Genero OFF;
 
 DELETE FROM Usuario;
-DECLARE @userName varchar (70);
-DECLARE @nombre varchar(50);
-DECLARE @apellido1 varchar(50);
-DECLARE @apellido2 varchar(50);
-DECLARE @count INT;
-SET @count = 0;
+DECLARE @Username varchar (70);
+DECLARE @Nombre varchar(50);
+DECLARE @Apellido1 varchar(50);
+DECLARE @Apellido2 varchar(50);
+DECLARE @Count INT;
+SET @Count = 1;
 
-DECLARE @nombres TABLE (Name varchar (50));
-DECLARE @apellidos TABLE (Name varchar (50));
-INSERT INTO @nombres (Name) VALUES ('Juan'), ('Pedro'), ('Pablo'), ('Alex'), ('Daniel'), ('David'), ('Alejandra'), ('Susan'), ('Tatiana'), ('María'), ('Cindy'), ('Alexa'), ('Jorge'), ('Alejandro'), ('Ariana'), ('Jose'), ('Eduardo'), ('Christina'), ('Emanuel'), ('Anthony'), ('Johanna'), ('Brenda'), ('Andrea'), ('Karla'), ('Luis'), ('Edgardo'), ('Denis'), ('Katherine'), ('Marta'), ('Marcia');
-INSERT INTO @apellidos (Name) VALUES ('Chacon'), ('Lobo'), ('Fernandez'), ('Lopez'), ('Arias'), ('Cordero'), ('Salazar'), ('Campos'), ('Solis'), ('Vargas'), ('Cartin'), ('Morales'), ('Nuñez'), ('Rodriguez'), ('Delgado'), ('Alvarez'), ('mora'), ('Rojas'), ('Loria');
+DECLARE @Nombres TABLE (Name varchar (50));
+DECLARE @Npellidos TABLE (Name varchar (50));
+INSERT INTO @Nombres (Name) VALUES ('Juan'), ('Pedro'), ('Pablo'), ('Alex'), ('Daniel'), ('David'), ('Alejandra'), ('Susan'), ('Tatiana'), ('María'), ('Cindy'), ('Alexa'), ('Jorge'), ('Alejandro'), ('Ariana'), ('Jose'), ('Eduardo'), ('Christina'), ('Emanuel'), ('Anthony'), ('Johanna'), ('Brenda'), ('Andrea'), ('Karla'), ('Luis'), ('Edgardo'), ('Denis'), ('Katherine'), ('Marta'), ('Marcia');
+INSERT INTO @Npellidos (Name) VALUES ('Chacon'), ('Lobo'), ('Fernandez'), ('Lopez'), ('Arias'), ('Cordero'), ('Salazar'), ('Campos'), ('Solis'), ('Vargas'), ('Cartin'), ('Morales'), ('Nuñez'), ('Rodriguez'), ('Delgado'), ('Alvarez'), ('mora'), ('Rojas'), ('Loria');
 
 SET IDENTITY_INSERT dbo.Usuario ON;
-WHILE @count < 300
+INSERT INTO Usuario (idUsuario, Nombre, Apellido1, Username, Contraseña, fk_idEstadoUsuario, fk_idGenero)
+VALUES (1, "Administrador", "", "admin", HASHBYTES('SHA2_256', "admin"), 1, 1);
+WHILE @Count < 299
 BEGIN
-  SET @count = @count + 1
-  SELECT TOP 1 @nombre = name FROM @nombres ORDER BY NEWID()
-  SELECT TOP 1 @apellido1 = name FROM @apellidos ORDER BY NEWID()
-  SELECT TOP 1 @apellido2 = name FROM @apellidos ORDER BY NEWID()
-  SET @username = @nombre + @apellido1 + CAST(@count AS varchar)
+  SET @Count = @Count + 1;
+  SELECT TOP 1 @Nombre = name FROM @nombres ORDER BY NEWID();
+  SELECT TOP 1 @Apellido1 = name FROM @apellidos ORDER BY NEWID();
+  SELECT TOP 1 @Apellido2 = name FROM @apellidos ORDER BY NEWID();
+  SET @Username = @Nombre + @Apellido1 + CAST(@Count AS varchar);
   INSERT INTO Usuario (idUsuario, Nombre, Apellido1, Apellido2, Username, Contraseña, fk_idEstadoUsuario, fk_idGenero)
-  VALUES (@count, @nombre, @apellido1, @apellido2, @username, HASHBYTES('SHA2_256', @username), 1, 1)
+  VALUES (@Count, @Nombre, @Apellido1, @Apellido2, @Username, HASHBYTES('SHA2_256', @Username), 1, 1);
 END
 SET IDENTITY_INSERT dbo.Usuario OFF;
