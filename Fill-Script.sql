@@ -1,7 +1,6 @@
 TABLAS POR LLENAR
 -----------------
 
-Usuario
 Regla
 Contratos
 TitulosPorUsuario
@@ -19,10 +18,6 @@ DELETE FROM Severidad;
 DELETE FROM Modulo;
 
 DELETE FROM DireccionesPorUsuario;
-DELETE FROM Direccion;
-DELETE FROM Ciudad;
-DELETE FROM Provincia;
-DELETE FROM Pais;
 
 DELETE FROM PermisosPorGrupo;
 DELETE FROM PermisosPorUsuario;
@@ -56,7 +51,6 @@ DELETE FROM TipoPremio;
 DELETE FROM TasaCambio;
 DELETE FROM Moneda;
 
-DELETE FROM Usuario;
 DELETE FROM EstadoUsuario;
 -- End Truncate all tables.
 
@@ -448,10 +442,12 @@ INSERT INTO TitulosPorInstituciones (fk_idInstitucion, fk_idTitulo) VALUES
 (5, 13);
 
 -- Se le concede a los administradores globales todos los permisos.
-DECLARE @i int = 1
-WHILE @i < 48 BEGIN
-  INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES (2, @i);
-  SET @i = @i + 1
+DECLARE @permisoActual int = 1
+DECLARE @totalPermisos int = 48
+DECLARE @administradoresGlobales int = 2
+WHILE @permisoActual < @totalPermisos BEGIN
+  INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES (@administradoresGlobales, @permisoActual);
+  SET @permisoActual = @permisoActual + 1
 END
 
 INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES
