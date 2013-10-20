@@ -37,6 +37,38 @@ namespace LevelUpApplication
             LoadAwards();
         }
 
+        private void LoadAchievements()
+        {
+            BindingList<AchievementPerRule> achievementList = new BindingList<AchievementPerRule>();
+            achievementList.AllowEdit = true;
+            achievementList.AllowNew = true;
+            achievementList.AllowRemove = true;
+
+            foreach (AchievementPerRule achievement in Rule.Achievements)
+            {
+                achievementList.Add(achievement);
+            }
+
+            AchievementsDataGridView.AutoGenerateColumns = false;
+            AchievementsDataGridView.DataSource = achievementList;
+        }
+
+        private void LoadAwards()
+        {
+            BindingList<Award> awardList = new BindingList<Award>();
+            awardList.AllowEdit = true;
+            awardList.AllowNew = true;
+            awardList.AllowRemove = true;
+
+            foreach (Award award in Rule.Awards)
+            {
+                awardList.Add(award);
+            }
+
+            AwardsDataGridView.AutoGenerateColumns = false;
+            AwardsDataGridView.DataSource = awardList;
+        }
+
         private void AceptarButton_Click(object sender, EventArgs e)
         {
             if (Verify())
@@ -71,38 +103,6 @@ namespace LevelUpApplication
             this.Close();
         }
 
-        private void LoadAchievements()
-        {
-            BindingList<AchievementPerRule> achievementList = new BindingList<AchievementPerRule>();
-            achievementList.AllowEdit = true;
-            achievementList.AllowNew = true;
-            achievementList.AllowRemove = true;
-
-            foreach (AchievementPerRule achievement in Rule.Achievements)
-            {
-                achievementList.Add(achievement);
-            }
-
-            AchievementsDataGridView.AutoGenerateColumns = false;
-            AchievementsDataGridView.DataSource = achievementList;
-        }
-
-        private void LoadAwards()
-        {
-            BindingList<Award> awardList = new BindingList<Award>();
-            awardList.AllowEdit = true;
-            awardList.AllowNew = true;
-            awardList.AllowRemove = true;
-
-            foreach (Award award in Rule.Awards)
-            {
-                awardList.Add(award);
-            }
-
-            AwardsDataGridView.AutoGenerateColumns = false;
-            AwardsDataGridView.DataSource = awardList;
-        }
-
         private void AwardsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == (int) Constants.Rule_AwardColumns.View)
@@ -113,7 +113,6 @@ namespace LevelUpApplication
             }
             else if (e.ColumnIndex == (int) Constants.Rule_AwardColumns.Delete)
             {
-                Award selectedAward = this.Awards[e.RowIndex];
                 if (MessageBox.Show(this, "¿Está seguro que desea eliminar este premio?", "Eliminar Premio",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -126,7 +125,6 @@ namespace LevelUpApplication
         {
             if (e.ColumnIndex == (int) Constants.Rule_AchievementColumns.Delete)
             {
-                AchievementPerRule selectedAchievement = this.Achievements[e.RowIndex];
                 if (MessageBox.Show(this, "¿Está seguro que desea eliminar este logro?", "Eliminar Logro",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -313,13 +311,13 @@ namespace LevelUpApplication
         private string StartDate
         {
             get { return StartDateTimePicker.Value.ToString("yyyy-MM-dd"); }
-            set { try { StartDateTimePicker.Value = DateTime.Parse(value); } catch(Exception){} }
+            set { try { StartDateTimePicker.Value = DateTime.Parse(value); } catch (Exception) { } }
         }
 
         private string EndDate
         {
             get { return EndDateTimePicker.Value.ToString("yyyy-MM-dd"); }
-            set { try { EndDateTimePicker.Value = DateTime.Parse(value); } catch(Exception){} }
+            set { try { EndDateTimePicker.Value = DateTime.Parse(value); } catch (Exception) { } }
         }
 
         private void AchievementsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) { }

@@ -203,6 +203,7 @@ namespace LevelUpApplication
         private void SearchUser()
         {
             string username = UserAchievementsTextBox.Text;
+            this.SelectedUser = null;
 
             if (!String.IsNullOrEmpty(username))
             {
@@ -211,10 +212,6 @@ namespace LevelUpApplication
                 if (User.IsValid(fetchedUser))
                 {
                     this.SelectedUser = fetchedUser;
-                }
-                else
-                {
-                    this.SelectedUser = null;
                 }
             }
         }

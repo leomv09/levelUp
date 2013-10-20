@@ -45,7 +45,7 @@ namespace LevelUpApplication
             string passwordHash = GetPasswordHash();
             string username = GetUsername();
 
-            if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(GetPassword()))
+            if (String.IsNullOrEmpty(username))
             {
                 return false;
             }

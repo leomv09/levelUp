@@ -58,13 +58,7 @@ namespace LevelUpApplication
             {
                 PhotoPictureBox.Image = Image.FromFile(this.PhotoUrl);
             }
-            catch (Exception)
-            {
-                /*
-                MessageBox.Show(this, "No se pudo cargar la foto.", "Info",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                 */
-            }
+            catch (Exception) { }
         }
 
         private void FillTypes()
@@ -83,7 +77,7 @@ namespace LevelUpApplication
         {
             if (Verify())
             {
-                Save();
+                //Save();
                 this.Close();
             }
         }
@@ -92,7 +86,7 @@ namespace LevelUpApplication
         {
             if (Verify())
             {
-                Save();
+                //Save();
             }
         }
 
@@ -112,8 +106,6 @@ namespace LevelUpApplication
                 this.Award.Currency = this.Currency;
                 this.Award.Money = Convert.ToDouble(this.Detail);
             }
-
-            //m_controller.ModifyAward(this.Award);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

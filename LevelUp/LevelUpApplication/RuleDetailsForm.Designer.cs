@@ -46,12 +46,12 @@
             this.RemoveAchievementButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.AchievementListLabel = new System.Windows.Forms.Label();
             this.AwardsDataGridView = new System.Windows.Forms.DataGridView();
-            this.AwardListLabel = new System.Windows.Forms.Label();
-            this.AddAchievementButton = new System.Windows.Forms.Button();
-            this.AddAwardButton = new System.Windows.Forms.Button();
             this.AwardName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AwardDetails = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Remove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.AwardListLabel = new System.Windows.Forms.Label();
+            this.AddAchievementButton = new System.Windows.Forms.Button();
+            this.AddAwardButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.AchievementsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AwardsDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -218,7 +218,6 @@
             this.AwardsDataGridView.AllowUserToResizeRows = false;
             this.AwardsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.AwardsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AwardsDataGridView.ColumnHeadersVisible = false;
             this.AwardsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.AwardName,
             this.AwardDetails,
@@ -230,6 +229,35 @@
             this.AwardsDataGridView.Size = new System.Drawing.Size(584, 170);
             this.AwardsDataGridView.TabIndex = 13;
             this.AwardsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AwardsDataGridView_CellContentClick);
+            // 
+            // AwardName
+            // 
+            this.AwardName.DataPropertyName = "Name";
+            this.AwardName.FillWeight = 194.9239F;
+            this.AwardName.HeaderText = "Premio";
+            this.AwardName.Name = "AwardName";
+            this.AwardName.ReadOnly = true;
+            this.AwardName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.AwardName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // AwardDetails
+            // 
+            this.AwardDetails.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.AwardDetails.FillWeight = 5.076142F;
+            this.AwardDetails.HeaderText = "Detalles";
+            this.AwardDetails.Name = "AwardDetails";
+            this.AwardDetails.Text = "Ver";
+            this.AwardDetails.UseColumnTextForButtonValue = true;
+            this.AwardDetails.Width = 50;
+            // 
+            // Remove
+            // 
+            this.Remove.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Remove.HeaderText = "Eliminar";
+            this.Remove.Name = "Remove";
+            this.Remove.Text = "Eliminar";
+            this.Remove.UseColumnTextForButtonValue = true;
+            this.Remove.Width = 50;
             // 
             // AwardListLabel
             // 
@@ -260,35 +288,6 @@
             this.AddAwardButton.Text = "Agregar";
             this.AddAwardButton.UseVisualStyleBackColor = true;
             this.AddAwardButton.Click += new System.EventHandler(this.AddAwardButton_Click);
-            // 
-            // AwardName
-            // 
-            this.AwardName.DataPropertyName = "Name";
-            this.AwardName.FillWeight = 194.9239F;
-            this.AwardName.HeaderText = "Premio";
-            this.AwardName.Name = "AwardName";
-            this.AwardName.ReadOnly = true;
-            this.AwardName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.AwardName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // AwardDetails
-            // 
-            this.AwardDetails.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.AwardDetails.FillWeight = 5.076142F;
-            this.AwardDetails.HeaderText = "Detalles";
-            this.AwardDetails.Name = "AwardDetails";
-            this.AwardDetails.Text = "Ver";
-            this.AwardDetails.UseColumnTextForButtonValue = true;
-            this.AwardDetails.Width = 50;
-            // 
-            // Remove
-            // 
-            this.Remove.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Remove.HeaderText = "Eliminar";
-            this.Remove.Name = "Remove";
-            this.Remove.Text = "Eliminar";
-            this.Remove.UseColumnTextForButtonValue = true;
-            this.Remove.Width = 50;
             // 
             // RuleDetailsForm
             // 
