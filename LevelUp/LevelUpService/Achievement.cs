@@ -12,11 +12,10 @@ namespace LevelUpService
         private int m_id;
         private string m_name;
         private string m_description;
-        private string m_startdate;
-        private string m_enddate;
-        private string m_creationdate;
+        private DateTime m_startdate;
+        private DateTime m_enddate;
+        private DateTime m_creationdate;
         private User m_creator;
-        private string m_status;
         private int m_maxamount;
 
         public Achievement()
@@ -24,11 +23,10 @@ namespace LevelUpService
             m_id = 0;
             m_name = String.Empty;
             m_description = String.Empty;
-            m_startdate = DateTime.Today.ToShortDateString();
-            m_enddate = DateTime.Today.ToShortDateString();
-            m_creationdate = DateTime.Today.ToShortDateString();
+            m_startdate = DateTime.Today;
+            m_enddate = DateTime.Today;
+            m_creationdate = DateTime.Today;
             m_creator = new User();
-            m_status = String.Empty;
             m_maxamount = 0;
         }
 
@@ -54,21 +52,21 @@ namespace LevelUpService
         }
 
         [DataMember]
-        public string StartDate
+        public DateTime StartDate
         {
             get { return m_startdate; }
             set { m_startdate = value; }
         }
 
         [DataMember]
-        public string EndDate
+        public DateTime EndDate
         {
             get { return m_enddate; }
             set { m_enddate = value; }
         }
 
         [DataMember]
-        public string CreationDate
+        public DateTime CreationDate
         {
             get { return m_creationdate; }
             set { m_creationdate = value; }
@@ -79,13 +77,6 @@ namespace LevelUpService
         {
             get { return m_creator; }
             set { m_creator = value; }
-        }
-
-        [DataMember]
-        public string Status
-        {
-            get { return m_status; }
-            set { m_status = value; }
         }
 
         [DataMember]

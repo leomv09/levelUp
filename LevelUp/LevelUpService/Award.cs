@@ -17,9 +17,8 @@ namespace LevelUpService
         private double m_money;
         private Currency m_currency;
         private string m_type;
-        private string m_creationdate;
+        private DateTime m_creationdate;
         private User m_creator;
-        private string m_status;
 
         public Award()
         {
@@ -31,9 +30,8 @@ namespace LevelUpService
             m_money = 0;
             m_currency = new Currency();
             m_type = String.Empty;
-            m_creationdate = DateTime.Today.ToShortDateString();
+            m_creationdate = DateTime.Today;
             m_creator = new User();
-            m_status = String.Empty;
         }
 
         [DataMember]
@@ -93,7 +91,7 @@ namespace LevelUpService
         }
 
         [DataMember]
-        public string CreationDate
+        public DateTime CreationDate
         {
             get { return m_creationdate; }
             set { m_creationdate = value; }
@@ -104,13 +102,6 @@ namespace LevelUpService
         {
             get { return m_creator; }
             set { m_creator = value; }
-        }
-
-        [DataMember]
-        public string Status
-        {
-            get { return m_status; }
-            set { m_status = value; }
         }
 
         public override string ToString()

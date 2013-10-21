@@ -97,17 +97,17 @@ namespace LevelUpApplication
         }
 
         /// <summary>
-        /// Gets all users in the database.
+        /// Gets all usernames in the database.
         /// </summary>
-        public User[] GetUsers()
+        public string[] GetUsers()
         {
             HttpRequest request = new HttpRequest("https://localhost/levelup/users", "GET");
-            User[] users = new User[] { };
+            string[] users = new string[] { };
             request.Send();
 
             if (request.StatusCode == HttpStatusCode.OK)
             {
-                users = serializer.Deserialize<User[]>(request.ResponseContent);
+                users = serializer.Deserialize<string[]>(request.ResponseContent);
             }
 
             return users;

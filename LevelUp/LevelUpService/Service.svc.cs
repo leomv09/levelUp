@@ -22,122 +22,80 @@ namespace LevelUpService
 
         public Department[] GetDepartments()
         {
-            return new Department[] {
-                new Department() { ID=1, Name="RRHH"},
-                new Department() { ID=2, Name="TI"}
-            };
+            return m_da.GetDepartments();
         }
 
         public Rule[] GetDepartmentRules(string departmentID)
         {
-            AchievementPerRule[] exAchievements = new AchievementPerRule[]
+            Rule[] result = new Rule[] { };
+            int id;
+
+            if (int.TryParse(departmentID, out id))
             {
-                new AchievementPerRule()
-                {
-                    Achievement = new Achievement(){ ID=3, Name="Llego temprano por un mes", MaxAmount=10} , Amount = 5
-                },
-                new AchievementPerRule()
-                {
-                    Achievement = new Achievement(){ ID=1, Name="Aprendio un nuevo idioma", MaxAmount=5} , Amount = 3
-                }
-            };
+                result = m_da.GetDepartmentRules(id);
+            }
 
-            Award[] exAward = new Award[]{
-                new Award()
-                {
-                    ID = 1,
-                    Name="Beach Night",
-                    Description="Fin de semana en el hotel Barceló playa tambor bajo la modalidad todo incluido para 2 adultos.",
-                    Type="Otros",
-                    PhotoUrl="img/photos/1/photo.jpg"
-                },
-                new Award()
-                {
-                    ID = 2,
-                    Name="5 puntos",
-                    Type="Puntos",
-                    Amount = 5,
-                    PhotoUrl="img/photos/2/photo.gif"
-                },
-                new Award()
-                {
-                    ID = 3,
-                    Name="50 000 colones.",
-                    Description="Bono de 50000 colones",
-                    Type="Dinero",
-                    Money = 50000,
-                    Currency = new Currency(){ID=2, Name="Colón", Symbol="¢", Code="CRC"},
-                    PhotoUrl="img/photos/3/photo.jpg"
-                }
-            };
-
-            return new Rule[] { 
-                new Rule()
-                {
-                    Name="ExRule", Description="Description", StartDate="11/09/2013",
-                    EndDate="19/10/2013", Achievements=exAchievements, Awards=exAward
-                }
-            };
+            return result;
         }
 
         public void AddRuleToDepartment(Rule rule, string departmentID)
         {
+            int department_id;
+
+            if (int.TryParse(departmentID, out department_id))
+            {
+                if (rule.ID == 0)
+                {
+                    rule.ID = m_da.CreateRule(rule);
+                }
+                m_da.AddRuleToDepartment(rule.ID, department_id);
+            }
         }
 
         public void DeleteRuleFromDepartment(Rule rule, string departmentID)
         {
+            int department_id;
+
+            if (int.TryParse(departmentID, out department_id))
+            {
+                m_da.DeleteRuleFromDepartment(rule.ID, department_id);
+            }
         }
 
         public Achievement[] GetDepartmentAchievements(string departmentID)
         {
-            return new Achievement[] {
-                new Achievement(){ ID=1, Name="Aprendio un nuevo idioma", MaxAmount=5},
-                new Achievement(){ ID=2, Name="Obtuvo licencia de conducir", MaxAmount=1},
-                new Achievement(){ ID=3, Name="Llego temprano por un mes", MaxAmount=10}
-            };
+            Achievement[] result = new Achievement[] { };
+            int id;
+
+            if (int.TryParse(departmentID, out id))
+            {
+                result = m_da.GetDepartmentAchievements(id);
+            }
+
+            return result;
         }
 
         public Award[] GetDepartmentAwards(string departmentID)
         {
-            return new Award[] {
-                new Award()
-                {
-                    Name="Beach Night",
-                    Description="Fin de semana en el hotel Barceló playa tambor bajo la modalidad todo incluido para 2 adultos.",
-                    Type="Otros",
-                    PhotoUrl="img/photos/1/photo.jpg"
-                },
-                new Award()
-                {
-                    Name="5 puntos",
-                    Type="Puntos",
-                    Amount = 5,
-                    PhotoUrl="img/photos/2/photo.gif"
-                },
-                new Award()
-                {
-                    Name="50 000 colones.",
-                    Description="Bono de 50000 colones",
-                    Type="Dinero",
-                    Money = 50000,
-                    Currency = new Currency(){ID=2, Name="Colón", Symbol="¢", Code="CRC"},
-                    PhotoUrl="img/photos/3/photo.jpg"
-                }
-            };
+            Award[] result = new Award[] { };
+            int id;
+
+            if (int.TryParse(departmentID, out id))
+            {
+                result = m_da.GetDepartmentAwards(id);
+            }
+
+            return result;
         }
 
         public void UpdateRule(Rule rule)
         {
+            m_da.UpdateRule(rule);
         }
 
-        public User[] GetUsers()
+        public string[] GetUsernames()
         {
-            return new User[] {
-                new User(){ Username="jags9415" },
-                new User(){ Username="leomv09" },
-                new User(){ Username="emurillo" },
-                new User(){ Username="dhf360" }
-            };
+            return m_da.GetAllUsernames();
         }
 
         public User GetUser(string username)
@@ -169,7 +127,8 @@ namespace LevelUpService
 
         public Permission[] GetUserPermissions(string username)
         {
-            return null;
+            User user = m_da.GetUserByUsername("admin");
+            return new Permission[]{ new Permission(){Description=user.Name, Code=user.Username} };
         }
 
         public Authentication CheckUserAuthentication(string username, string passwordHash)

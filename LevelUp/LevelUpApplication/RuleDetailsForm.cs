@@ -74,6 +74,7 @@ namespace LevelUpApplication
             if (Verify())
             {
                 Save();
+                this.DialogResult = DialogResult.OK;
                 this.Close();
                 this.DialogResult = DialogResult.OK;
             }
@@ -95,7 +96,10 @@ namespace LevelUpApplication
             this.Rule.EndDate = this.EndDate;
             this.Rule.Achievements = this.Achievements;
             this.Rule.Awards = this.Awards;
-            m_controller.ModifyRule(this.Rule);
+            if (this.Rule.ID != 0)
+            {
+                m_controller.ModifyRule(this.Rule);
+            }
         }
 
         private void CancelRuleButton_Click(object sender, EventArgs e)
@@ -308,16 +312,16 @@ namespace LevelUpApplication
             set { RuleDescripcionTextBox.Text = value; }
         }
 
-        private string StartDate
+        private DateTime StartDate
         {
-            get { return StartDateTimePicker.Value.ToString("yyyy-MM-dd"); }
-            set { try { StartDateTimePicker.Value = DateTime.Parse(value); } catch (Exception) { } }
+            get { return StartDateTimePicker.Value; }
+            set { StartDateTimePicker.Value = value; }
         }
 
-        private string EndDate
+        private DateTime EndDate
         {
-            get { return EndDateTimePicker.Value.ToString("yyyy-MM-dd"); }
-            set { try { EndDateTimePicker.Value = DateTime.Parse(value); } catch (Exception) { } }
+            get { return EndDateTimePicker.Value; }
+            set { EndDateTimePicker.Value = value; }
         }
 
         private void AchievementsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) { }

@@ -11,15 +11,15 @@ namespace LevelUpService
     {
         private Achievement m_achievement;
         private int m_amount;
-        private string m_creationdate;
+        private DateTime m_creationdate;
         private User m_creator;
 
         public AchievementPerRule()
         {
-            //m_achievement = new Achievement();
-            //m_amount = 0;
-            //m_creationdate = DateTime.Today.ToShortDateString();
-            //m_creator = new User();
+            m_achievement = new Achievement();
+            m_amount = 0;
+            m_creationdate = DateTime.Today;
+            m_creator = new User();
         }
 
         public static bool IsValid(AchievementPerRule achievement)
@@ -42,7 +42,7 @@ namespace LevelUpService
         }
 
         [DataMember]
-        public string CreationDate
+        public DateTime CreationDate
         {
             get { return m_creationdate; }
             set { m_creationdate = value; }

@@ -20,7 +20,7 @@ namespace LevelUpService
 
         public User()
         {
-            m_id = 0;
+            m_id = 1;
             m_name = String.Empty;
             m_lastname1 = String.Empty;
             m_lastname2 = String.Empty;

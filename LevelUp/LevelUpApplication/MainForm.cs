@@ -96,12 +96,7 @@ namespace LevelUpApplication
         private void LoadUsers()
         {
             UserAchievementsTextBox.AutoCompleteCustomSource.Clear();
-            User[] users = m_controller.GetUsers();
-
-            foreach (User user in users)
-            {
-                UserAchievementsTextBox.AutoCompleteCustomSource.Add(user.Username);
-            }
+            UserAchievementsTextBox.AutoCompleteCustomSource.AddRange(m_controller.GetUsers());
         }
 
         private void AddRuleButton_Click(object sender, EventArgs e)
@@ -117,8 +112,8 @@ namespace LevelUpApplication
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     Rule ruleAdded = form.Rule;
-                    ruleAdded.CreationDate = DateTime.Today.ToShortDateString();
-                    ruleAdded.Creator = m_loggedUser;
+                    ruleAdded.CreationDate = DateTime.Today;
+                    ruleAdded.Creator = new User();//m_loggedUser; 
                     m_controller.AddRuleToDepartment(ruleAdded, this.SelectedDepartment);
                     ((BindingList<Rule>)RulesDataGridView.DataSource).Add(ruleAdded);
                 }
@@ -137,6 +132,7 @@ namespace LevelUpApplication
             {
                 RuleDetailsForm form = new RuleDetailsForm(this.SelectedRule, this.SelectedDepartment);
                 form.ShowDialog(this);
+                LoadRules();
             }
             else
             {
@@ -241,7 +237,7 @@ namespace LevelUpApplication
 
                         AchievementPerUser newAchievement = form.SelectedAchievement;
                         newAchievement.Creator = this.m_loggedUser;
-                        newAchievement.ObtainingDate = DateTime.Today.ToShortDateString();
+                        newAchievement.ObtainingDate = DateTime.Today;
                         achievementList.Add(newAchievement);
 
                         m_controller.AddAchievementToUser(this.SelectedUser, newAchievement);
@@ -372,7 +368,8 @@ namespace LevelUpApplication
 
         private Rule SelectedRule
         {
-            get { return (Rule) RulesDataGridView.SelectedRows[0].DataBoundItem; }
+            get { try { return (Rule)RulesDataGridView.SelectedRows[0].DataBoundItem; } 
+                  catch (Exception) { return null; } }
         }
 
         private AchievementPerUser[] SelectedAchievements

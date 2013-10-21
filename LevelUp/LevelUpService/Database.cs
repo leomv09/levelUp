@@ -20,7 +20,7 @@ namespace LevelUpService
         private int m_maxpool;
 
         public SqlDataReader ExecStoredProcedure(SqlConnection connection, string spName, 
-            string[] spParametersNames, string[] spParametersValues)
+            string[] spParametersNames, object[] spParametersValues)
         {
             if (spParametersNames.Length != spParametersValues.Length)
             {
@@ -36,6 +36,17 @@ namespace LevelUpService
             {
                 command.Parameters.AddWithValue(spParametersNames[i], spParametersValues[i]);
             }
+
+            connection.Open();
+            return command.ExecuteReader();
+        }
+
+        public SqlDataReader ExecStoredProcedure(SqlConnection connection, string spName)
+        {
+            SqlCommand command = new SqlCommand();
+            command.CommandText = spName;
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Connection = connection;
 
             connection.Open();
             return command.ExecuteReader();

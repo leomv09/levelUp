@@ -23,10 +23,11 @@ namespace LevelUpService
                 ResponseFormat = WebMessageFormat.Json)]
         Rule[] GetDepartmentRules(string departmentID);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         [WebInvoke(UriTemplate = "/departments/{departmentID}/rules",
                 Method = "POST",
                 BodyStyle = WebMessageBodyStyle.Bare,
+                ResponseFormat = WebMessageFormat.Json,
                 RequestFormat = WebMessageFormat.Json)]
         void AddRuleToDepartment(Rule rule, string departmentID);
 
@@ -66,7 +67,7 @@ namespace LevelUpService
         [WebGet(UriTemplate = "/users",
                 BodyStyle = WebMessageBodyStyle.Bare,
                 ResponseFormat = WebMessageFormat.Json)]
-        User[] GetUsers();
+        string[] GetUsernames();
 
         [OperationContract]
         [WebGet(UriTemplate = "/users/{username}",
