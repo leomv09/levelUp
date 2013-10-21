@@ -1426,3 +1426,12 @@ INSERT INTO Direccion (idDireccion, fk_idCiudad, Señal1, ZipCode, Latitud, Long
 (472, 81, 'Rio Jimenez', '70604', '10.2127778', '-83.6866667'),
 (473, 81, 'Duacari', '70605', '10.2127778', '-83.6866667');
 SET IDENTITY_INSERT Direccion OFF;
+
+--Llenado de Direcciones por usuario
+DECLARE @DireccionActual int = 1;
+DECLARE @TotalUs int = (SELECT COUNT(Usuario.idUsuario) FROM Usuario);
+WHILE @DireccionActual < @TotalUs
+BEGIN
+  INSERT INTO DireccionesPorUsuario(fk_idUsuario, fk_idDireccion) VALUES ((SELECT TOP 1 idUsuario FROM Usuario ORDER BY LEN(Usuario.idUsuario), NewID()), (SELECT TOP 1 idDireccion FROM Direccion ORDER BY LEN(Direccion.idDireccion), NewID()));
+  SET @DireccionActual = @DireccionActual + 1;
+END;
