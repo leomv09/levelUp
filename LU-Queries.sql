@@ -15,3 +15,24 @@ SET @query = 'SELECT LU.fk_idUsuario AS idTrabajador, U.Nombre AS Nombre, U.Apel
 EXECUTE(@query)
 
 -- -----------------------
+
+
+-- 4 Joins sobre tablas.....
+
+SELECT CONCAT(Nombre,' ',Apellido1,' ',CONVERT(VARCHAR(1),Apellido2),'.') AS Nombre, 
+	Dir.Señal1 AS Residencia,
+	est.Estado AS Estado,
+	gen.Genero Genero 
+FROM Usuario Us
+INNER JOIN DireccionesPorUsuario dirXus ON dirXus.fk_idUsuario=Us.idUsuario
+INNER JOIN Direccion Dir ON dirXus.fk_idDireccion=Dir.idDireccion
+INNER JOIN EstadoUsuario est ON us.fk_idEstadoUsuario=est.idEstadoUsuario
+INNER JOIN Genero gen ON gen.idGenero=us.fk_idGenero
+GROUP BY Estado,Nombre,Apellido1,Apellido2,Señal1,Genero
+HAVING Nombre NOT IN
+    (SELECT Nombre
+     FROM Usuario
+     WHERE Nombre = 'Administrador')
+ORDER BY NEWID();
+-- Falta el case
+-- -----------------------
