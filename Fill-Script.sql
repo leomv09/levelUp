@@ -113,14 +113,15 @@ INSERT INTO TasaCambio (fk_idMoneda1, fk_idMoneda2, Fecha, TasaCambio) VALUES
 
 SET IDENTITY_INSERT dbo.Departamento ON;
 INSERT INTO Departamento (idDepartamento, Nombre) VALUES
-(1, 'Tecnologias de Información'),
-(2, 'Recursos Humanos'),
-(3, 'Limpieza'),
-(4, 'Gerencia'),
-(5, 'Control de Calidad'),
-(6, 'Financiero'),
-(7, 'Ventas'),
-(8, 'Conserjería');
+(1, 'Global'),
+(2, 'Tecnologias de Información'),
+(3, 'Recursos Humanos'),
+(4, 'Limpieza'),
+(5, 'Gerencia'),
+(6, 'Control de Calidad'),
+(7, 'Financiero'),
+(8, 'Ventas'),
+(9, 'Conserjería');
 SET IDENTITY_INSERT dbo.Departamento OFF;
 
 SET IDENTITY_INSERT dbo.Institucion ON;
