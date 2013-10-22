@@ -416,9 +416,6 @@ SET IDENTITY_INSERT dbo.TipoEvento OFF;
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO UsuariosPorGrupo (fk_idUsuario, fk_idGrupo) VALUES
-(1, 2);
-
 -- Fill Intersection Tables.
 INSERT INTO TitulosPorInstituciones (fk_idInstitucion, fk_idTitulo) VALUES
 (1, 1),
@@ -531,10 +528,15 @@ INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES
 (7, 22),
 (7, 39);
 
+INSERT INTO UsuariosPorGrupo (fk_idUsuario, fk_idGrupo) VALUES
+(1, 2);
+
 -- Se le concede a los administradores globales todos los permisos.
 DECLARE @PermisoActual int = 1;
-DECLARE @TotalPermisos int = 48;
-DECLARE @AdministradoresGlobales int = 2;
+DECLARE @TotalPermisos int = (SELECT COUNT(Permisos.idPermiso) FROM Permisos);
+DECLARE @AdministradoresGlobales int = (SELECT idGrupoDeUsuarios FROM GruposDeUsuarios WHERE Nombre = 'Administradores Globales');
+DECLARE @Empleados int = (SELECT idGrupoDeUsuarios FROM GruposDeUsuarios WHERE Nombre = 'Empleado');
+
 WHILE @PermisoActual < @TotalPermisos
 BEGIN
   INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES (@AdministradoresGlobales, @PermisoActual);
@@ -542,7 +544,7 @@ BEGIN
 END;
 
 DECLARE @UsuarioActual int = 1;
-DECLARE @TotalUsuarios int = 300;
+DECLARE @TotalUsuarios int = (SELECT COUNT(Usuario.idUsuario) FROM Usuario);
 DECLARE @Puesto int;
 DECLARE @Fecha datetime;
 DECLARE @NumeroTitulos int;
@@ -552,15 +554,17 @@ DECLARE @Institucion int;
 SET IDENTITY_INSERT dbo.Contratos ON;
 
 --Agregar Contratos a los Usuarios.
-WHILE @UsuarioActual < @TotalUsuarios
+WHILE @UsuarioActual <= @TotalUsuarios
 BEGIN
-  --Seleccionar un puesto random.
+
+  --Agregar puesto random al usuario.
   SELECT TOP 1 @Puesto = idPuesto FROM Puestos ORDER BY NEWID();
   --Seleccionar una fecha random.
   SET @Fecha = DateAdd(d, ROUND(DateDiff(d, '2000-01-01', '2013-01-01') * RAND(), 0), '2000-01-01');
   --Insertar Contrato.
   INSERT INTO Contratos (idContrato, FechaInicio, FechaCreacion, fk_idCreador, fk_idUsuario, fk_idPuesto) VALUES
   (@UsuarioActual, @Fecha, GETDATE(), 1, @UsuarioActual, @Puesto);
+
   --Agregar Titulos al Usuario.
   SET @NumeroTitulos = 0;
   WHILE @NumeroTitulos < 2
@@ -574,6 +578,10 @@ BEGIN
     (@Titulo, @Institucion, @UsuarioActual, 1, @Fecha, GETDATE());
     SET @NumeroTitulos = @NumeroTitulos + 1;
   END;
+
+  --Insertar al grupo Empleados
+  INSERT INTO UsuariosPorGrupo (fk_idUsuario, fk_idGrupo) VALUES (@UsuarioActual, @Empleados);
+
   SET @UsuarioActual = @UsuarioActual + 1;
 END
 
@@ -1431,14 +1439,26 @@ INSERT INTO Direccion (idDireccion, fk_idCiudad, Señal1, ZipCode, Latitud, Long
 (473, 81, 'Duacari', '70605', '10.2127778', '-83.6866667');
 SET IDENTITY_INSERT Direccion OFF;
 
---Llenado de Direcciones por usuario
+--Llenado de Direcciones Por Usuario
 DECLARE @DireccionActual int = 1;
-DECLARE @TotalUsuarios int = (SELECT COUNT(Usuario.idUsuario) FROM Usuario);
-WHILE @DireccionActual < @TotalUsuarios
+WHILE @DireccionActual <= @TotalUsuarios
 BEGIN
   INSERT INTO DireccionesPorUsuario(fk_idUsuario, fk_idDireccion) VALUES 
   (
     (SELECT TOP 1 idUsuario FROM Usuario ORDER BY LEN(Usuario.idUsuario), NewID()), 
+    (SELECT TOP 1 idDireccion FROM Direccion ORDER BY LEN(Direccion.idDireccion), NewID())
+  );
+  SET @DireccionActual = @DireccionActual + 1;
+END;
+
+--Llenado de Direcciones Por Institucion.
+SET @DireccionActual = 1;
+DECLARE @TotalInstituciones int = (SELECT COUNT(Institucion.idInstitucion) FROM Institucion);
+WHILE @DireccionActual <= @TotalInstituciones
+BEGIN
+  INSERT INTO DireccionesPorInstitucion(fk_idInstitucion, fk_idDireccion) VALUES 
+  (
+    (SELECT TOP 1 idInstitucion FROM Institucion ORDER BY LEN(Institucion.idInstitucion), NewID()), 
     (SELECT TOP 1 idDireccion FROM Direccion ORDER BY LEN(Direccion.idDireccion), NewID())
   );
   SET @DireccionActual = @DireccionActual + 1;
