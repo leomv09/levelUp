@@ -73,7 +73,9 @@
             this.Controls.Add(this.CancelAchievementButton);
             this.Controls.Add(this.AcceptAchievementButton);
             this.Controls.Add(this.AchievementComboBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "AddAchievementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);

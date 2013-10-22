@@ -157,8 +157,8 @@ namespace LevelUpService
             using (SqlConnection p_connection = m_db.CreateConnection())
             {
                 SqlDataReader reader = m_db.ExecStoredProcedure(p_connection, "AddRule",
-                    new string[] { "@Name", "@Description", "@StartDate", "@EndDate", "@CreationDate", "@CreatorID" },
-                    new object[] { rule.Name, rule.Description, rule.StartDate, rule.EndDate, rule.CreationDate, rule.Creator.ID });
+                    new string[] { "@Name", "@Description", "@StartDate", "@EndDate", "@CreatorID" },
+                    new object[] { rule.Name, rule.Description, rule.StartDate, rule.EndDate, rule.Creator.ID });
 
 
                 if (reader.HasRows)
@@ -172,8 +172,8 @@ namespace LevelUpService
                     using (SqlConnection s_connection = m_db.CreateConnection())
                     {
                         m_db.ExecStoredProcedure(s_connection, "AddAchievementToRule",
-                        new string[] { "@RuleID", "@AchievementID", "@CreatorID", "@Amount", "@CreationDate" },
-                        new object[] { ruleID, ach.Achievement.ID, rule.Creator.ID, ach.Amount, ach.CreationDate });
+                        new string[] { "@RuleID", "@AchievementID", "@CreatorID", "@Amount" },
+                        new object[] { ruleID, ach.Achievement.ID, rule.Creator.ID, ach.Amount });
                     }
                 }
 

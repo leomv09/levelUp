@@ -113,9 +113,17 @@ namespace LevelUpApplication
                 {
                     Rule ruleAdded = form.Rule;
                     ruleAdded.CreationDate = DateTime.Today;
-                    ruleAdded.Creator = m_loggedUser; 
-                    ruleAdded = m_controller.AddRuleToDepartment(ruleAdded, this.SelectedDepartment);
-                    ((BindingList<Rule>)RulesDataGridView.DataSource).Add(ruleAdded);
+                    ruleAdded.Creator = m_loggedUser;
+                    try
+                    {
+                        ruleAdded = m_controller.AddRuleToDepartment(ruleAdded, this.SelectedDepartment);
+                        ((BindingList<Rule>)RulesDataGridView.DataSource).Add(ruleAdded);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, "Error al enviar la solicitud: " + ex.Message, "Error",
+                        MessageBoxButtons.OK);
+                    }
                 }
             }
         }
@@ -149,9 +157,17 @@ namespace LevelUpApplication
                       MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                       == DialogResult.Yes)
                 {
-                    m_controller.RemoveRuleFromDepartment(this.SelectedRule, this.SelectedDepartment);
                     BindingList<Rule> ruleList = (BindingList<Rule>)RulesDataGridView.DataSource;
-                    ruleList.Remove(this.SelectedRule);
+                    try
+                    {
+                        m_controller.RemoveRuleFromDepartment(this.SelectedRule, this.SelectedDepartment);
+                        ruleList.Remove(this.SelectedRule);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, "Error al enviar la solicitud: " + ex.Message, "Error",
+                        MessageBoxButtons.OK);
+                    }
                 }
             }
             else
@@ -181,20 +197,24 @@ namespace LevelUpApplication
 
         private void SearchUserButton_Click(object sender, EventArgs e)
         {
-            SearchUser();
-            LoadAchievements();
+            if (SearchUser())
+            {
+                LoadAchievements();
+            }
         }
 
         private void UserAchievementsTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                SearchUser();
-                LoadAchievements();
+                if (SearchUser())
+                {
+                    LoadAchievements();
+                }
             }
         }
 
-        private void SearchUser()
+        private bool SearchUser()
         {
             string username = UserAchievementsTextBox.Text;
             this.SelectedUser = null;
@@ -206,8 +226,16 @@ namespace LevelUpApplication
                 if (User.IsValid(fetchedUser))
                 {
                     this.SelectedUser = fetchedUser;
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show(this, "Usuario no encontrado.");
+                    return false;
                 }
             }
+
+            return false;
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -222,7 +250,7 @@ namespace LevelUpApplication
 
         private void AddAchievementButton_Click(object sender, EventArgs e)
         {
-            if (this.m_selectedUser != null)
+            if (this.SelectedUser != null)
             {
                 Department userDepartment = new Department();
                 AddAchievementPerUserForm form = new AddAchievementPerUserForm(userDepartment);
@@ -236,9 +264,16 @@ namespace LevelUpApplication
                         AchievementPerUser newAchievement = form.SelectedAchievement;
                         newAchievement.Creator = this.m_loggedUser;
                         newAchievement.ObtainingDate = DateTime.Today;
-                        achievementList.Add(newAchievement);
-
-                        m_controller.AddAchievementToUser(this.SelectedUser, newAchievement);
+                        try
+                        {
+                            m_controller.AddAchievementToUser(this.SelectedUser, newAchievement);
+                            achievementList.Add(newAchievement);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(this, "Error al enviar la solicitud: " + ex.Message, "Error",
+                            MessageBoxButtons.OK);
+                        }
                     }
                     else
                     {
@@ -259,7 +294,7 @@ namespace LevelUpApplication
             int count = 0;
             foreach (AchievementPerUser ach in this.Achievements)
             {
-                if (ach.Achievement.Name == achievement.Name)
+                if (ach.Achievement.ID == achievement.ID)
                 {
                     count += 1;
                 }
@@ -278,10 +313,18 @@ namespace LevelUpApplication
                     BindingList<AchievementPerUser> achievementList =
                         (BindingList<AchievementPerUser>)AchievementsDataGridView.DataSource;
 
-                    foreach (AchievementPerUser achievement in this.SelectedAchievements)
+                    try
                     {
-                        m_controller.RemoveAchievementFromUser(this.SelectedUser, achievement);
-                        achievementList.Remove(achievement);
+                        foreach (AchievementPerUser achievement in this.SelectedAchievements)
+                        {
+                            m_controller.RemoveAchievementFromUser(this.SelectedUser, achievement);
+                            achievementList.Remove(achievement);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, "Error al enviar la solicitud: " + ex.Message, "Error",
+                        MessageBoxButtons.OK);
                     }
                 }
             }
@@ -361,13 +404,22 @@ namespace LevelUpApplication
 
         private Department SelectedDepartment
         {
-            get { return (Department)DepartamentRuleComboBox.SelectedItem; }
+            get { return (Department) DepartamentRuleComboBox.SelectedItem; }
         }
 
         private Rule SelectedRule
         {
-            get { try { return (Rule)RulesDataGridView.SelectedRows[0].DataBoundItem; } 
-                  catch (Exception) { return null; } }
+            get
+            { 
+                try
+                { 
+                    return (Rule)RulesDataGridView.SelectedRows[0].DataBoundItem;
+                } 
+                catch (Exception) 
+                { 
+                    return null; 
+                } 
+            }
         }
 
         private AchievementPerUser[] SelectedAchievements

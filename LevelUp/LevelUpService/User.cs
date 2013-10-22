@@ -30,7 +30,7 @@ namespace LevelUpService
 
         public static bool IsValid(User user)
         {
-            return user.ID != 0;
+            return user != null && user.ID != 0;
         }
 
         [DataMember]

@@ -74,7 +74,6 @@ namespace LevelUpApplication
             if (Verify())
             {
                 Save();
-                this.DialogResult = DialogResult.OK;
                 this.Close();
                 this.DialogResult = DialogResult.OK;
             }
@@ -98,7 +97,15 @@ namespace LevelUpApplication
             this.Rule.Awards = this.Awards;
             if (this.Rule.ID != 0)
             {
-                m_controller.ModifyRule(this.Rule);
+                try
+                {
+                    m_controller.ModifyRule(this.Rule);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, "Error al enviar la solicitud: " + ex.Message, "Error",
+                    MessageBoxButtons.OK);
+                }
             }
         }
 
