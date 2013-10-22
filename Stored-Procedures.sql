@@ -14,6 +14,21 @@ AS
 BEGIN
 	SELECT D.idDepartamento AS ID, D.Nombre AS Departamento FROM Departamento AS D;
 END;
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Obtiene todas las reglas de un asociadas a un departamento.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetDepartmentRules]
+	@DepartmentID int
+AS
+BEGIN
+	SELECT R.idRegla AS ID, R.Nombre, ISNULL(R.Descripcion, '') AS Descripcion, R.FechaInicio, 
+	ISNULL(R.FechaFinal, GETDATE()) AS FechaFinal FROM Regla AS R
+	INNER JOIN Departamento AS D ON D.idDepartamento = @DepartmentID OR D.Nombre = 'Global'
+	INNER JOIN ReglasPorDepartamento AS RPD
+	ON RPD.fk_idDepartamento = D.idDepartamento AND RPD.fk_idRegla = R.idRegla;
+END;
 GO
 
 -- =============================================
@@ -54,22 +69,6 @@ GO
 
 -- =============================================
 -- Author:		Jose Garcia
--- Description:	Obtiene todas las reglas de un asociadas a un departamento.
--- =============================================
-CREATE PROCEDURE [dbo].[GetDepartmentRules]
-	@DepartmentID int
-AS
-BEGIN
-	SELECT R.idRegla AS ID, R.Nombre, ISNULL(R.Descripcion, '') AS Descripcion, R.FechaInicio, 
-	ISNULL(R.FechaFinal, GETDATE()) AS FechaFinal FROM Regla AS R
-	INNER JOIN Departamento AS D ON D.idDepartamento = @DepartmentID OR D.Nombre = 'Global'
-	INNER JOIN ReglasPorDepartamento AS RPD
-	ON RPD.fk_idDepartamento = D.idDepartamento AND RPD.fk_idRegla = R.idRegla;
-END;
-GO
-
--- =============================================
--- Author:		Jose Garcia
 -- Description:	Obtiene todos los logros de una regla.
 -- =============================================
 CREATE PROCEDURE [dbo].[GetRuleAchievements]
@@ -104,62 +103,6 @@ GO
 
 -- =============================================
 -- Author:		Jose Garcia
--- Description:	Obtiene el nombre de usuario de todos los usuarios.
--- =============================================
-CREATE PROCEDURE [dbo].[GetAllUsernames]
-AS
-BEGIN
-	SELECT U.Username From Usuario AS U;
-END;
-GO
-
--- =============================================
--- Author:		Jose Garcia
--- Description:	Obtiene un logro.
--- =============================================
-CREATE PROCEDURE [dbo].[GetAchievementByID]
-	@AchievementID int
-AS
-BEGIN
-	SELECT L.idLogro AS ID, L.Nombre, ISNULL(L.Descripcion, '') AS Descripcion, L.FechaInicio, 
-	ISNULL(L.FechaFinal, GETDATE()) AS FechaFinal, ISNULL(L.NumMaximo, 2147483647) AS NumMaximo
-	FROM Logros AS L
-	WHERE L.idLogro = @AchievementID;
-END;
-GO
-
--- =============================================
--- Author:		Jose Garcia
--- Description:	Obtiene un premio.
--- =============================================
-CREATE PROCEDURE [dbo].[GetAwardByID]
-	@AwardID int
-AS
-BEGIN
-	SELECT P.idPremio AS ID, P.Titulo AS Nombre, ISNULL(P.Descripcion, '') AS Descripcion, 
-	ISNULL(P.Foto, '') AS Foto, ISNULL(P.Cantidad, 0) AS Cantidad, ISNULL(P.Monto, 0.0) AS MONTO,
-	TP.Tipo, M.Nombre AS Moneda FROM Premio AS P
-	INNER JOIN TipoPremio AS TP ON TP.idTipoPremio = P.fk_idTipoPremio
-	INNER JOIN Moneda AS M ON M.idMoneda = P.fk_idMoneda
-	WHERE P.idPremio = @AwardID;
-END;
-GO
-
--- =============================================
--- Author:		Jose Garcia
--- Description:	Obtiene todos los premios de una regla.
--- =============================================
-CREATE PROCEDURE [dbo].[GetCurrencyByName]
-	@Name varchar(50)
-AS
-BEGIN
-	SELECT M.idMoneda AS ID, M.Nombre, M.Codigo, M.Simbolo FROM Moneda AS M
-	WHERE M.Nombre = @Name;
-END;
-GO
-
--- =============================================
--- Author:		Jose Garcia
 -- Description:	Agrega una regla a un departamento.
 -- =============================================
 CREATE PROCEDURE [dbo].[AddRuleToDepartment]
@@ -188,6 +131,54 @@ GO
 
 -- =============================================
 -- Author:		Jose Garcia
+-- Description:	Agrega un premio a una regla.
+-- =============================================
+CREATE PROCEDURE [dbo].[AddAwardToRule]
+	@RuleID int, 
+	@AwardID int
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM PremiosPorRegla WHERE fk_idRegla = @RuleID AND fk_idPremio = @AwardID)
+		INSERT INTO PremiosPorRegla (fk_idRegla, fk_idPremio) VALUES
+		(@RuleID, @AwardID);
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Agrega un logro a una regla.
+-- =============================================
+CREATE PROCEDURE [dbo].[AddAchievementToRule]
+	@RuleID int, 
+	@AchievementID int,
+	@CreatorID int,
+	@Amount int
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM LogrosPorRegla WHERE fk_idRegla = @RuleID AND fk_Logro = @AchievementID)
+		INSERT INTO LogrosPorRegla (fk_idRegla, fk_Logro, fk_idCreador, Cantidad, FechaCreacion) VALUES
+		(@RuleID, @AchievementID, @CreatorID, @Amount, GETDATE());
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Agrega una nueva regla.
+CREATE PROCEDURE [dbo].[AddRule]
+	@Name varchar(100),
+	@Description varchar(500),
+	@StartDate date,
+	@EndDate date,
+	@CreatorID int
+AS
+BEGIN
+	INSERT INTO Regla (Nombre, Descripcion, FechaInicio, FechaFinal, FechaCreacion, fk_idCreador, fk_idEstadoRegla)
+	VALUES (@Name, @Description, @StartDate, @EndDate, GETDATE(), @CreatorID, 1);
+	SELECT SCOPE_IDENTITY() AS RuleID;
+END;
+
+-- =============================================
+-- Author:		Jose Garcia
 -- Description:	Actualiza una regla.
 -- =============================================
 CREATE PROCEDURE [dbo].[UpdateRule]
@@ -206,53 +197,14 @@ GO
 
 -- =============================================
 -- Author:		Jose Garcia
--- Description:	Agrega un logro a una regla.
+-- Description:	Obtiene el nombre de usuario de todos los usuarios.
 -- =============================================
-CREATE PROCEDURE [dbo].[AddAchievementToRule]
-	@RuleID int, 
-	@AchievementID int,
-	@CreatorID int,
-	@Amount int,
-	@CreationDate date
+CREATE PROCEDURE [dbo].[GetAllUsernames]
 AS
 BEGIN
-	IF NOT EXISTS (SELECT * FROM LogrosPorRegla WHERE fk_idRegla = @RuleID AND fk_Logro = @AchievementID)
-		INSERT INTO LogrosPorRegla (fk_idRegla, fk_Logro, fk_idCreador, Cantidad, FechaCreacion) VALUES
-		(@RuleID, @AchievementID, @CreatorID, @Amount, @CreationDate);
+	SELECT U.Username From Usuario AS U;
 END;
 GO
-
--- =============================================
--- Author:		Jose Garcia
--- Description:	Agrega un premio a una regla.
--- =============================================
-CREATE PROCEDURE [dbo].[AddAwardToRule]
-	@RuleID int, 
-	@AwardID int
-AS
-BEGIN
-	IF NOT EXISTS (SELECT * FROM PremiosPorRegla WHERE fk_idRegla = @RuleID AND fk_idPremio = @AwardID)
-		INSERT INTO PremiosPorRegla (fk_idRegla, fk_idPremio) VALUES
-		(@RuleID, @AwardID);
-END;
-GO
-
--- =============================================
--- Author:		Jose Garcia
--- Description:	Agrega una nueva regla.
-CREATE PROCEDURE [dbo].[AddRule]
-	@Name varchar(100),
-	@Description varchar(500),
-	@StartDate date,
-	@EndDate date,
-	@CreationDate date,
-	@CreatorID int
-AS
-BEGIN
-	INSERT INTO Regla (Nombre, Descripcion, FechaInicio, FechaFinal, FechaCreacion, fk_idCreador, fk_idEstadoRegla)
-	VALUES (@Name, @Description, @StartDate, @EndDate, @CreationDate, @CreatorID, 1);
-	SELECT SCOPE_IDENTITY() AS RuleID;
-END;
 
 -- =============================================
 -- Author:		Jose Garcia
@@ -272,17 +224,6 @@ GO
 
 -- =============================================
 -- Author:		Jose Garcia
--- Description:	Obtiene los tipos de premio.
--- =============================================
-CREATE PROCEDURE [dbo].[GetAwardTypes]
-AS
-BEGIN
-	SELECT TP.Tipo FROM TipoPremio AS TP;
-END;
-GO
-
--- =============================================
--- Author:		Jose Garcia
 -- Description:	Comprueba si cierta contraseña pertenece a un usuario.
 -- =============================================
 CREATE PROCEDURE [dbo].[CheckUserAuthentication]
@@ -296,6 +237,30 @@ BEGIN
            END AS BIT) AS IsValid
 	FROM Usuario AS U
 	WHERE U.Username = @Username;
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Obtiene todos los premios de una regla.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetCurrencyByName]
+	@Name varchar(50)
+AS
+BEGIN
+	SELECT M.idMoneda AS ID, M.Nombre, M.Codigo, M.Simbolo FROM Moneda AS M
+	WHERE M.Nombre = @Name;
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Obtiene los tipos de premio.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetAwardTypes]
+AS
+BEGIN
+	SELECT TP.Tipo FROM TipoPremio AS TP;
 END;
 GO
 
