@@ -71,7 +71,9 @@
             this.Controls.Add(this.CancelAwardButton);
             this.Controls.Add(this.AcceptAwardButton);
             this.Controls.Add(this.AwardComboBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimizeBox = false;
             this.Name = "AddAwardForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);
