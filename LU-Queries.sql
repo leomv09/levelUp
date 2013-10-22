@@ -36,3 +36,56 @@ HAVING Nombre NOT IN
 ORDER BY NEWID();
 -- Falta el case
 -- -----------------------
+
+
+-- -------------------------------------------------------------------------------------------
+-- Consulta XML
+-- -------------------------------------------------------------------------------------------
+-- Se tiene que repetir los inner join porque se usa "UNION ALL", entonces
+-- cada bloque debe contener la misma cantidad de info.
+SELECT 1 AS TAG,
+	   NULL AS PARENT,
+	   U.Nombre AS [Nombre!1!Nombre],
+	   NULL AS [Logro!2!],
+	   NULL AS [Departamento!3!]
+FROM Usuario AS U
+INNER JOIN LogrosPorUsuario AS LU ON
+	U.idUsuario = LU.fk_idUsuario
+INNER JOIN Logros AS L ON
+	LU.fk_idLogro = L.idLogro
+INNER JOIN LogrosPorDepartamento AS LD ON
+	L.idLogro = LD.fk_idLogro
+INNER JOIN Departamento AS D ON 
+	LD.fk_idDepartamento = D.idDepartamento
+UNION ALL
+SELECT 2 AS TAG,
+	   1 AS PARENT,
+	   U.Nombre,
+	   L.Descripcion,
+	   NULL
+FROM Usuario AS U
+INNER JOIN LogrosPorUsuario AS LU ON
+	U.idUsuario = LU.fk_idUsuario
+INNER JOIN Logros AS L ON
+	LU.fk_idLogro = L.idLogro
+INNER JOIN LogrosPorDepartamento AS LD ON
+	L.idLogro = LD.fk_idLogro
+INNER JOIN Departamento AS D ON 
+	LD.fk_idDepartamento = D.idDepartamento
+UNION ALL
+SELECT 3 AS TAG,
+	   2 AS PARENT,
+	   U.Nombre,
+	   L.Descripcion,
+	   D.Nombre
+FROM Usuario AS U
+INNER JOIN LogrosPorUsuario AS LU ON
+	U.idUsuario = LU.fk_idUsuario
+INNER JOIN Logros AS L ON
+	LU.fk_idLogro = L.idLogro
+INNER JOIN LogrosPorDepartamento AS LD ON
+	L.idLogro = LD.fk_idLogro
+INNER JOIN Departamento AS D ON 
+	LD.fk_idDepartamento = D.idDepartamento
+ORDER BY [Nombre!1!Nombre], [Logro!2!], [Departamento!3!]
+FOR XML EXPLICIT;
