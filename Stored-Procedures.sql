@@ -18,15 +18,37 @@ GO
 
 -- =============================================
 -- Author:		Jose Garcia
+-- Description:	Obtiene los logros asociados a un departamento.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetDepartmentAchievements]
+	@DepartmentID int
+AS
+BEGIN
+	SELECT L.idLogro AS ID, L.Nombre, ISNULL(L.Descripcion, '') AS Descripcion, L.FechaInicio, 
+	ISNULL(L.FechaFinal, GETDATE()) AS FechaFinal, ISNULL(L.NumMaximo, 2147483647) AS NumMaximo
+	FROM Logros AS L
+	INNER JOIN Departamento AS D ON D.idDepartamento = @DepartmentID OR D.Nombre = 'Global'
+	INNER JOIN LogrosPorDepartamento AS LPD 
+	ON LPD.fk_idDepartamento = D.idDepartamento AND LPD.fk_idLogro = L.idLogro;
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
 -- Description:	Obtiene todos los premios de una regla.
 -- =============================================
 CREATE PROCEDURE [dbo].[GetDepartmentAwards]
 	@DepartmentID int
 AS
 BEGIN
-	SELECT P.idPremio AS ID FROM Premio AS P
+	SELECT P.idPremio AS ID, P.Titulo AS Nombre, ISNULL(P.Descripcion, '') AS Descripcion, 
+	ISNULL(P.Foto, '') AS Foto, ISNULL(P.Cantidad, 0) AS Cantidad, ISNULL(P.Monto, 0.0) AS Monto,
+	TP.Tipo, M.Nombre AS Moneda FROM Premio AS P
+	INNER JOIN TipoPremio AS TP ON TP.idTipoPremio = P.fk_idTipoPremio
+	INNER JOIN Moneda AS M ON M.idMoneda = P.fk_idMoneda
+	INNER JOIN Departamento AS D ON D.idDepartamento = @DepartmentID OR D.Nombre = 'Global'
 	INNER JOIN PremiosPorDepartamento AS PPD
-	ON PPD.fk_idDepartamento = @DepartmentID AND PPD.fk_idPremio = P.idPremio;
+	ON PPD.fk_idDepartamento = D.idDepartamento AND PPD.fk_idPremio = P.idPremio;
 END;
 GO
 
@@ -38,10 +60,11 @@ CREATE PROCEDURE [dbo].[GetDepartmentRules]
 	@DepartmentID int
 AS
 BEGIN
-	SELECT R.idRegla AS ID, R.Nombre, R.Descripcion, R.FechaInicio, R.FechaFinal
-	FROM Regla AS R
-	INNER JOIN ReglasPorDepartamento AS RPD 
-	ON RPD.fk_idDepartamento = @DepartmentID AND RPD.fk_idRegla = R.idRegla;
+	SELECT R.idRegla AS ID, R.Nombre, ISNULL(R.Descripcion, '') AS Descripcion, R.FechaInicio, 
+	ISNULL(R.FechaFinal, GETDATE()) AS FechaFinal FROM Regla AS R
+	INNER JOIN Departamento AS D ON D.idDepartamento = @DepartmentID OR D.Nombre = 'Global'
+	INNER JOIN ReglasPorDepartamento AS RPD
+	ON RPD.fk_idDepartamento = D.idDepartamento AND RPD.fk_idRegla = R.idRegla;
 END;
 GO
 
@@ -53,7 +76,9 @@ CREATE PROCEDURE [dbo].[GetRuleAchievements]
 	@RuleID int
 AS
 BEGIN
-	SELECT LPR.fk_Logro AS ID, LPR.Cantidad FROM Logros AS L
+	SELECT L.idLogro AS ID, L.Nombre, ISNULL(L.Descripcion, '') AS Descripcion, L.FechaInicio, 
+	ISNULL(L.FechaFinal, GETDATE()) AS FechaFinal, ISNULL(L.NumMaximo, 2147483647) AS NumMaximo,
+	LPR.Cantidad FROM Logros AS L
 	INNER JOIN LogrosPorRegla AS LPR
 	ON LPR.fk_idRegla = @RuleID AND LPR.fk_Logro = L.idLogro;
 END;
@@ -67,10 +92,15 @@ CREATE PROCEDURE [dbo].[GetRuleAwards]
 	@RuleID int
 AS
 BEGIN
-	SELECT P.idPremio AS ID FROM Premio AS P
+SELECT P.idPremio AS ID, P.Titulo AS Nombre, ISNULL(P.Descripcion, '') AS Descripcion, 
+	ISNULL(P.Foto, '') AS Foto, ISNULL(P.Cantidad, 0) AS Cantidad, ISNULL(P.Monto, 0.0) AS Monto,
+	TP.Tipo, M.Nombre AS Moneda FROM Premio AS P
+	INNER JOIN TipoPremio AS TP ON TP.idTipoPremio = P.fk_idTipoPremio
+	INNER JOIN Moneda AS M ON M.idMoneda = P.fk_idMoneda
 	INNER JOIN PremiosPorRegla AS PPR
 	ON PPR.fk_idRegla = @RuleID AND PPR.fk_idPremio = P.idPremio
 END;
+GO
 
 -- =============================================
 -- Author:		Jose Garcia
@@ -91,8 +121,9 @@ CREATE PROCEDURE [dbo].[GetAchievementByID]
 	@AchievementID int
 AS
 BEGIN
-	SELECT L.idLogro AS ID, L.Nombre, L.Descripcion, L.FechaInicio, L.FechaFinal,
-	L.NumMaximo FROM Logros AS L
+	SELECT L.idLogro AS ID, L.Nombre, ISNULL(L.Descripcion, '') AS Descripcion, L.FechaInicio, 
+	ISNULL(L.FechaFinal, GETDATE()) AS FechaFinal, ISNULL(L.NumMaximo, 2147483647) AS NumMaximo
+	FROM Logros AS L
 	WHERE L.idLogro = @AchievementID;
 END;
 GO
@@ -105,8 +136,9 @@ CREATE PROCEDURE [dbo].[GetAwardByID]
 	@AwardID int
 AS
 BEGIN
-	SELECT P.idPremio AS ID, P.Titulo AS Nombre, P.Descripcion, P.Foto,
-	P.Cantidad, P.Monto, TP.Tipo, M.Nombre AS Moneda FROM Premio AS P
+	SELECT P.idPremio AS ID, P.Titulo AS Nombre, ISNULL(P.Descripcion, '') AS Descripcion, 
+	ISNULL(P.Foto, '') AS Foto, ISNULL(P.Cantidad, 0) AS Cantidad, ISNULL(P.Monto, 0.0) AS MONTO,
+	TP.Tipo, M.Nombre AS Moneda FROM Premio AS P
 	INNER JOIN TipoPremio AS TP ON TP.idTipoPremio = P.fk_idTipoPremio
 	INNER JOIN Moneda AS M ON M.idMoneda = P.fk_idMoneda
 	WHERE P.idPremio = @AwardID;
@@ -151,20 +183,6 @@ AS
 BEGIN
 	DELETE FROM ReglasPorDepartamento
 	WHERE fk_idRegla = @RuleID AND fk_idDepartamento = @DepartmentID;
-END;
-GO
-
--- =============================================
--- Author:		Jose Garcia
--- Description:	Obtiene los logros asociados a un departamento.
--- =============================================
-CREATE PROCEDURE [dbo].[GetDepartmentAchievements]
-	@DepartmentID int
-AS
-BEGIN
-	SELECT LPD.fk_idLogro AS ID FROM LogrosPorDepartamento AS LPD
-	INNER JOIN Departamento AS D ON D.idDepartamento = LPD.fk_idDepartamento
-	WHERE D.idDepartamento = @DepartmentID OR D.Nombre = 'Global';
 END;
 GO
 
@@ -222,7 +240,7 @@ GO
 -- =============================================
 -- Author:		Jose Garcia
 -- Description:	Agrega una nueva regla.
-ALTER PROCEDURE [dbo].[AddRule]
+CREATE PROCEDURE [dbo].[AddRule]
 	@Name varchar(100),
 	@Description varchar(500),
 	@StartDate date,
@@ -235,3 +253,133 @@ BEGIN
 	VALUES (@Name, @Description, @StartDate, @EndDate, @CreationDate, @CreatorID, 1);
 	SELECT SCOPE_IDENTITY() AS RuleID;
 END;
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Busca un usuario por su username
+-- =============================================
+CREATE PROCEDURE [dbo].[GetUserByUsername]
+	@Username varchar(70)
+AS
+BEGIN
+	SELECT U.idUsuario AS ID, U.Nombre, U.Apellido1, ISNULL(U.Apellido2, '') AS Apellido2,
+	ISNULL(U.Foto, '') AS Foto, U.Username, G.Genero FROM Usuario AS U
+	INNER JOIN Genero AS G ON G.idGenero = U.fk_idGenero
+	INNER JOIN EstadoUsuario AS EU ON EU.idEstadoUsuario = U.fk_idEstadoUsuario
+	WHERE U.Username = @Username AND EU.Estado = 'Activo';
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Obtiene los tipos de premio.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetAwardTypes]
+AS
+BEGIN
+	SELECT TP.Tipo FROM TipoPremio AS TP;
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Comprueba si cierta contraseña pertenece a un usuario.
+-- =============================================
+CREATE PROCEDURE [dbo].[CheckUserAuthentication]
+	@Username varchar(70),
+	@Password varchar(100)
+AS
+BEGIN
+	SELECT CAST(CASE
+            WHEN U.Contraseña = @Password THEN 1
+            ELSE 0
+           END AS BIT) AS IsValid
+	FROM Usuario AS U
+	WHERE U.Username = @Username;
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Obtiene todas las monedas del sistema.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetAllCurrency]
+AS
+BEGIN
+	SELECT M.idMoneda AS ID, M.Nombre, M.Codigo, M.Simbolo FROM Moneda AS M;
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Obtiene los permisos de un usuario.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetUserPermissions]
+	@Username varchar(70)
+AS
+BEGIN
+	SELECT P.Codigo, P.Descripcion FROM Permisos AS P
+	INNER JOIN PermisosPorGrupo AS PPG ON PPG.fk_idPermiso = P.idPermiso
+	INNER JOIN GruposDeUsuarios AS GDU ON GDU.idGrupoDeUsuarios = PPG.fk_idGrupo
+	INNER JOIN UsuariosPorGrupo AS UPG ON UPG.fk_idGrupo = GDU.idGrupoDeUsuarios
+	INNER JOIN Usuario AS U ON U.idUsuario = UPG.fk_idUsuario
+	WHERE U.Username = @Username
+	UNION
+	SELECT P.Codigo, P.Descripcion FROM Permisos AS P
+	INNER JOIN PermisosPorUsuario AS PPU ON PPU.fk_idPermiso = P.idPermiso
+	INNER JOIN Usuario AS U ON U.idUsuario = PPU.fk_idUsuario
+	WHERE U.Username = @Username;
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Obtiene los logros asociados a un usuario.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetUserAchievements]
+	@Username varchar(70)
+AS
+BEGIN
+	SELECT L.idLogro AS ID, L.Nombre, ISNULL(L.Descripcion, '') AS Descripcion, L.FechaInicio, 
+	ISNULL(L.FechaFinal, GETDATE()) AS FechaFinal, ISNULL(L.NumMaximo, 2147483647) AS NumMaximo,
+	ISNULL(LPU.Detalles, '') AS Detalle FROM Logros AS L
+	INNER JOIN LogrosPorUsuario AS LPU ON LPU.fk_idLogro = L.idLogro
+	INNER JOIN Usuario AS U ON U.idUsuario = LPU.fk_idUsuario AND U.Username = @Username;
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Asocia un logro a un usuario.
+-- =============================================
+CREATE PROCEDURE [dbo].[AddAchievementToUser]
+	@AchievementID int,
+	@Username varchar(70),
+	@CreatorUsername varchar(70),
+	@Details varchar(200)
+AS
+BEGIN
+	DECLARE @CreatorID int;
+	DECLARE @UserID int;
+	SELECT @CreatorID = U.idUsuario FROM Usuario AS U WHERE U.Username = @CreatorUsername;
+	SELECT @UserID = U.idUsuario FROM Usuario AS U WHERE U.Username = @Username;
+	INSERT INTO LogrosPorUsuario (fk_idLogro, fk_idCreador, fk_idUsuario, Detalles, FechaObtencion)
+	VALUES (@AchievementID, @CreatorID, @UserID, @Details, GETDATE())
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Elimina un logro asociado a un usuario.
+-- =============================================
+CREATE PROCEDURE [dbo].[RemoveAchievementFromUser]
+	@AchievementID int,
+	@Username varchar(70)
+AS
+BEGIN
+	DECLARE @UserID int;
+	SELECT @UserID = U.idUsuario FROM Usuario AS U WHERE U.Username = @Username;
+	DELETE FROM LogrosPorUsuario
+	WHERE fk_idLogro = @AchievementID AND fk_idUsuario = @UserID;
+END;
+GO
