@@ -21,6 +21,8 @@ namespace LevelUpApplication
         {
             InitializeComponent();
             m_controller = Controller.Instance;
+            UsernameTextBox.Text = "admin";
+            PasswordTextBox.Text = "admin";
         }
 
         private void LoginAcceptButton_Click(object sender, EventArgs e)
@@ -28,10 +30,6 @@ namespace LevelUpApplication
             if (Authenticate())
             {
                 this.Close();
-            }
-            else
-            {
-                MessageBox.Show(this, "Credenciales inválidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
 
@@ -47,6 +45,7 @@ namespace LevelUpApplication
 
             if (String.IsNullOrEmpty(username))
             {
+                MessageBox.Show(this, "Ingrese su nombre de usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return false;
             }
 
@@ -54,11 +53,22 @@ namespace LevelUpApplication
 
             if (auth.State == true)
             {
-                m_user = auth.User;
-                return true;
+                Permission[] permissions = m_controller.GetUserPermissions(auth.User);
+                if ( permissions.Contains(new Permission(){Code="login_pc_admin"}) )
+                {
+                    m_user = auth.User;
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show(this, "Su usuario su no posee permiso para iniciar sesión", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    return false;
+                }
             }
             else
             {
+                MessageBox.Show(this, "Credenciales inválidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return false;
             }
         }

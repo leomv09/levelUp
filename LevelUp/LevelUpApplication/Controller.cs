@@ -69,13 +69,19 @@ namespace LevelUpApplication
             return rules;
         }
 
-        public bool AddRuleToDepartment(Rule rule, Department department) 
+        public Rule AddRuleToDepartment(Rule rule, Department department) 
         {
             HttpRequest request = new HttpRequest(
                     "https://localhost/levelup/departments/" + department.ID + "/rules", "POST");
             string content = serializer.Serialize<Rule>(rule);
             request.Send(content, Constants.JASON_MIMEType);
-            return request.StatusCode == HttpStatusCode.OK;
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                rule = serializer.Deserialize<Rule>(request.ResponseContent);
+            }
+
+            return rule;
         }
 
         public bool RemoveRuleFromDepartment(Rule rule, Department department)
@@ -130,9 +136,9 @@ namespace LevelUpApplication
         /// <summary>
         /// Gets all the achievements types.
         /// </summary>
-        public string[] GetAchievementsTypes()
+        public string[] GetAwardsTypes()
         {
-            HttpRequest request = new HttpRequest("https://localhost/levelup/achievements/types", "GET");
+            HttpRequest request = new HttpRequest("https://localhost/levelup/awards/types", "GET");
             string[] types = new string[] { };
             request.Send();
 
@@ -205,7 +211,7 @@ namespace LevelUpApplication
         public bool RemoveAchievementFromUser(User user, AchievementPerUser achievement)
         {
             HttpRequest request = new HttpRequest(
-                        "https://localhost/levelup/users/" + user.ID + "/achievements", "DELETE");
+                        "https://localhost/levelup/users/" + user.Username + "/achievements", "DELETE");
             string content = serializer.Serialize<AchievementPerUser>(achievement);
             request.Send(content, Constants.JASON_MIMEType);
             return request.StatusCode == HttpStatusCode.OK;
@@ -214,7 +220,7 @@ namespace LevelUpApplication
         public bool AddAchievementToUser(User user, AchievementPerUser achievement)
         {
             HttpRequest request = new HttpRequest(
-                        "https://localhost/levelup/users/" + user.ID + "/achievements", "POST");
+                        "https://localhost/levelup/users/" + user.Username + "/achievements", "POST");
             string content = serializer.Serialize<AchievementPerUser>(achievement);
             request.Send(content, Constants.JASON_MIMEType);
             return request.StatusCode == HttpStatusCode.OK;

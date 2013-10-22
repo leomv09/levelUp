@@ -320,9 +320,11 @@
             // EnabledCheckBox
             // 
             this.EnabledCheckBox.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.EnabledCheckBox.FalseValue = "";
+            this.EnabledCheckBox.FalseValue = "0";
             this.EnabledCheckBox.HeaderText = "";
+            this.EnabledCheckBox.IndeterminateValue = "0";
             this.EnabledCheckBox.Name = "EnabledCheckBox";
+            this.EnabledCheckBox.TrueValue = "1";
             this.EnabledCheckBox.Width = 20;
             // 
             // AchievementsColumn

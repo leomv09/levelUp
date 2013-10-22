@@ -15,18 +15,16 @@ namespace LevelUpService
         private string m_lastname2;
         private string m_username;
         private string m_photourl;
-        private string m_status;
         private string m_genre;
 
         public User()
         {
-            m_id = 1;
+            m_id = 0;
             m_name = String.Empty;
             m_lastname1 = String.Empty;
             m_lastname2 = String.Empty;
             m_username = String.Empty;
             m_photourl = String.Empty;
-            m_status = String.Empty;
             m_genre = String.Empty;
         }
 
@@ -75,13 +73,6 @@ namespace LevelUpService
         {
             get { return m_photourl;}
             set { m_photourl = value;}
-        }
-
-        [DataMember]
-        public string Status
-        {
-            get { return m_status;}
-            set { m_status = value;}
         }
 
         [DataMember]

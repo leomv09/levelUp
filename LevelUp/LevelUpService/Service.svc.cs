@@ -38,27 +38,29 @@ namespace LevelUpService
             return result;
         }
 
-        public void AddRuleToDepartment(Rule rule, string departmentID)
+        public Rule AddRuleToDepartment(Rule rule, string departmentID)
         {
-            int department_id;
+            int id;
 
-            if (int.TryParse(departmentID, out department_id))
+            if (int.TryParse(departmentID, out id))
             {
                 if (rule.ID == 0)
                 {
                     rule.ID = m_da.CreateRule(rule);
                 }
-                m_da.AddRuleToDepartment(rule.ID, department_id);
+                m_da.AddRuleToDepartment(rule.ID, id);
             }
+
+            return rule;
         }
 
         public void DeleteRuleFromDepartment(Rule rule, string departmentID)
         {
-            int department_id;
+            int id;
 
-            if (int.TryParse(departmentID, out department_id))
+            if (int.TryParse(departmentID, out id))
             {
-                m_da.DeleteRuleFromDepartment(rule.ID, department_id);
+                m_da.DeleteRuleFromDepartment(rule.ID, id);
             }
         }
 
@@ -100,49 +102,48 @@ namespace LevelUpService
 
         public User GetUser(string username)
         {
-            return new User() { ID=1, Username=username };
+            return m_da.GetUserByUsername(username);
         }
 
-        public string[] GetAchievementsTypes()
+        public string[] GetAwardsTypes()
         {
-            return new string[] { "Dinero", "Puntos", "Otros" };
+            return m_da.GetAwardTypes();
         }
 
         public AchievementPerUser[] GetUserAchievements(string username)
         {
-            return new AchievementPerUser[] { 
-                new AchievementPerUser() {Achievement = new Achievement(){Name="Aprendio un nuevo idioma"}, Detail="Portugues"},
-                new AchievementPerUser() {Achievement = new Achievement(){Name="Obtuvo licencia de conducir"}, Detail="B1"},
-                new AchievementPerUser() {Achievement = new Achievement(){Name="Llego temprano por un mes"}}
-            };
+            return m_da.GetUserAchievements(username);
         }
 
         public void AddAchievementToUser(AchievementPerUser achievement, string username)
         {
+            m_da.AddAchievementToUser(achievement, username);
         }
 
-        public void RemoveAchievementFromUser(AchievementPerUser achievements, string username)
+        public void RemoveAchievementFromUser(AchievementPerUser achievement, string username)
         {
+            m_da.RemoveAchievementFromUser(achievement, username);
         }
 
         public Permission[] GetUserPermissions(string username)
         {
-            User user = m_da.GetUserByUsername("admin");
-            return new Permission[]{ new Permission(){Description=user.Name, Code=user.Username} };
+            return m_da.GetUserPermissions(username);
         }
 
         public Authentication CheckUserAuthentication(string username, string passwordHash)
         {
-            return new Authentication() { State=true };
+            Authentication auth = new Authentication();
+            if (m_da.CheckAuthentication(username, passwordHash))
+            {
+                auth.State = true;
+                auth.User = m_da.GetUserByUsername(username);
+            }
+            return auth;
         }
 
         public Currency[] GetCurrency()
         {
-            return new Currency[] {
-                new Currency(){ID=1, Name="Dolar", Symbol="$", Code="USD"},
-                new Currency(){ID=2, Name="Colón", Symbol="¢", Code="CRC"},
-                new Currency(){ID=3, Name="Bitcoin", Symbol="฿", Code="BTC"}
-            };
+            return m_da.GetAllCurrency();
         }
 
     }

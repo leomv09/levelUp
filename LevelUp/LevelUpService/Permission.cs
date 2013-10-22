@@ -36,5 +36,17 @@ namespace LevelUpService
         {
             return m_code;
         }
+
+        public override bool Equals(object obj)
+        {
+            try
+            {
+                return ((Permission)obj).Code == this.Code;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

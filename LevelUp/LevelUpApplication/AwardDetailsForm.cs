@@ -63,7 +63,7 @@ namespace LevelUpApplication
 
         private void FillTypes()
         {
-            TypeComboBox.Items.AddRange(m_controller.GetAchievementsTypes());
+            TypeComboBox.Items.AddRange(m_controller.GetAwardsTypes());
         }
 
         private void FillCurrency()

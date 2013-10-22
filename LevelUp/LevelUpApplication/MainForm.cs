@@ -113,8 +113,8 @@ namespace LevelUpApplication
                 {
                     Rule ruleAdded = form.Rule;
                     ruleAdded.CreationDate = DateTime.Today;
-                    ruleAdded.Creator = new User();//m_loggedUser; 
-                    m_controller.AddRuleToDepartment(ruleAdded, this.SelectedDepartment);
+                    ruleAdded.Creator = m_loggedUser; 
+                    ruleAdded = m_controller.AddRuleToDepartment(ruleAdded, this.SelectedDepartment);
                     ((BindingList<Rule>)RulesDataGridView.DataSource).Add(ruleAdded);
                 }
             }
@@ -164,11 +164,9 @@ namespace LevelUpApplication
         private void MainForm_Shown(object sender, EventArgs e)
         {
             Reset();
-            /*
             LoginForm form = new LoginForm();
             form.ShowDialog(this);
             m_loggedUser = form.User;
-             */
             Init();
         }
 
@@ -377,9 +375,11 @@ namespace LevelUpApplication
             get
             {
                 List<AchievementPerUser> list = new List<AchievementPerUser>();
+                object rowState;
                 foreach (DataGridViewRow row in AchievementsDataGridView.Rows)
                 {
-                    if (row.Cells[EnabledCheckBox.Name].Value != null && Convert.ToBoolean(row.Cells[EnabledCheckBox.Name].Value) == true)
+                    rowState = row.Cells[EnabledCheckBox.Name].FormattedValue;
+                    if (rowState != null && Convert.ToBoolean(rowState))
                     {
                         list.Add((AchievementPerUser)row.DataBoundItem);
                     }

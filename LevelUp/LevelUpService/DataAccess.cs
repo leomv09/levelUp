@@ -21,341 +21,503 @@ namespace LevelUpService
 
         public Department[] GetDepartments()
         {
-            SqlConnection connection = m_db.CreateConnection();
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetDepartments");
             List<Department> list = new List<Department>();
 
-            if (reader.HasRows)
+            using (SqlConnection connection = m_db.CreateConnection())
             {
-                while (reader.Read())
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetDepartments");
+
+                if (reader.HasRows)
                 {
-                    list.Add(new Department() { ID=reader.GetInt32(0), Name=reader.GetString(1) });
+                    while (reader.Read())
+                    {
+                        list.Add(
+                            new Department()
+                            { 
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")), 
+                                Name = reader.GetString(reader.GetOrdinal("Departamento")) 
+                            }
+                        );
+                    }
                 }
             }
 
-            connection.Close();
             return list.ToArray();
         }
 
         public Achievement[] GetDepartmentAchievements(int departmentID)
         {
-            SqlConnection connection = m_db.CreateConnection();
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetDepartmentAchievements",
-                new string[] { "@DepartmentID" }, new object[] { departmentID });
             List<Achievement> list = new List<Achievement>();
 
-            if (reader.HasRows)
+            using (SqlConnection connection = m_db.CreateConnection())
             {
-                while (reader.Read())
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetDepartmentAchievements",
+                    new string[] { "@DepartmentID" }, new object[] { departmentID });
+
+                if (reader.HasRows)
                 {
-                    list.Add(GetAchievementByID(reader.GetInt32(reader.GetOrdinal("ID"))));
+                    while (reader.Read())
+                    {
+                        list.Add(
+                            new Achievement()
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                Name = reader.GetString(reader.GetOrdinal("Nombre")),
+                                Description = reader.GetString(reader.GetOrdinal("Descripcion")),
+                                StartDate = reader.GetDateTime(reader.GetOrdinal("FechaInicio")),
+                                EndDate = reader.GetDateTime(reader.GetOrdinal("FechaFinal")),
+                                MaxAmount = reader.GetInt32(reader.GetOrdinal("NumMaximo"))
+                            }
+                        );
+                    }
                 }
             }
 
-            connection.Close();
             return list.ToArray();
         }
 
         public Award[] GetDepartmentAwards(int departmentID)
         {
-            SqlConnection connection = m_db.CreateConnection();
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetDepartmentAwards",
-                new string[] { "@DepartmentID" }, new object[] { departmentID });
             List<Award> list = new List<Award>();
 
-            if (reader.HasRows)
+            using (SqlConnection connection = m_db.CreateConnection())
             {
-                while (reader.Read())
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetDepartmentAwards",
+                    new string[] { "@DepartmentID" }, new object[] { departmentID });
+
+                if (reader.HasRows)
                 {
-                    list.Add( GetAwardByID(reader.GetInt32(reader.GetOrdinal("ID"))) );
+                    while (reader.Read())
+                    {
+                        list.Add(
+                            new Award()
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                Name = reader.GetString(reader.GetOrdinal("Nombre")),
+                                Description = reader.GetString(reader.GetOrdinal("Descripcion")),
+                                PhotoUrl = reader.GetString(reader.GetOrdinal("Foto")),
+                                Amount = reader.GetInt32(reader.GetOrdinal("Cantidad")),
+                                Money = reader.GetDouble(reader.GetOrdinal("Monto")),
+                                Type = reader.GetString(reader.GetOrdinal("Tipo")),
+                                Currency = GetCurrencyByName(reader.GetString(reader.GetOrdinal("Moneda"))),
+                            }
+                        );
+                    }
                 }
             }
 
-            connection.Close();
             return list.ToArray();
         }
 
         public Rule[] GetDepartmentRules(int departmentID)
         {
-            SqlConnection connection = m_db.CreateConnection();
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetDepartmentRules",
-                new string[] { "@DepartmentID" }, new object[] { departmentID } );
             List<Rule> list = new List<Rule>();
 
-            if (reader.HasRows)
+            using (SqlConnection connection = m_db.CreateConnection())
             {
-                while (reader.Read())
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetDepartmentRules",
+                    new string[] { "@DepartmentID" }, new object[] { departmentID });
+
+                if (reader.HasRows)
                 {
-                    list.Add(
-                        new Rule()
-                        { 
-                            ID = reader.GetInt32(reader.GetOrdinal("ID")), 
-                            Name =  Parse_String(reader["Nombre"]),
-                            Description = Parse_String(reader["Descripcion"]),
-                            StartDate = DateTime.Parse(Parse_String(reader["FechaInicio"])),
-                            EndDate = DateTime.Parse(Parse_String(reader["FechaFinal"])),
-                            Achievements = GetRuleAchievements(reader.GetInt32(reader.GetOrdinal("ID"))),
-                            Awards = GetRuleAwards(reader.GetInt32(reader.GetOrdinal("ID")))
-                        }
-                    );
+                    while (reader.Read())
+                    {
+                        list.Add(
+                            new Rule()
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                Name = reader.GetString(reader.GetOrdinal("Nombre")),
+                                Description = reader.GetString(reader.GetOrdinal("Descripcion")),
+                                StartDate = reader.GetDateTime(reader.GetOrdinal("FechaInicio")),
+                                EndDate = reader.GetDateTime(reader.GetOrdinal("FechaFinal")),
+                                Achievements = GetRuleAchievements(reader.GetInt32(reader.GetOrdinal("ID"))),
+                                Awards = GetRuleAwards(reader.GetInt32(reader.GetOrdinal("ID")))
+                            }
+                        );
+                    }
                 }
             }
 
-            connection.Close();
             return list.ToArray();
         }
 
         public void AddRuleToDepartment(int ruleID, int departmentID)
         {
-            SqlConnection connection = m_db.CreateConnection();
-
-            m_db.ExecStoredProcedure(connection, "AddRuleToDepartment",
-                new string[] { "@RuleID", "@DepartmentID" }, new object[] { ruleID, departmentID });
-
-            connection.Close();
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                m_db.ExecStoredProcedure(connection, "AddRuleToDepartment",
+                    new string[] { "@RuleID", "@DepartmentID" }, new object[] { ruleID, departmentID });
+            }
         }
 
         public int CreateRule(Rule rule)
         {
-            SqlConnection connection = m_db.CreateConnection();
-
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "AddRule",
-                new string[] { "@Name", "@Description", "@StartDate", "@EndDate", "@CreationDate", "@CreatorID" },
-                new object[] { rule.Name, rule.Description, rule.StartDate, rule.EndDate, rule.CreationDate, rule.Creator.ID });
-
             int ruleID = 0;
-            if (reader.HasRows)
+
+            using (SqlConnection p_connection = m_db.CreateConnection())
             {
-                while (reader.Read())
+                SqlDataReader reader = m_db.ExecStoredProcedure(p_connection, "AddRule",
+                    new string[] { "@Name", "@Description", "@StartDate", "@EndDate", "@CreationDate", "@CreatorID" },
+                    new object[] { rule.Name, rule.Description, rule.StartDate, rule.EndDate, rule.CreationDate, rule.Creator.ID });
+
+
+                if (reader.HasRows)
                 {
+                    reader.Read();
                     ruleID = Parse_Int(reader["RuleID"], 0);
+                }
+                
+                foreach (AchievementPerRule ach in rule.Achievements)
+                {
+                    using (SqlConnection s_connection = m_db.CreateConnection())
+                    {
+                        m_db.ExecStoredProcedure(s_connection, "AddAchievementToRule",
+                        new string[] { "@RuleID", "@AchievementID", "@CreatorID", "@Amount", "@CreationDate" },
+                        new object[] { ruleID, ach.Achievement.ID, rule.Creator.ID, ach.Amount, ach.CreationDate });
+                    }
+                }
+
+                foreach (Award award in rule.Awards)
+                {
+                    using (SqlConnection s_connection = m_db.CreateConnection())
+                    {
+                        m_db.ExecStoredProcedure(s_connection, "AddAwardToRule",
+                        new string[] { "@RuleID", "@AwardID" },
+                        new object[] { ruleID, award.ID });
+                    }
                 }
             }
 
-            foreach (AchievementPerRule ach in rule.Achievements)
-            {
-                SqlConnection connection2 = m_db.CreateConnection();
-                m_db.ExecStoredProcedure(connection2, "AddAchievementToRule",
-                new string[] { "@RuleID", "@AchievementID", "@CreatorID", "@Amount", "@CreationDate" },
-                new object[] { ruleID, ach.Achievement.ID, ach.Creator.ID, ach.Amount, ach.CreationDate });
-                connection2.Close();
-            }
-
-            foreach (Award award in rule.Awards)
-            {
-                SqlConnection connection2 = m_db.CreateConnection();
-                m_db.ExecStoredProcedure(connection2, "AddAwardToRule",
-                new string[] { "@RuleID", "@AwardID" },
-                new object[] { ruleID, award.ID });
-                connection2.Close();
-            }
-
-            connection.Close();
             return ruleID;
         }
 
         public void DeleteRuleFromDepartment(int ruleID, int departmentID)
         {
-            SqlConnection connection = m_db.CreateConnection();
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                m_db.ExecStoredProcedure(connection, "DeleteRuleFromDepartment",
+                    new string[] { "@RuleID", "@DepartmentID" }, new object[] { ruleID, departmentID });
+            }
+        }
 
-            m_db.ExecStoredProcedure(connection, "DeleteRuleFromDepartment",
-                new string[] { "@RuleID", "@DepartmentID" }, new object[] { ruleID, departmentID });
+        public AchievementPerUser[] GetUserAchievements(string username)
+        {
+            List<AchievementPerUser> list = new List<AchievementPerUser>();
 
-            connection.Close();
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetUserAchievements",
+                    new string[] { "@Username" }, new object[] { username });
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(
+                            new AchievementPerUser()
+                            {
+                                Achievement = new Achievement()
+                                {
+                                    ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                    Name = reader.GetString(reader.GetOrdinal("Nombre")),
+                                    Description = reader.GetString(reader.GetOrdinal("Descripcion")),
+                                    StartDate = reader.GetDateTime(reader.GetOrdinal("FechaInicio")),
+                                    EndDate = reader.GetDateTime(reader.GetOrdinal("FechaFinal")),
+                                    MaxAmount = reader.GetInt32(reader.GetOrdinal("NumMaximo"))
+                                },
+                                Detail = reader.GetString(reader.GetOrdinal("Detalle"))
+                            }
+                        );
+                    }
+                }
+            }
+
+            return list.ToArray();
+        }
+
+        public void AddAchievementToUser(AchievementPerUser achievement, string username)
+        {
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "AddAchievementToUser",
+                    new string[] { "@AchievementID", "@Username", "@CreatorUsername", "@Details" }, 
+                    new object[] { achievement.Achievement.ID, username, achievement.Creator.Username, achievement.Detail });
+            }
+        }
+
+        public void RemoveAchievementFromUser(AchievementPerUser achievement, string username)
+        {
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "RemoveAchievementFromUser",
+                    new string[] { "@AchievementID", "@Username" },
+                    new object[] { achievement.Achievement.ID, username } );
+            }
         }
 
         public void UpdateRule(Rule rule)
         {
-            SqlConnection connection = m_db.CreateConnection();
-
-            m_db.ExecStoredProcedure(connection, "UpdateRule",
-                new string[] { "@RuleID", "@Name", "@Description", "@StartDate", "@EndDate" },
-                new object[] { rule.ID, rule.Name, rule.Description, rule.StartDate, rule.EndDate });
-
-            foreach (AchievementPerRule ach in rule.Achievements)
+            using (SqlConnection p_connection = m_db.CreateConnection())
             {
-                SqlConnection connection2 = m_db.CreateConnection();
-                m_db.ExecStoredProcedure(connection2, "AddAchievementToRule",
-                new string[] { "@RuleID", "@AchievementID", "@CreatorID", "@Amount", "@CreationDate" },
-                new object[] { rule.ID, ach.Achievement.ID, ach.Creator.ID, ach.Amount, ach.CreationDate });
-                connection2.Close();
-            }
+                m_db.ExecStoredProcedure(p_connection, "UpdateRule",
+                    new string[] { "@RuleID", "@Name", "@Description", "@StartDate", "@EndDate" },
+                    new object[] { rule.ID, rule.Name, rule.Description, rule.StartDate, rule.EndDate });
 
-            foreach (Award award in rule.Awards)
-            {
-                SqlConnection connection2 = m_db.CreateConnection();
-                m_db.ExecStoredProcedure(connection2, "AddAwardToRule",
-                new string[] { "@RuleID", "@AwardID" },
-                new object[] { rule.ID, award.ID });
-                connection2.Close();
-            }
+                foreach (AchievementPerRule ach in rule.Achievements)
+                {
+                    using (SqlConnection s_connection = m_db.CreateConnection())
+                    {
+                        m_db.ExecStoredProcedure(s_connection, "AddAchievementToRule",
+                        new string[] { "@RuleID", "@AchievementID", "@CreatorID", "@Amount", "@CreationDate" },
+                        new object[] { rule.ID, ach.Achievement.ID, ach.Creator.ID, ach.Amount, ach.CreationDate });
+                    }
+                }
 
-            connection.Close();
+                foreach (Award award in rule.Awards)
+                {
+                    using (SqlConnection s_connection = m_db.CreateConnection())
+                    {
+                        m_db.ExecStoredProcedure(s_connection, "AddAwardToRule",
+                        new string[] { "@RuleID", "@AwardID" },
+                        new object[] { rule.ID, award.ID });
+                    }
+                }
+            }
         }
 
         private AchievementPerRule[] GetRuleAchievements(int ruleID)
         {
-            SqlConnection connection = m_db.CreateConnection();
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetRuleAchievements",
-                new string[] { "@RuleID" }, new object[] { ruleID });
             List<AchievementPerRule> list = new List<AchievementPerRule>();
 
-            if (reader.HasRows)
+            using (SqlConnection connection = m_db.CreateConnection())
             {
-                while (reader.Read())
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetRuleAchievements",
+                    new string[] { "@RuleID" }, new object[] { ruleID });
+
+                if (reader.HasRows)
                 {
-                    list.Add(
-                        new AchievementPerRule()
-                        {
-                            Achievement = GetAchievementByID( reader.GetInt32(reader.GetOrdinal("ID")) ),
-                            Amount =  Parse_Int(reader["Cantidad"], 0)
-                        }
-                    );
+                    while (reader.Read())
+                    {
+                        list.Add(
+                            new AchievementPerRule()
+                            {
+                                Achievement = new Achievement()
+                                {
+                                    ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                    Name = reader.GetString(reader.GetOrdinal("Nombre")),
+                                    Description = reader.GetString(reader.GetOrdinal("Descripcion")),
+                                    StartDate = reader.GetDateTime(reader.GetOrdinal("FechaInicio")),
+                                    EndDate = reader.GetDateTime(reader.GetOrdinal("FechaFinal")),
+                                    MaxAmount = reader.GetInt32(reader.GetOrdinal("NumMaximo"))
+                                },
+                                Amount = reader.GetInt32(reader.GetOrdinal("Cantidad"))
+                            }
+                        );
+                    }
                 }
             }
 
-            connection.Close();
             return list.ToArray();
         }
 
         private Award[] GetRuleAwards(int ruleID)
         {
-            SqlConnection connection = m_db.CreateConnection();
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetRuleAwards",
-                new string[] { "@RuleID" }, new object[] { ruleID });
             List<Award> list = new List<Award>();
 
-            if (reader.HasRows)
+            using (SqlConnection connection = m_db.CreateConnection())
             {
-                while (reader.Read())
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetRuleAwards",
+                    new string[] { "@RuleID" }, new object[] { ruleID });
+
+                if (reader.HasRows)
                 {
-                    list.Add(GetAwardByID(reader.GetInt32(reader.GetOrdinal("ID"))));
+                    while (reader.Read())
+                    {
+                        list.Add(
+                            new Award()
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                Name = reader.GetString(reader.GetOrdinal("Nombre")),
+                                Description = reader.GetString(reader.GetOrdinal("Descripcion")),
+                                PhotoUrl = reader.GetString(reader.GetOrdinal("Foto")),
+                                Amount = reader.GetInt32(reader.GetOrdinal("Cantidad")),
+                                Money = reader.GetDouble(reader.GetOrdinal("Monto")),
+                                Type = reader.GetString(reader.GetOrdinal("Tipo")),
+                                Currency = GetCurrencyByName(reader.GetString(reader.GetOrdinal("Moneda"))),
+                            }    
+                        );
+                    }
                 }
             }
 
-            connection.Close();
             return list.ToArray();
-        }
-
-        private Achievement GetAchievementByID(int achievementID)
-        {
-            SqlConnection connection = m_db.CreateConnection();
-
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetAchievementByID",
-                new string[] { "@AchievementID" }, new object[] { achievementID });
-
-            Achievement result = new Achievement();
-
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    result = new Achievement()
-                    {
-                        ID = reader.GetInt32(reader.GetOrdinal("ID")),
-                        Name = Parse_String(reader["Nombre"]),
-                        Description = Parse_String(reader["Descripcion"]),
-                        StartDate = Parse_DateTime(reader["FechaInicio"]),
-                        EndDate = Parse_DateTime(reader["FechaFinal"]),
-                        MaxAmount = Parse_Int(reader["NumMaximo"], int.MaxValue)
-                    };
-                }
-            }
-
-            connection.Close();
-            return result;
-        }
-
-        private Award GetAwardByID(int awardID)
-        {
-            SqlConnection connection = m_db.CreateConnection();
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetAwardByID",
-                new string[] { "@AwardID" }, new object[] { awardID });
-            Award result = new Award();
-
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    result = new Award()
-                    {
-                        ID = reader.GetInt32(reader.GetOrdinal("ID")),
-                        Name = Parse_String(reader["Nombre"]),
-                        Description = Parse_String(reader["Descripcion"]),
-                        PhotoUrl = Parse_String(reader["Foto"]),
-                        Amount = Parse_Int(reader["Cantidad"], 0),
-                        Money = Parse_Double(reader["Monto"], 0.0),
-                        Type = Parse_String(reader["Tipo"]),
-                        Currency = GetCurrencyByName( Parse_String(reader["Moneda"]) ),
-                    };
-                }
-            }
-
-            connection.Close();
-            return result;
         }
 
         private Currency GetCurrencyByName(string name)
         {
-            SqlConnection connection = m_db.CreateConnection();
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetCurrencyByName",
-                new string[] { "@Name" }, new object[] { name });
-            Currency result = new Currency();
+            Currency result = null;
 
-            if (reader.HasRows)
+            using (SqlConnection connection = m_db.CreateConnection())
             {
-                while (reader.Read())
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetCurrencyByName",
+                    new string[] { "@Name" }, new object[] { name });
+                
+                if (reader.HasRows)
                 {
+                    reader.Read();
                     result = new Currency()
                     {
-                        ID = Parse_Int(reader["ID"],0),
-                        Name =  Parse_String(reader["Nombre"]),
-                        Code = Parse_String(reader["Codigo"]),
-                        Symbol = Parse_String(reader["Simbolo"])
+                        ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                        Name = reader.GetString(reader.GetOrdinal("Nombre")),
+                        Code = reader.GetString(reader.GetOrdinal("Codigo")),
+                        Symbol = reader.GetString(reader.GetOrdinal("Simbolo"))
                     };
                 }
             }
 
-            connection.Close();
             return result;
         }
 
         public string[] GetAllUsernames()
         {
-            SqlConnection connection = m_db.CreateConnection();
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetAllUsernames");
             List<string> list = new List<string>();
 
-            if (reader.HasRows)
+            using (SqlConnection connection = m_db.CreateConnection())
             {
-                while (reader.Read())
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetAllUsernames");
+
+                if (reader.HasRows)
                 {
-                    list.Add(reader.GetString(0));
+                    while (reader.Read())
+                    {
+                        list.Add(reader.GetString(reader.GetOrdinal("Username")));
+                    }
                 }
             }
 
-            connection.Close();
             return list.ToArray();
         }
 
         public User GetUserByUsername(string username)
         {
-            SqlConnection connection = m_db.CreateConnection();
-            SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetUser", 
-                new string[] { "@Username" }, new object[] { "admin" });
-            User user = new User();
+            User user = null;
 
-            if (reader.HasRows)
+            using (SqlConnection connection = m_db.CreateConnection())
             {
-                while (reader.Read())
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetUserByUsername",
+                    new string[] { "@Username" }, new object[] { username });
+                
+                if (reader.HasRows)
                 {
-                    user.Name = reader.GetString(reader.GetOrdinal("Nombre"));
-                    user.Username = reader.GetString(reader.GetOrdinal("Username"));
+                    reader.Read();
+                    user = new User()
+                    {
+                        ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                        Name = reader.GetString(reader.GetOrdinal("Nombre")),
+                        LastName1 = reader.GetString(reader.GetOrdinal("Apellido1")),
+                        LastName2 = reader.GetString(reader.GetOrdinal("Apellido2")),
+                        Username = reader.GetString(reader.GetOrdinal("Username")),
+                        PhotoUrl = reader.GetString(reader.GetOrdinal("Foto")),
+                        Genre = reader.GetString(reader.GetOrdinal("Genero"))
+                    };
                 }
             }
 
-            connection.Close();
             return user;
+        }
+
+        public string[] GetAwardTypes()
+        {
+            List<string> list = new List<string>();
+
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetAwardTypes");
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(reader.GetString(reader.GetOrdinal("Tipo")));
+                    }
+                }
+            }
+
+            return list.ToArray();
+        }
+
+        public bool CheckAuthentication(string username, string password_hash)
+        {
+            bool isValid = false;
+
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "CheckUserAuthentication",
+                    new string[] { "@Username", "@Password" }, new object[] { username, password_hash });
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    isValid = reader.GetBoolean(reader.GetOrdinal("IsValid"));
+                }
+            }
+
+            return isValid;
+        }
+
+        public Currency[] GetAllCurrency()
+        {
+            List<Currency> list = new List<Currency>();
+
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetAllCurrency");
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(
+                            new Currency()
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                Name = reader.GetString(reader.GetOrdinal("Nombre")),
+                                Code = reader.GetString(reader.GetOrdinal("Codigo")),
+                                Symbol = reader.GetString(reader.GetOrdinal("Simbolo"))
+                            }
+                        );
+                    }
+                }
+            }
+
+            return list.ToArray();
+        }
+
+        public Permission[] GetUserPermissions(string username)
+        {
+            List<Permission> list = new List<Permission>();
+
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetUserPermissions",
+                    new string[]{ "@Username" }, new object[] { username });
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(
+                            new Permission()
+                            {
+                                Code = reader.GetString(reader.GetOrdinal("Codigo")),
+                                Description = reader.GetString(reader.GetOrdinal("Descripcion")),
+                            }
+                        );
+                    }
+                }
+            }
+
+            return list.ToArray();
         }
 
         private string Parse_String(object value)
