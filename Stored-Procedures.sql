@@ -8,7 +8,8 @@ GO
 CREATE PROCEDURE [dbo].[GetDepartments]
 AS
 BEGIN
-	SELECT D.idDepartamento AS ID, D.Nombre AS Departamento FROM Departamento AS D;
+	SELECT D.idDepartamento AS ID, D.Nombre AS Departamento FROM Departamento AS D
+	WHERE D.Nombre != 'Global';
 END;
 GO
 
@@ -333,8 +334,8 @@ CREATE PROCEDURE [dbo].[AddAchievementToUser]
 	@Details varchar(200)
 AS
 BEGIN
-	DECLARE @CreatorID int = SELECT @CreatorID = U.idUsuario FROM Usuario AS U WHERE U.Username = @CreatorUsername;
-	DECLARE @UserID int = SELECT @UserID = U.idUsuario FROM Usuario AS U WHERE U.Username = @Username;
+	DECLARE @CreatorID int = (SELECT U.idUsuario FROM Usuario AS U WHERE U.Username = @CreatorUsername);
+	DECLARE @UserID int = (SELECT U.idUsuario FROM Usuario AS U WHERE U.Username = @Username);
 	INSERT INTO LogrosPorUsuario (fk_idLogro, fk_idCreador, fk_idUsuario, Detalles, FechaObtencion)
 	VALUES (@AchievementID, @CreatorID, @UserID, @Details, GETDATE())
 END;
