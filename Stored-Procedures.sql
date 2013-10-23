@@ -3,7 +3,7 @@ GO
 
 -- =============================================
 -- Author:		Jose Garcia
--- Description:	Obtiene todos los departamentos.
+-- Description:	Obtiene el nombre de todos los departamentos.
 -- =============================================
 CREATE PROCEDURE [dbo].[GetDepartments]
 AS
@@ -22,9 +22,10 @@ AS
 BEGIN
 	SELECT R.idRegla AS ID, R.Nombre, ISNULL(R.Descripcion, '') AS Descripcion, R.FechaInicio, 
 	ISNULL(R.FechaFinal, GETDATE()) AS FechaFinal FROM Regla AS R
-	INNER JOIN Departamento AS D ON D.idDepartamento = @DepartmentID OR D.Nombre = 'Global'
 	INNER JOIN ReglasPorDepartamento AS RPD
-	ON RPD.fk_idDepartamento = D.idDepartamento AND RPD.fk_idRegla = R.idRegla;
+	ON RPD.fk_idRegla = R.idRegla AND RPD.fk_idDepartamento = @DepartmentID
+	INNER JOIN EstadoRegla AS ER ON R.fk_idEstadoRegla = ER.idEstadoRegla
+	WHERE ER.Estado = 'Activo';
 END;
 GO
 
@@ -41,13 +42,15 @@ BEGIN
 	FROM Logros AS L
 	INNER JOIN Departamento AS D ON D.idDepartamento = @DepartmentID OR D.Nombre = 'Global'
 	INNER JOIN LogrosPorDepartamento AS LPD 
-	ON LPD.fk_idDepartamento = D.idDepartamento AND LPD.fk_idLogro = L.idLogro;
+	ON LPD.fk_idDepartamento = D.idDepartamento AND LPD.fk_idLogro = L.idLogro
+	INNER JOIN EstadoLogro AS EL ON EL.idEstadoLogro = L.fk_idEstadoLogro
+	WHERE EL.Estado = 'Activo';
 END;
 GO
 
 -- =============================================
 -- Author:		Jose Garcia
--- Description:	Obtiene todos los premios de una regla.
+-- Description:	Obtiene todos los premios de un departamento.
 -- =============================================
 CREATE PROCEDURE [dbo].[GetDepartmentAwards]
 	@DepartmentID int
@@ -60,7 +63,9 @@ BEGIN
 	INNER JOIN Moneda AS M ON M.idMoneda = P.fk_idMoneda
 	INNER JOIN Departamento AS D ON D.idDepartamento = @DepartmentID OR D.Nombre = 'Global'
 	INNER JOIN PremiosPorDepartamento AS PPD
-	ON PPD.fk_idDepartamento = D.idDepartamento AND PPD.fk_idPremio = P.idPremio;
+	ON PPD.fk_idDepartamento = D.idDepartamento AND PPD.fk_idPremio = P.idPremio
+	INNER JOIN EstadoPremio AS EP ON EP.idEstadoPremio = P.fk_idTipoPremio
+	WHERE EP.Estado = 'Activo';
 END;
 GO
 
@@ -76,7 +81,9 @@ BEGIN
 	ISNULL(L.FechaFinal, GETDATE()) AS FechaFinal, ISNULL(L.NumMaximo, 2147483647) AS NumMaximo,
 	LPR.Cantidad FROM Logros AS L
 	INNER JOIN LogrosPorRegla AS LPR
-	ON LPR.fk_idRegla = @RuleID AND LPR.fk_Logro = L.idLogro;
+	ON LPR.fk_idRegla = @RuleID AND LPR.fk_Logro = L.idLogro
+	INNER JOIN EstadoLogro AS EL ON EL.idEstadoLogro = L.fk_idEstadoLogro
+	WHERE EL.Estado = 'Activo';
 END;
 GO
 
@@ -95,6 +102,8 @@ SELECT P.idPremio AS ID, P.Titulo AS Nombre, ISNULL(P.Descripcion, '') AS Descri
 	INNER JOIN Moneda AS M ON M.idMoneda = P.fk_idMoneda
 	INNER JOIN PremiosPorRegla AS PPR
 	ON PPR.fk_idRegla = @RuleID AND PPR.fk_idPremio = P.idPremio
+	INNER JOIN EstadoPremio AS EP ON EP.idEstadoPremio = P.fk_idEstadoPremio
+	WHERE EP.Estado = 'Activo';
 END;
 GO
 
@@ -206,7 +215,7 @@ GO
 
 -- =============================================
 -- Author:		Jose Garcia
--- Description:	Busca un usuario por su username
+-- Description:	Busca un usuario por su username.
 -- =============================================
 CREATE PROCEDURE [dbo].[GetUserByUsername]
 	@Username varchar(70)
@@ -240,7 +249,7 @@ GO
 
 -- =============================================
 -- Author:		Jose Garcia
--- Description:	Obtiene todos los premios de una regla.
+-- Description:	Obtiene la informacion sobre cierta moneda.
 -- =============================================
 CREATE PROCEDURE [dbo].[GetCurrencyByName]
 	@Name varchar(50)
@@ -307,7 +316,9 @@ BEGIN
 	ISNULL(L.FechaFinal, GETDATE()) AS FechaFinal, ISNULL(L.NumMaximo, 2147483647) AS NumMaximo,
 	ISNULL(LPU.Detalles, '') AS Detalle FROM Logros AS L
 	INNER JOIN LogrosPorUsuario AS LPU ON LPU.fk_idLogro = L.idLogro
-	INNER JOIN Usuario AS U ON U.idUsuario = LPU.fk_idUsuario AND U.Username = @Username;
+	INNER JOIN EstadoLogro AS EL ON EL.idEstadoLogro = L.fk_idEstadoLogro
+	INNER JOIN Usuario AS U ON U.idUsuario = LPU.fk_idUsuario AND U.Username = @Username
+	WHERE EL.Estado = 'Activo';
 END;
 GO
 
@@ -322,10 +333,8 @@ CREATE PROCEDURE [dbo].[AddAchievementToUser]
 	@Details varchar(200)
 AS
 BEGIN
-	DECLARE @CreatorID int;
-	DECLARE @UserID int;
-	SELECT @CreatorID = U.idUsuario FROM Usuario AS U WHERE U.Username = @CreatorUsername;
-	SELECT @UserID = U.idUsuario FROM Usuario AS U WHERE U.Username = @Username;
+	DECLARE @CreatorID int = SELECT @CreatorID = U.idUsuario FROM Usuario AS U WHERE U.Username = @CreatorUsername;
+	DECLARE @UserID int = SELECT @UserID = U.idUsuario FROM Usuario AS U WHERE U.Username = @Username;
 	INSERT INTO LogrosPorUsuario (fk_idLogro, fk_idCreador, fk_idUsuario, Detalles, FechaObtencion)
 	VALUES (@AchievementID, @CreatorID, @UserID, @Details, GETDATE())
 END;
