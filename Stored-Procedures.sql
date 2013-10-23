@@ -1,8 +1,4 @@
-USE [LevelUp]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
+USE [LevelUp];
 GO
 
 -- =============================================
@@ -14,6 +10,7 @@ AS
 BEGIN
 	SELECT D.idDepartamento AS ID, D.Nombre AS Departamento FROM Departamento AS D;
 END;
+GO
 
 -- =============================================
 -- Author:		Jose Garcia
@@ -176,6 +173,7 @@ BEGIN
 	VALUES (@Name, @Description, @StartDate, @EndDate, GETDATE(), @CreatorID, 1);
 	SELECT SCOPE_IDENTITY() AS RuleID;
 END;
+GO
 
 -- =============================================
 -- Author:		Jose Garcia
