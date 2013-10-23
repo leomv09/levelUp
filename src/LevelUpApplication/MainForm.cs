@@ -203,7 +203,7 @@ namespace LevelUpApplication
             }
         }
 
-        private void UserAchievementsTextBox_KeyUp(object sender, KeyEventArgs e)
+        private void UserAchievementsTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -218,6 +218,7 @@ namespace LevelUpApplication
         {
             string username = UserAchievementsTextBox.Text;
             this.SelectedUser = null;
+            ClearAchievements();
 
             if (!String.IsNullOrEmpty(username))
             {

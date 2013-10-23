@@ -32,10 +32,6 @@
             this.DepartamentRuleLabel = new System.Windows.Forms.Label();
             this.DepartamentRuleComboBox = new System.Windows.Forms.ComboBox();
             this.RulesDataGridView = new System.Windows.Forms.DataGridView();
-            this.RulesColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RulesColumnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RulesColumnStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RulesColumnEndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TapControl = new System.Windows.Forms.TabControl();
             this.RulesTap = new System.Windows.Forms.TabPage();
             this.ViewRuleButton = new System.Windows.Forms.Button();
@@ -46,15 +42,19 @@
             this.RemoveAchievementButton = new System.Windows.Forms.Button();
             this.SearchUserButton = new System.Windows.Forms.Button();
             this.AchievementsDataGridView = new System.Windows.Forms.DataGridView();
+            this.EnabledCheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.AchievementsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AchievementsColumnDetails = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserAchievementsTextBox = new System.Windows.Forms.TextBox();
             this.UserAchievementsLabel = new System.Windows.Forms.Label();
             this.FileButton = new System.Windows.Forms.ToolStripMenuItem();
             this.LogoutButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitButton = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
-            this.EnabledCheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.AchievementsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AchievementsColumnDetails = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RulesColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RulesColumnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RulesColumnStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RulesColumnEndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.RulesDataGridView)).BeginInit();
             this.TapControl.SuspendLayout();
             this.RulesTap.SuspendLayout();
@@ -107,34 +107,6 @@
             this.RulesDataGridView.Size = new System.Drawing.Size(892, 472);
             this.RulesDataGridView.TabIndex = 3;
             this.RulesDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RulesDataGridView_CellMouseDoubleClick);
-            // 
-            // RulesColumnName
-            // 
-            this.RulesColumnName.DataPropertyName = "Name";
-            this.RulesColumnName.HeaderText = "Nombre";
-            this.RulesColumnName.Name = "RulesColumnName";
-            this.RulesColumnName.ReadOnly = true;
-            // 
-            // RulesColumnDescripcion
-            // 
-            this.RulesColumnDescripcion.DataPropertyName = "Description";
-            this.RulesColumnDescripcion.HeaderText = "Descripción";
-            this.RulesColumnDescripcion.Name = "RulesColumnDescripcion";
-            this.RulesColumnDescripcion.ReadOnly = true;
-            // 
-            // RulesColumnStartDate
-            // 
-            this.RulesColumnStartDate.DataPropertyName = "StartDate";
-            this.RulesColumnStartDate.HeaderText = "Fecha de Inicio";
-            this.RulesColumnStartDate.Name = "RulesColumnStartDate";
-            this.RulesColumnStartDate.ReadOnly = true;
-            // 
-            // RulesColumnEndDate
-            // 
-            this.RulesColumnEndDate.DataPropertyName = "EndDate";
-            this.RulesColumnEndDate.HeaderText = "Fecha de Finalización";
-            this.RulesColumnEndDate.Name = "RulesColumnEndDate";
-            this.RulesColumnEndDate.ReadOnly = true;
             // 
             // TapControl
             // 
@@ -264,6 +236,31 @@
             this.AchievementsDataGridView.TabIndex = 4;
             this.AchievementsDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.AchievementsDataGridView_DataError);
             // 
+            // EnabledCheckBox
+            // 
+            this.EnabledCheckBox.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.EnabledCheckBox.FalseValue = "0";
+            this.EnabledCheckBox.HeaderText = "";
+            this.EnabledCheckBox.IndeterminateValue = "0";
+            this.EnabledCheckBox.Name = "EnabledCheckBox";
+            this.EnabledCheckBox.TrueValue = "1";
+            this.EnabledCheckBox.Width = 20;
+            // 
+            // AchievementsColumn
+            // 
+            this.AchievementsColumn.DataPropertyName = "Achievement";
+            this.AchievementsColumn.HeaderText = "Logro";
+            this.AchievementsColumn.Name = "AchievementsColumn";
+            this.AchievementsColumn.ReadOnly = true;
+            this.AchievementsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // AchievementsColumnDetails
+            // 
+            this.AchievementsColumnDetails.DataPropertyName = "Detail";
+            this.AchievementsColumnDetails.HeaderText = "Detalles";
+            this.AchievementsColumnDetails.Name = "AchievementsColumnDetails";
+            this.AchievementsColumnDetails.ReadOnly = true;
+            // 
             // UserAchievementsTextBox
             // 
             this.UserAchievementsTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
@@ -272,7 +269,7 @@
             this.UserAchievementsTextBox.Name = "UserAchievementsTextBox";
             this.UserAchievementsTextBox.Size = new System.Drawing.Size(246, 20);
             this.UserAchievementsTextBox.TabIndex = 1;
-            this.UserAchievementsTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UserAchievementsTextBox_KeyUp);
+            this.UserAchievementsTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserAchievementsTextBox_KeyDown);
             // 
             // UserAchievementsLabel
             // 
@@ -317,30 +314,37 @@
             this.MenuStrip.TabIndex = 2;
             this.MenuStrip.Text = "MenuStrip";
             // 
-            // EnabledCheckBox
+            // RulesColumnName
             // 
-            this.EnabledCheckBox.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.EnabledCheckBox.FalseValue = "0";
-            this.EnabledCheckBox.HeaderText = "";
-            this.EnabledCheckBox.IndeterminateValue = "0";
-            this.EnabledCheckBox.Name = "EnabledCheckBox";
-            this.EnabledCheckBox.TrueValue = "1";
-            this.EnabledCheckBox.Width = 20;
+            this.RulesColumnName.DataPropertyName = "Name";
+            this.RulesColumnName.HeaderText = "Nombre";
+            this.RulesColumnName.Name = "RulesColumnName";
+            this.RulesColumnName.ReadOnly = true;
             // 
-            // AchievementsColumn
+            // RulesColumnDescripcion
             // 
-            this.AchievementsColumn.DataPropertyName = "Achievement";
-            this.AchievementsColumn.HeaderText = "Logro";
-            this.AchievementsColumn.Name = "AchievementsColumn";
-            this.AchievementsColumn.ReadOnly = true;
-            this.AchievementsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.RulesColumnDescripcion.DataPropertyName = "Description";
+            this.RulesColumnDescripcion.HeaderText = "Descripción";
+            this.RulesColumnDescripcion.Name = "RulesColumnDescripcion";
+            this.RulesColumnDescripcion.ReadOnly = true;
             // 
-            // AchievementsColumnDetails
+            // RulesColumnStartDate
             // 
-            this.AchievementsColumnDetails.DataPropertyName = "Detail";
-            this.AchievementsColumnDetails.HeaderText = "Detalles";
-            this.AchievementsColumnDetails.Name = "AchievementsColumnDetails";
-            this.AchievementsColumnDetails.ReadOnly = true;
+            this.RulesColumnStartDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.RulesColumnStartDate.DataPropertyName = "StartDate";
+            this.RulesColumnStartDate.HeaderText = "Fecha de Inicio";
+            this.RulesColumnStartDate.Name = "RulesColumnStartDate";
+            this.RulesColumnStartDate.ReadOnly = true;
+            this.RulesColumnStartDate.Width = 150;
+            // 
+            // RulesColumnEndDate
+            // 
+            this.RulesColumnEndDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.RulesColumnEndDate.DataPropertyName = "EndDate";
+            this.RulesColumnEndDate.HeaderText = "Fecha de Finalización";
+            this.RulesColumnEndDate.Name = "RulesColumnEndDate";
+            this.RulesColumnEndDate.ReadOnly = true;
+            this.RulesColumnEndDate.Width = 150;
             // 
             // MainForm
             // 
@@ -391,14 +395,14 @@
         private System.Windows.Forms.Button SearchUserButton;
         private System.Windows.Forms.Button RemoveAchievementButton;
         private System.Windows.Forms.Button ViewRuleButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnDescripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnStartDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnEndDate;
         private System.Windows.Forms.Button AddAchievementButton;
         private System.Windows.Forms.DataGridViewCheckBoxColumn EnabledCheckBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumnDetails;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnDescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnStartDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnEndDate;
     }
 }
 
