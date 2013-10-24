@@ -117,29 +117,115 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LoginAcceptButton.Text" xml:space="preserve">
-    <value>Entrar</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Iniciar Sesión</value>
-  </data>
-  <data name="&gt;&gt;LoginAcceptButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;UsernameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="LoginAcceptButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;UsernameLabel.Name" xml:space="preserve">
-    <value>UsernameLabel</value>
-  </data>
-  <data name="LoginCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="DepartamentRuleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 16</value>
+  </data>
+  <data name="DepartamentRuleLabel.Text" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="RulesColumnName.HeaderText" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="RulesColumnDescripcion.HeaderText" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="RulesColumnStartDate.HeaderText" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="RulesColumnEndDate.HeaderText" xml:space="preserve">
+    <value>Finish Date</value>
+  </data>
+  <data name="ViewRuleButton.Text" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="RemoveRuleButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="AddRuleButton.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="RulesTap.Text" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="SelectedUserJobLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 16</value>
+  </data>
+  <data name="SelectedUserJobLabel.Text" xml:space="preserve">
+    <value>Job:</value>
+  </data>
+  <data name="SelectedUserDepartmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 16</value>
+  </data>
+  <data name="SelectedUserDepartmentLabel.Text" xml:space="preserve">
+    <value>Department:</value>
+  </data>
+  <data name="SelectedUsernameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 16</value>
+  </data>
+  <data name="SelectedUsernameLabel.Text" xml:space="preserve">
+    <value>Username:</value>
+  </data>
+  <data name="SelectedUserLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 16</value>
+  </data>
+  <data name="SelectedUserLabel.Text" xml:space="preserve">
+    <value>Selected User:</value>
+  </data>
+  <data name="AddAchievementButton.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="RemoveAchievementButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="SearchUserButton.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="AchievementsColumn.HeaderText" xml:space="preserve">
+    <value>Achievement</value>
+  </data>
+  <data name="AchievementsColumnDetails.HeaderText" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="UserAchievementsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 16</value>
+  </data>
+  <data name="UserAchievementsLabel.Text" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="AchievementsTap.Text" xml:space="preserve">
+    <value>Achievements</value>
+  </data>
+  <data name="LogoutButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="LogoutButton.Text" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="ExitButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="ExitButton.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="FileButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
+  </data>
+  <data name="FileButton.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="OptionsButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
+  </data>
+  <data name="OptionsButton.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="ToolsButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="ToolsButton.Text" xml:space="preserve">
+    <value>Tools</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAAAAAAAEAIADakwAAlgAAAICAAAABACAAKAgBAHCUAABgYAAAAQAgAKiUAACYnAEASEgAAAEA
@@ -3473,161 +3559,4 @@
         wAMAAIADAACAAwAAgAEAAIABAACAAwAAgAMAAMADAADABwAA4A8AAPgfAAD//wAA
 </value>
   </data>
-  <data name="PasswordTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 76</value>
-  </data>
-  <data name="PasswordTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 20</value>
-  </data>
-  <data name="PasswordLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 16</value>
-  </data>
-  <data name="&gt;&gt;PasswordLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;PasswordTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="PasswordLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 80</value>
-  </data>
-  <data name="&gt;&gt;LoginAcceptButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="UsernameLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="UsernameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="PasswordLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="LoginAcceptButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 36</value>
-  </data>
-  <data name="&gt;&gt;UsernameLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;UsernameTextBox.Name" xml:space="preserve">
-    <value>UsernameTextBox</value>
-  </data>
-  <data name="UsernameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="UsernameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 36</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>307, 199</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="&gt;&gt;UsernameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LoginAcceptButton.Name" xml:space="preserve">
-    <value>LoginAcceptButton</value>
-  </data>
-  <data name="&gt;&gt;PasswordLabel.Name" xml:space="preserve">
-    <value>PasswordLabel</value>
-  </data>
-  <data name="&gt;&gt;PasswordTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;UsernameLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="PasswordTextBox.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
-    <value>*</value>
-  </data>
-  <data name="&gt;&gt;LoginCancelButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LoginCancelButton.Name" xml:space="preserve">
-    <value>LoginCancelButton</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PasswordTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;PasswordLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>LoginForm</value>
-  </data>
-  <data name="&gt;&gt;PasswordLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;UsernameTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="PasswordTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="LoginCancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 36</value>
-  </data>
-  <data name="LoginAcceptButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 138</value>
-  </data>
-  <data name="PasswordLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="UsernameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="LoginCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 138</value>
-  </data>
-  <data name="&gt;&gt;LoginAcceptButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="PasswordLabel.Text" xml:space="preserve">
-    <value>Contraseña:</value>
-  </data>
-  <data name="UsernameLabel.Text" xml:space="preserve">
-    <value>Usuario:</value>
-  </data>
-  <data name="UsernameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 16</value>
-  </data>
-  <data name="PasswordLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;UsernameTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;LoginCancelButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="UsernameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 40</value>
-  </data>
-  <data name="UsernameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 20</value>
-  </data>
-  <data name="LoginCancelButton.Text" xml:space="preserve">
-    <value>Salir</value>
-  </data>
-  <data name="&gt;&gt;LoginCancelButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;PasswordTextBox.Name" xml:space="preserve">
-    <value>PasswordTextBox</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
-  </metadata>
 </root>

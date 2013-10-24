@@ -6,7 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using System.Globalization;
 using LevelUpService;
+using LevelUpApplication.Properties;
 
 namespace LevelUpApplication
 {
@@ -18,9 +21,24 @@ namespace LevelUpApplication
 
         public MainForm()
         {
+            LoadConfiguration();
             InitializeComponent();
             m_controller = Controller.Instance;
             LoadUsers();
+        }
+
+        private void LoadConfiguration()
+        {
+            string language = Settings.Default["language"].ToString();
+            if (String.IsNullOrEmpty(language))
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+                Settings.Default["language"] = "en";
+            }
+            else
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            }
         }
 
         private void Reset()
@@ -217,7 +235,11 @@ namespace LevelUpApplication
         private bool SearchUser()
         {
             string username = UserAchievementsTextBox.Text;
-            this.SelectedUser = null;
+            m_selectedUser = null;
+            this.SelectedUserName.Text = null;
+            this.SelectedUserUsername.Text = null;
+            this.SelectedUserDepartment.Text = null;
+            this.SelectedUserJob.Text = null;
             ClearAchievements();
 
             if (!String.IsNullOrEmpty(username))
@@ -226,7 +248,11 @@ namespace LevelUpApplication
 
                 if (User.IsValid(fetchedUser))
                 {
-                    this.SelectedUser = fetchedUser;
+                    m_selectedUser = fetchedUser;
+                    this.SelectedUserName.Text = fetchedUser.Name + " " + fetchedUser.LastName1 + " " + fetchedUser.LastName2;
+                    this.SelectedUserUsername.Text = fetchedUser.Username;
+                    this.SelectedUserDepartment.Text = null;
+                    this.SelectedUserJob.Text = null;
                     return true;
                 }
                 else
@@ -336,6 +362,12 @@ namespace LevelUpApplication
             }
         }
 
+        private void OptionsButton_Click(object sender, EventArgs e)
+        {
+            OptionsForm form = new OptionsForm(this);
+            form.ShowDialog(this);
+        }
+
         private void ClearDepartments()
         {
             DepartamentRuleComboBox.DataSource = null;
@@ -356,13 +388,17 @@ namespace LevelUpApplication
 
         private void ClearSelectedUser()
         {
+            m_selectedUser = null;
             UserAchievementsTextBox.Text = null;
-            SelectedUser = null;
+            SelectedUserName.Text = null;
+            SelectedUserUsername.Text = null;
+            SelectedUserDepartment.Text = null;
+            SelectedUserJob.Text = null;
         }
 
         private void ClearLoggedUser()
         {
-            LoggedUser = null;
+            m_loggedUser = null;
         }
 
         private Rule[] Rules
@@ -441,16 +477,14 @@ namespace LevelUpApplication
             }
         }
 
-        private User SelectedUser
+        public User SelectedUser
         {
             get { return m_selectedUser; }
-            set { m_selectedUser = value; }
         }
 
-        private User LoggedUser
+        public User LoggedUser
         {
             get { return m_loggedUser; }
-            set { m_loggedUser = value; }
         }
 
         private void AchievementsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) { }

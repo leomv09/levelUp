@@ -50,161 +50,105 @@
             // 
             // NameLabel
             // 
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameLabel.Location = new System.Drawing.Point(12, 24);
+            resources.ApplyResources(this.NameLabel, "NameLabel");
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(57, 16);
-            this.NameLabel.TabIndex = 0;
-            this.NameLabel.Text = "Nombre";
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(12, 43);
+            resources.ApplyResources(this.NameTextBox, "NameTextBox");
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.ReadOnly = true;
-            this.NameTextBox.Size = new System.Drawing.Size(247, 20);
-            this.NameTextBox.TabIndex = 1;
             // 
             // PhotoPictureBox
             // 
-            this.PhotoPictureBox.Location = new System.Drawing.Point(278, 24);
+            resources.ApplyResources(this.PhotoPictureBox, "PhotoPictureBox");
             this.PhotoPictureBox.Name = "PhotoPictureBox";
-            this.PhotoPictureBox.Size = new System.Drawing.Size(150, 126);
-            this.PhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PhotoPictureBox.TabIndex = 2;
             this.PhotoPictureBox.TabStop = false;
+            // 
+            // OpenFileDialog
+            // 
+            resources.ApplyResources(this.OpenFileDialog, "OpenFileDialog");
             // 
             // DescriptionLabel
             // 
-            this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DescriptionLabel.Location = new System.Drawing.Point(12, 85);
+            resources.ApplyResources(this.DescriptionLabel, "DescriptionLabel");
             this.DescriptionLabel.Name = "DescriptionLabel";
-            this.DescriptionLabel.Size = new System.Drawing.Size(80, 16);
-            this.DescriptionLabel.TabIndex = 3;
-            this.DescriptionLabel.Text = "Descripcion";
             // 
             // DescriptionTextBox
             // 
-            this.DescriptionTextBox.Location = new System.Drawing.Point(15, 104);
+            resources.ApplyResources(this.DescriptionTextBox, "DescriptionTextBox");
             this.DescriptionTextBox.Name = "DescriptionTextBox";
             this.DescriptionTextBox.ReadOnly = true;
-            this.DescriptionTextBox.Size = new System.Drawing.Size(244, 96);
-            this.DescriptionTextBox.TabIndex = 4;
-            this.DescriptionTextBox.Text = "";
             // 
             // TypeComboBox
             // 
-            this.TypeComboBox.Enabled = false;
+            resources.ApplyResources(this.TypeComboBox, "TypeComboBox");
             this.TypeComboBox.FormattingEnabled = true;
-            this.TypeComboBox.Location = new System.Drawing.Point(15, 242);
             this.TypeComboBox.Name = "TypeComboBox";
-            this.TypeComboBox.Size = new System.Drawing.Size(244, 21);
-            this.TypeComboBox.TabIndex = 5;
             this.TypeComboBox.TextChanged += new System.EventHandler(this.TypeComboBox_TextChanged);
             // 
             // TypeLabel
             // 
-            this.TypeLabel.AutoSize = true;
-            this.TypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TypeLabel.Location = new System.Drawing.Point(12, 223);
+            resources.ApplyResources(this.TypeLabel, "TypeLabel");
             this.TypeLabel.Name = "TypeLabel";
-            this.TypeLabel.Size = new System.Drawing.Size(36, 16);
-            this.TypeLabel.TabIndex = 6;
-            this.TypeLabel.Text = "Tipo";
             // 
             // DetailLabel
             // 
-            this.DetailLabel.AutoSize = true;
-            this.DetailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DetailLabel.Location = new System.Drawing.Point(275, 223);
+            resources.ApplyResources(this.DetailLabel, "DetailLabel");
             this.DetailLabel.Name = "DetailLabel";
-            this.DetailLabel.Size = new System.Drawing.Size(51, 16);
-            this.DetailLabel.TabIndex = 7;
-            this.DetailLabel.Text = "Detalle";
-            this.DetailLabel.Visible = false;
             // 
             // DetailTextBox
             // 
-            this.DetailTextBox.Location = new System.Drawing.Point(278, 243);
+            resources.ApplyResources(this.DetailTextBox, "DetailTextBox");
             this.DetailTextBox.Name = "DetailTextBox";
             this.DetailTextBox.ReadOnly = true;
-            this.DetailTextBox.Size = new System.Drawing.Size(144, 20);
-            this.DetailTextBox.TabIndex = 8;
-            this.DetailTextBox.Visible = false;
             // 
             // CurrencyLabel
             // 
-            this.CurrencyLabel.AutoSize = true;
-            this.CurrencyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CurrencyLabel.Location = new System.Drawing.Point(12, 282);
+            resources.ApplyResources(this.CurrencyLabel, "CurrencyLabel");
             this.CurrencyLabel.Name = "CurrencyLabel";
-            this.CurrencyLabel.Size = new System.Drawing.Size(58, 16);
-            this.CurrencyLabel.TabIndex = 9;
-            this.CurrencyLabel.Text = "Moneda";
-            this.CurrencyLabel.Visible = false;
             // 
             // CurrencyComboBox
             // 
-            this.CurrencyComboBox.Enabled = false;
+            resources.ApplyResources(this.CurrencyComboBox, "CurrencyComboBox");
             this.CurrencyComboBox.FormattingEnabled = true;
-            this.CurrencyComboBox.Location = new System.Drawing.Point(12, 301);
             this.CurrencyComboBox.Name = "CurrencyComboBox";
-            this.CurrencyComboBox.Size = new System.Drawing.Size(248, 21);
-            this.CurrencyComboBox.TabIndex = 10;
-            this.CurrencyComboBox.Visible = false;
             // 
             // AwardAcceptButton
             // 
-            this.AwardAcceptButton.Location = new System.Drawing.Point(191, 345);
+            resources.ApplyResources(this.AwardAcceptButton, "AwardAcceptButton");
             this.AwardAcceptButton.Name = "AwardAcceptButton";
-            this.AwardAcceptButton.Size = new System.Drawing.Size(75, 23);
-            this.AwardAcceptButton.TabIndex = 11;
-            this.AwardAcceptButton.Text = "Aceptar";
             this.AwardAcceptButton.UseVisualStyleBackColor = true;
             this.AwardAcceptButton.Click += new System.EventHandler(this.AcceptButton_Click);
             // 
             // AwardCancelButton
             // 
+            resources.ApplyResources(this.AwardCancelButton, "AwardCancelButton");
             this.AwardCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.AwardCancelButton.Location = new System.Drawing.Point(353, 345);
             this.AwardCancelButton.Name = "AwardCancelButton";
-            this.AwardCancelButton.Size = new System.Drawing.Size(75, 23);
-            this.AwardCancelButton.TabIndex = 12;
-            this.AwardCancelButton.Text = "Cancelar";
             this.AwardCancelButton.UseVisualStyleBackColor = true;
             this.AwardCancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // AwardApplyButton
             // 
-            this.AwardApplyButton.Enabled = false;
-            this.AwardApplyButton.Location = new System.Drawing.Point(272, 345);
+            resources.ApplyResources(this.AwardApplyButton, "AwardApplyButton");
             this.AwardApplyButton.Name = "AwardApplyButton";
-            this.AwardApplyButton.Size = new System.Drawing.Size(75, 23);
-            this.AwardApplyButton.TabIndex = 13;
-            this.AwardApplyButton.Text = "Aplicar";
             this.AwardApplyButton.UseVisualStyleBackColor = true;
             this.AwardApplyButton.Click += new System.EventHandler(this.ApplyButton_Click);
             // 
             // FileSelectButton
             // 
-            this.FileSelectButton.Enabled = false;
-            this.FileSelectButton.Location = new System.Drawing.Point(278, 156);
+            resources.ApplyResources(this.FileSelectButton, "FileSelectButton");
             this.FileSelectButton.Name = "FileSelectButton";
-            this.FileSelectButton.Size = new System.Drawing.Size(150, 23);
-            this.FileSelectButton.TabIndex = 14;
-            this.FileSelectButton.Text = "Selecionar Imagen";
             this.FileSelectButton.UseVisualStyleBackColor = true;
             this.FileSelectButton.Click += new System.EventHandler(this.FileSelectButton_Click);
             // 
             // AwardDetailsForm
             // 
             this.AcceptButton = this.AwardAcceptButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.AwardCancelButton;
-            this.ClientSize = new System.Drawing.Size(442, 391);
             this.Controls.Add(this.FileSelectButton);
             this.Controls.Add(this.AwardApplyButton);
             this.Controls.Add(this.AwardCancelButton);
@@ -221,10 +165,8 @@
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.NameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "AwardDetailsForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             ((System.ComponentModel.ISupportInitialize)(this.PhotoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

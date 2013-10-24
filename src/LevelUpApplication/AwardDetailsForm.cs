@@ -235,7 +235,6 @@ namespace LevelUpApplication
             this.Size = new Size(458, 430);
             CurrencyVisible(true);
             DetailVisible(true);
-            DetailLabel.Text = "Monto";
             ChangeVerticalButtonsLocation(345);
         }
 
@@ -244,7 +243,6 @@ namespace LevelUpApplication
             this.Size = new Size(458, 385);
             CurrencyVisible(false);
             DetailVisible(true);
-            DetailLabel.Text = "Cantidad";
             ChangeVerticalButtonsLocation(301);
         }
 

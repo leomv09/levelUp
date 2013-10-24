@@ -51,6 +51,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
@@ -90,6 +91,12 @@
     </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="Functions.cs" />
+    <Compile Include="OptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OptionsForm.Designer.cs">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RuleDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,17 +120,92 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddAchievementForm.en.resx">
+      <DependentUpon>AddAchievementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddAchievementForm.es.resx">
+      <DependentUpon>AddAchievementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddAchievementForm.fr.resx">
+      <DependentUpon>AddAchievementForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddAchievementForm.resx">
       <DependentUpon>AddAchievementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddAchievementPerUserForm.en.resx">
+      <DependentUpon>AddAchievementPerUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddAchievementPerUserForm.es.resx">
+      <DependentUpon>AddAchievementPerUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddAchievementPerUserForm.fr.resx">
+      <DependentUpon>AddAchievementPerUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddAchievementPerUserForm.resx">
       <DependentUpon>AddAchievementPerUserForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddAwardForm.en.resx">
+      <DependentUpon>AddAwardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddAwardForm.es.resx">
+      <DependentUpon>AddAwardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddAwardForm.fr.resx">
+      <DependentUpon>AddAwardForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddAwardForm.resx">
       <DependentUpon>AddAwardForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AwardDetailsForm.en.resx">
+      <DependentUpon>AwardDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AwardDetailsForm.es.resx">
+      <DependentUpon>AwardDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AwardDetailsForm.fr.resx">
+      <DependentUpon>AwardDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AwardDetailsForm.resx">
       <DependentUpon>AwardDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.en.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.es.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.fr.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.en.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.es.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.fr.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionsForm.en.resx">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionsForm.es.resx">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionsForm.fr.resx">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionsForm.resx">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RuleDetailsForm.en.resx">
+      <DependentUpon>RuleDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RuleDetailsForm.es.resx">
+      <DependentUpon>RuleDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RuleDetailsForm.fr.resx">
+      <DependentUpon>RuleDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RuleDetailsForm.resx">
       <DependentUpon>RuleDetailsForm.cs</DependentUpon>

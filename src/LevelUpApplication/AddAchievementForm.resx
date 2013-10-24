@@ -117,7 +117,93 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;AcceptAchievementButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="AchievementLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 13</value>
+  </data>
+  <data name="&gt;&gt;AchievementLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CancelAchievementButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="AchievementLabel.Text" xml:space="preserve">
+    <value>Logro</value>
+  </data>
+  <data name="&gt;&gt;AcceptAchievementButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="AchievementComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 41</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AchievementLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>397, 111</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AddAchievementForm</value>
+  </data>
+  <data name="&gt;&gt;AchievementLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="AchievementLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="CancelAchievementButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CancelAchievementButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="AchievementLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 16</value>
+  </data>
+  <data name="AcceptAchievementButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="AcceptAchievementButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 73</value>
+  </data>
+  <data name="CancelAchievementButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>314, 73</value>
+  </data>
+  <data name="AchievementComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>373, 21</value>
+  </data>
+  <data name="&gt;&gt;AcceptAchievementButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="AcceptAchievementButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;AchievementComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CancelAchievementButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AchievementComboBox.Name" xml:space="preserve">
+    <value>AchievementComboBox</value>
+  </data>
+  <data name="AchievementLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;CancelAchievementButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAAAAAAAEAIADakwAAlgAAAICAAAABACAAKAgBAHCUAABgYAAAAQAgAKiUAACYnAEASEgAAAEA
@@ -3451,4 +3537,40 @@
         wAMAAIADAACAAwAAgAEAAIABAACAAwAAgAMAAMADAADABwAA4A8AAPgfAAD//wAA
 </value>
   </data>
+  <data name="&gt;&gt;AchievementComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AchievementLabel.Name" xml:space="preserve">
+    <value>AchievementLabel</value>
+  </data>
+  <data name="&gt;&gt;AchievementComboBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="AchievementComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;AchievementLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="CancelAchievementButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;AcceptAchievementButton.Name" xml:space="preserve">
+    <value>AcceptAchievementButton</value>
+  </data>
+  <data name="&gt;&gt;CancelAchievementButton.Name" xml:space="preserve">
+    <value>CancelAchievementButton</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="AcceptAchievementButton.Text" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>en</value>
+  </metadata>
 </root>
