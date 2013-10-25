@@ -39,29 +39,6 @@ ORDER BY NEWID();
 
 
 -- -------------------------------------------------------------------------------------------
--- Creación del CSV
--- -------------------------------------------------------------------------------------------
--- Las primeras 3 estrofas son instrucciones de configuracion.
--- 
-
-EXECUTE SP_CONFIGURE 'show advanced options', 1
-RECONFIGURE WITH OVERRIDE
-GO
-
-EXECUTE SP_CONFIGURE 'xp_cmdshell', '1'
-RECONFIGURE WITH OVERRIDE
-GO
-
-EXECUTE SP_CONFIGURE 'show advanced options', 0
-RECONFIGURE WITH OVERRIDE
-GO
-declare @sql nvarchar(4000)
-
-select @sql = 'bcp "SELECT p.Nombre Provincia,Pa.Nombre Pais  FROM LevelUp.dbo.Pais Pa INNER JOIN LevelUp.dbo.Provincia p ON Pa.idPais=p.fk_idPais;" queryout C:C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\file.csv -c -t, -T -S'+ @@servername
-exec xp_cmdshell @sql
-
-
--- -------------------------------------------------------------------------------------------
 -- Consulta XML
 -- -------------------------------------------------------------------------------------------
 -- Se tiene que repetir los inner join porque se usa "UNION ALL", entonces
