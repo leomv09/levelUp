@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LevelUpApplication
+namespace LevelUp.Logic
 {
     public class Constants
     {

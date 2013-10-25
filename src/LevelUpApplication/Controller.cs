@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.Threading.Tasks;
-using LevelUpService;
+using LevelUp.Data;
 
-namespace LevelUpApplication
+namespace LevelUp.Logic
 {
     class Controller
     {

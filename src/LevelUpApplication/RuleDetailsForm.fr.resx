@@ -169,6 +169,19 @@
   <data name="AddAwardButton.Text" xml:space="preserve">
     <value>Ajouter</value>
   </data>
+  <data name="AchievementName.HeaderText" xml:space="preserve">
+    <value>Réalisation</value>
+  </data>
+  <data name="AchievementAmount.HeaderText" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AchievementAmount.Width" type="System.Int32, mscorlib">
+    <value>71</value>
+  </data>
+  <data name="RemoveAchievementButton.HeaderText" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
   <data name="AwardName.HeaderText" xml:space="preserve">
     <value>Récompense</value>
   </data>
@@ -177,25 +190,6 @@
   </data>
   <data name="Remove.HeaderText" xml:space="preserve">
     <value>Supprimer</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Remove.Width" type="System.Int32, mscorlib">
-    <value>60</value>
-  </data>
-  <data name="AchievementName.HeaderText" xml:space="preserve">
-    <value>Réalisation</value>
-  </data>
-  <data name="AchievementAmount.HeaderText" xml:space="preserve">
-    <value>Montant</value>
-  </data>
-  <data name="AchievementAmount.Width" type="System.Int32, mscorlib">
-    <value>71</value>
-  </data>
-  <data name="RemoveAchievementButton.HeaderText" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
-  <data name="RemoveAchievementButton.Width" type="System.Int32, mscorlib">
-    <value>60</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace LevelUpApplication
+namespace LevelUp.App
 {
     static class Program
     {

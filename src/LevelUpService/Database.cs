@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace LevelUpService
+namespace LevelUp.Database
 {
     public class Database
     {

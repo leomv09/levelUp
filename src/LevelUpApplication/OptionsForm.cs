@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Threading;
-using LevelUpService;
+using LevelUp.Data;
 using LevelUpApplication.Properties;
 
-namespace LevelUpApplication
+namespace LevelUp.App
 {
     public partial class OptionsForm : Form
     {
+        #region Contructors
 
         public OptionsForm()
         {
@@ -23,13 +24,14 @@ namespace LevelUpApplication
             FillLanguages();
         }
 
-        public OptionsForm(MainForm Parent)
-            : this()
+        public OptionsForm(MainForm Parent) : this()
         {
 
             LoadLoggedUserData(Parent.LoggedUser);
         }
 
+        #endregion
+        #region Methods
         public void FillLanguages()
         {
             LanguagesComboBox.DataSource = new CultureInfo[] { new CultureInfo("es"), new CultureInfo("en"), new CultureInfo("fr") };
@@ -55,6 +57,9 @@ namespace LevelUpApplication
             }
         }
 
+        #endregion
+        #region EventMethods
+
         private void AcceptOptionsButton_Click(object sender, EventArgs e)
         {
             Save();
@@ -72,6 +77,9 @@ namespace LevelUpApplication
             this.Close();
         }
 
+        #endregion
+        #region Properties
+
         private CultureInfo SelectedLanguage
         {
             get { return (CultureInfo) LanguagesComboBox.SelectedItem; }
@@ -83,5 +91,6 @@ namespace LevelUpApplication
             get { return Thread.CurrentThread.CurrentUICulture; }
         }
 
+        #endregion
     }
 }

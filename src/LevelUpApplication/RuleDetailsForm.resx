@@ -3572,9 +3572,6 @@
   <data name="&gt;&gt;CancelRuleButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="AchievementAmount.Width" type="System.Int32, mscorlib">
-    <value>74</value>
-  </data>
   <data name="&gt;&gt;AwardsDataGridView.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
@@ -3615,7 +3612,7 @@
     <value>True</value>
   </data>
   <data name="RemoveAchievementButton.Width" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>60</value>
   </data>
   <data name="AchievementListLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3681,7 +3678,7 @@
     <value>Agregar</value>
   </data>
   <data name="Remove.Width" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>60</value>
   </data>
   <data name="AcceptRuleButton.Text" xml:space="preserve">
     <value>Aceptar</value>
@@ -3752,6 +3749,9 @@
   </data>
   <data name="&gt;&gt;AchievementName.Name" xml:space="preserve">
     <value>AchievementName</value>
+  </data>
+  <data name="RuleNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 55</value>
   </data>
   <data name="&gt;&gt;AchievementListLabel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3960,8 +3960,8 @@
   <data name="&gt;&gt;AwardDetails.Name" xml:space="preserve">
     <value>AwardDetails</value>
   </data>
-  <data name="RuleNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>616, 55</value>
+  <data name="AchievementAmount.Width" type="System.Int32, mscorlib">
+    <value>74</value>
   </data>
   <metadata name="RemoveAchievementButton.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -3971,9 +3971,6 @@
   </metadata>
   <metadata name="AchievementAmount.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

@@ -1,4 +1,4 @@
-﻿namespace LevelUpApplication
+﻿namespace LevelUp.App
 {
     partial class LoginForm
     {

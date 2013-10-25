@@ -1,4 +1,4 @@
-﻿namespace LevelUpApplication
+﻿namespace LevelUp.App
 {
     partial class RuleDetailsForm
     {
@@ -41,17 +41,17 @@
             this.ApplyRuleButton = new System.Windows.Forms.Button();
             this.CancelRuleButton = new System.Windows.Forms.Button();
             this.AchievementsDataGridView = new System.Windows.Forms.DataGridView();
-            this.AchievementName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AchievementAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RemoveAchievementButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.AchievementListLabel = new System.Windows.Forms.Label();
             this.AwardsDataGridView = new System.Windows.Forms.DataGridView();
-            this.AwardName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AwardDetails = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Remove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.AwardListLabel = new System.Windows.Forms.Label();
             this.AddAchievementButton = new System.Windows.Forms.Button();
             this.AddAwardButton = new System.Windows.Forms.Button();
+            this.AchievementName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AchievementAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemoveAchievementButton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.AwardName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AwardDetails = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Remove = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.AchievementsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AwardsDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -135,6 +135,46 @@
             this.AchievementsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AchievementsDataGridView_CellContentClick);
             this.AchievementsDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.AchievementsDataGridView_DataError);
             // 
+            // AchievementListLabel
+            // 
+            resources.ApplyResources(this.AchievementListLabel, "AchievementListLabel");
+            this.AchievementListLabel.Name = "AchievementListLabel";
+            // 
+            // AwardsDataGridView
+            // 
+            resources.ApplyResources(this.AwardsDataGridView, "AwardsDataGridView");
+            this.AwardsDataGridView.AllowUserToAddRows = false;
+            this.AwardsDataGridView.AllowUserToResizeRows = false;
+            this.AwardsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.AwardsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AwardsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AwardName,
+            this.AwardDetails,
+            this.Remove});
+            this.AwardsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.AwardsDataGridView.Name = "AwardsDataGridView";
+            this.AwardsDataGridView.RowHeadersVisible = false;
+            this.AwardsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AwardsDataGridView_CellContentClick);
+            // 
+            // AwardListLabel
+            // 
+            resources.ApplyResources(this.AwardListLabel, "AwardListLabel");
+            this.AwardListLabel.Name = "AwardListLabel";
+            // 
+            // AddAchievementButton
+            // 
+            resources.ApplyResources(this.AddAchievementButton, "AddAchievementButton");
+            this.AddAchievementButton.Name = "AddAchievementButton";
+            this.AddAchievementButton.UseVisualStyleBackColor = true;
+            this.AddAchievementButton.Click += new System.EventHandler(this.AddAchievementButton_Click);
+            // 
+            // AddAwardButton
+            // 
+            resources.ApplyResources(this.AddAwardButton, "AddAwardButton");
+            this.AddAwardButton.Name = "AddAwardButton";
+            this.AddAwardButton.UseVisualStyleBackColor = true;
+            this.AddAwardButton.Click += new System.EventHandler(this.AddAwardButton_Click);
+            // 
             // AchievementName
             // 
             this.AchievementName.DataPropertyName = "Achievement";
@@ -160,27 +200,6 @@
             this.RemoveAchievementButton.Text = "Supprimer";
             this.RemoveAchievementButton.UseColumnTextForButtonValue = true;
             // 
-            // AchievementListLabel
-            // 
-            resources.ApplyResources(this.AchievementListLabel, "AchievementListLabel");
-            this.AchievementListLabel.Name = "AchievementListLabel";
-            // 
-            // AwardsDataGridView
-            // 
-            resources.ApplyResources(this.AwardsDataGridView, "AwardsDataGridView");
-            this.AwardsDataGridView.AllowUserToAddRows = false;
-            this.AwardsDataGridView.AllowUserToResizeRows = false;
-            this.AwardsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.AwardsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AwardsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.AwardName,
-            this.AwardDetails,
-            this.Remove});
-            this.AwardsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.AwardsDataGridView.Name = "AwardsDataGridView";
-            this.AwardsDataGridView.RowHeadersVisible = false;
-            this.AwardsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AwardsDataGridView_CellContentClick);
-            // 
             // AwardName
             // 
             this.AwardName.DataPropertyName = "Name";
@@ -197,7 +216,7 @@
             this.AwardDetails.FillWeight = 5.076142F;
             resources.ApplyResources(this.AwardDetails, "AwardDetails");
             this.AwardDetails.Name = "AwardDetails";
-            this.AwardDetails.Text = "Voir";
+            this.AwardDetails.Text = "View";
             this.AwardDetails.UseColumnTextForButtonValue = true;
             // 
             // Remove
@@ -207,25 +226,6 @@
             this.Remove.Name = "Remove";
             this.Remove.Text = "Supprimer";
             this.Remove.UseColumnTextForButtonValue = true;
-            // 
-            // AwardListLabel
-            // 
-            resources.ApplyResources(this.AwardListLabel, "AwardListLabel");
-            this.AwardListLabel.Name = "AwardListLabel";
-            // 
-            // AddAchievementButton
-            // 
-            resources.ApplyResources(this.AddAchievementButton, "AddAchievementButton");
-            this.AddAchievementButton.Name = "AddAchievementButton";
-            this.AddAchievementButton.UseVisualStyleBackColor = true;
-            this.AddAchievementButton.Click += new System.EventHandler(this.AddAchievementButton_Click);
-            // 
-            // AddAwardButton
-            // 
-            resources.ApplyResources(this.AddAwardButton, "AddAwardButton");
-            this.AddAwardButton.Name = "AddAwardButton";
-            this.AddAwardButton.UseVisualStyleBackColor = true;
-            this.AddAwardButton.Click += new System.EventHandler(this.AddAwardButton_Click);
             // 
             // RuleDetailsForm
             // 

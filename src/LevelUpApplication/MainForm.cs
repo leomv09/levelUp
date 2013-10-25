@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using System.Globalization;
-using LevelUpService;
+using LevelUp.Data;
+using LevelUp.Logic;
 using LevelUpApplication.Properties;
 
-namespace LevelUpApplication
+namespace LevelUp.App
 {
     public partial class MainForm : Form
     {
@@ -331,33 +332,41 @@ namespace LevelUpApplication
 
         private void RemoveAchievementButton_Click(object sender, EventArgs e)
         {
-            if (this.SelectedAchievements.Length > 0)
+            if (this.SelectedUser != null)
             {
-                if (MessageBox.Show(this, "¿Está seguro que desea eliminar estos logros?", "Eliminar Logros",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                        == DialogResult.Yes)
+                if (this.SelectedAchievements.Length > 0)
                 {
-                    BindingList<AchievementPerUser> achievementList =
-                        (BindingList<AchievementPerUser>)AchievementsDataGridView.DataSource;
-
-                    try
+                    if (MessageBox.Show(this, "¿Está seguro que desea eliminar estos logros?", "Eliminar Logros",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                            == DialogResult.Yes)
                     {
-                        foreach (AchievementPerUser achievement in this.SelectedAchievements)
+                        BindingList<AchievementPerUser> achievementList =
+                            (BindingList<AchievementPerUser>)AchievementsDataGridView.DataSource;
+
+                        try
                         {
-                            m_controller.RemoveAchievementFromUser(this.SelectedUser, achievement);
-                            achievementList.Remove(achievement);
+                            foreach (AchievementPerUser achievement in this.SelectedAchievements)
+                            {
+                                m_controller.RemoveAchievementFromUser(this.SelectedUser, achievement);
+                                achievementList.Remove(achievement);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(this, "Error al enviar la solicitud: " + ex.Message, "Error",
+                            MessageBoxButtons.OK);
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(this, "Error al enviar la solicitud: " + ex.Message, "Error",
-                        MessageBoxButtons.OK);
-                    }
+                }
+                else
+                {
+                    MessageBox.Show(this, "Seleccione un logro.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show(this, "Seleccione un logro.", "Error",
+                MessageBox.Show(this, "Seleccione un usuario.", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

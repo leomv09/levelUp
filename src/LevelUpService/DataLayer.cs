@@ -1,46 +1,34 @@
-﻿using LevelUp.Data;
+﻿using Core.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Data;
 
-namespace LevelUp.Database
+namespace LevelUpService
 {
-    public class DataAccess
+    public class DataLayer : DataAccess
     {
-        private Database m_db;
 
-        public DataAccess()
+        public DataLayer() : base()
         {
-            m_db = new Database();
-            m_db.SetServers("LAPTOP-JOSE", "");
-            m_db.SetDatabase("LevelUp");
-            m_db.SetAuthentication("LU_App", "admin");
-            m_db.SetPoolSize(0, 4);
         }
 
         public Department[] GetDepartments()
         {
             List<Department> list = new List<Department>();
+            DataSet data = this.ExecuteDataSet("GetDepartments", new DataParameter[] { });
 
-            using (SqlConnection connection = m_db.CreateConnection())
+            foreach (DataRow row in data.Tables[0].Rows)
             {
-                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetDepartments");
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        list.Add(
-                            new Department()
-                            { 
-                                ID = reader.GetInt32(reader.GetOrdinal("ID")), 
-                                Name = reader.GetString(reader.GetOrdinal("Departamento")) 
-                            }
-                        );
+                list.Add(
+                    new Department()
+                    { 
+                        ID = (int) row["ID"],
+                        Name = (string) row["Nombre"]
                     }
-                }
+                );   
             }
 
             return list.ToArray();

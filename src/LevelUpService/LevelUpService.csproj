@@ -93,8 +93,6 @@
     <Compile Include="Award.cs" />
     <Compile Include="Currency.cs" />
     <Compile Include="DataAccess.cs" />
-    <Compile Include="DataAccessIS.cs" />
-    <Compile Include="DataParameter.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Global.asax.cs">
@@ -113,7 +111,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Profile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -121,6 +118,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

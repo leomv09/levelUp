@@ -6,15 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LevelUpService;
+using LevelUp.Data;
+using LevelUp.Logic;
 
-namespace LevelUpApplication
+namespace LevelUp.App
 {
     public partial class RuleDetailsForm : Form
     {
+        #region Attributes
+
         private Controller m_controller;
         Rule m_rule;
         Department m_department;
+
+        #endregion
+        #region Constructors
 
         public RuleDetailsForm(Rule rule, Department department)
         {
@@ -26,6 +32,9 @@ namespace LevelUpApplication
             RuleDescripcionTextBox.MaxLength = Constants.RuleDescription_MaxLength;
             LoadData();
         }
+
+        #endregion
+        #region Methods
 
         private void LoadData()
         {
@@ -69,24 +78,6 @@ namespace LevelUpApplication
             AwardsDataGridView.DataSource = awardList;
         }
 
-        private void AceptarButton_Click(object sender, EventArgs e)
-        {
-            if (Verify())
-            {
-                Save();
-                this.Close();
-                this.DialogResult = DialogResult.OK;
-            }
-        }
-
-        private void ApplyRuleButton_Click(object sender, EventArgs e)
-        {
-            if (Verify())
-            {
-                Save();
-            }
-        }
-
         private void Save()
         {
             this.Rule.Name = this.RuleName;
@@ -106,6 +97,112 @@ namespace LevelUpApplication
                     MessageBox.Show(this, "Error al enviar la solicitud: " + ex.Message, "Error",
                     MessageBoxButtons.OK);
                 }
+            }
+        }
+
+        private bool Verify()
+        {
+            if (!RuleHasValidName())
+            {
+                MessageBox.Show(this, "Ingrese un nombre válido de longitud menor que 100 caracteres.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (!RuleHasValidDates())
+            {
+                MessageBox.Show(this, "Las fechas son inconsistentes.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (!RuleHasAchievements())
+            {
+                MessageBox.Show(this, "Debe seleccionar al menos un logro.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (!RuleHasAwards())
+            {
+                MessageBox.Show(this, "Debe seleccionar al menos un premio.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (!AllAchievementsHaveValidAmount())
+            {
+                MessageBox.Show(this, "Ingrese cantidades válidas para los logros.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (Functions.DataGridViewHasDuplicatedValues(AchievementsDataGridView, (int)Constants.Rule_AchievementColumns.Name))
+            {
+                MessageBox.Show(this, "La regla no puede contener logros duplicados.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (Functions.DataGridViewHasDuplicatedValues(AwardsDataGridView, (int)Constants.Rule_AwardColumns.Name))
+            {
+                MessageBox.Show(this, "La regla no puede contener premios duplicados.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool RuleHasValidName()
+        {
+            return !String.IsNullOrEmpty(this.RuleName);
+        }
+
+        private bool RuleHasValidDates()
+        {
+            DateTime startDate = StartDateTimePicker.Value;
+            DateTime endDate = EndDateTimePicker.Value;
+            int result = startDate.CompareTo(endDate);
+            return result <= 0;
+        }
+
+        private bool RuleHasAchievements()
+        {
+            return Achievements.Length > 0;
+        }
+
+        private bool RuleHasAwards()
+        {
+            return Awards.Length > 0;
+        }
+
+        private bool AllAchievementsHaveValidAmount()
+        {
+            foreach (AchievementPerRule achievement in this.Achievements)
+            {
+                if (achievement.Amount <= 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        #endregion
+        #region EventMethods
+
+        private void AceptarButton_Click(object sender, EventArgs e)
+        {
+            if (Verify())
+            {
+                Save();
+                this.Close();
+                this.DialogResult = DialogResult.OK;
+            }
+        }
+
+        private void ApplyRuleButton_Click(object sender, EventArgs e)
+        {
+            if (Verify())
+            {
+                Save();
             }
         }
 
@@ -173,90 +270,10 @@ namespace LevelUpApplication
             }
         }
 
-        private bool Verify()
-        {
-            if (!RuleHasValidName())
-            {
-                MessageBox.Show(this, "Ingrese un nombre válido de longitud menor que 100 caracteres.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else if (!RuleHasValidDates())
-            {
-                MessageBox.Show(this, "Las fechas son inconsistentes.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else if (!RuleHasAchievements())
-            {
-                MessageBox.Show(this, "Debe seleccionar al menos un logro.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else if (!RuleHasAwards())
-            {
-                MessageBox.Show(this, "Debe seleccionar al menos un premio.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else if (!AllAchievementsHaveValidAmount())
-            {
-                MessageBox.Show(this, "Ingrese cantidades válidas para los logros.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else if (Functions.DataGridViewHasDuplicatedValues(AchievementsDataGridView, (int) Constants.Rule_AchievementColumns.Name))
-            {
-                MessageBox.Show(this, "La regla no puede contener logros duplicados.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else if (Functions.DataGridViewHasDuplicatedValues(AwardsDataGridView, (int) Constants.Rule_AwardColumns.Name))
-            {
-                MessageBox.Show(this, "La regla no puede contener premios duplicados.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        private void AchievementsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) { }
 
-        private bool RuleHasValidName()
-        {
-            return !String.IsNullOrEmpty(this.RuleName);
-        }
-
-        private bool RuleHasValidDates()
-        {
-            DateTime startDate = StartDateTimePicker.Value;
-            DateTime endDate = EndDateTimePicker.Value;
-            int result = startDate.CompareTo(endDate);
-            return result <= 0;
-        }
-
-        private bool RuleHasAchievements()
-        {
-            return Achievements.Length > 0;
-        }
-
-        private bool RuleHasAwards()
-        {
-            return Awards.Length > 0;
-        }
-
-        private bool AllAchievementsHaveValidAmount()
-        {
-            foreach (AchievementPerRule achievement in this.Achievements)
-            {
-                if (achievement.Amount <= 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        #endregion
+        #region Properties
 
         public Rule Rule
         {
@@ -331,7 +348,6 @@ namespace LevelUpApplication
             set { EndDateTimePicker.Value = value; }
         }
 
-        private void AchievementsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) { }
-
+        #endregion
     }
 }

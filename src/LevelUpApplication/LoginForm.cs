@@ -8,9 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
-using LevelUpService;
+using LevelUp.Data;
+using LevelUp.Logic;
 
-namespace LevelUpApplication
+namespace LevelUp.App
 {
     public partial class LoginForm : Form
     {
