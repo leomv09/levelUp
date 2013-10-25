@@ -6,9 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LevelUpService;
+using System.Threading;
+using System.Globalization;
+using LevelUp.Data;
+using LevelUp.Logic;
+using LevelUpApplication.Properties;
 
-namespace LevelUpApplication
+namespace LevelUp.App
 {
     public partial class MainForm : Form
     {
@@ -18,9 +22,24 @@ namespace LevelUpApplication
 
         public MainForm()
         {
+            LoadConfiguration();
             InitializeComponent();
             m_controller = Controller.Instance;
             LoadUsers();
+        }
+
+        private void LoadConfiguration()
+        {
+            string language = Settings.Default["language"].ToString();
+            if (String.IsNullOrEmpty(language))
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+                Settings.Default["language"] = "en";
+            }
+            else
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            }
         }
 
         private void Reset()
@@ -217,7 +236,11 @@ namespace LevelUpApplication
         private bool SearchUser()
         {
             string username = UserAchievementsTextBox.Text;
-            this.SelectedUser = null;
+            m_selectedUser = null;
+            this.SelectedUserName.Text = null;
+            this.SelectedUserUsername.Text = null;
+            this.SelectedUserDepartment.Text = null;
+            this.SelectedUserJob.Text = null;
             ClearAchievements();
 
             if (!String.IsNullOrEmpty(username))
@@ -226,7 +249,11 @@ namespace LevelUpApplication
 
                 if (User.IsValid(fetchedUser))
                 {
-                    this.SelectedUser = fetchedUser;
+                    m_selectedUser = fetchedUser;
+                    this.SelectedUserName.Text = fetchedUser.Name + " " + fetchedUser.LastName1 + " " + fetchedUser.LastName2;
+                    this.SelectedUserUsername.Text = fetchedUser.Username;
+                    this.SelectedUserDepartment.Text = null;
+                    this.SelectedUserJob.Text = null;
                     return true;
                 }
                 else
@@ -305,35 +332,49 @@ namespace LevelUpApplication
 
         private void RemoveAchievementButton_Click(object sender, EventArgs e)
         {
-            if (this.SelectedAchievements.Length > 0)
+            if (this.SelectedUser != null)
             {
-                if (MessageBox.Show(this, "¿Está seguro que desea eliminar estos logros?", "Eliminar Logros",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                        == DialogResult.Yes)
+                if (this.SelectedAchievements.Length > 0)
                 {
-                    BindingList<AchievementPerUser> achievementList =
-                        (BindingList<AchievementPerUser>)AchievementsDataGridView.DataSource;
-
-                    try
+                    if (MessageBox.Show(this, "¿Está seguro que desea eliminar estos logros?", "Eliminar Logros",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                            == DialogResult.Yes)
                     {
-                        foreach (AchievementPerUser achievement in this.SelectedAchievements)
+                        BindingList<AchievementPerUser> achievementList =
+                            (BindingList<AchievementPerUser>)AchievementsDataGridView.DataSource;
+
+                        try
                         {
-                            m_controller.RemoveAchievementFromUser(this.SelectedUser, achievement);
-                            achievementList.Remove(achievement);
+                            foreach (AchievementPerUser achievement in this.SelectedAchievements)
+                            {
+                                m_controller.RemoveAchievementFromUser(this.SelectedUser, achievement);
+                                achievementList.Remove(achievement);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(this, "Error al enviar la solicitud: " + ex.Message, "Error",
+                            MessageBoxButtons.OK);
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(this, "Error al enviar la solicitud: " + ex.Message, "Error",
-                        MessageBoxButtons.OK);
-                    }
+                }
+                else
+                {
+                    MessageBox.Show(this, "Seleccione un logro.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show(this, "Seleccione un logro.", "Error",
+                MessageBox.Show(this, "Seleccione un usuario.", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void OptionsButton_Click(object sender, EventArgs e)
+        {
+            OptionsForm form = new OptionsForm(this);
+            form.ShowDialog(this);
         }
 
         private void ClearDepartments()
@@ -356,13 +397,17 @@ namespace LevelUpApplication
 
         private void ClearSelectedUser()
         {
+            m_selectedUser = null;
             UserAchievementsTextBox.Text = null;
-            SelectedUser = null;
+            SelectedUserName.Text = null;
+            SelectedUserUsername.Text = null;
+            SelectedUserDepartment.Text = null;
+            SelectedUserJob.Text = null;
         }
 
         private void ClearLoggedUser()
         {
-            LoggedUser = null;
+            m_loggedUser = null;
         }
 
         private Rule[] Rules
@@ -441,16 +486,14 @@ namespace LevelUpApplication
             }
         }
 
-        private User SelectedUser
+        public User SelectedUser
         {
             get { return m_selectedUser; }
-            set { m_selectedUser = value; }
         }
 
-        private User LoggedUser
+        public User LoggedUser
         {
             get { return m_loggedUser; }
-            set { m_loggedUser = value; }
         }
 
         private void AchievementsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) { }

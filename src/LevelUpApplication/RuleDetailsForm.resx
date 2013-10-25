@@ -117,25 +117,116 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="AchievementName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="AchievementAmount.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="RemoveAchievementButton.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="AwardName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="AwardDetails.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Remove.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <data name="&gt;&gt;Remove.Name" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;StartDateTimePicker.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="EndDateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 371</value>
+  </data>
+  <data name="&gt;&gt;RuleNameLabel.Name" xml:space="preserve">
+    <value>RuleNameLabel</value>
+  </data>
+  <data name="&gt;&gt;RuleNameTextBox.Name" xml:space="preserve">
+    <value>RuleNameTextBox</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="RuleNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;RuleNameTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;StartDateTimePicker.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="ApplyRuleButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="AwardListLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 267</value>
+  </data>
+  <data name="&gt;&gt;StartDateLabel.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;RuleDescripcionLabel.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;AcceptRuleButton.Name" xml:space="preserve">
+    <value>AcceptRuleButton</value>
+  </data>
+  <data name="&gt;&gt;ApplyRuleButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EndDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 352</value>
+  </data>
+  <data name="StartDateLabel.Text" xml:space="preserve">
+    <value>Fecha Inicio</value>
+  </data>
+  <data name="&gt;&gt;AchievementsDataGridView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EndDateTimePicker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 20</value>
+  </data>
+  <data name="RuleDescripcionTextBox.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RuleNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;RuleNameLabel.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="AchievementListLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 15</value>
+  </data>
+  <data name="StartDateTimePicker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 20</value>
+  </data>
+  <data name="AwardListLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="RuleNameLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="&gt;&gt;RuleDescripcionTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="AwardDetails.HeaderText" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
+  <data name="RuleNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 16</value>
+  </data>
+  <data name="AchievementsDataGridView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>584, 215</value>
+  </data>
+  <data name="&gt;&gt;EndDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RuleNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 20</value>
+  </data>
+  <data name="AchievementAmount.HeaderText" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="&gt;&gt;StartDateLabel.Name" xml:space="preserve">
+    <value>StartDateLabel</value>
+  </data>
+  <data name="AchievementListLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 16</value>
+  </data>
+  <data name="&gt;&gt;AwardName.Name" xml:space="preserve">
+    <value>AwardName</value>
+  </data>
+  <data name="&gt;&gt;RuleNameTextBox.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAAAAAAAEAIADakwAAlgAAAICAAAABACAAKAgBAHCUAABgYAAAAQAgAKiUAACYnAEASEgAAAEA
@@ -3469,4 +3560,428 @@
         wAMAAIADAACAAwAAgAEAAIABAACAAwAAgAMAAMADAADABwAA4A8AAPgfAAD//wAA
 </value>
   </data>
+  <data name="&gt;&gt;RuleNameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AddAwardButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AwardName.HeaderText" xml:space="preserve">
+    <value>Premio</value>
+  </data>
+  <data name="&gt;&gt;CancelRuleButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AwardsDataGridView.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="AchievementsDataGridView.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="RuleDescripcionLabel.Text" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="&gt;&gt;AddAwardButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="AwardsDataGridView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>584, 170</value>
+  </data>
+  <data name="AddAwardButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>521, 259</value>
+  </data>
+  <data name="EndDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 16</value>
+  </data>
+  <data name="AddAwardButton.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;AwardsDataGridView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ApplyRuleButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="CancelRuleButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ApplyRuleButton.Text" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="EndDateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RemoveAchievementButton.Width" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="AchievementListLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="EndDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;ApplyRuleButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AwardName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RuleDescripcionLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;StartDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RuleDescripcionTextBox.Name" xml:space="preserve">
+    <value>RuleDescripcionTextBox</value>
+  </data>
+  <data name="&gt;&gt;CancelRuleButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="AwardListLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 16</value>
+  </data>
+  <data name="&gt;&gt;EndDateLabel.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;AchievementsDataGridView.Name" xml:space="preserve">
+    <value>AchievementsDataGridView</value>
+  </data>
+  <data name="&gt;&gt;AwardListLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="AwardDetails.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="AchievementsDataGridView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 36</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>RuleDetailsForm</value>
+  </data>
+  <data name="EndDateTimePicker.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="AwardsDataGridView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 288</value>
+  </data>
+  <data name="&gt;&gt;AddAwardButton.Name" xml:space="preserve">
+    <value>AddAwardButton</value>
+  </data>
+  <data name="&gt;&gt;AcceptRuleButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CancelRuleButton.Name" xml:space="preserve">
+    <value>CancelRuleButton</value>
+  </data>
+  <data name="AddAwardButton.Text" xml:space="preserve">
+    <value>Agregar</value>
+  </data>
+  <data name="Remove.Width" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="AcceptRuleButton.Text" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="EndDateLabel.Text" xml:space="preserve">
+    <value>Fecha Final</value>
+  </data>
+  <data name="&gt;&gt;RuleNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AchievementListLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;EndDateTimePicker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="StartDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 16</value>
+  </data>
+  <data name="RuleNameLabel.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="&gt;&gt;AchievementListLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;AddAchievementButton.Name" xml:space="preserve">
+    <value>AddAchievementButton</value>
+  </data>
+  <data name="CancelRuleButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>818, 435</value>
+  </data>
+  <data name="AwardListLabel.Text" xml:space="preserve">
+    <value>Lista de Premios</value>
+  </data>
+  <data name="RuleNameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;AchievementName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AcceptRuleButton.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;RemoveAchievementButton.Name" xml:space="preserve">
+    <value>RemoveAchievementButton</value>
+  </data>
+  <data name="&gt;&gt;AwardDetails.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewButtonColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AddAchievementButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>521, 8</value>
+  </data>
+  <data name="&gt;&gt;AcceptRuleButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ApplyRuleButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="StartDateLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="AchievementListLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="&gt;&gt;AchievementName.Name" xml:space="preserve">
+    <value>AchievementName</value>
+  </data>
+  <data name="RuleNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 55</value>
+  </data>
+  <data name="&gt;&gt;AchievementListLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;EndDateTimePicker.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;CancelRuleButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;RuleDescripcionLabel.Name" xml:space="preserve">
+    <value>RuleDescripcionLabel</value>
+  </data>
+  <data name="&gt;&gt;AwardsDataGridView.Name" xml:space="preserve">
+    <value>AwardsDataGridView</value>
+  </data>
+  <data name="&gt;&gt;AchievementsDataGridView.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="RuleDescripcionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 16</value>
+  </data>
+  <data name="AddAchievementButton.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;EndDateTimePicker.Name" xml:space="preserve">
+    <value>EndDateTimePicker</value>
+  </data>
+  <data name="&gt;&gt;RuleDescripcionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;EndDateTimePicker.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="AwardListLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;EndDateLabel.Name" xml:space="preserve">
+    <value>EndDateLabel</value>
+  </data>
+  <data name="&gt;&gt;RuleDescripcionTextBox.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;AddAchievementButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AchievementListLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;RemoveAchievementButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewButtonColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AwardsDataGridView.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;RuleNameLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="RuleDescripcionLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AwardListLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AddAchievementButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;AchievementAmount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Remove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewButtonColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AcceptRuleButton.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="StartDateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 307</value>
+  </data>
+  <data name="&gt;&gt;AwardListLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="RuleDescripcionTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="AcceptRuleButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>655, 435</value>
+  </data>
+  <data name="RemoveAchievementButton.HeaderText" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="&gt;&gt;AddAchievementButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;StartDateTimePicker.Name" xml:space="preserve">
+    <value>StartDateTimePicker</value>
+  </data>
+  <data name="RuleDescripcionTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 122</value>
+  </data>
+  <data name="&gt;&gt;AwardsDataGridView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="CancelRuleButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;AwardListLabel.Name" xml:space="preserve">
+    <value>AwardListLabel</value>
+  </data>
+  <data name="&gt;&gt;RuleDescripcionLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="RuleDescripcionTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 129</value>
+  </data>
+  <data name="&gt;&gt;StartDateTimePicker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AddAwardButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AchievementListLabel.Name" xml:space="preserve">
+    <value>AchievementListLabel</value>
+  </data>
+  <data name="AwardListLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="ApplyRuleButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>737, 435</value>
+  </data>
+  <data name="&gt;&gt;EndDateLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="StartDateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="AddAwardButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="RuleNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 36</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>906, 470</value>
+  </data>
+  <data name="AcceptRuleButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="AddAchievementButton.Text" xml:space="preserve">
+    <value>Agregar</value>
+  </data>
+  <data name="StartDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="AchievementListLabel.Text" xml:space="preserve">
+    <value>Lista de Logros</value>
+  </data>
+  <data name="&gt;&gt;AchievementsDataGridView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AddAchievementButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Remove.HeaderText" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="StartDateTimePicker.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;ApplyRuleButton.Name" xml:space="preserve">
+    <value>ApplyRuleButton</value>
+  </data>
+  <data name="CancelRuleButton.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;RuleDescripcionTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RuleDescripcionLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;StartDateLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AchievementAmount.Name" xml:space="preserve">
+    <value>AchievementAmount</value>
+  </data>
+  <data name="EndDateLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="RuleDescripcionLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 103</value>
+  </data>
+  <data name="AchievementName.HeaderText" xml:space="preserve">
+    <value>Logro</value>
+  </data>
+  <data name="StartDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 288</value>
+  </data>
+  <data name="&gt;&gt;AwardDetails.Name" xml:space="preserve">
+    <value>AwardDetails</value>
+  </data>
+  <data name="AchievementAmount.Width" type="System.Int32, mscorlib">
+    <value>74</value>
+  </data>
+  <metadata name="RemoveAchievementButton.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="AchievementName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="AchievementAmount.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Remove.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="AwardDetails.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="AwardName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

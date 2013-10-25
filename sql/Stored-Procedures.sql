@@ -8,8 +8,7 @@ GO
 CREATE PROCEDURE [dbo].[GetDepartments]
 AS
 BEGIN
-	SELECT D.idDepartamento AS ID, D.Nombre AS Departamento FROM Departamento AS D
-	WHERE D.Nombre != 'Global';
+	SELECT D.idDepartamento AS ID, D.Nombre AS Departamento FROM Departamento AS D;
 END;
 GO
 
@@ -26,7 +25,7 @@ BEGIN
 	INNER JOIN ReglasPorDepartamento AS RPD
 	ON RPD.fk_idRegla = R.idRegla AND RPD.fk_idDepartamento = @DepartmentID
 	INNER JOIN EstadoRegla AS ER ON R.fk_idEstadoRegla = ER.idEstadoRegla
-	WHERE ER.Estado = 'Activo';
+	WHERE ER.Estado = 'Activa';
 END;
 GO
 
@@ -38,14 +37,11 @@ CREATE PROCEDURE [dbo].[GetDepartmentAchievements]
 	@DepartmentID int
 AS
 BEGIN
-	SELECT L.idLogro AS ID, L.Nombre, ISNULL(L.Descripcion, '') AS Descripcion, L.FechaInicio, 
-	ISNULL(L.FechaFinal, GETDATE()) AS FechaFinal, ISNULL(L.NumMaximo, 2147483647) AS NumMaximo
-	FROM Logros AS L
-	INNER JOIN Departamento AS D ON D.idDepartamento = @DepartmentID OR D.Nombre = 'Global'
-	INNER JOIN LogrosPorDepartamento AS LPD 
-	ON LPD.fk_idDepartamento = D.idDepartamento AND LPD.fk_idLogro = L.idLogro
-	INNER JOIN EstadoLogro AS EL ON EL.idEstadoLogro = L.fk_idEstadoLogro
-	WHERE EL.Estado = 'Activo';
+	SELECT ID, Nombre, Descripcion, FechaInicio, FechaFinal, NumMaximo
+	FROM VW_Logros WHERE EsGlobal = 1
+	UNION
+	SELECT ID, Nombre, Descripcion, FechaInicio, FechaFinal, NumMaximo
+	FROM VW_LogrosPorDepartamento WHERE idDepartamento = @DepartmentID;
 END;
 GO
 
@@ -57,16 +53,11 @@ CREATE PROCEDURE [dbo].[GetDepartmentAwards]
 	@DepartmentID int
 AS
 BEGIN
-	SELECT P.idPremio AS ID, P.Titulo AS Nombre, ISNULL(P.Descripcion, '') AS Descripcion, 
-	ISNULL(P.Foto, '') AS Foto, ISNULL(P.Cantidad, 0) AS Cantidad, ISNULL(P.Monto, 0.0) AS Monto,
-	TP.Tipo, M.Nombre AS Moneda FROM Premio AS P
-	INNER JOIN TipoPremio AS TP ON TP.idTipoPremio = P.fk_idTipoPremio
-	INNER JOIN Moneda AS M ON M.idMoneda = P.fk_idMoneda
-	INNER JOIN Departamento AS D ON D.idDepartamento = @DepartmentID OR D.Nombre = 'Global'
-	INNER JOIN PremiosPorDepartamento AS PPD
-	ON PPD.fk_idDepartamento = D.idDepartamento AND PPD.fk_idPremio = P.idPremio
-	INNER JOIN EstadoPremio AS EP ON EP.idEstadoPremio = P.fk_idTipoPremio
-	WHERE EP.Estado = 'Activo';
+	SELECT ID, Nombre, Descripcion, Foto, Cantidad, Monto, Tipo, Moneda
+	FROM VW_Premios WHERE EsGlobal = 1
+	UNION
+	SELECT ID, Nombre, Descripcion, Foto, Cantidad, Monto, Tipo, Moneda
+	FROM VW_PremiosPorDepartamento WHERE idDepartamento = @DepartmentID;
 END;
 GO
 

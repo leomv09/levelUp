@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LevelUpService;
+using LevelUp.Data;
+using LevelUp.Logic;
 
-namespace LevelUpApplication
+namespace LevelUp.App
 {
     public partial class AwardDetailsForm : Form
     {
@@ -235,7 +236,6 @@ namespace LevelUpApplication
             this.Size = new Size(458, 430);
             CurrencyVisible(true);
             DetailVisible(true);
-            DetailLabel.Text = "Monto";
             ChangeVerticalButtonsLocation(345);
         }
 
@@ -244,7 +244,6 @@ namespace LevelUpApplication
             this.Size = new Size(458, 385);
             CurrencyVisible(false);
             DetailVisible(true);
-            DetailLabel.Text = "Cantidad";
             ChangeVerticalButtonsLocation(301);
         }
 

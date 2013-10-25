@@ -1,4 +1,4 @@
-﻿namespace LevelUpApplication
+﻿namespace LevelUp.App
 {
     partial class AddAwardForm
     {
@@ -32,51 +32,48 @@
             this.AwardComboBox = new System.Windows.Forms.ComboBox();
             this.CancelAwardButton = new System.Windows.Forms.Button();
             this.AcceptAwardButton = new System.Windows.Forms.Button();
+            this.AwardLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // AwardComboBox
             // 
+            resources.ApplyResources(this.AwardComboBox, "AwardComboBox");
             this.AwardComboBox.FormattingEnabled = true;
-            this.AwardComboBox.Location = new System.Drawing.Point(12, 7);
             this.AwardComboBox.Name = "AwardComboBox";
-            this.AwardComboBox.Size = new System.Drawing.Size(373, 21);
-            this.AwardComboBox.TabIndex = 1;
             this.AwardComboBox.SelectionChangeCommitted += new System.EventHandler(this.AwardComboBox_SelectionChangeCommitted);
             // 
             // CancelAwardButton
             // 
+            resources.ApplyResources(this.CancelAwardButton, "CancelAwardButton");
             this.CancelAwardButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelAwardButton.Location = new System.Drawing.Point(310, 39);
             this.CancelAwardButton.Name = "CancelAwardButton";
-            this.CancelAwardButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelAwardButton.TabIndex = 4;
-            this.CancelAwardButton.Text = "Cancelar";
             this.CancelAwardButton.UseVisualStyleBackColor = true;
             // 
             // AcceptAwardButton
             // 
-            this.AcceptAwardButton.Location = new System.Drawing.Point(229, 39);
+            resources.ApplyResources(this.AcceptAwardButton, "AcceptAwardButton");
             this.AcceptAwardButton.Name = "AcceptAwardButton";
-            this.AcceptAwardButton.Size = new System.Drawing.Size(75, 23);
-            this.AcceptAwardButton.TabIndex = 3;
-            this.AcceptAwardButton.Text = "Aceptar";
             this.AcceptAwardButton.UseVisualStyleBackColor = true;
             this.AcceptAwardButton.Click += new System.EventHandler(this.AcceptAwardButton_Click);
             // 
+            // AwardLabel
+            // 
+            resources.ApplyResources(this.AwardLabel, "AwardLabel");
+            this.AwardLabel.Name = "AwardLabel";
+            // 
             // AddAwardForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 74);
+            this.Controls.Add(this.AwardLabel);
             this.Controls.Add(this.CancelAwardButton);
             this.Controls.Add(this.AcceptAwardButton);
             this.Controls.Add(this.AwardComboBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.Name = "AddAwardForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -85,5 +82,6 @@
         private System.Windows.Forms.ComboBox AwardComboBox;
         private System.Windows.Forms.Button CancelAwardButton;
         private System.Windows.Forms.Button AcceptAwardButton;
+        private System.Windows.Forms.Label AwardLabel;
     }
 }

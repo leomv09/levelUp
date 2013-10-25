@@ -7,8 +7,10 @@ using System.ServiceModel.Web;
 using System.Text;
 using System.ServiceModel.Activation;
 using System.Data.SqlClient;
+using LevelUp.Database;
+using LevelUp.Data;
 
-namespace LevelUpService
+namespace LevelUp.Service
 {
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class Service : IService

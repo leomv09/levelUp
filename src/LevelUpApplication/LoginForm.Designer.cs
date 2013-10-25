@@ -1,4 +1,4 @@
-﻿namespace LevelUpApplication
+﻿namespace LevelUp.App
 {
     partial class LoginForm
     {
@@ -39,68 +39,46 @@
             // 
             // UsernameLabel
             // 
-            this.UsernameLabel.AutoSize = true;
-            this.UsernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(23, 40);
+            resources.ApplyResources(this.UsernameLabel, "UsernameLabel");
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(58, 16);
-            this.UsernameLabel.TabIndex = 0;
-            this.UsernameLabel.Text = "Usuario:";
             // 
             // UsernameTextBox
             // 
-            this.UsernameTextBox.Location = new System.Drawing.Point(108, 36);
+            resources.ApplyResources(this.UsernameTextBox, "UsernameTextBox");
             this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(174, 20);
-            this.UsernameTextBox.TabIndex = 1;
             // 
             // LoginAcceptButton
             // 
-            this.LoginAcceptButton.Location = new System.Drawing.Point(176, 138);
+            resources.ApplyResources(this.LoginAcceptButton, "LoginAcceptButton");
             this.LoginAcceptButton.Name = "LoginAcceptButton";
-            this.LoginAcceptButton.Size = new System.Drawing.Size(75, 36);
-            this.LoginAcceptButton.TabIndex = 2;
-            this.LoginAcceptButton.Text = "Entrar";
             this.LoginAcceptButton.UseVisualStyleBackColor = true;
             this.LoginAcceptButton.Click += new System.EventHandler(this.LoginAcceptButton_Click);
             // 
             // PasswordLabel
             // 
-            this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLabel.Location = new System.Drawing.Point(23, 80);
+            resources.ApplyResources(this.PasswordLabel, "PasswordLabel");
             this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(80, 16);
-            this.PasswordLabel.TabIndex = 3;
-            this.PasswordLabel.Text = "Contraseña:";
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(108, 76);
+            resources.ApplyResources(this.PasswordTextBox, "PasswordTextBox");
             this.PasswordTextBox.Name = "PasswordTextBox";
-            this.PasswordTextBox.PasswordChar = '*';
-            this.PasswordTextBox.Size = new System.Drawing.Size(174, 20);
-            this.PasswordTextBox.TabIndex = 4;
             this.PasswordTextBox.UseSystemPasswordChar = true;
             // 
             // LoginCancelButton
             // 
+            resources.ApplyResources(this.LoginCancelButton, "LoginCancelButton");
             this.LoginCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.LoginCancelButton.Location = new System.Drawing.Point(64, 138);
             this.LoginCancelButton.Name = "LoginCancelButton";
-            this.LoginCancelButton.Size = new System.Drawing.Size(75, 36);
-            this.LoginCancelButton.TabIndex = 5;
-            this.LoginCancelButton.Text = "Salir";
             this.LoginCancelButton.UseVisualStyleBackColor = true;
             this.LoginCancelButton.Click += new System.EventHandler(this.LoginCancelButton_Click);
             // 
             // LoginForm
             // 
             this.AcceptButton = this.LoginAcceptButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.LoginCancelButton;
-            this.ClientSize = new System.Drawing.Size(307, 199);
             this.Controls.Add(this.LoginCancelButton);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.PasswordLabel);
@@ -108,12 +86,9 @@
             this.Controls.Add(this.UsernameTextBox);
             this.Controls.Add(this.UsernameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Iniciar Sesión";
             this.ResumeLayout(false);
             this.PerformLayout();
 

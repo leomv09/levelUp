@@ -118,6 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="AwardLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AwardLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;CancelAwardButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="AcceptAwardButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAAAAAAAEAIADakwAAlgAAAICAAAABACAAKAgBAHCUAABgYAAAAQAgAKiUAACYnAEASEgAAAEA
@@ -3451,4 +3467,110 @@
         wAMAAIADAACAAwAAgAEAAIABAACAAwAAgAMAAMADAADABwAA4A8AAPgfAAD//wAA
 </value>
   </data>
+  <data name="&gt;&gt;AcceptAwardButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AddAwardForm</value>
+  </data>
+  <data name="AcceptAwardButton.Text" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="&gt;&gt;AwardComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AwardComboBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="AwardLabel.Text" xml:space="preserve">
+    <value>Premio</value>
+  </data>
+  <data name="AcceptAwardButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;AcceptAwardButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>397, 103</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="&gt;&gt;AcceptAwardButton.Name" xml:space="preserve">
+    <value>AcceptAwardButton</value>
+  </data>
+  <data name="AwardLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 16</value>
+  </data>
+  <data name="&gt;&gt;CancelAwardButton.Name" xml:space="preserve">
+    <value>CancelAwardButton</value>
+  </data>
+  <data name="AwardComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 35</value>
+  </data>
+  <data name="CancelAwardButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>310, 67</value>
+  </data>
+  <data name="CancelAwardButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="AwardLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 16</value>
+  </data>
+  <data name="&gt;&gt;AwardLabel.Name" xml:space="preserve">
+    <value>AwardLabel</value>
+  </data>
+  <data name="&gt;&gt;AwardLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="AwardComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>373, 21</value>
+  </data>
+  <data name="&gt;&gt;AwardComboBox.Name" xml:space="preserve">
+    <value>AwardComboBox</value>
+  </data>
+  <data name="CancelAwardButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;AwardComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="AwardComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;CancelAwardButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AwardLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CancelAwardButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AcceptAwardButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="AwardLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="AcceptAwardButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 67</value>
+  </data>
+  <data name="CancelAwardButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;AwardLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>en</value>
+  </metadata>
 </root>

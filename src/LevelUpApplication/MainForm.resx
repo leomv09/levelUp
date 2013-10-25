@@ -117,34 +117,177 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="RulesColumnName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="RulesColumnDescripcion.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="RulesColumnStartDate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="RulesColumnEndDate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="EnabledCheckBox.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="AchievementsColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="AchievementsColumnDetails.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="MenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
-  </metadata>
+  <data name="&gt;&gt;AchievementsColumnDetails.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;UserInfoPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="SelectedUserJobLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="&gt;&gt;ToolsButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SearchUserButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="RulesTap.Size" type="System.Drawing.Size, System.Drawing">
+    <value>898, 545</value>
+  </data>
+  <data name="AddRuleButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserDepartmentLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="SelectedUserName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SelectedUserDepartmentLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;AchievementsColumnDetails.Name" xml:space="preserve">
+    <value>AchievementsColumnDetails</value>
+  </data>
+  <data name="UserAchievementsLabel.Text" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="UserAchievementsTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;RulesColumnStartDate.Name" xml:space="preserve">
+    <value>RulesColumnStartDate</value>
+  </data>
+  <data name="AchievementsTap.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="&gt;&gt;ExitButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ViewRuleButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="DepartamentRuleLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;AchievementsColumn.Name" xml:space="preserve">
+    <value>AchievementsColumn</value>
+  </data>
+  <data name="&gt;&gt;RemoveRuleButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DepartamentRuleComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserJob.Parent" xml:space="preserve">
+    <value>UserInfoPanel</value>
+  </data>
+  <data name="&gt;&gt;UserInfoPanel.Name" xml:space="preserve">
+    <value>UserInfoPanel</value>
+  </data>
+  <data name="&gt;&gt;ExitButton.Name" xml:space="preserve">
+    <value>ExitButton</value>
+  </data>
+  <data name="&gt;&gt;DepartamentRuleLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SelectedUserDepartmentLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="SelectedUserName.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>400, 16</value>
+  </data>
+  <data name="&gt;&gt;EnabledCheckBox.Name" xml:space="preserve">
+    <value>EnabledCheckBox</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserJob.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="SelectedUserLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 9</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SelectedUserUsername.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SelectedUserLabel.Text" xml:space="preserve">
+    <value>Usuario Seleccionado:</value>
+  </data>
+  <data name="AchievementsDataGridView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>892, 407</value>
+  </data>
+  <data name="&gt;&gt;RulesColumnName.Name" xml:space="preserve">
+    <value>RulesColumnName</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserJobLabel.Parent" xml:space="preserve">
+    <value>UserInfoPanel</value>
+  </data>
+  <data name="&gt;&gt;SearchUserButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="TapControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="SelectedUserDepartmentLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Level Up</value>
+  </data>
+  <data name="&gt;&gt;TapControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="UserAchievementsLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;AddAchievementButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AchievementsDataGridView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DepartamentRuleLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 10</value>
+  </data>
+  <data name="&gt;&gt;DepartamentRuleComboBox.Name" xml:space="preserve">
+    <value>DepartamentRuleComboBox</value>
+  </data>
+  <data name="&gt;&gt;MenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SelectedUserJob.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 16</value>
+  </data>
+  <data name="RemoveAchievementButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>815, 10</value>
+  </data>
+  <data name="SearchUserButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>271, 27</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserDepartment.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AddRuleButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;RulesDataGridView.Name" xml:space="preserve">
+    <value>RulesDataGridView</value>
+  </data>
+  <data name="RemoveRuleButton.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="LogoutButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 22</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserJobLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAAAAAAAEAIADakwAAlgAAAICAAAABACAAKAgBAHCUAABgYAAAAQAgAKiUAACYnAEASEgAAAEA
@@ -3478,4 +3621,676 @@
         wAMAAIADAACAAwAAgAEAAIABAACAAwAAgAMAAMADAADABwAA4A8AAPgfAAD//wAA
 </value>
   </data>
+  <data name="&gt;&gt;SelectedUserDepartmentLabel.Parent" xml:space="preserve">
+    <value>UserInfoPanel</value>
+  </data>
+  <data name="SelectedUsernameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 16</value>
+  </data>
+  <data name="&gt;&gt;UserAchievementsTextBox.Parent" xml:space="preserve">
+    <value>AchievementsTap</value>
+  </data>
+  <data name="&gt;&gt;UserAchievementsLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="RulesDataGridView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>892, 472</value>
+  </data>
+  <data name="AchievementsDataGridView.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="SearchUserButton.Text" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="RemoveAchievementButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;UserInfoPanel.Parent" xml:space="preserve">
+    <value>AchievementsTap</value>
+  </data>
+  <data name="AddRuleButton.Text" xml:space="preserve">
+    <value>Agregar</value>
+  </data>
+  <data name="&gt;&gt;DepartamentRuleComboBox.Parent" xml:space="preserve">
+    <value>RulesTap</value>
+  </data>
+  <data name="&gt;&gt;RemoveAchievementButton.Parent" xml:space="preserve">
+    <value>AchievementsTap</value>
+  </data>
+  <data name="ViewRuleButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 40</value>
+  </data>
+  <data name="DepartamentRuleComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="UserAchievementsLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;MenuStrip.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SelectedUserUsername.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="LogoutButton.Text" xml:space="preserve">
+    <value>Cerrar Sesión</value>
+  </data>
+  <data name="RulesColumnStartDate.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="&gt;&gt;AddRuleButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RulesDataGridView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>906, 24</value>
+  </data>
+  <data name="UserInfoPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>892, 60</value>
+  </data>
+  <data name="EnabledCheckBox.Width" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="UserAchievementsTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 29</value>
+  </data>
+  <data name="ExitButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 22</value>
+  </data>
+  <data name="&gt;&gt;SelectedUsernameLabel.Parent" xml:space="preserve">
+    <value>UserInfoPanel</value>
+  </data>
+  <data name="AddRuleButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 40</value>
+  </data>
+  <data name="&gt;&gt;EnabledCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewCheckBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="SelectedUserJobLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;UserAchievementsTextBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="UserAchievementsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 16</value>
+  </data>
+  <data name="RulesTap.Text" xml:space="preserve">
+    <value>Reglas</value>
+  </data>
+  <data name="SelectedUsernameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 36</value>
+  </data>
+  <data name="&gt;&gt;LogoutButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserInfoPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;UserAchievementsLabel.Name" xml:space="preserve">
+    <value>UserAchievementsLabel</value>
+  </data>
+  <data name="SelectedUserDepartment.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="SelectedUserLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="ExitButton.Text" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="RulesDataGridView.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="AddAchievementButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 40</value>
+  </data>
+  <data name="&gt;&gt;TapControl.Name" xml:space="preserve">
+    <value>TapControl</value>
+  </data>
+  <data name="AchievementsDataGridView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 70</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
+  </data>
+  <data name="SelectedUserJob.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="SelectedUserJob.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="DepartamentRuleLabel.Text" xml:space="preserve">
+    <value>Departamento</value>
+  </data>
+  <data name="SelectedUserJob.Location" type="System.Drawing.Point, System.Drawing">
+    <value>627, 36</value>
+  </data>
+  <data name="&gt;&gt;UserInfoPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RemoveAchievementButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 40</value>
+  </data>
+  <data name="&gt;&gt;DepartamentRuleLabel.Name" xml:space="preserve">
+    <value>DepartamentRuleLabel</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserName.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;OptionsButton.Name" xml:space="preserve">
+    <value>OptionsButton</value>
+  </data>
+  <data name="&gt;&gt;AddRuleButton.Parent" xml:space="preserve">
+    <value>RulesTap</value>
+  </data>
+  <data name="AchievementsTap.Size" type="System.Drawing.Size, System.Drawing">
+    <value>898, 545</value>
+  </data>
+  <data name="AchievementsTap.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ViewRuleButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="DepartamentRuleComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 29</value>
+  </data>
+  <data name="SelectedUserJobLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;AchievementsColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AchievementsColumn.HeaderText" xml:space="preserve">
+    <value>Logro</value>
+  </data>
+  <data name="RulesDataGridView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 70</value>
+  </data>
+  <data name="SelectedUserName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 9</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DepartamentRuleComboBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="SelectedUserUsername.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>400, 16</value>
+  </data>
+  <data name="&gt;&gt;AddRuleButton.Name" xml:space="preserve">
+    <value>AddRuleButton</value>
+  </data>
+  <data name="SelectedUserDepartmentLabel.Text" xml:space="preserve">
+    <value>Departamento:</value>
+  </data>
+  <data name="DepartamentRuleLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;AddAchievementButton.Name" xml:space="preserve">
+    <value>AddAchievementButton</value>
+  </data>
+  <data name="&gt;&gt;SelectedUsernameLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserUsername.Parent" xml:space="preserve">
+    <value>UserInfoPanel</value>
+  </data>
+  <data name="SelectedUserJobLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 16</value>
+  </data>
+  <data name="&gt;&gt;AchievementsTap.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RulesColumnDescripcion.Name" xml:space="preserve">
+    <value>RulesColumnDescripcion</value>
+  </data>
+  <data name="&gt;&gt;TapControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AchievementsTap.Text" xml:space="preserve">
+    <value>Logros</value>
+  </data>
+  <data name="UserAchievementsTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 20</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="MenuStrip.Text" xml:space="preserve">
+    <value>MenuStrip</value>
+  </data>
+  <data name="RemoveRuleButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 40</value>
+  </data>
+  <data name="&gt;&gt;RemoveAchievementButton.Name" xml:space="preserve">
+    <value>RemoveAchievementButton</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserDepartmentLabel.Name" xml:space="preserve">
+    <value>SelectedUserDepartmentLabel</value>
+  </data>
+  <data name="&gt;&gt;DepartamentRuleLabel.Parent" xml:space="preserve">
+    <value>RulesTap</value>
+  </data>
+  <data name="&gt;&gt;ViewRuleButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SelectedUserDepartment.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="DepartamentRuleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 16</value>
+  </data>
+  <data name="RulesTap.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;MenuStrip.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserLabel.Parent" xml:space="preserve">
+    <value>UserInfoPanel</value>
+  </data>
+  <data name="SelectedUserJob.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>250, 16</value>
+  </data>
+  <data name="FileButton.Text" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="DepartamentRuleLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="&gt;&gt;RemoveRuleButton.Parent" xml:space="preserve">
+    <value>RulesTap</value>
+  </data>
+  <data name="SelectedUsernameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="ViewRuleButton.Text" xml:space="preserve">
+    <value>Ver</value>
+  </data>
+  <data name="SelectedUserDepartmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 16</value>
+  </data>
+  <data name="SelectedUsernameLabel.Text" xml:space="preserve">
+    <value>Nombre de Usuario:</value>
+  </data>
+  <data name="&gt;&gt;RulesTap.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;AchievementsDataGridView.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;UserAchievementsTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SelectedUserDepartment.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="AddAchievementButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="UserAchievementsLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="&gt;&gt;UserAchievementsTextBox.Name" xml:space="preserve">
+    <value>UserAchievementsTextBox</value>
+  </data>
+  <data name="SelectedUserDepartmentLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>524, 9</value>
+  </data>
+  <data name="RemoveRuleButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="SelectedUserJob.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="SelectedUserLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 16</value>
+  </data>
+  <data name="RulesTap.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="&gt;&gt;RulesColumnStartDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AchievementsColumnDetails.HeaderText" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
+  <data name="RulesColumnStartDate.HeaderText" xml:space="preserve">
+    <value>Fecha de Inicio</value>
+  </data>
+  <data name="RulesColumnEndDate.HeaderText" xml:space="preserve">
+    <value>Fecha de Finalización</value>
+  </data>
+  <data name="SelectedUserJobLabel.Text" xml:space="preserve">
+    <value>Puesto:</value>
+  </data>
+  <data name="&gt;&gt;AchievementsTap.Parent" xml:space="preserve">
+    <value>TapControl</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserJobLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="SelectedUserJobLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>524, 36</value>
+  </data>
+  <data name="SelectedUserUsername.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 36</value>
+  </data>
+  <data name="&gt;&gt;RemoveAchievementButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SelectedUserName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="SelectedUserUsername.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="SelectedUserName.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RulesTap.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserDepartment.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserDepartmentLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="SelectedUserUsername.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 16</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserJob.Name" xml:space="preserve">
+    <value>SelectedUserJob</value>
+  </data>
+  <data name="&gt;&gt;RulesTap.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RulesColumnDescripcion.HeaderText" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="&gt;&gt;AchievementsDataGridView.Name" xml:space="preserve">
+    <value>AchievementsDataGridView</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserDepartment.Parent" xml:space="preserve">
+    <value>UserInfoPanel</value>
+  </data>
+  <data name="SelectedUsernameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;SearchUserButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserName.Name" xml:space="preserve">
+    <value>SelectedUserName</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserJob.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EnabledCheckBox.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AchievementsTap.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="&gt;&gt;AchievementsTap.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;RulesColumnEndDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserAchievementsLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 10</value>
+  </data>
+  <data name="&gt;&gt;AddAchievementButton.Parent" xml:space="preserve">
+    <value>AchievementsTap</value>
+  </data>
+  <data name="SelectedUserName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 16</value>
+  </data>
+  <data name="&gt;&gt;RemoveRuleButton.Name" xml:space="preserve">
+    <value>RemoveRuleButton</value>
+  </data>
+  <data name="ToolsButton.Text" xml:space="preserve">
+    <value>Herramientas</value>
+  </data>
+  <data name="MenuStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;RulesColumnDescripcion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ToolsButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 20</value>
+  </data>
+  <data name="TapControl.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="RulesColumnName.HeaderText" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="&gt;&gt;SelectedUsernameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserUsername.Name" xml:space="preserve">
+    <value>SelectedUserUsername</value>
+  </data>
+  <data name="&gt;&gt;RemoveRuleButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="AddAchievementButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>734, 9</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserLabel.Name" xml:space="preserve">
+    <value>SelectedUserLabel</value>
+  </data>
+  <data name="RemoveAchievementButton.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserDepartment.Name" xml:space="preserve">
+    <value>SelectedUserDepartment</value>
+  </data>
+  <data name="MenuStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;RulesTap.Name" xml:space="preserve">
+    <value>RulesTap</value>
+  </data>
+  <data name="&gt;&gt;RulesColumnEndDate.Name" xml:space="preserve">
+    <value>RulesColumnEndDate</value>
+  </data>
+  <data name="&gt;&gt;DepartamentRuleLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserUsername.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;UserAchievementsLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MenuStrip.Name" xml:space="preserve">
+    <value>MenuStrip</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserJobLabel.Name" xml:space="preserve">
+    <value>SelectedUserJobLabel</value>
+  </data>
+  <data name="SelectedUserDepartment.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>250, 16</value>
+  </data>
+  <data name="OptionsButton.Text" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="TapControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 24</value>
+  </data>
+  <data name="&gt;&gt;FileButton.Name" xml:space="preserve">
+    <value>FileButton</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>906, 595</value>
+  </data>
+  <data name="&gt;&gt;SelectedUsernameLabel.Name" xml:space="preserve">
+    <value>SelectedUsernameLabel</value>
+  </data>
+  <data name="SelectedUserLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserName.Parent" xml:space="preserve">
+    <value>UserInfoPanel</value>
+  </data>
+  <data name="&gt;&gt;OptionsButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SelectedUserDepartment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>627, 9</value>
+  </data>
+  <data name="&gt;&gt;RulesColumnName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ViewRuleButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>653, 10</value>
+  </data>
+  <data name="AddAchievementButton.Text" xml:space="preserve">
+    <value>Agregar</value>
+  </data>
+  <data name="&gt;&gt;RulesTap.Parent" xml:space="preserve">
+    <value>TapControl</value>
+  </data>
+  <data name="&gt;&gt;FileButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SearchUserButton.Name" xml:space="preserve">
+    <value>SearchUserButton</value>
+  </data>
+  <data name="&gt;&gt;AchievementsDataGridView.Parent" xml:space="preserve">
+    <value>AchievementsTap</value>
+  </data>
+  <data name="&gt;&gt;LogoutButton.Name" xml:space="preserve">
+    <value>LogoutButton</value>
+  </data>
+  <data name="RulesColumnEndDate.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="&gt;&gt;AddAchievementButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SelectedUserLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="FileButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="RemoveRuleButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>815, 10</value>
+  </data>
+  <data name="&gt;&gt;SearchUserButton.Parent" xml:space="preserve">
+    <value>AchievementsTap</value>
+  </data>
+  <data name="&gt;&gt;ToolsButton.Name" xml:space="preserve">
+    <value>ToolsButton</value>
+  </data>
+  <data name="SearchUserButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;ViewRuleButton.Parent" xml:space="preserve">
+    <value>RulesTap</value>
+  </data>
+  <data name="&gt;&gt;UserAchievementsLabel.Parent" xml:space="preserve">
+    <value>AchievementsTap</value>
+  </data>
+  <data name="&gt;&gt;ViewRuleButton.Name" xml:space="preserve">
+    <value>ViewRuleButton</value>
+  </data>
+  <data name="DepartamentRuleComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 21</value>
+  </data>
+  <data name="&gt;&gt;RemoveAchievementButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="AddRuleButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>734, 10</value>
+  </data>
+  <data name="OptionsButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="TapControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>906, 571</value>
+  </data>
+  <data name="&gt;&gt;RulesDataGridView.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;AchievementsTap.Name" xml:space="preserve">
+    <value>AchievementsTap</value>
+  </data>
+  <data name="SelectedUserDepartment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 16</value>
+  </data>
+  <data name="&gt;&gt;TapControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;AddRuleButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ViewRuleButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;SelectedUserUsername.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;RulesDataGridView.Parent" xml:space="preserve">
+    <value>RulesTap</value>
+  </data>
+  <data name="UserInfoPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 482</value>
+  </data>
+  <data name="SelectedUsernameLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <metadata name="RulesColumnDescripcion.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="AchievementsColumnDetails.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>en</value>
+  </metadata>
+  <metadata name="RulesColumnStartDate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="RulesColumnName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
+  </metadata>
+  <metadata name="AchievementsColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="RulesColumnEndDate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="EnabledCheckBox.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="MenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>
