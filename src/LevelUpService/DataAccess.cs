@@ -15,7 +15,7 @@ namespace LevelUpService
             m_db = new Database();
             m_db.SetServers("LAPTOP-JOSE", "");
             m_db.SetDatabase("LevelUp");
-            m_db.SetAuthentication("LevelUp_Login", "admin");
+            m_db.SetAuthentication("LU_App", "admin");
             m_db.SetPoolSize(0, 4);
         }
 
