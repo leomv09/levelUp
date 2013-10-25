@@ -89,3 +89,24 @@ INNER JOIN Departamento AS D ON
 	LD.fk_idDepartamento = D.idDepartamento
 ORDER BY [Nombre!1!Nombre], [Logro!2!], [Departamento!3!]
 FOR XML EXPLICIT;
+
+-- -------------------------------------------------------------------------------------------
+-- Creacion del CSV
+-- -------------------------------------------------------------------------------------------
+-- Los primeros 3 parrafos son configuracion
+
+EXECUTE SP_CONFIGURE 'show advanced options', 1
+RECONFIGURE WITH OVERRIDE
+GO
+
+EXECUTE SP_CONFIGURE 'xp_cmdshell', '1'
+RECONFIGURE WITH OVERRIDE
+GO
+
+EXECUTE SP_CONFIGURE 'show advanced options', 0
+RECONFIGURE WITH OVERRIDE
+GO
+declare @sql nvarchar(4000)
+
+select @sql = 'bcp "SELECT p.Nombre Provincia,Pa.Nombre Pais  FROM LevelUp.dbo.Pais Pa INNER JOIN LevelUp.dbo.Provincia p ON Pa.idPais=p.fk_idPais;" queryout D:\file.csv -c -t, -T -S'+ @@servername
+exec xp_cmdshell @sql
