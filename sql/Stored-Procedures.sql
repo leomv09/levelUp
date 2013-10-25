@@ -25,7 +25,7 @@ BEGIN
 	INNER JOIN ReglasPorDepartamento AS RPD
 	ON RPD.fk_idRegla = R.idRegla AND RPD.fk_idDepartamento = @DepartmentID
 	INNER JOIN EstadoRegla AS ER ON R.fk_idEstadoRegla = ER.idEstadoRegla
-	WHERE ER.Estado = 'Activo';
+	WHERE ER.Estado = 'Activa';
 END;
 GO
 
