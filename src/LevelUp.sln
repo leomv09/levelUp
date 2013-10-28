@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LevelUpService", "LevelUpService\LevelUpService.csproj", "{DD8D9A71-7658-4351-A06A-DB47C622030A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{DD8D9A71-7658-4351-A06A-DB47C622030A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LevelUpApplication", "LevelUpApplication\LevelUpApplication.csproj", "{BB8A7DE4-994B-43DE-ABCB-3968A9578E4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{BB8A7DE4-994B-43DE-ABCB-3968A9578E4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

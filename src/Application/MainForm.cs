@@ -10,7 +10,7 @@ using System.Threading;
 using System.Globalization;
 using LevelUp.Data;
 using LevelUp.Logic;
-using LevelUpApplication.Properties;
+using LevelUp.App.Properties;
 
 namespace LevelUp.App
 {
