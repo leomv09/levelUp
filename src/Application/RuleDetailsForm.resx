@@ -3572,6 +3572,9 @@
   <data name="&gt;&gt;CancelRuleButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="AchievementAmount.Width" type="System.Int32, mscorlib">
+    <value>74</value>
+  </data>
   <data name="&gt;&gt;AwardsDataGridView.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
@@ -3749,9 +3752,6 @@
   </data>
   <data name="&gt;&gt;AchievementName.Name" xml:space="preserve">
     <value>AchievementName</value>
-  </data>
-  <data name="RuleNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>616, 55</value>
   </data>
   <data name="&gt;&gt;AchievementListLabel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3960,8 +3960,8 @@
   <data name="&gt;&gt;AwardDetails.Name" xml:space="preserve">
     <value>AwardDetails</value>
   </data>
-  <data name="AchievementAmount.Width" type="System.Int32, mscorlib">
-    <value>74</value>
+  <data name="RuleNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 55</value>
   </data>
   <metadata name="RemoveAchievementButton.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

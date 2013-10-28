@@ -197,7 +197,7 @@
             this.RemoveAchievementButton.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             resources.ApplyResources(this.RemoveAchievementButton, "RemoveAchievementButton");
             this.RemoveAchievementButton.Name = "RemoveAchievementButton";
-            this.RemoveAchievementButton.Text = "Supprimer";
+            this.RemoveAchievementButton.Text = "Remove";
             this.RemoveAchievementButton.UseColumnTextForButtonValue = true;
             // 
             // AwardName
@@ -224,7 +224,7 @@
             this.Remove.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             resources.ApplyResources(this.Remove, "Remove");
             this.Remove.Name = "Remove";
-            this.Remove.Text = "Supprimer";
+            this.Remove.Text = "Remove";
             this.Remove.UseColumnTextForButtonValue = true;
             // 
             // RuleDetailsForm
