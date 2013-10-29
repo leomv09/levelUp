@@ -1041,7 +1041,48 @@ DECLARE @Nombres TABLE (Name varchar (50));
 DECLARE @Apellidos TABLE (Name varchar (50));
 DECLARE @Empleados int = (SELECT idGrupoDeUsuarios FROM GruposDeUsuarios WHERE Nombre = 'Empleado');
 
-INSERT INTO @Nombres (Name) VALUES ('Juan'), ('Pedro'), ('Pablo'), ('Alex'), ('Daniel'), ('David'), ('Alejandra'), ('Susan'), ('Tatiana'), ('María'), ('Cindy'), ('Alexa'), ('Jorge'), ('Alejandro'), ('Ariana'), ('Jose'), ('Eduardo'), ('Christina'), ('Emanuel'), ('Anthony'), ('Johanna'), ('Brenda'), ('Andrea'), ('Karla'), ('Luis'), ('Edgardo'), ('Denis'), ('Katherine'), ('Marta'), ('Marcia');
+INSERT INTO @Nombres (Name) VALUES 
+('Alejandra'), 
+('Alejandro'), 
+('Anthony'), 
+('Alex'), 
+('Alexa'), 
+('Andrea'), 
+('Ariana'), 
+('Brenda'), 
+('Bruno')
+('Cindy'), 
+('Christina'), 
+('Carlos'),
+('David'), 
+('Daniela'), 
+('Denis'), 
+('Eduardo'), 
+('Elena'), 
+('Emanuel'), 
+('Fabiola'),
+('Gabriel'),
+('Hector'),
+('Indira'),
+('Jose'), 
+('Jorge'), 
+('Johanna'), 
+('Juan'), 
+('Karla'), 
+('Katherine'), 
+('Luis'), 
+('Leonora')
+('María'), 
+('Marta'), 
+('Marcia'),
+('Nuria'),
+('Oscar'),
+('Pablo'), 
+('Pedro'),
+('Rocio'), 
+('Susan'), 
+('Tatiana');
+
 INSERT INTO @Apellidos (Name) VALUES ('Chacon'), ('Lobo'), ('Fernandez'), ('Lopez'), ('Arias'), ('Cordero'), ('Salazar'), ('Campos'), ('Solis'), ('Vargas'), ('Cartin'), ('Morales'), ('Nuñez'), ('Rodriguez'), ('Delgado'), ('Alvarez'), ('Mora'), ('Rojas'), ('Loria');
 
 SET IDENTITY_INSERT dbo.Usuario ON;
