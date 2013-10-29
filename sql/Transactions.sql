@@ -11,6 +11,13 @@
 -- @Gnero: Genero del usuario.
 -----------------------------------------------------------
 -----------------------------------------------------------
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID('CrearUsuario'))--Igual a DROP PROCEDURE IF EXISTS DE MYSQL
+BEGIN
+    DROP PROCEDURE [dbo].[CrearUsuario] 
+END
+GO
+
 CREATE PROCEDURE [dbo].[CrearUsuario]  
 	@Nombre VARCHAR(50),
 	@Apellido1 VARCHAR(50),
