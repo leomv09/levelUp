@@ -74,7 +74,7 @@ INNER JOIN Departamento AS D ON
 	LD.fk_idDepartamento = D.idDepartamento
 UNION ALL
 SELECT 3 AS TAG,
-	   2 AS PARENT,
+	   1 AS PARENT,
 	   U.Nombre,
 	   L.Descripcion,
 	   D.Nombre
