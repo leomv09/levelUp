@@ -129,6 +129,19 @@ GO
 
 -- =============================================
 -- Author:		Jose Garcia
+-- Description:	Borra todos los premios de una regla.
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteRuleAwards]
+	@RuleID int
+AS
+BEGIN
+	DELETE FROM PremiosPorRegla
+	WHERE fk_idRegla = @RuleID;
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
 -- Description:	Agrega un premio a una regla.
 -- =============================================
 CREATE PROCEDURE [dbo].[AddAwardToRule]
@@ -137,8 +150,23 @@ CREATE PROCEDURE [dbo].[AddAwardToRule]
 AS
 BEGIN
 	IF NOT EXISTS (SELECT * FROM PremiosPorRegla WHERE fk_idRegla = @RuleID AND fk_idPremio = @AwardID)
+	BEGIN
 		INSERT INTO PremiosPorRegla (fk_idRegla, fk_idPremio) VALUES
 		(@RuleID, @AwardID);
+	END
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Borra todos los logros de una regla.
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteRuleAchievements]
+	@RuleID int
+AS
+BEGIN
+	DELETE FROM LogrosPorRegla
+	WHERE fk_idRegla = @RuleID;
 END;
 GO
 
@@ -149,13 +177,14 @@ GO
 CREATE PROCEDURE [dbo].[AddAchievementToRule]
 	@RuleID int, 
 	@AchievementID int,
-	@CreatorID int,
 	@Amount int
 AS
 BEGIN
 	IF NOT EXISTS (SELECT * FROM LogrosPorRegla WHERE fk_idRegla = @RuleID AND fk_Logro = @AchievementID)
+	BEGIN
 		INSERT INTO LogrosPorRegla (fk_idRegla, fk_Logro, fk_idCreador, Cantidad, FechaCreacion) VALUES
-		(@RuleID, @AchievementID, @CreatorID, @Amount, GETDATE());
+		(@RuleID, @AchievementID, 1, @Amount, GETDATE());
+	END
 END;
 GO
 
@@ -273,6 +302,39 @@ BEGIN
 	SELECT M.idMoneda AS ID, M.Nombre, M.Codigo, M.Simbolo FROM Moneda AS M;
 END;
 GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Obtiene el departamento al que pertenece el usuario.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetUserDepartment]
+	@Username varchar(70)
+AS
+BEGIN
+	SELECT D.idDepartamento AS ID, D.Nombre AS Departamento FROM Contratos AS C
+	INNER JOIN Usuario AS U ON U.idUsuario = C.fk_idUsuario
+	INNER JOIN Puestos AS P ON P.idPuesto = C.fk_idPuesto
+	INNER JOIN Departamento AS D ON D.idDepartamento = P.fk_idDepartamento
+	WHERE U.Username = @Username;
+END;
+GO
+
+-- =============================================
+-- Author:		Jose Garcia
+-- Description:	Obtiene el puesto del usuario.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetUserJob]
+	@Username varchar(70)
+AS
+BEGIN
+	SELECT P.idPuesto AS ID, P.Puesto FROM Contratos AS C
+	INNER JOIN Usuario AS U ON U.idUsuario = C.fk_idUsuario
+	INNER JOIN Puestos AS P ON P.idPuesto = C.fk_idPuesto
+	INNER JOIN Departamento AS D ON D.idDepartamento = P.fk_idDepartamento
+	WHERE U.Username = @Username;
+END;
+GO
+
 
 -- =============================================
 -- Author:		Jose Garcia

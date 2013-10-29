@@ -1048,7 +1048,9 @@ SET IDENTITY_INSERT dbo.Usuario ON;
 
 -- Insertar Administrador Global.
 INSERT INTO Usuario (idUsuario, Nombre, Apellido1, Username, Contraseña, fk_idEstadoUsuario, fk_idGenero)
-VALUES (1, 'Administrador', '', 'admin', CONVERT(VARCHAR(200),HashBytes('SHA2_256', 'admin'),2), 1, 1);
+VALUES (1, 'Administrador', '', 'admin', CONVERT(VARCHAR(200),HashBytes('SHA1', 'admin'),2), 1, 1);
+INSERT INTO Contratos (FechaInicio, FechaCreacion, fk_idCreador, fk_idUsuario, fk_idPuesto) VALUES
+(GETDATE(), GETDATE(), 1, 1, 1);
 INSERT INTO UsuariosPorGrupo (fk_idUsuario, fk_idGrupo) VALUES
 (1, 2);
 
@@ -1064,9 +1066,9 @@ BEGIN
 
   -- Insertar Usuario.
   INSERT INTO Usuario (idUsuario, Nombre, Apellido1, Apellido2, Username, Contraseña, fk_idEstadoUsuario, fk_idGenero)
-  VALUES (@UsuarioActual, @Nombre, @Apellido1, @Apellido2, @Username, CONVERT(VARCHAR(200),HashBytes('SHA2_256', @Username),2) , 1, 1);
+  VALUES (@UsuarioActual, @Nombre, @Apellido1, @Apellido2, @Username, CONVERT(VARCHAR(200),HashBytes('SHA1', @Username),2) , 1, 1);
 
-  -- Insertarle Contactor.
+  -- Insertarle Contactos.
   INSERT INTO ContactosPorUsuario (fk_idTipoContacto, fk_idUsuario, Valor) VALUES
   (1, @UsuarioActual, @Username + '@gmail.com'),
   (5, @UsuarioActual, 'facebook.com/' + @Username);

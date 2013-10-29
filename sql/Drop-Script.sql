@@ -27,27 +27,26 @@ BEGIN
     DROP ROLE [db_execproc];
   END;
 
+  USE [master];
   DROP DATABASE [LevelUp];
-END;
 
-USE [master];
+  IF EXISTS (SELECT loginname FROM master.dbo.syslogins WHERE name = 'LU_App' and dbname = 'LevelUp')
+  BEGIN
+    DROP LOGIN [LU_App];
+  END;
 
-IF EXISTS (SELECT loginname FROM master.dbo.syslogins WHERE name = 'LU_App' and dbname = 'LevelUp')
-BEGIN
-  DROP LOGIN [LU_App];
-END;
+  IF EXISTS (SELECT loginname FROM master.dbo.syslogins WHERE name = 'LU_Read' and dbname = 'LevelUp')
+  BEGIN
+    DROP LOGIN [LU_Read];
+  END;
 
-IF EXISTS (SELECT loginname FROM master.dbo.syslogins WHERE name = 'LU_Read' and dbname = 'LevelUp')
-BEGIN
-  DROP LOGIN [LU_Read];
-END;
+  IF EXISTS (SELECT loginname FROM master.dbo.syslogins WHERE name = 'LU_SP' and dbname = 'LevelUp')
+  BEGIN
+    DROP LOGIN [LU_SP];
+  END;
 
-IF EXISTS (SELECT loginname FROM master.dbo.syslogins WHERE name = 'LU_SP' and dbname = 'LevelUp')
-BEGIN
-  DROP LOGIN [LU_SP];
-END;
-
-IF EXISTS (SELECT loginname FROM master.dbo.syslogins WHERE name = 'LU_No' and dbname = 'LevelUp')
-BEGIN
-  DROP LOGIN [LU_No];
+  IF EXISTS (SELECT loginname FROM master.dbo.syslogins WHERE name = 'LU_No' and dbname = 'LevelUp')
+  BEGIN
+    DROP LOGIN [LU_No];
+  END;
 END;

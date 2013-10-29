@@ -33,9 +33,9 @@ CREATE ROLE [db_execproc] AUTHORIZATION [dbo]
 GO
 GRANT EXECUTE TO [db_execproc]
 GO
-ALTER ROLE [db_execproc] ADD MEMBER [LU_App]
+EXEC sp_addrolemember N'db_execproc', N'LU_App'
 GO
-ALTER ROLE [db_datareader] ADD MEMBER [LU_Read]
+EXEC sp_addrolemember N'db_datareader', N'LU_Read'
 GO
 DENY CONNECT TO [LU_No]
 GO

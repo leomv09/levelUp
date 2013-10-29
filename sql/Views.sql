@@ -39,7 +39,7 @@ ISNULL(P.Foto, '') AS Foto, ISNULL(P.Cantidad, 0) AS Cantidad, ISNULL(P.Monto, 0
 TP.Tipo, M.Nombre AS Moneda, P.EsGlobal FROM Premio AS P
 INNER JOIN TipoPremio AS TP ON TP.idTipoPremio = P.fk_idTipoPremio
 INNER JOIN Moneda AS M ON M.idMoneda = P.fk_idMoneda
-INNER JOIN EstadoPremio AS EP ON EP.idEstadoPremio = P.fk_idEstadoPremio;
+INNER JOIN EstadoPremio AS EP ON EP.idEstadoPremio = P.fk_idEstadoPremio
 WHERE EP.Estado = 'Activo';
 GO
 
@@ -56,6 +56,6 @@ FROM Premio AS P
 INNER JOIN TipoPremio AS TP ON TP.idTipoPremio = P.fk_idTipoPremio
 INNER JOIN Moneda AS M ON M.idMoneda = P.fk_idMoneda
 INNER JOIN PremiosPorDepartamento AS PPD ON PPD.fk_idPremio = P.idPremio
-INNER JOIN EstadoPremio AS EP ON EP.idEstadoPremio = P.fk_idEstadoPremio;
+INNER JOIN EstadoPremio AS EP ON EP.idEstadoPremio = P.fk_idEstadoPremio
 WHERE EP.Estado = 'Activo';
 GO
