@@ -1,0 +1,44 @@
+﻿<Nombre Nombre="Administrador" />
+<Nombre Nombre="Administrador" />
+<Nombre Nombre="Administrador">
+  <Logro />
+  <Logro />
+  <Logro />
+  <Departamento>Administración</Departamento>
+  <Departamento>Recursos Humanos</Departamento>
+  <Departamento>Tecnologias de Información</Departamento>
+  <Logro />
+  <Logro />
+  <Logro />
+</Nombre>
+<Nombre Nombre="Alexa" />
+<Nombre Nombre="Alexa" />
+<Nombre Nombre="Alexa">
+  <Departamento>Administración</Departamento>
+  <Departamento>Recursos Humanos</Departamento>
+  <Departamento>Tecnologias de Información</Departamento>
+</Nombre>
+<Nombre Nombre="Anthony">
+  <Logro />
+  <Departamento>Administración</Departamento>
+  <Logro />
+</Nombre>
+<Nombre Nombre="Brenda">
+  <Departamento>Tecnologias de Información</Departamento>
+</Nombre>
+<Nombre Nombre="Christina">
+  <Logro />
+  <Departamento>Tecnologias de Información</Departamento>
+  <Logro />
+</Nombre>
+<Nombre Nombre="Jose">
+  <Departamento>Tecnologias de Información</Departamento>
+</Nombre>
+<Nombre Nombre="Juan">
+  <Logro />
+  <Departamento>Administración</Departamento>
+  <Logro />
+</Nombre>
+<Nombre Nombre="María">
+  <Departamento>Tecnologias de Información</Departamento>
+</Nombre>
