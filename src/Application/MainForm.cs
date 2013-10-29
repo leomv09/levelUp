@@ -150,8 +150,11 @@ namespace LevelUp.App
         private void RulesDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             RuleDetailsForm form = new RuleDetailsForm(this.SelectedRule, this.SelectedDepartment);
-            form.ShowDialog(this);
-            LoadRules();
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                Thread.Sleep(100);
+                LoadRules();
+            }
         }
 
         private void ViewRuleButton_Click(object sender, EventArgs e)
@@ -159,8 +162,11 @@ namespace LevelUp.App
             if (this.SelectedRule != null)
             {
                 RuleDetailsForm form = new RuleDetailsForm(this.SelectedRule, this.SelectedDepartment);
-                form.ShowDialog(this);
-                LoadRules();
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    Thread.Sleep(100);
+                    LoadRules();
+                }
             }
             else
             {
