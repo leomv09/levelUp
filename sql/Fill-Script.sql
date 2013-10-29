@@ -1,6 +1,6 @@
 ﻿USE LevelUp;
 
---DELETE FROM Evento;
+DELETE FROM Evento;
 DELETE FROM TipoEvento;
 DELETE FROM Severidad;
 DELETE FROM Modulo;
@@ -29,14 +29,14 @@ DELETE FROM TipoContacto;
 
 DELETE FROM PremiosPorUsuario;
 DELETE FROM LogrosPorUsuario;
---DELETE FROM LogrosPorRegla;
---DELETE FROM PremiosPorRegla;
+DELETE FROM LogrosPorRegla;
+DELETE FROM PremiosPorRegla;
 DELETE FROM LogrosPorDepartamento;
 DELETE FROM PremiosPorDepartamento;
---DELETE FROM ReglasPorDepartamento;
+DELETE FROM ReglasPorDepartamento;
 DELETE FROM Departamento;
 DELETE FROM Logros;
---DELETE FROM Regla;
+DELETE FROM Regla;
 DELETE FROM Premio;
 DELETE FROM EstadoRegla;
 DELETE FROM EstadoLogro;
@@ -1025,66 +1025,6 @@ INSERT INTO TitulosPorInstituciones (fk_idInstitucion, fk_idTitulo) VALUES
 (5, 12),
 (5, 13);
 
-DECLARE @TotalUsuarios int = 300;
-DECLARE @UsuarioActual int = 2;
-DECLARE @Username varchar (70);
-DECLARE @Nombre varchar(50);
-DECLARE @Apellido1 varchar(50);
-DECLARE @Apellido2 varchar(50);
-DECLARE @Puesto int;
-DECLARE @Fecha date;
-DECLARE @NumeroTitulos int;
-DECLARE @Titulo int;
-DECLARE @Institucion int;
-DECLARE @Direccion int;
-DECLARE @Nombres TABLE (Name varchar (50));
-DECLARE @Apellidos TABLE (Name varchar (50));
-DECLARE @Empleados int = (SELECT idGrupoDeUsuarios FROM GruposDeUsuarios WHERE Nombre = 'Empleado');
-
-INSERT INTO @Nombres (Name) VALUES 
-('Alejandra'), 
-('Alejandro'), 
-('Anthony'), 
-('Alex'), 
-('Alexa'), 
-('Andrea'), 
-('Ariana'), 
-('Brenda'), 
-('Bruno')
-('Cindy'), 
-('Christina'), 
-('Carlos'),
-('David'), 
-('Daniela'), 
-('Denis'), 
-('Eduardo'), 
-('Elena'), 
-('Emanuel'), 
-('Fabiola'),
-('Gabriel'),
-('Hector'),
-('Indira'),
-('Jose'), 
-('Jorge'), 
-('Johanna'), 
-('Juan'), 
-('Karla'), 
-('Katherine'), 
-('Luis'), 
-('Leonora')
-('María'), 
-('Marta'), 
-('Marcia'),
-('Nuria'),
-('Oscar'),
-('Pablo'), 
-('Pedro'),
-('Rocio'), 
-('Susan'), 
-('Tatiana');
-
-INSERT INTO @Apellidos (Name) VALUES ('Chacon'), ('Lobo'), ('Fernandez'), ('Lopez'), ('Arias'), ('Cordero'), ('Salazar'), ('Campos'), ('Solis'), ('Vargas'), ('Cartin'), ('Morales'), ('Nuñez'), ('Rodriguez'), ('Delgado'), ('Alvarez'), ('Mora'), ('Rojas'), ('Loria');
-
 SET IDENTITY_INSERT dbo.Usuario ON;
 
 -- Insertar Administrador Global.
@@ -1095,49 +1035,6 @@ INSERT INTO Contratos (FechaInicio, FechaCreacion, fk_idCreador, fk_idUsuario, f
 INSERT INTO UsuariosPorGrupo (fk_idUsuario, fk_idGrupo) VALUES
 (1, 2);
 
-WHILE @UsuarioActual <= @TotalUsuarios
-BEGIN
-  -- Obtener datos.
-  SELECT TOP 1 @Nombre = Name FROM @Nombres ORDER BY NEWID();
-  SELECT TOP 1 @Apellido1 = Name FROM @Apellidos ORDER BY NEWID();
-  SELECT TOP 1 @Apellido2 = Name FROM @Apellidos ORDER BY NEWID();
-  SELECT TOP 1 @Puesto = idPuesto FROM Puestos ORDER BY NEWID();
-  SELECT TOP 1 @Direccion = idDireccion FROM Direccion ORDER BY NewID();
-  SET @Username = @Nombre + @Apellido1 + CAST(@UsuarioActual AS varchar);
-
-  -- Insertar Usuario.
-  INSERT INTO Usuario (idUsuario, Nombre, Apellido1, Apellido2, Username, Contraseña, fk_idEstadoUsuario, fk_idGenero)
-  VALUES (@UsuarioActual, @Nombre, @Apellido1, @Apellido2, @Username, CONVERT(VARCHAR(200),HashBytes('SHA1', @Username),2) , 1, 1);
-
-  -- Insertarle Contactos.
-  INSERT INTO ContactosPorUsuario (fk_idTipoContacto, fk_idUsuario, Valor) VALUES
-  (1, @UsuarioActual, @Username + '@gmail.com'),
-  (5, @UsuarioActual, 'facebook.com/' + @Username);
-
-  -- Insertarle Contratos.
-  SET @Fecha = DateAdd(d, ROUND(DateDiff(d, '2000-01-01', '2013-01-01') * RAND(), 0), '2000-01-01');
-  INSERT INTO Contratos (FechaInicio, FechaCreacion, fk_idCreador, fk_idUsuario, fk_idPuesto) VALUES
-  (@Fecha, GETDATE(), 1, @UsuarioActual, @Puesto);
-
-  -- Insertarle Titulos.
-  SET @NumeroTitulos = 0;
-  WHILE @NumeroTitulos < 2
-  BEGIN
-    SELECT TOP 1 @Titulo = fk_idTitulo, @Institucion = fk_idInstitucion FROM TitulosPorInstituciones ORDER BY NEWID();
-    SET @Fecha = DateAdd(d, ROUND(DateDiff(d, '1950-01-01', '2000-01-01') * RAND(), 0), '1950-01-01');
-    INSERT INTO TitulosPorUsuario (fk_idTitulo, fk_idInstitucion, fk_idUsuario, fk_idCreador, FechaObtencion, FechaCreacion) 
-    VALUES (@Titulo, @Institucion, @UsuarioActual, 1, @Fecha, GETDATE());
-    SET @NumeroTitulos = @NumeroTitulos + 1;
-  END;
-
-    --Insertarle una Direccion.
-  INSERT INTO DireccionesPorUsuario(fk_idUsuario, fk_idDireccion) VALUES 
-  (@UsuarioActual, @Direccion);
-
-  --Insertar usuario en el grupo Empleados.
-  INSERT INTO UsuariosPorGrupo (fk_idUsuario, fk_idGrupo) VALUES (@UsuarioActual, @Empleados);
-  SET @UsuarioActual = @UsuarioActual + 1;
-END;
 SET IDENTITY_INSERT dbo.Usuario OFF;
 
 SET IDENTITY_INSERT dbo.Moneda ON;
@@ -1191,7 +1088,7 @@ INSERT INTO Logros (idLogro, Nombre, FechaInicio, FechaFinal, fk_idCreador, Fech
 (11, 'Crear asociación en la empresa.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1, 1, 1),
 (12, 'Componer himno organizacional.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1, 1, 1),
 (13, 'Llegar temprano durante 20 años laborales.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1, 1, 1),
-(14, 'Laborar 14 horas extra en un mes.', '2011-08-10', '2012-02-10', 2, '2011-01-02',1, 5, 1),
+(14, 'Laborar 14 horas extra en un mes.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1, 5, 1),
 (15, 'Organizar fiesta anual.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1, 5, 1);
 SET IDENTITY_INSERT dbo.Logros OFF;
 
@@ -1363,35 +1260,6 @@ INSERT INTO TipoEvento (idTipoEvento, Tipo) VALUES
 (29, 'Modificacion de Permisos de Grupo de Usuarios');
 SET IDENTITY_INSERT dbo.TipoEvento OFF;
 
-INSERT INTO PermisosPorUsuario (fk_idUsuario, fk_idPermiso) VALUES
-(1, 5),
-(2, 8),
-(3, 13),
-(4, 17),
-(5, 19),
-(6, 20),
-(7, 1),
-(8, 2),
-(9, 3),
-(10, 4),
-(11, 5),
-(12, 8),
-(13, 13),
-(14, 30),
-(15, 1),
-(4, 5),
-(4, 6),
-(4, 7),
-(4, 8),
-(4, 9),
-(4, 10),
-(4, 13),
-(4, 30),
-(5, 1),
-(5, 5),
-(5, 8);
-
-
 INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES
 (1, 5),
 (1, 8),
@@ -1446,6 +1314,116 @@ INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES
 (7, 22),
 (7, 39);
 
+-- Variable donde se almacenara la cantidad de usuarios que tendra el sistema.
+DECLARE @TotalUsuarios int = 300;
+-- Variable que llevara la cuenta del usuario actual en el que se esta trabajando.
+-- Empieza en 2 por que el primer usuario es admin.
+DECLARE @UsuarioActual int = 2;
+-- Variable donde se almacenara el username del usuario actual.
+DECLARE @Username varchar (70);
+-- Variable donde se almacenara el nombre del usuario actual.
+DECLARE @Nombre varchar(50);
+-- Variable donde se almacenara el primer apellido del usuario actual.
+DECLARE @Apellido1 varchar(50);
+-- Variable donde se almacenara el segundo apellido del usuario actual.
+DECLARE @Apellido2 varchar(50);
+-- Variable donde se almacenara el ID del puesto del usuario.
+DECLARE @Puesto int;
+-- Variable donde se almacenara una fecha. (Utilizada para muchas cosas).
+DECLARE @Fecha date;
+-- Variable donde se llevara la cuenta del total de titulos que tendra un usuario.
+DECLARE @TotalTitulos int = 2;
+-- Variable donde se llevara la cuenta del numero de titulos que se le han insertado a un usuario.
+DECLARE @NumeroTitulos int;
+-- Variable que tendra el ID del titulo que se esta insertando.
+DECLARE @Titulo int;
+-- Variable que tendra el ID de una institucion.
+DECLARE @Institucion int;
+-- Variable que tendra el ID de una direccion.
+DECLARE @Direccion int;
+-- Variable que tendra la cantidad de logros que tendra un usuario.
+DECLARE @TotalLogros int;
+-- Variable que tendra el numero de logros que se le han insertado a un usuario.
+DECLARE @LogroActual int;
+-- Variable que tendra el ID de un logro.
+DECLARE @Logro int;
+-- Variable que tendra el numero maximo de veces que un usuario puede tener cierto logro.
+DECLARE @NumMaxLogro int;
+-- Variable que tendra la cantidad de veces que un usuario tiene un logro.
+DECLARE @ContLogroUsuario int;
+
+DECLARE @Nombres TABLE (Name varchar (50));
+DECLARE @Apellidos TABLE (Name varchar (50));
+DECLARE @Empleados int = (SELECT idGrupoDeUsuarios FROM GruposDeUsuarios WHERE Nombre = 'Empleado');
+
+INSERT INTO @Nombres (Name) VALUES ('Alejandra'), ('Alejandro'), ('Anthony'), ('Alex'), ('Alexa'), ('Andrea'), ('Ariana'), ('Brenda'), ('Bruno'), ('Cindy'), ('Christina'), ('Carlos'),('David'), ('Daniela'), ('Denis'), ('Eduardo'), ('Elena'), ('Emanuel'), ('Fabiola'),('Gabriel'),('Hector'),('Indira'),('Jose'), ('Jorge'), ('Johanna'), ('Juan'), ('Karla'), ('Katherine'), ('Luis'), ('Leonora'), ('María'), ('Marta'), ('Marcia'),('Nuria'),('Oscar'),('Pablo'), ('Pedro'),('Rocio'), ('Susan'), ('Tatiana');
+INSERT INTO @Apellidos (Name) VALUES ('Chacon'), ('Lobo'), ('Fernandez'), ('Lopez'), ('Arias'), ('Cordero'), ('Salazar'), ('Campos'), ('Solis'), ('Vargas'), ('Cartin'), ('Morales'), ('Nuñez'), ('Rodriguez'), ('Delgado'), ('Alvarez'), ('Mora'), ('Rojas'), ('Loria');
+
+SET IDENTITY_INSERT dbo.Usuario ON;
+WHILE @UsuarioActual <= @TotalUsuarios
+BEGIN
+  -- Obtener datos.
+  SELECT TOP 1 @Nombre = Name FROM @Nombres ORDER BY NEWID();
+  SELECT TOP 1 @Apellido1 = Name FROM @Apellidos ORDER BY NEWID();
+  SELECT TOP 1 @Apellido2 = Name FROM @Apellidos ORDER BY NEWID();
+  SELECT TOP 1 @Puesto = idPuesto FROM Puestos ORDER BY NEWID();
+  SELECT TOP 1 @Direccion = idDireccion FROM Direccion ORDER BY NewID();
+  SET @Username = @Nombre + @Apellido1 + CAST(@UsuarioActual AS varchar);
+
+  -- Insertar Usuario.
+  INSERT INTO Usuario (idUsuario, Nombre, Apellido1, Apellido2, Username, Contraseña, fk_idEstadoUsuario, fk_idGenero)
+  VALUES (@UsuarioActual, @Nombre, @Apellido1, @Apellido2, @Username, CONVERT(VARCHAR(200),HashBytes('SHA1', @Username),2) , 1, 1);
+
+  -- Insertarle Contactos.
+  INSERT INTO ContactosPorUsuario (fk_idTipoContacto, fk_idUsuario, Valor) VALUES
+  (1, @UsuarioActual, @Username + '@gmail.com'),
+  (5, @UsuarioActual, 'facebook.com/' + @Username);
+
+  -- Insertarle Contratos.
+  SET @Fecha = DateAdd(d, ROUND(DateDiff(d, '2000-01-01', '2013-01-01') * RAND(), 0), '2000-01-01');
+  INSERT INTO Contratos (FechaInicio, FechaCreacion, fk_idCreador, fk_idUsuario, fk_idPuesto) VALUES
+  (@Fecha, GETDATE(), 1, @UsuarioActual, @Puesto);
+
+  -- Insertarle Titulos.
+  SET @NumeroTitulos = 0;
+  WHILE @NumeroTitulos < @TotalTitulos
+  BEGIN
+    SELECT TOP 1 @Titulo = fk_idTitulo, @Institucion = fk_idInstitucion FROM TitulosPorInstituciones ORDER BY NEWID();
+    SET @Fecha = DateAdd(d, ROUND(DateDiff(d, '1950-01-01', '2000-01-01') * RAND(), 0), '1950-01-01');
+    INSERT INTO TitulosPorUsuario (fk_idTitulo, fk_idInstitucion, fk_idUsuario, fk_idCreador, FechaObtencion, FechaCreacion) 
+    VALUES (@Titulo, @Institucion, @UsuarioActual, 1, @Fecha, GETDATE());
+    SET @NumeroTitulos = @NumeroTitulos + 1;
+  END;
+
+  -- Insertarle Logros.
+  SET @LogroActual = 0;
+  SELECT @TotalLogros = ABS(CONVERT(BIGINT,CONVERT(BINARY(8), NEWID()))) % 10;
+  WHILE @LogroActual < @TotalLogros
+  BEGIN
+    -- Seleccionar logro aleatorio.
+    SELECT TOP 1 @Logro = idLogro, @NumMaxLogro = NumMaximo FROM Logros ORDER BY NEWID();
+    -- Contar cuantas veces tiene dicho logro el usuario.
+    SELECT @ContLogroUsuario = COUNT(1) 
+    FROM LogrosPorUsuario WHERE fk_idLogro = @Logro AND fk_idUsuario = @UsuarioActual;
+    -- Si el usuario todavia puede tener ese logro.
+    IF @ContLogroUsuario < @NumMaxLogro
+    BEGIN
+      INSERT INTO LogrosPorUsuario (fk_idUsuario, fk_idLogro, fk_idCreador, FechaObtencion) VALUES
+      (@UsuarioActual, @Logro, 1, GETDATE());
+      SET @LogroActual = @LogroActual + 1;
+    END
+  END
+
+  --Insertarle una Direccion.
+  INSERT INTO DireccionesPorUsuario(fk_idUsuario, fk_idDireccion) VALUES 
+  (@UsuarioActual, @Direccion);
+
+  --Insertar usuario en el grupo Empleados.
+  INSERT INTO UsuariosPorGrupo (fk_idUsuario, fk_idGrupo) VALUES (@UsuarioActual, @Empleados);
+  SET @UsuarioActual = @UsuarioActual + 1;
+END;
+SET IDENTITY_INSERT dbo.Usuario OFF;
+
 -- Se le concede a los administradores globales todos los permisos.
 DECLARE @PermisoActual int = 1;
 DECLARE @TotalPermisos int = (SELECT COUNT(Permisos.idPermiso) FROM Permisos);
@@ -1467,3 +1445,31 @@ BEGIN
   VALUES (@InstitucionActual, @Direccion);
   SET @InstitucionActual = @InstitucionActual + 1;
 END;
+
+INSERT INTO PermisosPorUsuario (fk_idUsuario, fk_idPermiso) VALUES
+(1, 5),
+(2, 8),
+(3, 13),
+(4, 17),
+(5, 19),
+(6, 20),
+(7, 1),
+(8, 2),
+(9, 3),
+(10, 4),
+(11, 5),
+(12, 8),
+(13, 13),
+(14, 30),
+(15, 1),
+(4, 5),
+(4, 6),
+(4, 7),
+(4, 8),
+(4, 9),
+(4, 10),
+(4, 13),
+(4, 30),
+(5, 1),
+(5, 5),
+(5, 8);
