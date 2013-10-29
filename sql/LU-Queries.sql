@@ -156,8 +156,8 @@ END
 GO
 
 DECLARE @XMLFILE XML
-SELECT @XMLFILE = ND
-FROM OPENROWSET(BULK 'C:\Users\Leo\Documents\levelUp\Usuarios.xml', SINGLE_BLOB) AS NewXML(ND)
+SELECT @XMLFILE = SRC
+FROM OPENROWSET(BULK 'C:\Users\Leo\Documents\levelUp\Usuarios.xml', SINGLE_BLOB) AS NewXML(SRC)
 DECLARE @UsersInfo2 UsuarioLogros
 INSERT INTO UsersInfo2(Nombre, Logro, Departamento)
 	SELECT Nmbre = U.COL.value('@Nombre','VARCHAR(50)'),
