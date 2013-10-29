@@ -273,5 +273,31 @@ namespace LevelUp.Logic
             return authentication;
         }
 
+        public void GetUserJob(ref User user)
+        {
+            HttpRequest request = new HttpRequest(
+                "https://localhost/levelup/users/" + user.Username + "/job", "GET");
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                Job job = serializer.Deserialize<Job>(request.ResponseContent);
+                user.Job = job;
+            }
+        }
+
+        public void GetUserDepartment(ref User user)
+        {
+            HttpRequest request = new HttpRequest(
+                "https://localhost/levelup/users/" + user.Username + "/department", "GET");
+            request.Send();
+
+            if (request.StatusCode == HttpStatusCode.OK)
+            {
+                Department department = serializer.Deserialize<Department>(request.ResponseContent);
+                user.Department = department;
+            }
+        }
+
     }
 }

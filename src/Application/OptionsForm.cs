@@ -43,8 +43,8 @@ namespace LevelUp.App
         {
             LoggedUser.Text = loggedUser.Name + " " + loggedUser.LastName1 + " " + loggedUser.LastName2;
             LoggedUserUsername.Text = loggedUser.Username;
-            LoggedUserDepartment.Text = "";
-            LoggedUserJob.Text = "";
+            LoggedUserDepartment.Text = loggedUser.Department.Name;
+            LoggedUserJob.Text = loggedUser.Job.Name;
         }
 
         public void Save()

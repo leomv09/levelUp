@@ -14,7 +14,7 @@ namespace LevelUp.Database
         public DataAccess()
         {
             m_db = new Database();
-            m_db.SetServers("LAPTOP-JOSE", "");
+            m_db.SetServers("DATABASE1", "DATABASE2");
             m_db.SetDatabase("LevelUp");
             m_db.SetAuthentication("LU_App", "admin");
             m_db.SetPoolSize(0, 4);
@@ -173,8 +173,8 @@ namespace LevelUp.Database
                     using (SqlConnection s_connection = m_db.CreateConnection())
                     {
                         m_db.ExecStoredProcedure(s_connection, "AddAchievementToRule",
-                        new string[] { "@RuleID", "@AchievementID", "@CreatorID", "@Amount" },
-                        new object[] { ruleID, ach.Achievement.ID, rule.Creator.ID, ach.Amount });
+                        new string[] { "@RuleID", "@AchievementID", "@Amount" },
+                        new object[] { ruleID, ach.Achievement.ID, ach.Amount });
                     }
                 }
 
@@ -196,9 +196,49 @@ namespace LevelUp.Database
         {
             using (SqlConnection connection = m_db.CreateConnection())
             {
-                m_db.ExecStoredProcedure(connection, "DeleteRuleFromDepartment",
+                 m_db.ExecStoredProcedure(connection, "DeleteRuleFromDepartment",
                     new string[] { "@RuleID", "@DepartmentID" }, new object[] { ruleID, departmentID });
             }
+        }
+
+        public Department GetUserDepartment(string username)
+        {
+            Department department = new Department();
+
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                 SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetUserDepartment",
+                    new string[] { "@Username" }, new object[] { username });
+
+                 if (reader.HasRows)
+                 {
+                     reader.Read();
+                     department.ID = Parse_Int(reader["ID"], 0);
+                     department.Name = reader.GetString(reader.GetOrdinal("Departamento"));
+                 }
+            }
+
+            return department;
+        }
+
+        public Job GetUserJob(string username)
+        {
+            Job job = new Job();
+
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                 SqlDataReader reader = m_db.ExecStoredProcedure(connection, "GetUserJob",
+                    new string[] { "@Username" }, new object[] { username });
+
+                 if (reader.HasRows)
+                 {
+                     reader.Read();
+                     job.ID = Parse_Int(reader["ID"], 0);
+                     job.Name = reader.GetString(reader.GetOrdinal("Puesto"));
+                 }
+            }
+
+            return job;
         }
 
         public AchievementPerUser[] GetUserAchievements(string username)
@@ -258,30 +298,42 @@ namespace LevelUp.Database
 
         public void UpdateRule(Rule rule)
         {
-            using (SqlConnection p_connection = m_db.CreateConnection())
+            using (SqlConnection connection = m_db.CreateConnection())
             {
-                m_db.ExecStoredProcedure(p_connection, "UpdateRule",
+                m_db.ExecStoredProcedure(connection, "UpdateRule",
                     new string[] { "@RuleID", "@Name", "@Description", "@StartDate", "@EndDate" },
                     new object[] { rule.ID, rule.Name, rule.Description, rule.StartDate, rule.EndDate });
+            }
 
-                foreach (AchievementPerRule ach in rule.Achievements)
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                m_db.ExecStoredProcedure(connection, "DeleteRuleAchievements",
+                    new string[] { "@RuleID" },
+                    new object[] { rule.ID });
+            }
+            foreach (AchievementPerRule ach in rule.Achievements)
+            {
+                using (SqlConnection connection = m_db.CreateConnection())
                 {
-                    using (SqlConnection s_connection = m_db.CreateConnection())
-                    {
-                        m_db.ExecStoredProcedure(s_connection, "AddAchievementToRule",
-                        new string[] { "@RuleID", "@AchievementID", "@CreatorID", "@Amount", "@CreationDate" },
-                        new object[] { rule.ID, ach.Achievement.ID, ach.Creator.ID, ach.Amount, ach.CreationDate });
-                    }
+                    m_db.ExecStoredProcedure(connection, "AddAchievementToRule",
+                    new string[] { "@RuleID", "@AchievementID", "@Amount" },
+                    new object[] { rule.ID, ach.Achievement.ID, ach.Amount });
                 }
+            }
 
-                foreach (Award award in rule.Awards)
+            using (SqlConnection connection = m_db.CreateConnection())
+            {
+                m_db.ExecStoredProcedure(connection, "DeleteRuleAwards",
+                    new string[] { "@RuleID" },
+                    new object[] { rule.ID });
+            }
+            foreach (Award award in rule.Awards)
+            {
+                using (SqlConnection connection = m_db.CreateConnection())
                 {
-                    using (SqlConnection s_connection = m_db.CreateConnection())
-                    {
-                        m_db.ExecStoredProcedure(s_connection, "AddAwardToRule",
-                        new string[] { "@RuleID", "@AwardID" },
-                        new object[] { rule.ID, award.ID });
-                    }
+                    m_db.ExecStoredProcedure(connection, "AddAwardToRule",
+                    new string[] { "@RuleID", "@AwardID" },
+                    new object[] { rule.ID, award.ID });
                 }
             }
         }

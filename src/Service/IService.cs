@@ -77,6 +77,18 @@ namespace LevelUp.Service
         User GetUser(string username);
 
         [OperationContract]
+        [WebGet(UriTemplate = "/users/{username}/department",
+                BodyStyle = WebMessageBodyStyle.Bare,
+                ResponseFormat = WebMessageFormat.Json)]
+        Department GetUserDepartment(string username);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/users/{username}/job",
+                BodyStyle = WebMessageBodyStyle.Bare,
+                ResponseFormat = WebMessageFormat.Json)]
+        Job GetUserJob(string username);
+
+        [OperationContract]
         [WebGet(UriTemplate = "/users/{username}/achievements",
                 BodyStyle = WebMessageBodyStyle.Bare,
                 ResponseFormat = WebMessageFormat.Json)]

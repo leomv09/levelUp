@@ -112,6 +112,16 @@ namespace LevelUp.Service
             return m_da.GetAwardTypes();
         }
 
+        public Department GetUserDepartment(string username)
+        {
+            return m_da.GetUserDepartment(username);
+        }
+
+        public Job GetUserJob(string username)
+        {
+            return m_da.GetUserJob(username);
+        }
+
         public AchievementPerUser[] GetUserAchievements(string username)
         {
             return m_da.GetUserAchievements(username);

@@ -16,6 +16,8 @@ namespace LevelUp.Data
         private string m_username;
         private string m_photourl;
         private string m_genre;
+        private Department m_department;
+        private Job m_job;
 
         public User()
         {
@@ -80,6 +82,18 @@ namespace LevelUp.Data
         {
             get { return m_genre;}
             set { m_genre = value;}
+        }
+
+        public Department Department
+        {
+            get { return m_department; }
+            set { m_department = value; }
+        }
+
+        public Job Job
+        {
+            get { return m_job; }
+            set { m_job = value; }
         }
     }
 }

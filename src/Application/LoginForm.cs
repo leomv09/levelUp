@@ -58,6 +58,8 @@ namespace LevelUp.App
                 if ( permissions.Contains(new Permission(){Code="login_pc_admin"}) )
                 {
                     m_user = auth.User;
+                    m_controller.GetUserDepartment(ref m_user);
+                    m_controller.GetUserJob(ref m_user);
                     return true;
                 }
                 else
@@ -76,7 +78,7 @@ namespace LevelUp.App
 
         private string GetPasswordHash()
         {
-            SHA256 hash = SHA256Managed.Create();
+            SHA1 hash = SHA1Managed.Create();
             Byte[] passwordBytes = Encoding.UTF8.GetBytes(GetPassword());
             Byte[] passwordHashBytes = hash.ComputeHash(passwordBytes);
             return BitConverter.ToString(passwordHashBytes).Replace("-", "").ToLower();
