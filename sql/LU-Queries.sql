@@ -166,3 +166,17 @@ INSERT INTO UsersInfo2(Nombre, Logro, Departamento)
 	FROM @XMLFILE.nodes('/Nombre') AS U(COL);
 GO
 EXEC TVP_ReadXML @NuevasDirecciones;
+
+-- ---------------------------------------------------------------------
+-- Consulta que soluciona problema de SET INTERSECTION.
+-- Interseca los datos entre permisos por usuario y permisos por grupo.
+-- Retorna los idPermiso que se repiten en ambas tablas.
+-- ---------------------------------------------------------------------
+
+SELECT DISTINCT T.idPermiso FROM 
+(SELECT PU.fk_idPermiso AS idPermiso FROM PermisosPorUsuario AS PU
+INNER JOIN Permisos AS P ON PU.fk_idPermiso = P.idPermiso
+INNER JOIN PermisosPorGrupo AS PG ON P.idPermiso = PG.fk_idPermiso
+INNER JOIN GruposDeUsuarios AS GU ON PG.fk_idGrupo = GU.idGrupoDeUsuarios
+WHERE PU.fk_idPermiso = PG.fk_idPermiso
+) AS T
