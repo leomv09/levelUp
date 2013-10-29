@@ -74,7 +74,7 @@ INNER JOIN Departamento AS D ON
 	LD.fk_idDepartamento = D.idDepartamento
 UNION ALL
 SELECT 3 AS TAG,
-	   2 AS PARENT,
+	   1 AS PARENT,
 	   U.Nombre,
 	   L.Descripcion,
 	   D.Nombre
@@ -110,3 +110,59 @@ declare @sql nvarchar(4000)
 
 select @sql = 'bcp "SELECT p.Nombre Provincia,Pa.Nombre Pais  FROM LevelUp.dbo.Pais Pa INNER JOIN LevelUp.dbo.Provincia p ON Pa.idPais=p.fk_idPais;" queryout D:\file.csv -c -t, -T -S'+ @@servername
 exec xp_cmdshell @sql
+
+
+-- ---------------------------------------------------------------------
+-- Prodedimiento que inserta en una tabla tomando los datos desde un XML
+-- ---------------------------------------------------------------------
+
+CREATE TABLE dbo.LogrosUsuarios(
+	Nombre VARCHAR(50),
+	Logro VARCHAR(100),
+	Departamento VARCHAR(50)
+);
+GO
+CREATE PROCEDURE dbo.ReadXML
+	@XML XML
+AS
+BEGIN
+	INSERT INTO LogrosUsuarios(Nombre, Logro, Departamento)
+	SELECT Nmbre = U.COL.value('@Nombre','VARCHAR(50)'),
+		   Logro = U.COL.value('@Logro', 'VARCHAR(100)'),
+		   Departamento = U.COL.value('@Departamento', 'VARCHAR(50)')
+	FROM @XML.nodes('/Nombre') AS U(COL)
+END
+GO
+
+-- ----------------------------------------------------------------------------------------
+-- Prodedimiento que inserta en una tabla tomando los datos desde un Table-Valued Parameter
+-- ----------------------------------------------------------------------------------------
+
+CREATE TYPE UsuarioLogros AS TABLE
+(	Nombre VARCHAR(50), 
+	Logro VARCHAR(100), 
+	Departamento VARCHAR(50)
+);
+GO
+
+CREATE PROCEDURE dbo.TVP_ReadXML
+	@UsersInfo UsuarioLogros READONLY
+AS
+BEGIN 	
+	SELECT NOCOUNT ON;
+	INSERT INTO LogrosUsuarios
+	SELECT * FROM @UsersInfo
+END
+GO
+
+DECLARE @XMLFILE XML
+SELECT @XMLFILE = ND
+FROM OPENROWSET(BULK 'C:\Users\Leo\Documents\levelUp\Usuarios.xml', SINGLE_BLOB) AS NewXML(ND)
+DECLARE @UsersInfo2 UsuarioLogros
+INSERT INTO UsersInfo2(Nombre, Logro, Departamento)
+	SELECT Nmbre = U.COL.value('@Nombre','VARCHAR(50)'),
+		   Logro = U.COL.value('@Logro', 'VARCHAR(100)'),
+		   Departamento = U.COL.value('@Departamento', 'VARCHAR(50)')
+	FROM @XMLFILE.nodes('/Nombre') AS U(COL);
+GO
+EXEC TVP_ReadXML @NuevasDirecciones;
