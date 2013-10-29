@@ -74,7 +74,7 @@ INNER JOIN Departamento AS D ON
 	LD.fk_idDepartamento = D.idDepartamento
 UNION ALL
 SELECT 3 AS TAG,
-	   2 AS PARENT,
+	   1 AS PARENT,
 	   U.Nombre,
 	   L.Descripcion,
 	   D.Nombre
@@ -110,3 +110,88 @@ declare @sql nvarchar(4000)
 
 select @sql = 'bcp "SELECT p.Nombre Provincia,Pa.Nombre Pais  FROM LevelUp.dbo.Pais Pa INNER JOIN LevelUp.dbo.Provincia p ON Pa.idPais=p.fk_idPais;" queryout D:\file.csv -c -t, -T -S'+ @@servername
 exec xp_cmdshell @sql
+
+
+-- ---------------------------------------------------------------------
+-- Prodedimiento que inserta en una tabla tomando los datos desde un XML
+-- ---------------------------------------------------------------------
+
+CREATE TABLE dbo.LogrosUsuarios(
+	Nombre VARCHAR(50),
+	Logro VARCHAR(100),
+	Departamento VARCHAR(50)
+);
+GO
+CREATE PROCEDURE dbo.ReadXML
+	@XML XML
+AS
+BEGIN
+	INSERT INTO LogrosUsuarios(Nombre, Logro, Departamento)
+	SELECT Nmbre = U.COL.value('@Nombre','VARCHAR(50)'),
+		   Logro = U.COL.value('@Logro', 'VARCHAR(100)'),
+		   Departamento = U.COL.value('@Departamento', 'VARCHAR(50)')
+	FROM @XML.nodes('/Nombre') AS U(COL)
+END
+GO
+
+-- ----------------------------------------------------------------------------------------
+-- Prodedimiento que inserta en una tabla tomando los datos desde un Table-Valued Parameter
+-- ----------------------------------------------------------------------------------------
+
+CREATE TYPE UsuarioLogros AS TABLE
+(	Nombre VARCHAR(50), 
+	Logro VARCHAR(100), 
+	Departamento VARCHAR(50)
+);
+GO
+
+CREATE PROCEDURE dbo.TVP_ReadXML
+	@UsersInfo UsuarioLogros READONLY
+AS
+BEGIN 	
+	SELECT NOCOUNT ON;
+	INSERT INTO LogrosUsuarios
+	SELECT * FROM @UsersInfo
+END
+GO
+
+DECLARE @XMLFILE XML
+SELECT @XMLFILE = SRC
+FROM OPENROWSET(BULK 'C:\Users\Leo\Documents\levelUp\Usuarios.xml', SINGLE_BLOB) AS NewXML(SRC)
+DECLARE @UsersInfo2 UsuarioLogros
+INSERT INTO UsersInfo2(Nombre, Logro, Departamento)
+	SELECT Nmbre = U.COL.value('@Nombre','VARCHAR(50)'),
+		   Logro = U.COL.value('@Logro', 'VARCHAR(100)'),
+		   Departamento = U.COL.value('@Departamento', 'VARCHAR(50)')
+	FROM @XMLFILE.nodes('/Nombre') AS U(COL);
+GO
+EXEC TVP_ReadXML @NuevasDirecciones;
+
+-- ---------------------------------------------------------------------
+-- Consulta que soluciona problema de SET INTERSECTION.
+-- Interseca los datos entre permisos por usuario y permisos por grupo.
+-- Retorna los idPermiso que se repiten en ambas tablas.
+-- ---------------------------------------------------------------------
+
+SELECT DISTINCT T.idPermiso FROM 
+(SELECT PU.fk_idPermiso AS idPermiso FROM PermisosPorUsuario AS PU
+INNER JOIN Permisos AS P ON PU.fk_idPermiso = P.idPermiso
+INNER JOIN PermisosPorGrupo AS PG ON P.idPermiso = PG.fk_idPermiso
+INNER JOIN GruposDeUsuarios AS GU ON PG.fk_idGrupo = GU.idGrupoDeUsuarios
+) AS T
+
+
+-- ------------------------------------------------------------------------------------------------------------------------
+-- Consulta que soluciona problema de SET DIFFERENCE.
+-- Le resta los datos que están en la intersección de Permisos por usuarios y permisos por grupos a permisos por usuarios.
+-- Retorna los idPermiso que solamente están Permisos por usuarios.
+-- ------------------------------------------------------------------------------------------------------------------------
+
+SELECT PU.fk_idPermiso AS idPermiso FROM
+PermisosPorUsuario AS PU
+ WHERE PU.fk_idPermiso NOT IN
+(SELECT PG.fk_idPermiso AS idPermiso FROM PermisosPorGrupo AS PG
+INNER JOIN Permisos AS P ON PU.fk_idPermiso = P.idPermiso
+INNER JOIN PermisosPorUsuario AS PU ON P.idPermiso = PU.fk_idPermiso
+INNER JOIN GruposDeUsuarios AS GU ON PG.fk_idGrupo = GU.idGrupoDeUsuarios
+) 

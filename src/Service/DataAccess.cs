@@ -155,9 +155,9 @@ namespace LevelUp.Database
         {
             int ruleID = 0;
 
-            using (SqlConnection p_connection = m_db.CreateConnection())
+            using (SqlConnection connection = m_db.CreateConnection())
             {
-                SqlDataReader reader = m_db.ExecStoredProcedure(p_connection, "AddRule",
+                SqlDataReader reader = m_db.ExecStoredProcedure(connection, "AddRule",
                     new string[] { "@Name", "@Description", "@StartDate", "@EndDate", "@CreatorID" },
                     new object[] { rule.Name, rule.Description, rule.StartDate, rule.EndDate, rule.Creator.ID });
 
@@ -166,26 +166,27 @@ namespace LevelUp.Database
                 {
                     reader.Read();
                     ruleID = Parse_Int(reader["RuleID"], 0);
+                    rule.ID = ruleID;
                 }
-                
-                foreach (AchievementPerRule ach in rule.Achievements)
-                {
-                    using (SqlConnection s_connection = m_db.CreateConnection())
-                    {
-                        m_db.ExecStoredProcedure(s_connection, "AddAchievementToRule",
-                        new string[] { "@RuleID", "@AchievementID", "@Amount" },
-                        new object[] { ruleID, ach.Achievement.ID, ach.Amount });
-                    }
-                }
+            }
 
-                foreach (Award award in rule.Awards)
+            foreach (AchievementPerRule ach in rule.Achievements)
+            {
+                using (SqlConnection connection = m_db.CreateConnection())
                 {
-                    using (SqlConnection s_connection = m_db.CreateConnection())
-                    {
-                        m_db.ExecStoredProcedure(s_connection, "AddAwardToRule",
-                        new string[] { "@RuleID", "@AwardID" },
-                        new object[] { ruleID, award.ID });
-                    }
+                    m_db.ExecStoredProcedure(connection, "AddAchievementToRule",
+                    new string[] { "@RuleID", "@AchievementID", "@Amount" },
+                    new object[] { ruleID, ach.Achievement.ID, ach.Amount });
+                }
+            }
+
+            foreach (Award award in rule.Awards)
+            {
+                using (SqlConnection connection = m_db.CreateConnection())
+                {
+                    m_db.ExecStoredProcedure(connection, "AddAwardToRule",
+                    new string[] { "@RuleID", "@AwardID" },
+                    new object[] { ruleID, award.ID });
                 }
             }
 

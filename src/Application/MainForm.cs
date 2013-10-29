@@ -71,7 +71,7 @@ namespace LevelUp.App
 
             if (this.SelectedDepartment != null)
             {
-                Rule[] rules = m_controller.GetDepartmentRules(this.SelectedDepartment); 
+                Rule[] rules = m_controller.GetDepartmentRules(this.SelectedDepartment);
                 BindingList<Rule> ruleList = new BindingList<Rule>();
 
                 ruleList.AllowEdit = true;
@@ -151,6 +151,7 @@ namespace LevelUp.App
         {
             RuleDetailsForm form = new RuleDetailsForm(this.SelectedRule, this.SelectedDepartment);
             form.ShowDialog(this);
+            LoadRules();
         }
 
         private void ViewRuleButton_Click(object sender, EventArgs e)
