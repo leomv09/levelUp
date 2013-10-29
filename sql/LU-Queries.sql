@@ -178,5 +178,4 @@ SELECT DISTINCT T.idPermiso FROM
 INNER JOIN Permisos AS P ON PU.fk_idPermiso = P.idPermiso
 INNER JOIN PermisosPorGrupo AS PG ON P.idPermiso = PG.fk_idPermiso
 INNER JOIN GruposDeUsuarios AS GU ON PG.fk_idGrupo = GU.idGrupoDeUsuarios
-WHERE PU.fk_idPermiso = PG.fk_idPermiso
 ) AS T
