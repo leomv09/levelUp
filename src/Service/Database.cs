@@ -54,7 +54,20 @@ namespace LevelUp.Database
 
         public SqlConnection CreateConnection()
         {
-            return new SqlConnection(GetConnectionString());
+            SqlConnection connection = new SqlConnection(GetConnectionString());
+            
+            try
+            {
+                connection.Open();
+                connection.Close();
+            }
+            catch (SqlException)
+            {
+                SqlConnection.ClearPool(connection);
+                connection = new SqlConnection(GetConnectionString());
+            }
+            
+            return connection;
         }
 
         private string GetConnectionString()
@@ -62,8 +75,8 @@ namespace LevelUp.Database
             StringBuilder sb = new StringBuilder();
             sb.Append("Data Source=");
             sb.Append(m_primaryServer);
-            //sb.Append("Failover Partner=");
-            //sb.Append(m_secondaryServer);
+            sb.Append(";Failover Partner=");
+            sb.Append(m_secondaryServer);
             sb.Append(";Initial Catalog=");
             sb.Append(m_database);
             sb.Append(";Min Pool Size=");
