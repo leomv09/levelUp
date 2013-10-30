@@ -1,4 +1,4 @@
-USE LevelUp
+﻿USE LevelUp
 -- ------------------------------------------------------------------------------------
 -- Columna Dinámica
 -- Se muestra la cantidad de usuarios que tienen permiso para añadir reglas o añadir 
@@ -32,7 +32,7 @@ EXECUTE(@query)
 
 -- 4 Joins sobre tablas.....
 PRINT('4 Joins sobre tablas')
-SELECT CONCAT(Nombre,' ',Apellido1,' ',CONVERT(VARCHAR(1),Apellido2),'.') AS Nombre, 
+SELECT Nombre + ' ' + Apellido1 + ' ' + CONVERT(VARCHAR(1),Apellido2) + '.' AS Nombre, 
 	Dir.Señal1 AS Residencia,
 	est.Estado AS Estado,
 	gen.Genero Genero 
@@ -123,7 +123,7 @@ RECONFIGURE WITH OVERRIDE
 GO
 declare @sql nvarchar(4000)
 
-select @sql = 'bcp "SELECT p.Nombre Provincia,Pa.Nombre Pais  FROM LevelUp.dbo.Pais Pa INNER JOIN LevelUp.dbo.Provincia p ON Pa.idPais=p.fk_idPais;" queryout D:\file.csv -c -t, -T -S'+ @@servername
+select @sql = 'bcp "SELECT p.Nombre Provincia,Pa.Nombre Pais  FROM LevelUp.dbo.Pais Pa INNER JOIN LevelUp.dbo.Provincia p ON Pa.idPais=p.fk_idPais;" queryout C:\file.csv -c -t, -T -S'+ @@servername
 exec xp_cmdshell @sql
 
 
@@ -164,7 +164,7 @@ CREATE PROCEDURE dbo.TVP_ReadXML
 	@UsersInfo UsuarioLogros READONLY
 AS
 BEGIN 	
-	SELECT NOCOUNT ON;
+	SET NOCOUNT ON;
 	INSERT INTO LogrosUsuarios
 	SELECT * FROM @UsersInfo
 END

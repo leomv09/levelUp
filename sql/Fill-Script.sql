@@ -1025,6 +1025,51 @@ INSERT INTO TitulosPorInstituciones (fk_idInstitucion, fk_idTitulo) VALUES
 (5, 12),
 (5, 13);
 
+SET IDENTITY_INSERT dbo.Severidad ON;
+INSERT INTO Severidad (idSeveridad, Descripcion) VALUES
+(1, 'Información'),
+(2, 'Advertencia'),
+(3, 'Error');
+SET IDENTITY_INSERT dbo.Severidad OFF;
+
+SET IDENTITY_INSERT dbo.Modulo ON;
+INSERT INTO Modulo (idModulo, Nombre) VALUES
+(1, 'Aplicación de Administración PC');
+SET IDENTITY_INSERT dbo.Modulo OFF;
+
+SET IDENTITY_INSERT dbo.TipoEvento ON;
+INSERT INTO TipoEvento (idTipoEvento, Tipo) VALUES
+(1, 'Inicio de Sesion en Aplicación de Adm. Windows'),
+(2, 'Cierre de Sesion en Aplicación de Adm. Windows'),
+(3, 'Creacion de Regla'),
+(4, 'Eliminacion de Regla'),
+(5, 'Modificacion de Regla'),
+(6, 'Creacion de Logro'),
+(7, 'Modificacion de Logro'),
+(8, 'Concesion de Logro a Usuario'),
+(9, 'Revocamiento de Logro a Usuario'),
+(10, 'Creacion de Premio'),
+(11, 'Modificacion de Premio'),
+(12, 'Entrega de Premio a Usuario'),
+(13, 'Creacion de Usuario'),
+(14, 'Eliminacion de Usuario'),
+(15, 'Modificacion de Información de Usuario'),
+(16, 'Creacion de Moneda'),
+(17, 'Actualizacion Tasa de Cambio'),
+(18, 'Creacion de Departamento'),
+(19, 'Creacion de Puesto'),
+(20, 'Modificacion de Puesto'),
+(21, 'Creacion de Titulo'),
+(22, 'Creacion de Institucion'),
+(23, 'Asociacion de Titulo a Institucion'),
+(24, 'Creacion de Permiso'),
+(25, 'Creacion de Grupo de Usuarios'),
+(26, 'Agregacion de Usuario a Grupo de Usuarios'),
+(27, 'Eliminacion de Usuario de Grupo de Usuarios'),
+(28, 'Modificacion de Permisos de Usuario'),
+(29, 'Modificacion de Permisos de Grupo de Usuarios');
+SET IDENTITY_INSERT dbo.TipoEvento OFF;
+
 SET IDENTITY_INSERT dbo.Usuario ON;
 
 -- Insertar Administrador Global.
@@ -1275,51 +1320,6 @@ INSERT INTO Permisos (idPermiso, Descripcion, Codigo) VALUES
 (46, 'Concede permiso para ver los permisos de un usuario.', 'view_user_permissions'),
 (47, 'Concede permiso para ver los permisos de un grupo de usuarios.', 'view_user_group_permissions');
 SET IDENTITY_INSERT dbo.Permisos OFF;
-
-SET IDENTITY_INSERT dbo.Severidad ON;
-INSERT INTO Severidad (idSeveridad, Descripcion) VALUES
-(1, 'Información'),
-(2, 'Advertencia'),
-(3, 'Error');
-SET IDENTITY_INSERT dbo.Severidad OFF;
-
-SET IDENTITY_INSERT dbo.Modulo ON;
-INSERT INTO Modulo (idModulo, Nombre) VALUES
-(1, 'Aplicación de Administración PC');
-SET IDENTITY_INSERT dbo.Modulo OFF;
-
-SET IDENTITY_INSERT dbo.TipoEvento ON;
-INSERT INTO TipoEvento (idTipoEvento, Tipo) VALUES
-(1, 'Inicio de Sesion en Aplicación de Adm. Windows'),
-(2, 'Cierre de Sesion en Aplicación de Adm. Windows'),
-(3, 'Creacion de Regla'),
-(4, 'Eliminacion de Regla'),
-(5, 'Modificacion de Regla'),
-(6, 'Creacion de Logro'),
-(7, 'Modificacion de Logro'),
-(8, 'Concesion de Logro a Usuario'),
-(9, 'Revocamiento de Logro a Usuario'),
-(10, 'Creacion de Premio'),
-(11, 'Modificacion de Premio'),
-(12, 'Entrega de Premio a Usuario'),
-(13, 'Creacion de Usuario'),
-(14, 'Eliminacion de Usuario'),
-(15, 'Modificacion de Información de Usuario'),
-(16, 'Creacion de Moneda'),
-(17, 'Actualizacion Tasa de Cambio'),
-(18, 'Creacion de Departamento'),
-(19, 'Creacion de Puesto'),
-(20, 'Modificacion de Puesto'),
-(21, 'Creacion de Titulo'),
-(22, 'Creacion de Institucion'),
-(23, 'Asociacion de Titulo a Institucion'),
-(24, 'Creacion de Permiso'),
-(25, 'Creacion de Grupo de Usuarios'),
-(26, 'Agregacion de Usuario a Grupo de Usuarios'),
-(27, 'Eliminacion de Usuario de Grupo de Usuarios'),
-(28, 'Modificacion de Permisos de Usuario'),
-(29, 'Modificacion de Permisos de Grupo de Usuarios');
-SET IDENTITY_INSERT dbo.TipoEvento OFF;
 
 INSERT INTO PremiosPorDepartamento (fk_idDepartamento, fk_idPremio) VALUES
 (2, 51),
