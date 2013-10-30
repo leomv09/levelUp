@@ -1,24 +1,37 @@
-
+USE LevelUp
+-- ------------------------------------------------------------------------------------
 -- Columna Dinámica
-DECLARE @query AS NVARCHAR(MAX)
+-- Se muestra la cantidad de usuarios que tienen permiso para añadir reglas o añadir 
+-- logros o añadir premios.
+-- Uso de COALESCE para determinar la primera columna no nula y así mostrar los datos
+-- con base a esa columna (permiso)
+-- ------------------------------------------------------------------------------------
+PRINT('Columna Dinámica')
+DECLARE @cols VARCHAR(200)
+SELECT @cols = COALESCE('[add_rule]', '[add_achievement]','[add_award]')
+FROM Permisos
+ORDER BY Codigo;
 
-SET @query = 'SELECT LU.fk_idUsuario AS idTrabajador, U.Nombre AS Nombre, U.Apellido1 AS Apellido, "Nivel" = 
-				CASE
-					WHEN COUNT(LU.fk_idLogro) <= 5 THEN 1
-					WHEN COUNT(LU.fk_idLogro) BETWEEN 6 AND 10 THEN 2
-					WHEN COUNT(LU.fk_idLogro) BETWEEN 11 AND 20 THEN 3
-					WHEN COUNT(LU.fk_idLogro) > 20 THEN 4
-				END
-			FROM LogrosPorUsuario AS LU
-			INNER JOIN Usuario AS U ON LU.fk_idUsuario = U.idUsuario
-			GROUP BY LU.fk_idUsuario, U.Nombre, U.Apellido1'
+DECLARE @query VARCHAR(400)
+SET @query = N'SELECT' + @cols +
+	'FROM
+	(SELECT [Codigo], PU.fk_idUsuario AS idUsuario FROM
+		PermisosPorUsuario AS PU
+		INNER JOIN Permisos AS P ON PU.fk_idPermiso = P.idPermiso
+	) AS temp
+	PIVOT(
+		SUM(temp.idUsuario)
+		FOR [Codigo]
+		IN ('+ @cols + ')
+	) AS pvt'
+
 EXECUTE(@query)
 
 -- -----------------------
 
 
 -- 4 Joins sobre tablas.....
-
+PRINT('4 Joins sobre tablas')
 SELECT CONCAT(Nombre,' ',Apellido1,' ',CONVERT(VARCHAR(1),Apellido2),'.') AS Nombre, 
 	Dir.Señal1 AS Residencia,
 	est.Estado AS Estado,
@@ -43,6 +56,7 @@ ORDER BY NEWID();
 -- -------------------------------------------------------------------------------------------
 -- Se tiene que repetir los inner join porque se usa "UNION ALL", entonces
 -- cada bloque debe contener la misma cantidad de info.
+PRINT('Consulta XML->IMPLICIT')
 SELECT 1 AS TAG,
 	   NULL AS PARENT,
 	   U.Nombre AS [Nombre!1!Nombre],
@@ -94,6 +108,7 @@ FOR XML EXPLICIT;
 -- Creacion del CSV
 -- -------------------------------------------------------------------------------------------
 -- Los primeros 3 parrafos son configuracion
+PRINT('Creación CSV')
 
 EXECUTE SP_CONFIGURE 'show advanced options', 1
 RECONFIGURE WITH OVERRIDE
@@ -115,7 +130,7 @@ exec xp_cmdshell @sql
 -- ---------------------------------------------------------------------
 -- Prodedimiento que inserta en una tabla tomando los datos desde un XML
 -- ---------------------------------------------------------------------
-
+PRINT('PROC tomando datos de XML')
 CREATE TABLE dbo.LogrosUsuarios(
 	Nombre VARCHAR(50),
 	Logro VARCHAR(100),
@@ -137,7 +152,7 @@ GO
 -- ----------------------------------------------------------------------------------------
 -- Prodedimiento que inserta en una tabla tomando los datos desde un Table-Valued Parameter
 -- ----------------------------------------------------------------------------------------
-
+PRINT('PROC tomando datos de Table-Valued Parameter')
 CREATE TYPE UsuarioLogros AS TABLE
 (	Nombre VARCHAR(50), 
 	Logro VARCHAR(100), 
@@ -172,7 +187,7 @@ EXEC TVP_ReadXML @NuevasDirecciones;
 -- Interseca los datos entre permisos por usuario y permisos por grupo.
 -- Retorna los idPermiso que se repiten en ambas tablas.
 -- ---------------------------------------------------------------------
-
+PRINT('Set intersection')
 SELECT DISTINCT T.idPermiso FROM 
 (SELECT PU.fk_idPermiso AS idPermiso FROM PermisosPorUsuario AS PU
 INNER JOIN Permisos AS P ON PU.fk_idPermiso = P.idPermiso
@@ -186,8 +201,8 @@ INNER JOIN GruposDeUsuarios AS GU ON PG.fk_idGrupo = GU.idGrupoDeUsuarios
 -- Le resta los datos que están en la intersección de Permisos por usuarios y permisos por grupos a permisos por usuarios.
 -- Retorna los idPermiso que solamente están Permisos por usuarios.
 -- ------------------------------------------------------------------------------------------------------------------------
-
-SELECT PU.fk_idPermiso AS idPermiso FROM
+PRINT('Set Difference')
+SELECT TOP 10 PU.fk_idPermiso AS idPermiso FROM
 PermisosPorUsuario AS PU
  WHERE PU.fk_idPermiso NOT IN
 (SELECT PG.fk_idPermiso AS idPermiso FROM PermisosPorGrupo AS PG

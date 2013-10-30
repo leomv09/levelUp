@@ -18,7 +18,6 @@ AS
 	ON LU.fk_idLogro = L.idLogro
 	GROUP BY Fecha, idUsuario;
 GO
---Create an index on the view.
 CREATE UNIQUE CLUSTERED INDEX IDX_view 
     ON VistaLogros (idUsuario);
 GO
