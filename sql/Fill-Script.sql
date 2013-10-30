@@ -1161,7 +1161,22 @@ INSERT INTO Premio (idPremio, Titulo, Descripcion, Foto, Cantidad, Monto, fk_idM
 (47, 'Sillón Ortopédico', 'Sillón Ortopédico.', 'img/photos/48/photo.jpg', 20, 400000, 1, 12, '2013-02-05',1,1,1),
 (48, 'Herramientas para Bicicleta', 'Caja de herramientas para bicicleta.', 'img/photos/49/photo.jpg', 10,30000, 1, 9, '2012-12-12',1,1,1),
 (49, 'DVD', 'DVD de la película Costarricense El Regreso.', 'img/photos/50/photo.jpg', 20,30000 , 1, 8, '2013-04-04',1,1,1),
-(50, 'DVD', 'DVD de la película Costarricense El Fin.', 'img/photos/50/photo.jpg', 20,30000 , 1, 8, '2013-04-04',1,1,1);
+(50, 'DVD', 'DVD de la película Costarricense El Fin.', 'img/photos/50/photo.jpg', 20,30000 , 1, 8, '2013-04-04',1,1,1),
+(51, 'Administrador Casero', 'Condecoración al ganar 1000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(52, 'Administrador de Barrio', 'Condecoración al ganar 2000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(53, 'Administrador de Pulpería', 'Condecoración al ganar 3000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(54, 'Administrador de Tienda', 'Condecoración al ganar 4000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(55, 'Administrador de Supermercado', 'Condecoración al ganar 5000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(56, 'Administrador de Cadena de Supermercados', 'Condecoración al ganar 6000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(57, 'Administrador de Ventas', 'Condecoración al ganar 7000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(58, 'Administrador de Empresa', 'Condecoración al ganar 8000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(59, 'Administrador de Institucion', 'Condecoración al ganar 9000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(60, 'Administrador de Universidad', 'Condecoración al ganar 10000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(61, 'Administrador de Gran Empresa', 'Condecoración al ganar 11000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(62, 'Administrador de Multinacional', 'Condecoración al ganar 12000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(63, 'Administrador Estatal', 'Condecoración al ganar 13000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(64, 'Administrador de Pais', 'Condecoración al ganar 14000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(65, 'Administrador del Mundo', 'Condecoración al ganar 15000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0);
 SET IDENTITY_INSERT dbo.Premio OFF;
 
 SET IDENTITY_INSERT dbo.Permisos ON;
