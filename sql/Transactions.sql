@@ -51,7 +51,7 @@ AS
 		SELECT @idEstado = EU.idEstadoUsuario FROM EstadoUsuario AS EU
 				WHERE EU.Estado = 'Activo'
 		INSERT INTO Usuario(Nombre, Apellido1, Apellido2, Contraseña, fk_idEstadoUsuario, fk_idGenero, Username)
-			VALUES (@Nombre, @Apellido1, ISNULL(@Apellido2, ' '), @Contraseña, @idEstadoUsuario, ISNULL(@Genero, 1), @Username)
+			VALUES (@Nombre, @Apellido1, ISNULL(@Apellido2, ' '), @Contraseña, @idEstado, ISNULL(@Genero, 1), @Username)
 		SET @lastidUsuario = SCOPE_IDENTITY()
 		SELECT @idContacto = TC.idTipoContacto FROM TipoContacto AS TC  
 				WHERE TC.Tipo = 'Correo Electrónico'
@@ -59,7 +59,7 @@ AS
 				WHERE S.Descripcion = 'Información'
 		SELECT @idModulo = M.idModulo FROM Modulo AS M
 				WHERE  M.Nombre = 'Aplicación de Administración PC'
-		SELECT @idTipoEvento = TE.idTipoEvento
+		SELECT @idTipoEvento = TE.idTipoEvento FROM TipoEvento AS TE
 				WHERE TE.Tipo = 'Creación de Usuario'
 		INSERT INTO ContactosPorUsuario(fk_idTipoContacto, fk_idUsuario, Valor)
 			VALUES (@idContacto, @lastidUsuario, @Correo)
