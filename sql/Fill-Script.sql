@@ -1176,7 +1176,22 @@ INSERT INTO Premio (idPremio, Titulo, Descripcion, Foto, Cantidad, Monto, fk_idM
 (62, 'Administrador de Multinacional', 'Condecoración al ganar 12000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
 (63, 'Administrador Estatal', 'Condecoración al ganar 13000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
 (64, 'Administrador de Pais', 'Condecoración al ganar 14000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
-(65, 'Administrador del Mundo', 'Condecoración al ganar 15000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0);
+(65, 'Administrador del Mundo', 'Condecoración al ganar 15000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(66, 'Mantequilla', 'Condecoración al ganar 1000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(67, 'Novato', 'Condecoración al ganar 2000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(68, 'Principiante', 'Condecoración al ganar 3000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(69, 'Calienta sillas', 'Condecoración al ganar 4000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(70, 'Merecedor', 'Condecoración al ganar 5000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(71, 'Constante', 'Condecoración al ganar 6000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(72, 'Regular', 'Condecoración al ganar 7000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(73, 'Bueno', 'Condecoración al ganar 8000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(74, 'Estimado', 'Condecoración al ganar 9000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(75, 'Amado', 'Condecoración al ganar 10000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(76, 'Conocedor de la empresa', 'Condecoración al ganar 11000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(77, 'Indispensable', 'Condecoración al ganar 12000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(78, 'Genio', 'Condecoración al ganar 13000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(79, 'Futuro Presidente', 'Condecoración al ganar 14000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(80, 'Pensionado con honores', 'Condecoración al ganar 15000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0);
 SET IDENTITY_INSERT dbo.Premio OFF;
 
 SET IDENTITY_INSERT dbo.Permisos ON;
