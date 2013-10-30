@@ -1335,7 +1335,37 @@ INSERT INTO PremiosPorDepartamento (fk_idDepartamento, fk_idPremio) VALUES
 (2, 62),
 (2, 63),
 (2, 64),
-(2, 65);
+(2, 65),
+(3, 66),
+(3, 67),
+(3, 68),
+(3, 69),
+(3, 70),
+(3, 71),
+(3, 72),
+(3, 73),
+(3, 74),
+(3, 75),
+(3, 76),
+(3, 77),
+(3, 78),
+(3, 79),
+(3, 80),
+(1, 81),
+(1, 82),
+(1, 83),
+(1, 84),
+(1, 85),
+(1, 86),
+(1, 87),
+(1, 88),
+(1, 89),
+(1, 90),
+(1, 91),
+(1, 92),
+(1, 93),
+(1, 94),
+(1, 95);
 
 INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES
 (1, 5),
@@ -1549,6 +1579,6 @@ INSERT INTO PermisosPorUsuario (fk_idUsuario, fk_idPermiso) VALUES
 (4, 30),
 (5, 1),
 (5, 5),
-(5, 8)
-(40,47)
+(5, 8),
+(40,47),
 (41,46);
