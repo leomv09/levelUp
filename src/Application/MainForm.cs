@@ -253,11 +253,11 @@ namespace LevelUp.App
             if (!String.IsNullOrEmpty(username))
             {
                 User fetchedUser = m_controller.GetUser(username);
-                m_controller.GetUserDepartment(ref fetchedUser);
-                m_controller.GetUserJob(ref fetchedUser);
 
                 if (User.IsValid(fetchedUser))
                 {
+                    m_controller.GetUserDepartment(ref fetchedUser);
+                    m_controller.GetUserJob(ref fetchedUser);
                     m_selectedUser = fetchedUser;
                     this.SelectedUserName.Text = fetchedUser.Name + " " + fetchedUser.LastName1 + " " + fetchedUser.LastName2;
                     this.SelectedUserUsername.Text = fetchedUser.Username;
