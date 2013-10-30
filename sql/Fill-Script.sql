@@ -1275,6 +1275,23 @@ INSERT INTO TipoEvento (idTipoEvento, Tipo) VALUES
 (29, 'Modificacion de Permisos de Grupo de Usuarios');
 SET IDENTITY_INSERT dbo.TipoEvento OFF;
 
+INSERT INTO PremiosPorDepartamento (fk_idDepartamento, fk_idPremio) VALUES
+(1, 51),
+(1, 52),
+(1, 53),
+(1, 54),
+(1, 55),
+(1, 56),
+(1, 57),
+(1, 58),
+(1, 59),
+(1, 60),
+(1, 60),
+(1, 60),
+(1, 60),
+(1, 60),
+(1, 60);
+
 INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES
 (1, 5),
 (1, 8),
