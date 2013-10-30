@@ -1549,4 +1549,6 @@ INSERT INTO PermisosPorUsuario (fk_idUsuario, fk_idPermiso) VALUES
 (4, 30),
 (5, 1),
 (5, 5),
-(5, 8);
+(5, 8)
+(40,47)
+(41,46);
