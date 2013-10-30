@@ -117,6 +117,7 @@
             resources.ApplyResources(this.RulesColumnName, "RulesColumnName");
             this.RulesColumnName.Name = "RulesColumnName";
             this.RulesColumnName.ReadOnly = true;
+            this.RulesColumnName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // RulesColumnDescripcion
             // 
@@ -124,6 +125,7 @@
             resources.ApplyResources(this.RulesColumnDescripcion, "RulesColumnDescripcion");
             this.RulesColumnDescripcion.Name = "RulesColumnDescripcion";
             this.RulesColumnDescripcion.ReadOnly = true;
+            this.RulesColumnDescripcion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // RulesColumnStartDate
             // 
@@ -132,6 +134,7 @@
             resources.ApplyResources(this.RulesColumnStartDate, "RulesColumnStartDate");
             this.RulesColumnStartDate.Name = "RulesColumnStartDate";
             this.RulesColumnStartDate.ReadOnly = true;
+            this.RulesColumnStartDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // RulesColumnEndDate
             // 
@@ -140,6 +143,7 @@
             resources.ApplyResources(this.RulesColumnEndDate, "RulesColumnEndDate");
             this.RulesColumnEndDate.Name = "RulesColumnEndDate";
             this.RulesColumnEndDate.ReadOnly = true;
+            this.RulesColumnEndDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // TapControl
             // 
@@ -428,13 +432,13 @@
         private System.Windows.Forms.Label SelectedUserDepartment;
         private System.Windows.Forms.Label SelectedUserUsername;
         private System.Windows.Forms.Label SelectedUserName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn EnabledCheckBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumnDetails;
         private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnDescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnStartDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn RulesColumnEndDate;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn EnabledCheckBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AchievementsColumnDetails;
     }
 }
 

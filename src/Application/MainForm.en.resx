@@ -197,13 +197,13 @@
     <value>Achievements</value>
   </data>
   <data name="LogoutButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="LogoutButton.Text" xml:space="preserve">
     <value>Log Out</value>
   </data>
   <data name="ExitButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="ExitButton.Text" xml:space="preserve">
     <value>Exit</value>
