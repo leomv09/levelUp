@@ -1089,7 +1089,22 @@ INSERT INTO Logros (idLogro, Nombre, FechaInicio, FechaFinal, fk_idCreador, Fech
 (12, 'Componer himno organizacional.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1, 1, 1),
 (13, 'Llegar temprano durante 20 años laborales.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1, 1, 1),
 (14, 'Laborar 14 horas extra en un mes.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1, 5, 1),
-(15, 'Organizar fiesta anual.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1, 5, 1);
+(15, 'Organizar fiesta anual.', '2011-08-10', '2012-02-10', 1, '2011-01-02',1, 5, 1),
+(16, 'Ganar 1000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(17, 'Ganar 2000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(18, 'Ganar 3000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(19, 'Ganar 4000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(20, 'Ganar 5000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(21, 'Ganar 6000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(22, 'Ganar 7000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(23, 'Ganar 8000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(24, 'Ganar 9000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(25, 'Ganar 10000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(26, 'Ganar 11000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(27, 'Ganar 12000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(28, 'Ganar 13000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(29, 'Ganar 14000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1),
+(30, 'Ganar 15000 puntos', GETDATE(), NULL, 1, GETDATE(), 1, 1, 1);
 SET IDENTITY_INSERT dbo.Logros OFF;
 
 SET IDENTITY_INSERT dbo.TipoPremio ON;
@@ -1289,6 +1304,22 @@ INSERT INTO TipoEvento (idTipoEvento, Tipo) VALUES
 (28, 'Modificacion de Permisos de Usuario'),
 (29, 'Modificacion de Permisos de Grupo de Usuarios');
 SET IDENTITY_INSERT dbo.TipoEvento OFF;
+
+INSERT INTO PremiosPorDepartamento (fk_idDepartamento, fk_idPremio) VALUES
+(2, 51),
+(2, 52),
+(2, 53),
+(2, 54),
+(2, 55),
+(2, 56),
+(2, 57),
+(2, 58),
+(2, 59),
+(2, 61),
+(2, 62),
+(2, 63),
+(2, 64),
+(2, 65);
 
 INSERT INTO PermisosPorGrupo (fk_idGrupo, fk_idPermiso) VALUES
 (1, 5),
