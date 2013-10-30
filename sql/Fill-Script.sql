@@ -1206,7 +1206,23 @@ INSERT INTO Premio (idPremio, Titulo, Descripcion, Foto, Cantidad, Monto, fk_idM
 (77, 'Indispensable', 'Condecoración al ganar 12000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
 (78, 'Genio', 'Condecoración al ganar 13000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
 (79, 'Futuro Presidente', 'Condecoración al ganar 14000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
-(80, 'Pensionado con honores', 'Condecoración al ganar 15000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0);
+(80, 'Programdor clave', 'Condecoracion obtenida al aprender a progrmar en 3 nuevos lenguajes', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(81, 'Programador Novato', 'Condecoración al ganar 100 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(82, 'Programador Vocero', 'Condecoración obtenida al dar una capacitación sobre un lenguaje de programación', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(83, 'Programador Prodigio', 'Condecoración al ganar 5000 en una semana o menos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(84, 'Director de Orquesta', 'Condecoración obtenida al dirigir 5 proyectos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(85, 'Loyal Geek', 'Condecoración obetinda al cumplir 5 años de trabajar en la empresa', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(86, 'Teammate', 'Condecoración obtenida al trabajar en el primer proyecto', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(87, 'Programador Móvil', 'Condecoración obtenida al desarrollar aplicación para móvil', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(88, 'Master', 'Condecoración al ganar 25000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(89, 'Programador interino', 'Condecoración al ganar 500 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(90, 'Programador Titular', 'Condecoración al ganar 1000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(91, 'Programador Suplente', 'Condecoración al ganar 800 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(92, 'Programador Héroe', 'Condecoración al ganar 30000 puntos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(93, 'Headline Project Manager', 'Condecoración al dirigir 30 proyectos', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(94, 'iOS Scientis', 'Condecoración al tomar parte en 10 proyectos de desarrollo para iOS', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0),
+(95, 'Android Scientis', 'Condecoración al tomar parte en 10 proyectos de desarrollo para Android', NULL, 1, 0, 1, 14, GETDATE(), 1, 1, 0);
+
 SET IDENTITY_INSERT dbo.Premio OFF;
 
 SET IDENTITY_INSERT dbo.Permisos ON;
